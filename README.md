@@ -1,4 +1,4 @@
 tchillr_ios
 ===========
 
-iOS Projects relative to the Tchillr project.
+iOS Projects relative to the Tchillr project
