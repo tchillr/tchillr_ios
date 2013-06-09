@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="5">
+            <objects>
+                <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8eO-P3-K4t" userLabel="Interests Collection View">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="3rp-Jv-k4u">
+                                    <size key="itemSize" width="160" height="160"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="InterestItemCollectionViewCell" id="YYJ-kd-Ea8" customClass="InterestItemCollectionViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ROp-RQ-if9" userLabel="Tags Collection View">
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="r0f-yy-OpU">
+                                                        <size key="itemSize" width="80" height="67"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TagItemCollectionViewCell" id="06e-vT-KqT" customClass="TagItemCollectionViewCell">
+                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="67"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                                <rect key="frame" x="0.0" y="0.0" width="80" height="67"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxP-zF-IZZ">
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="21" id="Hfn-f5-TXt"/>
+                                                                            <constraint firstAttribute="width" constant="72" id="rli-qw-N3f"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="13"/>
+                                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            </view>
+                                                            <constraints>
+                                                                <constraint firstItem="zxP-zF-IZZ" firstAttribute="leading" secondItem="06e-vT-KqT" secondAttribute="leading" constant="3" id="EHg-ZP-Ri7"/>
+                                                                <constraint firstItem="zxP-zF-IZZ" firstAttribute="bottom" secondItem="06e-vT-KqT" secondAttribute="bottom" type="default" id="jD3-sm-ukS"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <outlet property="titleLabel" destination="zxP-zF-IZZ" id="b78-X7-Lja"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="YYJ-kd-Ea8" id="GxO-gw-0ar"/>
+                                                        <outlet property="delegate" destination="YYJ-kd-Ea8" id="1h0-cW-CsD"/>
+                                                    </connections>
+                                                </collectionView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="StretchableInnerShadow.png" translatesAutoresizingMaskIntoConstraints="NO" id="Whu-Ao-9XS" customClass="BMStretchableImageView">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="134" id="gwg-ag-svk"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vaZ-8M-hAF" userLabel="Front View">
+                                                    <subviews>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYc-yE-2CP">
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="21" id="oJk-HQ-N0F"/>
+                                                                <constraint firstAttribute="width" constant="140" id="v5d-dl-gRf"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="21"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="dYc-yE-2CP" secondAttribute="bottom" constant="2" id="0Ju-ls-xr8"/>
+                                                        <constraint firstItem="dYc-yE-2CP" firstAttribute="leading" secondItem="vaZ-8M-hAF" secondAttribute="leading" constant="13" id="kOe-qo-Ovk"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="vaZ-8M-hAF" firstAttribute="leading" secondItem="YYJ-kd-Ea8" secondAttribute="leading" type="default" id="C4q-xG-ztE"/>
+                                            <constraint firstItem="Whu-Ao-9XS" firstAttribute="leading" secondItem="YYJ-kd-Ea8" secondAttribute="leading" type="default" id="FXw-Lq-gUH"/>
+                                            <constraint firstItem="ROp-RQ-if9" firstAttribute="bottom" secondItem="YYJ-kd-Ea8" secondAttribute="bottom" type="default" id="K6P-7U-VCR"/>
+                                            <constraint firstItem="vaZ-8M-hAF" firstAttribute="bottom" secondItem="YYJ-kd-Ea8" secondAttribute="bottom" type="default" id="KwZ-gc-vYJ"/>
+                                            <constraint firstItem="vaZ-8M-hAF" firstAttribute="top" secondItem="YYJ-kd-Ea8" secondAttribute="top" type="default" id="NhJ-ca-nPM"/>
+                                            <constraint firstItem="Whu-Ao-9XS" firstAttribute="trailing" secondItem="YYJ-kd-Ea8" secondAttribute="trailing" type="default" id="PG8-UK-nnZ"/>
+                                            <constraint firstItem="vaZ-8M-hAF" firstAttribute="trailing" secondItem="YYJ-kd-Ea8" secondAttribute="trailing" type="default" id="Rch-p3-0xF"/>
+                                            <constraint firstItem="Whu-Ao-9XS" firstAttribute="bottom" secondItem="YYJ-kd-Ea8" secondAttribute="bottom" type="default" id="T7m-Va-5bc"/>
+                                            <constraint firstItem="ROp-RQ-if9" firstAttribute="leading" secondItem="YYJ-kd-Ea8" secondAttribute="leading" type="default" id="eWI-du-BSF"/>
+                                            <constraint firstItem="ROp-RQ-if9" firstAttribute="trailing" secondItem="YYJ-kd-Ea8" secondAttribute="trailing" type="default" id="hmW-kU-boJ"/>
+                                            <constraint firstItem="Whu-Ao-9XS" firstAttribute="top" secondItem="ROp-RQ-if9" secondAttribute="top" type="default" id="njB-Tw-MO2"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="frontView" destination="vaZ-8M-hAF" id="3We-Yb-vgA"/>
+                                            <outlet property="titleLabel" destination="dYc-yE-2CP" id="r3i-Wr-mVX"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="2" id="s1v-om-hsd"/>
+                                    <outlet property="delegate" destination="2" id="K9G-HQ-7rX"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8eO-P3-K4t" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="0VN-ci-HfW"/>
+                            <constraint firstItem="8eO-P3-K4t" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="J6R-Pt-EpU"/>
+                            <constraint firstItem="8eO-P3-K4t" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="REP-uR-vD7"/>
+                            <constraint firstItem="8eO-P3-K4t" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="fh7-eG-WDl"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="8eO-P3-K4t" id="PCb-nC-gHB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-486" y="80"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="StretchableInnerShadow.png" width="60" height="60"/>
+    </resources>
+    <classes>
+        <class className="BMStretchableImageView" superclassName="UIImageView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BMStretchableImageView.h"/>
+        </class>
+        <class className="InterestItemCollectionViewCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InterestItemCollectionViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="frontView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="TagItemCollectionViewCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TagItemCollectionViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
+            </relationships>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
