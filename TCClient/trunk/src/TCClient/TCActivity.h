@@ -21,5 +21,7 @@
 @property (nonatomic, readonly) NSString *longitude;
 @property (nonatomic, readonly) NSString *latitude;
 @property (nonatomic, readonly) NSString *zipcode;
+@property (nonatomic, readonly) NSArray *keywords;
+
 
 @end

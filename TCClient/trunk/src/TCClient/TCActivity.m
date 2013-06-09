@@ -7,6 +7,7 @@
 //
 
 #import "TCActivity.h"
+#import "TCKeyword.h"
 
 #define kActivityDescriptionKey @"description"
 #define kActivityShortDescriptionKey @"shortDescription"
@@ -19,6 +20,10 @@
 #define kActivityLongitudeKey @"longitude"
 #define kActivityLatitudeKey @"latitude"
 #define kActivityZipcodeKey @"zipcode"
+#define kActivityKeywordsKey @"keywords"
+
+#define kActivityWordKey @"Key"
+#define kActivityWeightKey @"Value"
 
 @implementation TCActivity
 
@@ -65,6 +70,16 @@
 
 - (NSString *)zipcode {
     return (NSString *)[self.jsonDictionary objectForKey:kActivityZipcodeKey];
+}
+
+- (NSArray *)keywords {
+    NSMutableArray * keywords = [NSMutableArray array];
+    NSArray * keywordDictionnaries = (NSArray *)[self.jsonDictionary objectForKey:kActivityKeywordsKey];
+    for (NSDictionary * dict in keywordDictionnaries) {
+        TCKeyword * keyword = [[TCKeyword alloc] initWithWord:[dict objectForKey:kActivityWordKey] andWeight:[[dict objectForKey:kActivityWeightKey] intValue]];
+        [keywords addObject:keyword];
+    }
+    return [NSArray arrayWithArray:keywords];
 }
 
 @end

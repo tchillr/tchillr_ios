@@ -14,33 +14,32 @@
 @interface TCCategoriesViewController ()
 
 @property (nonatomic, retain) IBOutlet UITableView * tableView;
-@property (nonatomic, retain) NSMutableArray * categories;
+@property (nonatomic, retain) NSArray * categories;
 
 @end
 
 @implementation TCCategoriesViewController
 
 @synthesize tableView = _tableView;
-
 @synthesize categories = _categories;
-- (NSMutableArray *)categories {
+- (NSArray *)categories {
     if (_categories == nil) {
-        _categories = [[NSMutableArray alloc] init];
+        _categories = [[NSArray alloc] init];
     }
     return _categories;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
-    [[TCTchillrServerClient sharedTchillrServerClient] startCategoriesRequest:self.categories success:^(BOOL categoriesRequestSucceeded) {
+    [[TCTchillrServerClient sharedTchillrServerClient] startCategoriesRequestWithSuccess:^(NSArray * categoriesArray) {
+        self.categories = categoriesArray;
         [self.tableView reloadData];
     } failure:^(NSError *error) {
         NSLog(@"%@",[error description]);
-    }];}
+    }];
+}
 
 #pragma mark Category Access
-
 - (NSUInteger)numberOfCategories {
     return [self.categories count];
 }

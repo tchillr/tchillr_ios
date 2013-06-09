@@ -18,7 +18,7 @@
 @interface TCActivitiesViewController ()
 
 @property (nonatomic, retain) IBOutlet UITableView * tableView;
-@property (nonatomic, retain) NSMutableArray * activities;
+@property (nonatomic, retain) NSArray * activities;
 
 @end
 
@@ -26,9 +26,9 @@
 
 @synthesize tableView = _tableView;
 @synthesize activities = _activities;
-- (NSMutableArray *)activities {
+- (NSArray *)activities {
     if (_activities == nil) {
-        _activities = [[NSMutableArray alloc] init];
+        _activities = [[NSArray alloc] init];
     }
     return _activities;
 }
@@ -37,7 +37,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[TCTchillrServerClient sharedTchillrServerClient] startActivitiesRequest:self.activities success:^(BOOL activitiesRequestSucceeded) {
+    [[TCTchillrServerClient sharedTchillrServerClient] startActivitiesRequestWithSuccess:^(NSArray *activitiesArray) {
+        self.activities = activitiesArray;
         [self.tableView reloadData];
     } failure:^(NSError *error) {
         NSLog(@"%@",[error description]);
@@ -62,7 +63,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TCActivityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActivityTableViewCellIdentifier"];
     TCActivity * activity = [self activityAtIndex:indexPath.row];
-    [cell.textLabel setText:[NSString stringWithFormat:@"%@ (%@)",activity.name,activity.identifier]];
+    [cell.textLabel setText:[NSString stringWithFormat:@"%i - %@ (%@)",indexPath.row,activity.name,activity.identifier]];
     return cell;
 }
 
