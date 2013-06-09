@@ -18,7 +18,6 @@
 @property (nonatomic, retain) NSArray * tags;
 @property (nonatomic, retain) NSArray * interestsIds;
 
-
 @end
 
 @implementation TCThemeViewController
@@ -36,7 +35,7 @@
         NSLog(@"%@", [error description]);
     }];
     
-    [[TCTchillrServerClient sharedTchillrServerClient] startTagsRequestForInterestsWithSuccess:^(NSArray *interestsArray) {
+    [[TCTchillrServerClient sharedTchillrServerClient] startInterestsRequestWithSuccess:^(NSArray *interestsArray) {
         self.interestsIds = interestsArray;
         [self.tableView reloadData];
     } failure:^(NSError *error) {
@@ -74,11 +73,17 @@
 }
 
 #pragma mark TCTagTableViewCellDelegate
-- (void)tagTableViewCellDidAddInterest:(TCTagTableViewCell *)cell{
+- (void)tagTableViewCellDidTapInterest:(TCTagTableViewCell *)cell{
     NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
     TCTag * tag = [self tagAtIndex:indexPath.row];
-    BOOL isSelected = cell.tagView.userInterest;
-    [cell.tagView setUserInterest:!isSelected];
+    BOOL add = ![self.interestsIds containsObject:tag.identifier];
+    
+    [[TCTchillrServerClient sharedTchillrServerClient] startUpdateInterestRequestWithIdentifier:tag.identifier add:add success:^(BOOL interestUpdateSucceeded) {
+        NSLog(@"Update interest succeeded");
+        [cell.tagView setUserInterest:add];
+    } failure:^(NSError *error) {
+        NSLog(@"%@",[error description]);
+    }];    
 }
 
 @end

@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "TCTheme.h"
+#import "AFHTTPClient.h"
 
-@interface TCTchillrServerClient : NSObject
+@interface TCTchillrServerClient : AFHTTPClient
 
 /** @name Singleton */
 #pragma mark Singleton
@@ -18,10 +19,10 @@
 - (void)startActivitiesRequestWithSuccess:(void (^)(NSArray * activitiesArray))success failure:(void (^)(NSError *error))failure offset:(NSInteger) offset limit:(NSInteger)limit;
 #pragma mark Categories
 - (void)startCategoriesRequestWithSuccess:(void (^)(NSArray * categoriesArray))success failure:(void (^)(NSError *error))failure;
-#pragma mark Tags for theme
+#pragma mark Tags for interest
 - (void)startTagsRequestForTheme:(TCThemeType) themeType success:(void (^)(NSArray * themeTagsArray))success failure:(void (^)(NSError *error))failure;
-
-#pragma mark User User interests
-- (void)startTagsRequestForInterestsWithSuccess:(void (^)(NSArray * interestsArray))success failure:(void (^)(NSError *error))failure;
+#pragma mark Interests
+- (void)startInterestsRequestWithSuccess:(void (^)(NSArray * interestsArray))success failure:(void (^)(NSError *error))failure;
+- (void)startUpdateInterestRequestWithIdentifier:(NSNumber*) interestIdentifier add:(BOOL)add success:(void (^)(BOOL  interestUpdateSucceeded))success failure:(void (^)(NSError *error))failure;
 
 @end

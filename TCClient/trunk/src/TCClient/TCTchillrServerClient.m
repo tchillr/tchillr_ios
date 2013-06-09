@@ -12,27 +12,30 @@
 #import "TCCategory.h"
 #import "TCTag.h"
 
+
+// Login
+#warning needs to be changes with facebook login
+#define USER_NAME_IDENTIFIER @"1"
 #define kTchillrServiceBaseURL @"http://tchillr.azurewebsites.net/TchillrService.svc/"
 #define kTchillrServiceURL(x) [NSString stringWithFormat:@"%@%@",kTchillrServiceBaseURL,x]
-#define kTchillrServiceNameActivities @"DBActivities"
 
-#define kTchillrServiceNameCategories @"StaticCategories"
+// Activities 
+#define kTchillrServiceNameActivities @"DBActivities"
 #define kTchillrAllActivitiesKey @"GetFromDBAllActivitiesResult"
+
+// Categories
+#define kTchillrServiceNameCategories @"StaticCategories"
 #define kTchillrAllCategoriesKey @"GetStaticCategoriesResult"
 
+// Interests
 #define kTchillrInterestsKey @"GetInterestsResult"
-
-
+#define kTchillrInterestBaseURI(identifier) [NSString stringWithFormat:@"users/%@/interests",identifier]
+#define kTchillrTags @"GetTagsResult"
+#warning Change with speciallized Coategory /Concert/etc..
 #define kTchillrServiceNameTag @"Musique/Tags"
 
-
-#define USER_NAME_IDENTIFIER @"1"
-#warning a changer le 1 correcspondant à l'id du user en base
-
-//#define kTchillrServiceNameAddInterest @
-#define kTchillrInterestBaseURI(identifier) [NSString stringWithFormat:@"users/%@/interests",identifier]
-
-#define kTchillrTags @"GetTagsResult"
+#define KTchillrInterestIdentifierKey @"identifier"
+#define KTchillrInterestIdentifierAddKey @"add"
 
 @implementation TCTchillrServerClient
 
@@ -43,7 +46,7 @@ static TCTchillrServerClient *sharedTchillrServerClient;
 	static BOOL initialized = NO;
 	if (!initialized) {
 		initialized = YES;
-		sharedTchillrServerClient = [[TCTchillrServerClient alloc] init];
+		sharedTchillrServerClient = [[TCTchillrServerClient alloc] initWithBaseURL:[NSURL URLWithString:kTchillrServiceBaseURL]];
 	}
 }
 + (TCTchillrServerClient *)sharedTchillrServerClient {
@@ -118,13 +121,11 @@ static TCTchillrServerClient *sharedTchillrServerClient;
 }
 
 #pragma mark User interests
-- (void)startTagsRequestForInterestsWithSuccess:(void (^)(NSArray * interestsArray))success failure:(void (^)(NSError *error))failure {
-    
+
+#pragma mark Get User interests
+- (void)startInterestsRequestWithSuccess:(void (^)(NSArray * interestsArray))success failure:(void (^)(NSError *error))failure {
     NSString * urlString = kTchillrServiceURL(kTchillrInterestBaseURI(USER_NAME_IDENTIFIER));
-    //NSString * urlString2 = kTchillrServiceURL(kTchillrServiceNameTag)
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];    
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             NSDictionary *jsonDict = (NSDictionary *) JSON;
@@ -133,27 +134,21 @@ static TCTchillrServerClient *sharedTchillrServerClient;
                                                                                         }failure:^(NSURLRequest *request, NSHTTPURLResponse *response,
                                                                                                    NSError *error, id JSON) {
                                                                                             failure(error);
-                                                                                        }
-                                         ];
-    
+                                                                                        }];
     [operation start];
 }
+#pragma mark Add/remove User interest
+- (NSMutableURLRequest *)updateInterestRequestWithParameters:(NSDictionary *)parameters {
+    NSString * path = kTchillrServiceURL(kTchillrInterestBaseURI(USER_NAME_IDENTIFIER));
+    return [self requestWithMethod:@"POST" path:path parameters:parameters];
+}
 
-/*
-- (void)startUserRequestForInterest:(BOOL) interet success:(void (^)(BOOL  interestUpdateSucceeded))success failure:(void (^)(NSError *error))failure {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:kTchillrServiceURL(kTchillrServiceNameTag)]];
-    
-    
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+- (void)startUpdateInterestRequestWithIdentifier:(NSNumber*) interestIdentifier add:(BOOL)add success:(void (^)(BOOL  interestUpdateSucceeded))success failure:(void (^)(NSError *error))failure {
+    NSDictionary * parameters = [NSDictionary dictionaryWithObjectsAndKeys:interestIdentifier,KTchillrInterestIdentifierKey,[NSNumber numberWithBool:add],KTchillrInterestIdentifierAddKey,nil];
+    NSURLRequest *interestRequest = [self updateInterestRequestWithParameters:parameters];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:interestRequest
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                                                            NSDictionary *jsonDict = (NSDictionary *) JSON;
-                                                                                            NSMutableArray * resultTags = [[NSMutableArray alloc] init];
-                                                                                            NSArray *tags = [jsonDict objectForKey:kTchillrTags];
-                                                                                            [tags enumerateObjectsUsingBlock:^(id obj,NSUInteger idx, BOOL *stop){
-                                                                                                TCTag * tag = [[TCTag alloc] initWithJsonDictionary:obj];
-                                                                                                [resultTags addObject:tag];
-                                                                                            }];
-                                                                                            success(resultTags);
+                                                                                            success(YES);
                                                                                         }failure:^(NSURLRequest *request, NSHTTPURLResponse *response,
                                                                                                    NSError *error, id JSON) {
                                                                                             failure(error);
@@ -162,6 +157,5 @@ static TCTchillrServerClient *sharedTchillrServerClient;
     
     [operation start];
 }
-*/
 
 @end

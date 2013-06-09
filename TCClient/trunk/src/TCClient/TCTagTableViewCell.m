@@ -37,8 +37,8 @@
 }
 
 - (void)heartTapped:(UITapGestureRecognizer *)recognizer{
-    if (recognizer.state == UIGestureRecognizerStateEnded && [self.delegate respondsToSelector:@selector(tagTableViewCellDidAddInterest:)]) {
-        [self.delegate tagTableViewCellDidAddInterest:self];
+    if (recognizer.state == UIGestureRecognizerStateEnded && [self.delegate respondsToSelector:@selector(tagTableViewCellDidTapInterest:)]) {
+        [self.delegate tagTableViewCellDidTapInterest:self];
     }
 }
 

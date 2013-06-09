@@ -13,7 +13,7 @@
 
 #pragma mark TCTagTableViewCellDelegate
 @protocol TCTagTableViewCellDelegate <NSObject>
-- (void)tagTableViewCellDidAddInterest:(TCTagTableViewCell *)cell;
+- (void)tagTableViewCellDidTapInterest:(TCTagTableViewCell *)cell;
 @end
 
 @interface TCTagTableViewCell : UITableViewCell
