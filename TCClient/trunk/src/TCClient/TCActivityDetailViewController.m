@@ -18,6 +18,8 @@
     [super viewDidLoad];
     [self.nameLabel setText:self.activity.name];
     [self.descriptionLabel setText:self.activity.description];
+    
+    
 }
 
 @end

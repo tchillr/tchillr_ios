@@ -10,6 +10,8 @@
 
 @interface TCActivityTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *textLabel;
+@property (weak, nonatomic) IBOutlet UILabel *activityNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *activityShortDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *activityFullAdressLabel;
 
 @end

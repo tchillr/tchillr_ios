@@ -8,6 +8,7 @@
 
 #import "TCActivity.h"
 #import "TCKeyword.h"
+#import "NSString+TCAdditions.h"
 
 #define kActivityDescriptionKey @"description"
 #define kActivityShortDescriptionKey @"shortDescription"
@@ -81,5 +82,35 @@
     }
     return [NSArray arrayWithArray:keywords];
 }
+
+#pragma mark Adress formatting
+- (NSString *)fullAdress{
+    NSMutableString * fullAdress = [[NSMutableString alloc] init];
+    NSMutableArray * availableStrings = [[NSMutableArray alloc]init];
+    
+    if (![self.place isEmpty]) {
+        [availableStrings addObject:[self.place capitalizedString]];
+    }
+    if (![self.adress isEmpty]) {
+        [availableStrings addObject:[self.adress capitalizedString]];
+    }
+    if (![self.zipcode isEmpty]) {
+        [availableStrings addObject:[self.zipcode capitalizedString]];
+    }
+    if (![self.city isEmpty]) {
+        [availableStrings addObject:[self.city capitalizedString]];
+    }
+
+    for (int i = 0; i < [availableStrings count]; i++) {
+        if (i == [availableStrings count] - 1) {
+            [fullAdress appendFormat:@"%@.",[availableStrings objectAtIndex:i]];
+        }
+        else {
+            [fullAdress appendFormat:@"%@, ",[availableStrings objectAtIndex:i]];
+        }
+    }
+    return [NSString stringWithString:fullAdress];
+}
+
 
 @end

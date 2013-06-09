@@ -23,5 +23,7 @@
 @property (nonatomic, readonly) NSString *zipcode;
 @property (nonatomic, readonly) NSArray *keywords;
 
+#pragma mark Adress formatting
+- (NSString *)fullAdress;
 
 @end

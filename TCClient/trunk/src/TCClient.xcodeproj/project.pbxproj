@@ -20,6 +20,7 @@
 		05D7BF2D17636ED900166475 /* TCTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BF2C17636ED900166475 /* TCTagView.m */; };
 		05D7BF2F17636FBE00166475 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D7BF2E17636FBE00166475 /* heart.png */; };
 		05D7BF311763867A00166475 /* heart_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D7BF301763867900166475 /* heart_selected.png */; };
+		05D7BF351764E5D100166475 /* NSString+TCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BF341764E5D100166475 /* NSString+TCAdditions.m */; };
 		5F575B411760939400BB4087 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F575B1D1760939400BB4087 /* Default-568h@2x.png */; };
 		5F575B421760939400BB4087 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F575B1E1760939400BB4087 /* Default.png */; };
 		5F575B431760939400BB4087 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F575B1F1760939400BB4087 /* Default@2x.png */; };
@@ -77,6 +78,8 @@
 		05D7BF2C17636ED900166475 /* TCTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTagView.m; sourceTree = "<group>"; };
 		05D7BF2E17636FBE00166475 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
 		05D7BF301763867900166475 /* heart_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_selected.png; sourceTree = "<group>"; };
+		05D7BF331764E5D100166475 /* NSString+TCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TCAdditions.h"; sourceTree = "<group>"; };
+		05D7BF341764E5D100166475 /* NSString+TCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TCAdditions.m"; sourceTree = "<group>"; };
 		5F575B1D1760939400BB4087 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5F575B1E1760939400BB4087 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		5F575B1F1760939400BB4087 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -180,9 +183,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		05D7BF321764E5A700166475 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				05D7BF331764E5D100166475 /* NSString+TCAdditions.h */,
+				05D7BF341764E5D100166475 /* NSString+TCAdditions.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		5F575B1C1760939400BB4087 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				05D7BF321764E5A700166475 /* Categories */,
 				5F575B57176093B200BB4087 /* Supporting Files */,
 				5F575B5B176093F000BB4087 /* Model */,
 				5F575B59176093CF00BB4087 /* Delegates */,
@@ -417,6 +430,7 @@
 				05D7BF27176368E500166475 /* TCTheme.m in Sources */,
 				05D7BF2A17636E1C00166475 /* TCTagTableViewCell.m in Sources */,
 				05D7BF2D17636ED900166475 /* TCTagView.m in Sources */,
+				05D7BF351764E5D100166475 /* NSString+TCAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
