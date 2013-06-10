@@ -21,6 +21,7 @@
 		05D7BF2F17636FBE00166475 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D7BF2E17636FBE00166475 /* heart.png */; };
 		05D7BF311763867A00166475 /* heart_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D7BF301763867900166475 /* heart_selected.png */; };
 		05D7BF351764E5D100166475 /* NSString+TCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BF341764E5D100166475 /* NSString+TCAdditions.m */; };
+		05D7BF381765425400166475 /* TCUserActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BF371765425300166475 /* TCUserActivitiesViewController.m */; };
 		5F575B411760939400BB4087 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F575B1D1760939400BB4087 /* Default-568h@2x.png */; };
 		5F575B421760939400BB4087 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F575B1E1760939400BB4087 /* Default.png */; };
 		5F575B431760939400BB4087 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F575B1F1760939400BB4087 /* Default@2x.png */; };
@@ -80,6 +81,8 @@
 		05D7BF301763867900166475 /* heart_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_selected.png; sourceTree = "<group>"; };
 		05D7BF331764E5D100166475 /* NSString+TCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TCAdditions.h"; sourceTree = "<group>"; };
 		05D7BF341764E5D100166475 /* NSString+TCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TCAdditions.m"; sourceTree = "<group>"; };
+		05D7BF361765425300166475 /* TCUserActivitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUserActivitiesViewController.h; sourceTree = "<group>"; };
+		05D7BF371765425300166475 /* TCUserActivitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUserActivitiesViewController.m; sourceTree = "<group>"; };
 		5F575B1D1760939400BB4087 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5F575B1E1760939400BB4087 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		5F575B1F1760939400BB4087 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -242,6 +245,8 @@
 				05D7BF1A17634EE100166475 /* TCThemesViewController.m */,
 				05D7BF1C1763549F00166475 /* TCThemeViewController.h */,
 				05D7BF1D1763549F00166475 /* TCThemeViewController.m */,
+				05D7BF361765425300166475 /* TCUserActivitiesViewController.h */,
+				05D7BF371765425300166475 /* TCUserActivitiesViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -431,6 +436,7 @@
 				05D7BF2A17636E1C00166475 /* TCTagTableViewCell.m in Sources */,
 				05D7BF2D17636ED900166475 /* TCTagView.m in Sources */,
 				05D7BF351764E5D100166475 /* NSString+TCAdditions.m in Sources */,
+				05D7BF381765425400166475 /* TCUserActivitiesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -76,10 +76,9 @@
 - (void)tagTableViewCellDidTapInterest:(TCTagTableViewCell *)cell{
     NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
     TCTag * tag = [self tagAtIndex:indexPath.row];
-    BOOL add = ![self.interestsIds containsObject:tag.identifier];
-    [[TCTchillrServerClient sharedTchillrServerClient] startUpdateInterestRequestWithIdentifier:tag.identifier add:add success:^(BOOL interestUpdateSucceeded) {
-        NSLog(@"Update interest succeeded");
-        [cell.tagView setUserInterest:add];
+    [[TCTchillrServerClient sharedTchillrServerClient] startUpdateInterestRequestWithIdentifier:tag.identifier success:^(NSArray * interestsArray) {
+        self.interestsIds = interestsArray;
+        [self.tableView reloadData];
     } failure:^(NSError *error) {
         NSLog(@"%@",[error description]);
     }];    

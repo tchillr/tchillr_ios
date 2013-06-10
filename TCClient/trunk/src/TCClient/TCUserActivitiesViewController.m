@@ -1,27 +1,26 @@
 //
-//  TCFirstViewController.m
+//  TCUserActivitiesViewController.m
 //  TCClient
 //
-//  Created by Jad on 04/06/13.
+//  Created by Jad on 10/06/13.
 //  Copyright (c) 2013 Tchillr. All rights reserved.
 //
 
+#import "TCUserActivitiesViewController.h"
 #import "TCTchillrServerClient.h"
-#import "TCActivitiesViewController.h"
 #import "TCActivityDetailViewController.h"
 #import "TCActivityTableViewCell.h"
 #import "TCActivity.h"
 #import "AFJSONRequestOperation.h"
 
-
-@interface TCActivitiesViewController ()
+@interface TCUserActivitiesViewController ()
 
 @property (nonatomic, retain) IBOutlet UITableView * tableView;
 @property (nonatomic, retain) NSArray * activities;
 
 @end
 
-@implementation TCActivitiesViewController
+@implementation TCUserActivitiesViewController
 
 @synthesize tableView = _tableView;
 @synthesize activities = _activities;
@@ -36,7 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[TCTchillrServerClient sharedTchillrServerClient] startActivitiesRequestWithSuccess:^(NSArray *activitiesArray) {
+    [[TCTchillrServerClient sharedTchillrServerClient] startUserActivitiesRequestWithSuccess:^(NSArray *activitiesArray) {
         self.activities = activitiesArray;
         [self.tableView reloadData];
     } failure:^(NSError *error) {
@@ -65,7 +64,7 @@
     [cell.activityNameLabel setText:activity.name];
     [cell.activityFullAdressLabel setText:activity.fullAdress];
     [cell.activityShortDescriptionLabel setText:activity.shortDescription];
-   // [cell.textLabel setText:[NSString stringWithFormat:@"%i - %@ (%@)",indexPath.row,activity.name,activity.identifier]];
+    // [cell.textLabel setText:[NSString stringWithFormat:@"%i - %@ (%@)",indexPath.row,activity.name,activity.identifier]];
     return cell;
 }
 
