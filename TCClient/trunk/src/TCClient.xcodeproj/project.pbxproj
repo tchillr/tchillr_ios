@@ -24,6 +24,7 @@
 		05D7BF381765425400166475 /* TCUserActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BF371765425300166475 /* TCUserActivitiesViewController.m */; };
 		05D7BF3A17663D9600166475 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D7BF3917663D9500166475 /* MapKit.framework */; };
 		05D7BF3D1766591600166475 /* TCOccurence.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BF3C1766591600166475 /* TCOccurence.m */; };
+		05D7BF401766836200166475 /* NSDate+TCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BF3F1766836200166475 /* NSDate+TCAdditions.m */; };
 		5F575B411760939400BB4087 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F575B1D1760939400BB4087 /* Default-568h@2x.png */; };
 		5F575B421760939400BB4087 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F575B1E1760939400BB4087 /* Default.png */; };
 		5F575B431760939400BB4087 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F575B1F1760939400BB4087 /* Default@2x.png */; };
@@ -88,6 +89,8 @@
 		05D7BF3917663D9500166475 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		05D7BF3B1766591600166475 /* TCOccurence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCOccurence.h; sourceTree = "<group>"; };
 		05D7BF3C1766591600166475 /* TCOccurence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCOccurence.m; sourceTree = "<group>"; };
+		05D7BF3E1766836200166475 /* NSDate+TCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TCAdditions.h"; sourceTree = "<group>"; };
+		05D7BF3F1766836200166475 /* NSDate+TCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TCAdditions.m"; sourceTree = "<group>"; };
 		5F575B1D1760939400BB4087 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5F575B1E1760939400BB4087 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		5F575B1F1760939400BB4087 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -198,6 +201,8 @@
 			children = (
 				05D7BF331764E5D100166475 /* NSString+TCAdditions.h */,
 				05D7BF341764E5D100166475 /* NSString+TCAdditions.m */,
+				05D7BF3E1766836200166475 /* NSDate+TCAdditions.h */,
+				05D7BF3F1766836200166475 /* NSDate+TCAdditions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -447,6 +452,7 @@
 				05D7BF351764E5D100166475 /* NSString+TCAdditions.m in Sources */,
 				05D7BF381765425400166475 /* TCUserActivitiesViewController.m in Sources */,
 				05D7BF3D1766591600166475 /* TCOccurence.m in Sources */,
+				05D7BF401766836200166475 /* NSDate+TCAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,19 +8,31 @@
 
 #import "TCOccurence.h"
 
+#define API_PARIS_DATE_FORMAT
+
 @implementation TCOccurence
 
 #pragma mark Accessors
 - (NSString *)day {
-    return (NSString *)[self.jsonDictionary objectForKey:kOccurenceDayKey];
+    NSString * dayString = (NSString *)[self.jsonDictionary objectForKey:kOccurenceDayKey];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
+    NSDate *date = [dateFormat dateFromString:dayString];
+    [dateFormat setDateFormat:@"dd MMM"];
+    NSString * formattedDay = [dateFormat stringFromDate:date];
+    return formattedDay;
 }
 
 - (NSString *)startTime {
-    return (NSString *)[self.jsonDictionary objectForKey:kOccurenceStartTimeKey];
+    NSString * startTimeString = (NSString *)[self.jsonDictionary objectForKey:kOccurenceStartTimeKey];
+    NSString * formattedStartTime = [startTimeString substringToIndex:5];
+    return formattedStartTime;
 }
 
 - (NSString *)endTime {
-    return (NSString *)[self.jsonDictionary objectForKey:kOccurenceEndTimeKey];
+    NSString * endTimeString = (NSString *)[self.jsonDictionary objectForKey:kOccurenceEndTimeKey];
+    NSString * formattedEndTime = [endTimeString substringToIndex:5];
+    return formattedEndTime;
 }
 
 

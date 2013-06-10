@@ -114,8 +114,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="aFI-p8-uKL"/>
                     <connections>
-                        <outlet property="descriptionLabel" destination="C8r-9P-K6S" id="RVL-V2-ZKJ"/>
-                        <outlet property="nameLabel" destination="q40-ji-tLd" id="HEw-Ed-kww"/>
+                        <outlet property="activityDescriptionLabel" destination="C8r-9P-K6S" id="TQF-7b-ttD"/>
+                        <outlet property="activityFullAdressLabel" destination="y2e-Pg-rVU" id="NnQ-Lj-Ses"/>
+                        <outlet property="activityNameLabel" destination="q40-ji-tLd" id="kYO-e5-sLO"/>
+                        <outlet property="activityShortDescriptionLabel" destination="FqJ-rP-yhw" id="vV7-dJ-2wo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ezF-b2-Lxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -532,7 +534,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2142" y="-860"/>
+            <point key="canvasLocation" x="-2152" y="-972"/>
         </scene>
         <!--Navigation Controller - Activities-->
         <scene sceneID="pyY-g6-5Wz">
