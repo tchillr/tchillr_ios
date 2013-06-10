@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "InterestItemCollectionViewCell.h"
 
-@interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, InterestItemCollectionViewCellDelegate>
+@interface InterestsPickerViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, InterestItemCollectionViewCellDelegate>
 
 @end

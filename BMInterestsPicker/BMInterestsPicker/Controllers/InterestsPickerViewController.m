@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Meski Badr. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "InterestsPickerViewController.h"
 
 // Models
 #import "InterestItemModel.h"
@@ -18,14 +18,14 @@
 // Views
 #import "InterestItemCollectionViewCell.h"
 
-@interface ViewController ()
+@interface InterestsPickerViewController ()
 
 @property (nonatomic, retain) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, retain) NSArray *interests;
 
 @end
 
-@implementation ViewController
+@implementation InterestsPickerViewController
 
 @synthesize collectionView = _collectionView;
 @synthesize interests = _interests;

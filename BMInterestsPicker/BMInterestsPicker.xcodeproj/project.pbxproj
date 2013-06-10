@@ -19,7 +19,7 @@
 		852FFD461763B3B30099A838 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852FFD441763B3B30099A838 /* MainStoryboard.storyboard */; };
 		858B9B8A1764F32400E88934 /* NSArray+BMAddings.m in Sources */ = {isa = PBXBuildFile; fileRef = 858B9B721764F32400E88934 /* NSArray+BMAddings.m */; };
 		858B9B8B1764F32400E88934 /* UIColor+BMAddings.m in Sources */ = {isa = PBXBuildFile; fileRef = 858B9B741764F32400E88934 /* UIColor+BMAddings.m */; };
-		858B9B8C1764F32400E88934 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 858B9B771764F32400E88934 /* ViewController.m */; };
+		858B9B8C1764F32400E88934 /* InterestsPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 858B9B771764F32400E88934 /* InterestsPickerViewController.m */; };
 		858B9B8F1764F32400E88934 /* StretchableInnerShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 858B9B7E1764F32400E88934 /* StretchableInnerShadow.png */; };
 		858B9B901764F32400E88934 /* StretchableInnerShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 858B9B7F1764F32400E88934 /* StretchableInnerShadow@2x.png */; };
 		858B9B911764F32400E88934 /* InterestItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 858B9B821764F32400E88934 /* InterestItemModel.m */; };
@@ -47,8 +47,8 @@
 		858B9B721764F32400E88934 /* NSArray+BMAddings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BMAddings.m"; sourceTree = "<group>"; };
 		858B9B731764F32400E88934 /* UIColor+BMAddings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BMAddings.h"; sourceTree = "<group>"; };
 		858B9B741764F32400E88934 /* UIColor+BMAddings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BMAddings.m"; sourceTree = "<group>"; };
-		858B9B761764F32400E88934 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		858B9B771764F32400E88934 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		858B9B761764F32400E88934 /* InterestsPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestsPickerViewController.h; sourceTree = "<group>"; };
+		858B9B771764F32400E88934 /* InterestsPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestsPickerViewController.m; sourceTree = "<group>"; };
 		858B9B7E1764F32400E88934 /* StretchableInnerShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StretchableInnerShadow.png; sourceTree = "<group>"; };
 		858B9B7F1764F32400E88934 /* StretchableInnerShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StretchableInnerShadow@2x.png"; sourceTree = "<group>"; };
 		858B9B811764F32400E88934 /* InterestItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestItemModel.h; sourceTree = "<group>"; };
@@ -146,8 +146,8 @@
 		858B9B751764F32400E88934 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				858B9B761764F32400E88934 /* ViewController.h */,
-				858B9B771764F32400E88934 /* ViewController.m */,
+				858B9B761764F32400E88934 /* InterestsPickerViewController.h */,
+				858B9B771764F32400E88934 /* InterestsPickerViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -255,7 +255,7 @@
 				852FFD3D1763B3B30099A838 /* AppDelegate.m in Sources */,
 				858B9B8A1764F32400E88934 /* NSArray+BMAddings.m in Sources */,
 				858B9B8B1764F32400E88934 /* UIColor+BMAddings.m in Sources */,
-				858B9B8C1764F32400E88934 /* ViewController.m in Sources */,
+				858B9B8C1764F32400E88934 /* InterestsPickerViewController.m in Sources */,
 				858B9B911764F32400E88934 /* InterestItemModel.m in Sources */,
 				858B9B921764F32400E88934 /* BMStretchableImageView.m in Sources */,
 				858B9B931764F32400E88934 /* InterestItemCollectionViewCell.m in Sources */,
