@@ -13,8 +13,12 @@
 
 @property (nonatomic, retain) TCActivity * activity;
 
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *activityNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *activityShortDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *activityDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *activityFullAdressLabel;
+@property (weak, nonatomic) IBOutlet UICollectionView *activityTagsView;
+@property (weak, nonatomic) IBOutlet UILabel *activityNextOccurenceLabel;
 
 @end
 

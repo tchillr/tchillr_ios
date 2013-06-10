@@ -8,6 +8,23 @@
 
 #import "TCTheme.h"
 
+#define kThemeTitleKey @"title"
+#define kThemeIdentifierKey @"identifier"
+#define kThemeTagsKey @"tags"
+
+
 @implementation TCTheme
+
+- (NSString *)title {
+    return (NSString *)[self.jsonDictionary objectForKey:kThemeTitleKey];
+}
+
+- (NSArray *)tags {
+    return (NSArray *)[self.jsonDictionary objectForKey:kThemeTagsKey];
+}
+
+- (NSNumber *)identifier {
+    return (NSNumber *)[self.jsonDictionary objectForKey:kThemeIdentifierKey];
+}
 
 @end

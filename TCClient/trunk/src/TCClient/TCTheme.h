@@ -7,16 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TCObject.h"
 
-typedef enum{
-    TCThemeTypeNone,
-    TCThemeTypeMusic,
-    TCTHemeTypeCinema,
-    TCThemeTypeExpo,
-    TCThemeTypeNocturne,
-    TCThemeTypeNature
-}TCThemeType;
+@interface TCTheme : TCObject
 
-@interface TCTheme : NSObject
+
+@property (nonatomic, readonly) NSNumber *identifier;
+@property (nonatomic, readonly) NSString *title;
+@property (nonatomic, readonly) NSArray *tags;
+
 
 @end

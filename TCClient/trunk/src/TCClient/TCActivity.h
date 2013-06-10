@@ -22,8 +22,15 @@
 @property (nonatomic, readonly) NSString *latitude;
 @property (nonatomic, readonly) NSString *zipcode;
 @property (nonatomic, readonly) NSArray *keywords;
+@property (nonatomic, readonly) NSArray *contextualTags;
 
+#pragma mark Formatted occurence
+- (NSString *)formattedOccurence;
 #pragma mark Adress formatting
 - (NSString *)fullAdress;
+#pragma mark Tags
+- (BOOL)hasTags;
+#pragma mark Formatted contextual tags
+- (NSString *)formattedContextualTags;
 
 @end

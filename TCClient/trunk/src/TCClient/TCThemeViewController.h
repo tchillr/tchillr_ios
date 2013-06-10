@@ -12,6 +12,6 @@
 
 @interface TCThemeViewController : UIViewController<TCTagTableViewCellDelegate>
 
-@property (nonatomic, assign) TCThemeType themeType;
+@property (nonatomic, retain) NSString * themeString;
 
 @end

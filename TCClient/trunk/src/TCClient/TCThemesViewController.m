@@ -10,6 +10,7 @@
 #import "TCActivityTableViewCell.h"
 #import "TCThemeViewController.h"
 #import "TCTheme.h"
+#import "TCTchillrServerClient.h"
 
 @interface TCThemesViewController ()
 
@@ -21,13 +22,18 @@
 @implementation TCThemesViewController
 
 @synthesize tableView = _tableView;
-
 @synthesize themes = _themes;
-- (NSArray *)themes{
-    if (_themes == nil) {
-        _themes = [NSArray arrayWithObjects:@"Musique",@"Cinéma",@"Expos",@"Nocturnes",@"Nature",nil];
-    }
-    return _themes;
+
+#pragma mark LifeCycle
+- (void)viewDidLoad{
+    [super viewDidLoad];
+    [[TCTchillrServerClient sharedTchillrServerClient] startThemesRequestWithSuccess:^(NSArray *themesArray) {
+        self.themes = themesArray;
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        NSLog(@"%@",[error description]);
+    }];
+    [self setTitle:@"Thèmes"];    
 }
 
 #pragma mark Activity Access
@@ -36,8 +42,8 @@
     return [self.themes count];
 }
 
-- (NSString *)themeAtIndex:(NSUInteger)index {
-    return (NSString*)[self.themes objectAtIndex:index];
+- (TCTheme *)themeAtIndex:(NSUInteger)index {
+    return (TCTheme*)[self.themes objectAtIndex:index];
 }
 
 #pragma mark - UITableViewDataSource / Delegate methods
@@ -47,43 +53,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellIdentifier"];
-    [cell.textLabel setText:[self themeAtIndex:indexPath.row]];
+    NSString * string = [self themeAtIndex:indexPath.row].title;
+    [cell.textLabel setText:string];
     return cell;
 }
-
-#pragma mark Theme type for row
-- (TCThemeType)themeForRowAtIndexpath:(NSIndexPath*)indexPath {
-    TCThemeType type;
-    switch (indexPath.row) {
-        case 0:
-            type = TCThemeTypeMusic;
-            break;
-        case 1:
-            type = TCTHemeTypeCinema;
-            break;
-        case 2:
-            type = TCThemeTypeExpo;
-            break;
-        case 3:
-            type = TCThemeTypeNocturne;
-            break;
-        case 4:
-            type = TCThemeTypeNature;
-            break;
-        default:
-            type = TCThemeTypeNone;
-            break;
-    }
-    return type;
-}
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UITableViewCell * cell = (UITableViewCell *)sender;
     NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
-    TCThemeType themeType = [self themeForRowAtIndexpath:indexPath];
+    TCTheme * theme = [self.themes objectAtIndex:indexPath.row];
     TCThemeViewController * themeViewController = (TCThemeViewController *) segue.destinationViewController;
-    [themeViewController setThemeType:themeType];
+    [themeViewController setThemeString:theme.title];
 }
 
 @end

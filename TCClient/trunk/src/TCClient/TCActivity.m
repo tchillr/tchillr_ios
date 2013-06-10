@@ -8,6 +8,7 @@
 
 #import "TCActivity.h"
 #import "TCKeyword.h"
+#import "TCOccurence.h"
 #import "NSString+TCAdditions.h"
 
 #define kActivityDescriptionKey @"description"
@@ -22,6 +23,7 @@
 #define kActivityLatitudeKey @"latitude"
 #define kActivityZipcodeKey @"zipcode"
 #define kActivityKeywordsKey @"keywords"
+#define kActivityContextualTagsKey @"activityContextualTags"
 
 #define kActivityWordKey @"Key"
 #define kActivityWeightKey @"Value"
@@ -38,7 +40,13 @@
 }
 
 - (NSArray *)occurences {
-    return (NSArray *)[self.jsonDictionary objectForKey:kActivityOccurencesKey];
+    NSMutableArray * occurences = [NSMutableArray array];
+    NSArray * occurencesDictionnaries = (NSArray *)[self.jsonDictionary objectForKey:kActivityOccurencesKey];
+    for (NSDictionary * dict in occurencesDictionnaries) {
+        TCOccurence * occurence = [[TCOccurence alloc] initWithJsonDictionary:dict];
+        [occurences addObject:occurence];
+    }
+    return [NSArray arrayWithArray:occurences];
 }
 
 - (NSString *)name {
@@ -83,7 +91,21 @@
     return [NSArray arrayWithArray:keywords];
 }
 
-#pragma mark Adress formatting
+- (NSArray *)contextualTags {
+    return (NSArray *)[self.jsonDictionary objectForKey:kActivityContextualTagsKey];
+}
+
+#pragma mark Formatted occurence
+- (NSString *)formattedOccurence{
+    if ([self.occurences count]) {
+        TCOccurence * firstOccurence = (TCOccurence *) [self.occurences objectAtIndex:0];
+        NSString * formattedOccurence = [NSString stringWithFormat:@"Le %@ de %@ à %@",firstOccurence.day,firstOccurence.startTime,firstOccurence.endTime];
+        return formattedOccurence;
+    }
+    return @"";    
+}
+
+#pragma mark Formatted Adress 
 - (NSString *)fullAdress{
     NSMutableString * fullAdress = [[NSMutableString alloc] init];
     NSMutableArray * availableStrings = [[NSMutableArray alloc]init];
@@ -110,6 +132,25 @@
         }
     }
     return [NSString stringWithString:fullAdress];
+}
+
+#pragma mark Tags
+- (BOOL)hasTags{
+    return [self.contextualTags count] > 0;
+}
+
+#pragma mark Formatted contextual tags
+- (NSString *)formattedContextualTags{
+    NSMutableString * fullTags = [[NSMutableString alloc] init];
+    for (int i = 0; i < [self.contextualTags count]; i++) {
+        if (i == [self.contextualTags count] - 1) {
+            [fullTags appendFormat:@"%@",[self.contextualTags objectAtIndex:i]];
+        }
+        else {
+            [fullTags appendFormat:@"%@ / ",[self.contextualTags objectAtIndex:i]];
+        }
+    }
+    return [NSString stringWithString:fullTags];
 }
 
 

@@ -16,10 +16,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.nameLabel setText:self.activity.name];
-    [self.descriptionLabel setText:self.activity.description];
-    
-    
+    [self.activityNameLabel setText:self.activity.name];
+    [self.activityShortDescriptionLabel setText:self.activity.shortDescription];
+    [self.activityDescriptionLabel setText:self.activity.description];
+    [self.activityFullAdressLabel setText:self.activity.fullAdress];
+    [self.activityNextOccurenceLabel setText:self.activity.formattedOccurence];
 }
 
 @end

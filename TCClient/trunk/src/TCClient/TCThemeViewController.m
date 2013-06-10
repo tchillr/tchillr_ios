@@ -28,7 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[TCTchillrServerClient sharedTchillrServerClient] startTagsRequestForTheme:self.themeType success:^(NSArray *themeTagsArray) {
+    [[TCTchillrServerClient sharedTchillrServerClient] startTagsRequestForTheme:self.themeString success:^(NSArray *themeTagsArray) {
         self.tags = themeTagsArray;
         [self.tableView reloadData];
     } failure:^(NSError *error) {

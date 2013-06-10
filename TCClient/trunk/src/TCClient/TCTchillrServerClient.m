@@ -21,7 +21,9 @@
 // All Categories
 #define kTchillrServiceNameCategories @"DBCategories"
 #define kTchillrAllCategoriesKey @"GetDBCategoriesResult"
-
+// All Themes
+#define kTchillrServiceNameThemes @"Themes"
+#define kTchillrAllThemesKey @"GetThemesResult"
 // User Login
 #warning needs to be changes with facebook login
 #define USER_NAME_IDENTIFIER @"1"
@@ -34,9 +36,8 @@
 #define kTchillrUserActivitiesActivitiesKey @"GetUserActivitiesResult"
 
 #define kGetTagsResult @"GetTagsResult"
-#warning Change with speciallized Category /Concert/etc..
-#define kTchillrServiceNameTag @"Musique/Tags"
 
+#define kTchillrServiceNameWithTheme(x) [NSString stringWithFormat:@"%@/Tags",x]
 #define KTchillrInterestIdentifierKey @"identifier"
 
 @implementation TCTchillrServerClient
@@ -124,9 +125,31 @@ static TCTchillrServerClient *sharedTchillrServerClient;
     [operation start];
 }
 
+#pragma mark Themes (with their N2 tags)
+- (void)startThemesRequestWithSuccess:(void (^)(NSArray * themeTagsArray))success failure:(void (^)(NSError *error))failure {
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:kTchillrServiceURL(kTchillrServiceNameThemes)]];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                            NSDictionary *jsonDict = (NSDictionary *) JSON;
+                                                                                            NSMutableArray * resultThemes = [[NSMutableArray alloc] init];
+                                                                                            NSArray *themes = [jsonDict objectForKey:kTchillrAllThemesKey];
+                                                                                            [themes enumerateObjectsUsingBlock:^(id obj,NSUInteger idx, BOOL *stop){
+                                                                                                TCTheme * theme = [[TCTheme alloc] initWithJsonDictionary:obj];
+                                                                                                [resultThemes addObject:theme];
+                                                                                            }];
+                                                                                            success(resultThemes);
+                                                                                        }failure:^(NSURLRequest *request, NSHTTPURLResponse *response,
+                                                                                                   NSError *error, id JSON) {
+                                                                                            failure(error);
+                                                                                        }
+                                         ];
+    
+    [operation start];
+}
+
 #pragma mark Tags for theme
-- (void)startTagsRequestForTheme:(TCThemeType) themeType success:(void (^)(NSArray * themeTagsArray))success failure:(void (^)(NSError *error))failure {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:kTchillrServiceURL(kTchillrServiceNameTag)]];
+- (void)startTagsRequestForTheme:(NSString *) themeString success:(void (^)(NSArray * themeTagsArray))success failure:(void (^)(NSError *error))failure{
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:kTchillrServiceURL(kTchillrServiceNameWithTheme(themeString))]];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             NSDictionary *jsonDict = (NSDictionary *) JSON;

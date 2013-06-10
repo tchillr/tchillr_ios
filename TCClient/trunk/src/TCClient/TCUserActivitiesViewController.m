@@ -41,6 +41,7 @@
     } failure:^(NSError *error) {
         NSLog(@"%@",[error description]);
     } offset:0 limit:1000];
+    [self setTitle:@"Suggestions"];
 }
 
 #pragma mark Activity Access
@@ -64,7 +65,12 @@
     [cell.activityNameLabel setText:activity.name];
     [cell.activityFullAdressLabel setText:activity.fullAdress];
     [cell.activityShortDescriptionLabel setText:activity.shortDescription];
-    // [cell.textLabel setText:[NSString stringWithFormat:@"%i - %@ (%@)",indexPath.row,activity.name,activity.identifier]];
+    [cell.activityNextOccurenceLabel setText:activity.formattedOccurence];
+    BOOL activityHasTags = [activity hasTags];
+    [cell.activityContextualTagsView setHidden:!activityHasTags];
+    if (activityHasTags) {
+        [cell.activityContextualTags setText:[activity formattedContextualTags]];
+    }
     return cell;
 }
 
