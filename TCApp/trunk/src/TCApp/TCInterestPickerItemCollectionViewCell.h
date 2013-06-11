@@ -30,6 +30,8 @@
 @property (nonatomic, assign) id<TCInterestPickerItemCollectionViewCellDelegate> delegate;
 @property (nonatomic, assign) id<TCInterestModelDelegate> modelDelegate;
 
+@property (nonatomic, retain, readonly) IBOutlet UICollectionView *collectionView;
+
 @property (nonatomic, assign, readonly, getter = isOpen) BOOL open;
 
 - (void)openCellAnimated:(void (^)(void))complete;

@@ -14,11 +14,8 @@
 #import "TCColor.h"
 
 // Model
-#import "TCInterestPickerItemModel.h"
-
-// Categories
-#import "NSArray+BMAddings.h"
-#import "UIColor+BMAddings.h"
+#import "TCTag.h"
+#import "TCTheme.h"
 
 // Views
 #import "TCTagItemCollectionViewCell.h"
@@ -143,6 +140,7 @@
     if(cell) {
         [cell setDelegate:self];
     }
+    
     TCTag *tag = [self tagAtIndex:indexPath.row];
     cell.backgroundColor = ((TCColor *)[TCColors colorAtIndex:indexPath.row]).backgroundColor;
     cell.backgroundView.alpha = 0.8;
@@ -169,9 +167,10 @@
 
 #pragma mark - TagCollectionViewCell Delegate Methods
 - (void)tagItemCollectionViewCellHasBeenTapped:(TCTagItemCollectionViewCell *)cell {
+    
     NSIndexPath * indexPath = [self.collectionView indexPathForCell:cell];
-    if ([self.modelDelegate respondsToSelector:@selector(userDidTapInterestAtIndex:)]) {
-        [self.modelDelegate userDidTapInterestAtIndex:indexPath.row];
+    if ([self.modelDelegate respondsToSelector:@selector(interestItemCollectionViewCell:triggeredTapForTagAtIndex:)]) {
+        [self.modelDelegate interestItemCollectionViewCell:self triggeredTapForTagAtIndex:indexPath.row];
     }
 }
 

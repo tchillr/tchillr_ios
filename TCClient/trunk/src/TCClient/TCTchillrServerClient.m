@@ -26,7 +26,7 @@
 #define kTchillrAllThemesKey @"GetThemesResult"
 // User Login
 #warning needs to be changes with facebook login
-#define USER_NAME_IDENTIFIER @"1"
+#define USER_NAME_IDENTIFIER @"2"
 // User Interests
 #define kGetInterestsResult @"GetInterestsResult"
 #define kPostInterestsResult @"PostInterestsResult"

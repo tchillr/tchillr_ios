@@ -12,13 +12,8 @@
 #import "TCTchillrServerClient.h"
 
 // Models
-#import "TCInterestPickerItemModel.h"
 #import "TCTheme.h"
 #import "TCTag.h"
-
-// Categories
-#import "UIColor+BMAddings.h"
-#import "NSArray+BMAddings.h"
 
 // Views
 #import "TCInterestPickerItemCollectionViewCell.h"
@@ -61,6 +56,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TCInterestPickerItemCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCInterestPickerItemCollectionViewCell class]) forIndexPath:indexPath];
+    
     if(cell) {
         cell.delegate = self;
         cell.modelDelegate = self;
@@ -71,7 +67,7 @@
     cell.frontColor = ((TCColor *)[TCColors colorAtIndex:indexPath.row]).backgroundColor;
     cell.titleColor = ((TCColor *)[TCColors colorAtIndex:indexPath.row]).titleColor;
     cell.title = theme.title;
-    
+
     if([theme isOpen]) {
         [cell openCell];
     }
@@ -128,16 +124,19 @@
 }
 
 #pragma mark TCTagTableViewCellDelegate
--(void)userDidTapInterestAtIndex:(NSInteger)index{
+- (void)interestItemCollectionViewCell:(TCInterestPickerItemCollectionViewCell *)cell triggeredTapForTagAtIndex:(NSInteger)index {
+    
 #warning Only music theme for now
-    TCTheme * theme = [self themeAtIndex:0];
+    TCTheme * theme = [self themeAtIndex:[self.collectionView indexPathForCell:cell].row];
     TCTag * tag = [theme tagAtIndex:index];
+    
     [[TCTchillrServerClient sharedTchillrServerClient] startUpdateInterestRequestWithIdentifier:tag.identifier success:^(NSArray * interestsArray) {
         self.interestsIds = interestsArray;
-        [self.collectionView reloadData];
+        [cell.collectionView reloadData];
     } failure:^(NSError *error) {
         NSLog(@"%@",[error description]);
     }];
+    
 }
 
 @end

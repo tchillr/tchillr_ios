@@ -35,6 +35,10 @@
     return (NSNumber *)[self.jsonDictionary objectForKey:kThemeIdentifierKey];
 }
 
+-(NSString *)description {
+    return [NSString stringWithFormat:@"Id : %@, title : %@",self.identifier, self.title];
+}
+
 #pragma mark Tag Access 
 - (TCTag *)tagAtIndex:(NSInteger)index{
     return (TCTag *) [self.tags objectAtIndex:index];

@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class TCInterestPickerItemCollectionViewCell;
+
 @protocol TCInterestModelDelegate <NSObject>
 
 - (NSArray *)userInterests;
--(void)userDidTapInterestAtIndex:(NSInteger)index;
+- (void)interestItemCollectionViewCell:(TCInterestPickerItemCollectionViewCell *)cell triggeredTapForTagAtIndex:(NSInteger)index;
 
 @end

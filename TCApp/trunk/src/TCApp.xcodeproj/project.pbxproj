@@ -24,6 +24,8 @@
 		05D7BF6117679DA900166475 /* TCActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BF5E17679DA900166475 /* TCActivityDetailViewController.m */; };
 		05D7BF6217679DA900166475 /* TCUserActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BF6017679DA900166475 /* TCUserActivitiesViewController.m */; };
 		05D7BFD017679EA000166475 /* TCActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BFCF17679E9F00166475 /* TCActivityTableViewCell.m */; };
+		8578C42A1767CDDF00B1C14E /* StretchableInnerShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8578C4281767CDDF00B1C14E /* StretchableInnerShadow.png */; };
+		8578C42B1767CDDF00B1C14E /* StretchableInnerShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8578C4291767CDDF00B1C14E /* StretchableInnerShadow@2x.png */; };
 		85FB680317666D5100C491CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85FB680217666D5100C491CF /* UIKit.framework */; };
 		85FB680517666D5100C491CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85FB680417666D5100C491CF /* Foundation.framework */; };
 		85FB680717666D5100C491CF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85FB680617666D5100C491CF /* CoreGraphics.framework */; };
@@ -44,9 +46,6 @@
 		85FB684117666E3300C491CF /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB683617666E3300C491CF /* AFURLConnectionOperation.m */; };
 		85FB684217666E3300C491CF /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB683817666E3300C491CF /* AFXMLRequestOperation.m */; };
 		85FB684317666E3300C491CF /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB683A17666E3300C491CF /* UIImageView+AFNetworking.m */; };
-		85FB686217666F0600C491CF /* NSArray+BMAddings.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB685F17666EF600C491CF /* NSArray+BMAddings.m */; };
-		85FB686317666F0900C491CF /* UIColor+BMAddings.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB686117666EF600C491CF /* UIColor+BMAddings.m */; };
-		85FB68781766719E00C491CF /* TCInterestPickerItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB68771766717A00C491CF /* TCInterestPickerItemModel.m */; };
 		85FB687A1766722900C491CF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85FB68791766722900C491CF /* MobileCoreServices.framework */; };
 		85FB687C1766722E00C491CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85FB687B1766722E00C491CF /* SystemConfiguration.framework */; };
 		85FB687D176672BE00C491CF /* TCInterestsPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB687517666FFA00C491CF /* TCInterestsPickerViewController.m */; };
@@ -71,6 +70,8 @@
 		05D7BF6017679DA900166475 /* TCUserActivitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCUserActivitiesViewController.m; path = ../../../../TCClient/trunk/src/TCClient/TCUserActivitiesViewController.m; sourceTree = "<group>"; };
 		05D7BFCE17679E9F00166475 /* TCActivityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCActivityTableViewCell.h; path = ../../../../TCClient/trunk/src/TCClient/TCActivityTableViewCell.h; sourceTree = "<group>"; };
 		05D7BFCF17679E9F00166475 /* TCActivityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCActivityTableViewCell.m; path = ../../../../TCClient/trunk/src/TCClient/TCActivityTableViewCell.m; sourceTree = "<group>"; };
+		8578C4281767CDDF00B1C14E /* StretchableInnerShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StretchableInnerShadow.png; sourceTree = "<group>"; };
+		8578C4291767CDDF00B1C14E /* StretchableInnerShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StretchableInnerShadow@2x.png"; sourceTree = "<group>"; };
 		85FB67FF17666D5100C491CF /* TCApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85FB680217666D5100C491CF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		85FB680417666D5100C491CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -106,10 +107,6 @@
 		85FB683817666E3300C491CF /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		85FB683917666E3300C491CF /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		85FB683A17666E3300C491CF /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
-		85FB685E17666EF600C491CF /* NSArray+BMAddings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+BMAddings.h"; sourceTree = "<group>"; };
-		85FB685F17666EF600C491CF /* NSArray+BMAddings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BMAddings.m"; sourceTree = "<group>"; };
-		85FB686017666EF600C491CF /* UIColor+BMAddings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+BMAddings.h"; sourceTree = "<group>"; };
-		85FB686117666EF600C491CF /* UIColor+BMAddings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BMAddings.m"; sourceTree = "<group>"; };
 		85FB686E17666F8100C491CF /* BMStretchableImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMStretchableImageView.h; sourceTree = "<group>"; };
 		85FB686F17666F8100C491CF /* BMStretchableImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMStretchableImageView.m; sourceTree = "<group>"; };
 		85FB687017666F8100C491CF /* TCInterestPickerItemCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCInterestPickerItemCollectionViewCell.h; sourceTree = "<group>"; };
@@ -118,8 +115,6 @@
 		85FB687317666F8100C491CF /* TCTagItemCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCTagItemCollectionViewCell.m; sourceTree = "<group>"; };
 		85FB687417666FFA00C491CF /* TCInterestsPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCInterestsPickerViewController.h; sourceTree = "<group>"; };
 		85FB687517666FFA00C491CF /* TCInterestsPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCInterestsPickerViewController.m; sourceTree = "<group>"; };
-		85FB68761766717A00C491CF /* TCInterestPickerItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCInterestPickerItemModel.h; sourceTree = "<group>"; };
-		85FB68771766717A00C491CF /* TCInterestPickerItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCInterestPickerItemModel.m; sourceTree = "<group>"; };
 		85FB68791766722900C491CF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		85FB687B1766722E00C491CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		85FB68B01766875500C491CF /* TCTchillrServerClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TCTchillrServerClient.h; path = ../../../../TCClient/trunk/src/TCClient/TCTchillrServerClient.h; sourceTree = "<group>"; };
@@ -163,6 +158,8 @@
 		05D7BF5A17677ACA00166475 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8578C4281767CDDF00B1C14E /* StretchableInnerShadow.png */,
+				8578C4291767CDDF00B1C14E /* StretchableInnerShadow@2x.png */,
 				05D7BF5617677ABB00166475 /* heart_selected.png */,
 				05D7BF5717677ABB00166475 /* heart.png */,
 			);
@@ -277,10 +274,6 @@
 			children = (
 				85FB68C21766877300C491CF /* NSString+TCAdditions.h */,
 				85FB68C31766877300C491CF /* NSString+TCAdditions.m */,
-				85FB685E17666EF600C491CF /* NSArray+BMAddings.h */,
-				85FB685F17666EF600C491CF /* NSArray+BMAddings.m */,
-				85FB686017666EF600C491CF /* UIColor+BMAddings.h */,
-				85FB686117666EF600C491CF /* UIColor+BMAddings.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -306,8 +299,6 @@
 				85FB68BF1766875700C491CF /* TCTheme.m */,
 				85FB68C01766875700C491CF /* TCOccurence.h */,
 				85FB68C11766875700C491CF /* TCOccurence.m */,
-				85FB68761766717A00C491CF /* TCInterestPickerItemModel.h */,
-				85FB68771766717A00C491CF /* TCInterestPickerItemModel.m */,
 				05D7BF4D1767482F00166475 /* TCColor.h */,
 				05D7BF4E1767482F00166475 /* TCColor.m */,
 				05D7BF501767484B00166475 /* TCColors.h */,
@@ -414,6 +405,8 @@
 				85FB681C17666D5100C491CF /* MainStoryboard.storyboard in Resources */,
 				05D7BF5817677ABD00166475 /* heart_selected.png in Resources */,
 				05D7BF5917677ABD00166475 /* heart.png in Resources */,
+				8578C42A1767CDDF00B1C14E /* StretchableInnerShadow.png in Resources */,
+				8578C42B1767CDDF00B1C14E /* StretchableInnerShadow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,9 +429,6 @@
 				85FB684117666E3300C491CF /* AFURLConnectionOperation.m in Sources */,
 				85FB684217666E3300C491CF /* AFXMLRequestOperation.m in Sources */,
 				85FB684317666E3300C491CF /* UIImageView+AFNetworking.m in Sources */,
-				85FB686217666F0600C491CF /* NSArray+BMAddings.m in Sources */,
-				85FB686317666F0900C491CF /* UIColor+BMAddings.m in Sources */,
-				85FB68781766719E00C491CF /* TCInterestPickerItemModel.m in Sources */,
 				85FB687D176672BE00C491CF /* TCInterestsPickerViewController.m in Sources */,
 				85FB687E176672CE00C491CF /* TCInterestPickerItemCollectionViewCell.m in Sources */,
 				85FB687F176672D300C491CF /* TCTagItemCollectionViewCell.m in Sources */,

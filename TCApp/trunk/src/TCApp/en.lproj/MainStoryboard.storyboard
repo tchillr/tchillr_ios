@@ -318,7 +318,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="StretchableInnerShadow.png" width="16" height="16"/>
+        <image name="StretchableInnerShadow.png" width="60" height="60"/>
     </resources>
     <classes>
         <class className="BMStretchableImageView" superclassName="UIImageView">
