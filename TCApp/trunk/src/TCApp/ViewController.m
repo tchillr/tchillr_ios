@@ -42,7 +42,7 @@
         self.activities = activitiesArray;
         [self.tableView reloadData];
     } failure:^(NSError *error) {
-        NSLog(@"%@",[error description]);
+        NSLog(@"ViewController : %@",[error description]);
     } offset:0 limit:1000];
     [self setTitle:@"Suggestions"];
     
