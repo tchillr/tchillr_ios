@@ -17,4 +17,7 @@
     return NO;
 }
 
+- (NSString *)getFirstCharacterCapitalized {
+    return ([self stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[self substringToIndex:1] uppercaseString]]);
+}
 @end

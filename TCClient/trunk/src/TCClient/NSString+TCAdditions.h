@@ -11,5 +11,6 @@
 @interface NSString (TCAdditions)
 
 - (BOOL)isEmpty;
+- (NSString *)getFirstCharacterCapitalized;
 
 @end

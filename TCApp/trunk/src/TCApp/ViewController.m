@@ -39,15 +39,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_PROGRESS_HUD object:self.view];
-    [[TCTchillrServerClient sharedTchillrServerClient] startUserActivitiesRequestWithSuccess:^(NSArray *activitiesArray) {
-        self.activities = activitiesArray;
-        [self.tableView reloadData];
-        [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:self.view];
-    } failure:^(NSError *error) {
-        NSLog(@"%@",[error description]);
-        [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:self.view];
-    } offset:0 limit:1000];
     [self setTitle:@"Suggestions"];
     
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -107,6 +98,16 @@
 }
 
 -(void)interestsPickerViewControllerDidPushBack:(TCInterestsPickerViewController *)viewController {
+    [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_PROGRESS_HUD object:self.view];
+    [[TCTchillrServerClient sharedTchillrServerClient] startUserActivitiesRequestWithSuccess:^(NSArray *activitiesArray) {
+        self.activities = activitiesArray;
+        [self.tableView reloadData];
+        [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:self.view];
+    } failure:^(NSError *error) {
+        NSLog(@"%@",[error description]);
+        [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:self.view];
+    } offset:0 limit:1000];
+    
     [self dismissViewControllerAnimated:YES completion:^{
     }];
 }

@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *activityFullAdressLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *activityTagsView;
 @property (weak, nonatomic) IBOutlet UILabel *activityNextOccurenceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *activityContextualTags;
 
 @end
 
