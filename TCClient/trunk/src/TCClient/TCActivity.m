@@ -110,16 +110,16 @@
     NSMutableString * fullAdress = [[NSMutableString alloc] init];
     NSMutableArray * availableStrings = [[NSMutableArray alloc]init];
     
-    if (![self.place isEmpty]) {
+    if (![self.place isEqualToString:@""]) {
         [availableStrings addObject:[self.place capitalizedString]];
     }
-    if (![self.adress isEmpty]) {
+    if (![self.adress isEqualToString:@""]) {
         [availableStrings addObject:[self.adress capitalizedString]];
     }
-    if (![self.zipcode isEmpty]) {
+    if (![self.zipcode isEqualToString:@""]) {
         [availableStrings addObject:[self.zipcode capitalizedString]];
     }
-    if (![self.city isEmpty]) {
+    if (![self.city isEqualToString:@""]) {
         [availableStrings addObject:[self.city capitalizedString]];
     }
 
