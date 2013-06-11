@@ -8,7 +8,7 @@
 
 #import "TCInterestPickerItemCollectionViewCell.h"
 #import "TCTag.h"
-
+#import "TCTagView.h"
 // Colors
 #import "TCColors.h"
 #import "TCColor.h"
@@ -22,6 +22,9 @@
 
 // Views
 #import "TCTagItemCollectionViewCell.h"
+
+// Delegates
+#import "TCInterestModelDelegate.h"
 
 @interface TCInterestPickerItemCollectionViewCell ()
 
@@ -127,33 +130,34 @@
     }
 }
 
-#pragma mark - UICollectionView Detail Delegate methods
-
 #pragma mark - UICollectionView Datasource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self numberOfTags];
+    if ([self.delegate respondsToSelector:@selector(interestPickerItemCollectionViewCellNumberOfTags:)]) {
+        return [self.delegate interestPickerItemCollectionViewCellNumberOfTags:self];
+    }
+    return 0;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TCTagItemCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCTagItemCollectionViewCell class]) forIndexPath:indexPath];
     if(cell) {
-        
+        [cell setDelegate:self];
     }
-    
     TCTag *tag = [self tagAtIndex:indexPath.row];
     cell.backgroundColor = ((TCColor *)[TCColors colorAtIndex:indexPath.row]).backgroundColor;
     cell.backgroundView.alpha = 0.8;
     cell.titleColor = ((TCColor *)[TCColors colorAtIndex:indexPath.row]).titleColor;
     cell.title = tag.title;
-    return cell;
-}
-
-#pragma mark Tag Collection methods
-- (NSUInteger)numberOfTags {
-    if ([self.delegate respondsToSelector:@selector(interestPickerItemCollectionViewCellNumberOfTags:)]) {
-        return [self.delegate interestPickerItemCollectionViewCellNumberOfTags:self];
+    
+    // Image view for "liking" interest
+    if ([self.modelDelegate respondsToSelector:@selector(userInterests)]) {
+        NSUInteger index = [[self.modelDelegate userInterests] indexOfObjectPassingTest:^BOOL(NSNumber * interestId, NSUInteger idx, BOOL *stop) {
+            return [tag.identifier isEqualToNumber:interestId];
+        }];
+        
+        [cell.tagView setUserInterest:(index != NSNotFound)];
     }
-    return 0;
+    return cell;
 }
 
 - (TCTag *)tagAtIndex:(NSUInteger)index {
@@ -165,7 +169,10 @@
 
 #pragma mark - TagCollectionViewCell Delegate Methods
 - (void)tagItemCollectionViewCellHasBeenTapped:(TCTagItemCollectionViewCell *)cell {
-    
+    NSIndexPath * indexPath = [self.collectionView indexPathForCell:cell];
+    if ([self.modelDelegate respondsToSelector:@selector(userDidTapInterestAtIndex:)]) {
+        [self.modelDelegate userDidTapInterestAtIndex:indexPath.row];
+    }
 }
 
 @end

@@ -9,13 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "TCObject.h"
 
-@interface TCTheme : TCObject
+@class TCTag;
 
+@interface TCTheme : TCObject
 
 @property (nonatomic, readonly) NSNumber *identifier;
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) NSArray *tags;
 @property (nonatomic, assign, getter = isOpen) BOOL open;
 
+#pragma mark Tag Access
+- (TCTag *)tagAtIndex:(NSInteger)index;
 
 @end

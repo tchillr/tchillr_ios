@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TCTagItemCollectionViewCell.h"
+#import "TCInterestModelDelegate.h"
 
 @class TCInterestPickerItemCollectionViewCell;
 @class TCTag;
@@ -27,6 +28,7 @@
 @property (nonatomic, retain) UIColor *frontColor;
 
 @property (nonatomic, assign) id<TCInterestPickerItemCollectionViewCellDelegate> delegate;
+@property (nonatomic, assign) id<TCInterestModelDelegate> modelDelegate;
 
 @property (nonatomic, assign, readonly, getter = isOpen) BOOL open;
 

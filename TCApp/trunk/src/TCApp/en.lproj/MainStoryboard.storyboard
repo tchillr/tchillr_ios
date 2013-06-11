@@ -32,7 +32,7 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QuJ-EU-4N0">
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="kdn-1j-Ubx"/>
-                                    <barButtonItem title="Back" id="VZm-Ga-FC8">
+                                    <barButtonItem title="Next" id="VZm-Ga-FC8">
                                         <connections>
                                             <action selector="backButtonTapped:" destination="Pvy-UW-cPf" id="udr-HX-4WN"/>
                                         </connections>
@@ -71,6 +71,21 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="67"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37Y-ub-yvE" customClass="TCTagView">
+                                                                        <subviews>
+                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a41-ip-HeB"/>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="a41-ip-HeB" firstAttribute="trailing" secondItem="37Y-ub-yvE" secondAttribute="trailing" type="default" id="HBF-nE-joi"/>
+                                                                            <constraint firstItem="a41-ip-HeB" firstAttribute="leading" secondItem="37Y-ub-yvE" secondAttribute="leading" type="default" id="WzI-hi-BSz"/>
+                                                                            <constraint firstItem="a41-ip-HeB" firstAttribute="top" secondItem="37Y-ub-yvE" secondAttribute="top" type="default" id="lZd-Fq-EbP"/>
+                                                                            <constraint firstItem="a41-ip-HeB" firstAttribute="bottom" secondItem="37Y-ub-yvE" secondAttribute="bottom" type="default" id="mNA-Yc-H7f"/>
+                                                                        </constraints>
+                                                                        <connections>
+                                                                            <outlet property="heartImageView" destination="a41-ip-HeB" id="N1T-bf-tRA"/>
+                                                                        </connections>
+                                                                    </view>
                                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TzG-QA-mFC">
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="21" id="hNn-3e-9wh"/>
@@ -84,10 +99,15 @@
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             </view>
                                                             <constraints>
-                                                                <constraint firstItem="TzG-QA-mFC" firstAttribute="leading" secondItem="shv-3b-Xbv" secondAttribute="leading" constant="3" id="YxH-uE-QV0"/>
-                                                                <constraint firstItem="TzG-QA-mFC" firstAttribute="bottom" secondItem="shv-3b-Xbv" secondAttribute="bottom" type="default" id="aWh-FF-Ej1"/>
+                                                                <constraint firstItem="TzG-QA-mFC" firstAttribute="bottom" secondItem="shv-3b-Xbv" secondAttribute="bottom" type="default" id="3vS-6c-mVJ"/>
+                                                                <constraint firstItem="37Y-ub-yvE" firstAttribute="leading" secondItem="shv-3b-Xbv" secondAttribute="leading" constant="7" id="7Ga-wC-3UE"/>
+                                                                <constraint firstAttribute="trailing" secondItem="37Y-ub-yvE" secondAttribute="trailing" constant="41" id="94u-kU-nfD"/>
+                                                                <constraint firstAttribute="bottom" secondItem="37Y-ub-yvE" secondAttribute="bottom" constant="28" id="bpN-P3-7cV"/>
+                                                                <constraint firstItem="37Y-ub-yvE" firstAttribute="top" secondItem="shv-3b-Xbv" secondAttribute="top" constant="7" id="utR-1l-Ege"/>
+                                                                <constraint firstItem="TzG-QA-mFC" firstAttribute="leading" secondItem="shv-3b-Xbv" secondAttribute="leading" constant="3" id="voD-ZF-A7w"/>
                                                             </constraints>
                                                             <connections>
+                                                                <outlet property="tagView" destination="37Y-ub-yvE" id="fn6-eR-bVa"/>
                                                                 <outlet property="titleLabel" destination="TzG-QA-mFC" id="AeZ-o5-l7M"/>
                                                             </connections>
                                                         </collectionViewCell>
@@ -137,6 +157,7 @@
                                             <constraint firstItem="T8G-IN-6FI" firstAttribute="top" secondItem="rnW-bO-vpY" secondAttribute="top" type="default" id="upl-Zr-MND"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="collectionView" destination="VYU-tY-ZTp" id="WOe-ob-MVf"/>
                                             <outlet property="frontView" destination="T8G-IN-6FI" id="0pg-a2-FRy"/>
                                             <outlet property="titleLabel" destination="aBe-fd-Jr6" id="5od-xt-wEy"/>
                                         </connections>
@@ -196,7 +217,15 @@
         <class className="TCTagItemCollectionViewCell" superclassName="UICollectionViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TCTagItemCollectionViewCell.h"/>
             <relationships>
+                <relationship kind="outlet" name="tagView" candidateClass="TCTagView"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TCTagView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TCTagView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="heartImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="UICollectionReusableView" superclassName="UIView">

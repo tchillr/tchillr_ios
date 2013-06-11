@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class TCTagItemCollectionViewCell;
+@class TCTagView;
 
 @protocol TagItemCollectionViewCellDelegate <NSObject>
 
@@ -20,7 +21,7 @@
 
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) UIColor *titleColor;
-
+@property (nonatomic, retain) IBOutlet TCTagView * tagView;
 @property (nonatomic, assign) id<TagItemCollectionViewCellDelegate> delegate;
 
 @end

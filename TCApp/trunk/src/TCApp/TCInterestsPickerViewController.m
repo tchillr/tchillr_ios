@@ -14,6 +14,7 @@
 // Models
 #import "TCInterestPickerItemModel.h"
 #import "TCTheme.h"
+#import "TCTag.h"
 
 // Categories
 #import "UIColor+BMAddings.h"
@@ -26,7 +27,7 @@
 
 @property (nonatomic, retain) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, retain) NSArray *themes;
-
+@property (nonatomic, retain) NSArray *interestsIds;
 
 @end
 
@@ -38,12 +39,19 @@
 #pragma mark Controller Lifecycle
 -(void)viewDidLoad {
     [super viewDidLoad];
+    // Call to themes/theme tags
     [[TCTchillrServerClient sharedTchillrServerClient] startThemesRequestWithSuccess:^(NSArray *themeTagsArray) {
         self.themes = themeTagsArray;
-        [self.collectionView reloadData];
+        // Call to user interests ids
+        [[TCTchillrServerClient sharedTchillrServerClient] startInterestsRequestWithSuccess:^(NSArray *interestsArray) {
+            self.interestsIds = interestsArray;
+            [self.collectionView reloadData];
+        } failure:^(NSError *error) {
+            NSLog(@"%@", [error description]);
+        }];
     } failure:^(NSError *error) {
         NSLog(@"%@",[error description]);
-    }];   
+    }];
 }
 
 #pragma mark - UICollectionView Datasource
@@ -55,6 +63,7 @@
     TCInterestPickerItemCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCInterestPickerItemCollectionViewCell class]) forIndexPath:indexPath];
     if(cell) {
         cell.delegate = self;
+        cell.modelDelegate = self;
     }
     
     TCTheme * theme = [self themeAtIndex:indexPath.row];
@@ -111,6 +120,24 @@
 }
 - (NSUInteger)numberOfThemes {
     return [self.themes count];
+}
+
+#pragma mark - TCInterestModelDelegate
+- (NSArray *)userInterests{
+    return self.interestsIds;
+}
+
+#pragma mark TCTagTableViewCellDelegate
+-(void)userDidTapInterestAtIndex:(NSInteger)index{
+#warning Only music theme for now
+    TCTheme * theme = [self themeAtIndex:0];
+    TCTag * tag = [theme tagAtIndex:index];
+    [[TCTchillrServerClient sharedTchillrServerClient] startUpdateInterestRequestWithIdentifier:tag.identifier success:^(NSArray * interestsArray) {
+        self.interestsIds = interestsArray;
+        [self.collectionView reloadData];
+    } failure:^(NSError *error) {
+        NSLog(@"%@",[error description]);
+    }];
 }
 
 @end

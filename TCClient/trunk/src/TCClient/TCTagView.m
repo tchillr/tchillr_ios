@@ -24,10 +24,8 @@
 }
 
 - (void)setUserInterest:(BOOL)userInterest{
-    if (userInterest != _userInterest) {
-        _userInterest = userInterest;
-        [self.heartImageView setImage:[UIImage imageNamed:(_userInterest) ? kHeartImageSelected : kHeartImage]];
-    }
+    _userInterest = userInterest;
+    [self.heartImageView setImage:[UIImage imageNamed:(_userInterest) ? kHeartImageSelected : kHeartImage]];
 }
 
 @end

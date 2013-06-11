@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "TCInterestModelDelegate.h"
 #import "TCInterestPickerItemCollectionViewCell.h"
 
 @class ViewController;
@@ -19,7 +19,7 @@
 
 @end
 
-@interface TCInterestsPickerViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, TCInterestPickerItemCollectionViewCellDelegate>
+@interface TCInterestsPickerViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, TCInterestPickerItemCollectionViewCellDelegate,TCInterestModelDelegate>
 
 @property (nonatomic, weak) id<TCInterestsPickerViewControllerDelegate> delegate;
 

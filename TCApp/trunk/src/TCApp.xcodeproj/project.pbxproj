@@ -18,6 +18,9 @@
 		05D7BF4C1767337800166475 /* TCOccurence.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB68C11766875700C491CF /* TCOccurence.m */; };
 		05D7BF4F1767482F00166475 /* TCColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BF4E1767482F00166475 /* TCColor.m */; };
 		05D7BF521767484B00166475 /* TCColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BF511767484B00166475 /* TCColors.m */; };
+		05D7BF5517677A4E00166475 /* TCTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BF5417677A4E00166475 /* TCTagView.m */; };
+		05D7BF5817677ABD00166475 /* heart_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D7BF5617677ABB00166475 /* heart_selected.png */; };
+		05D7BF5917677ABD00166475 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D7BF5717677ABB00166475 /* heart.png */; };
 		85FB680317666D5100C491CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85FB680217666D5100C491CF /* UIKit.framework */; };
 		85FB680517666D5100C491CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85FB680417666D5100C491CF /* Foundation.framework */; };
 		85FB680717666D5100C491CF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85FB680617666D5100C491CF /* CoreGraphics.framework */; };
@@ -54,6 +57,11 @@
 		05D7BF4E1767482F00166475 /* TCColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCColor.m; sourceTree = "<group>"; };
 		05D7BF501767484B00166475 /* TCColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCColors.h; sourceTree = "<group>"; };
 		05D7BF511767484B00166475 /* TCColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCColors.m; sourceTree = "<group>"; };
+		05D7BF5317677A4E00166475 /* TCTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCTagView.h; path = ../../../../TCClient/trunk/src/TCClient/TCTagView.h; sourceTree = "<group>"; };
+		05D7BF5417677A4E00166475 /* TCTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCTagView.m; path = ../../../../TCClient/trunk/src/TCClient/TCTagView.m; sourceTree = "<group>"; };
+		05D7BF5617677ABB00166475 /* heart_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart_selected.png; path = ../heart_selected.png; sourceTree = "<group>"; };
+		05D7BF5717677ABB00166475 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart.png; path = ../heart.png; sourceTree = "<group>"; };
+		05D7BF5C1767840B00166475 /* TCInterestModelDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCInterestModelDelegate.h; sourceTree = "<group>"; };
 		85FB67FF17666D5100C491CF /* TCApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85FB680217666D5100C491CF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		85FB680417666D5100C491CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -143,6 +151,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05D7BF5A17677ACA00166475 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				05D7BF5617677ABB00166475 /* heart_selected.png */,
+				05D7BF5717677ABB00166475 /* heart.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		85FB67F617666D5100C491CF = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +216,7 @@
 		85FB682517666E0F00C491CF /* src */ = {
 			isa = PBXGroup;
 			children = (
+				05D7BF5A17677ACA00166475 /* Resources */,
 				85FB681117666D5100C491CF /* AppDelegate.h */,
 				85FB681217666D5100C491CF /* AppDelegate.m */,
 				85FB681A17666D5100C491CF /* MainStoryboard.storyboard */,
@@ -285,6 +303,7 @@
 				05D7BF4E1767482F00166475 /* TCColor.m */,
 				05D7BF501767484B00166475 /* TCColors.h */,
 				05D7BF511767484B00166475 /* TCColors.m */,
+				05D7BF5C1767840B00166475 /* TCInterestModelDelegate.h */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -303,6 +322,8 @@
 		85FB685C17666EB700C491CF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				05D7BF5317677A4E00166475 /* TCTagView.h */,
+				05D7BF5417677A4E00166475 /* TCTagView.m */,
 				85FB686E17666F8100C491CF /* BMStretchableImageView.h */,
 				85FB686F17666F8100C491CF /* BMStretchableImageView.m */,
 				85FB687017666F8100C491CF /* TCInterestPickerItemCollectionViewCell.h */,
@@ -376,6 +397,8 @@
 				85FB681717666D5100C491CF /* Default@2x.png in Resources */,
 				85FB681917666D5100C491CF /* Default-568h@2x.png in Resources */,
 				85FB681C17666D5100C491CF /* MainStoryboard.storyboard in Resources */,
+				05D7BF5817677ABD00166475 /* heart_selected.png in Resources */,
+				05D7BF5917677ABD00166475 /* heart.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +439,7 @@
 				05D7BF4C1767337800166475 /* TCOccurence.m in Sources */,
 				05D7BF4F1767482F00166475 /* TCColor.m in Sources */,
 				05D7BF521767484B00166475 /* TCColors.m in Sources */,
+				05D7BF5517677A4E00166475 /* TCTagView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
