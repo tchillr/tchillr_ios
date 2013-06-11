@@ -8,12 +8,23 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "TCConstants.h"
+#import "MBProgressHUD.h"
+
+@interface AppDelegate () <MBProgressHUDDelegate>
+
+@property (nonatomic, retain) MBProgressHUD *progressHud;
+
+@end
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showProgressHud:) name:SHOW_PROGRESS_HUD object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideProgressHud:) name:HIDE_PROGRESS_HUD object:nil];
     return YES;
+    
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -41,6 +52,51 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - MBProgressHud
+#pragma mark MBProgressHud Management
+- (void)showProgressHud:(NSNotification *)notification {
+    UIView *view = nil;
+    UIView *customView = nil;
+    if ([notification.object isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dic = (NSDictionary *)notification.object;
+        view = [[dic allKeys] containsObject:kHudTargetView]?[dic objectForKey:kHudTargetView]:nil;
+        customView = [[dic allKeys] containsObject:kHudCustomView]?[dic objectForKey:kHudCustomView]:nil;
+    }
+    else {
+        view = [notification object];
+    }
+	if (!view) {
+		view = self.window;
+	}
+	if (self.progressHud) {
+		[self.progressHud hide:YES];
+		[self setProgressHud:nil];
+//		[_progressHud release];
+	}
+	if (!self.progressHud) {
+		MBProgressHUD *tmpProgressHud = [[MBProgressHUD alloc] initWithView:view];
+		self.progressHud = tmpProgressHud;
+//		[tmpProgressHud release];
+		self.progressHud.delegate = self;
+		self.progressHud.dimBackground = YES;
+	}
+    if (customView) {
+        self.progressHud.mode = MBProgressHUDModeCustomViewComplete;
+        [self.progressHud setCustomView:customView];
+    }
+	[view addSubview:self.progressHud];
+	[self.progressHud show:YES];
+}
+
+- (void)hideProgressHud:(NSNotification *)notification {
+	[self.progressHud hide:YES];
+}
+
+#pragma mark MBProgressHUDDelegate methods
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+	[hud removeFromSuperview];
 }
 
 @end
