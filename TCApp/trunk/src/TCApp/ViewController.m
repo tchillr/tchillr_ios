@@ -14,6 +14,7 @@
 #import "TCActivityTableViewCell.h"
 #import "TCActivityDetailViewController.h"
 #import "UITableViewCell+TCAddititons.h"
+#import "TCConstants.h"
 
 @interface ViewController ()
 
@@ -38,11 +39,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_PROGRESS_HUD object:self.view];
     [[TCTchillrServerClient sharedTchillrServerClient] startUserActivitiesRequestWithSuccess:^(NSArray *activitiesArray) {
         self.activities = activitiesArray;
         [self.tableView reloadData];
+        [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:self.view];
     } failure:^(NSError *error) {
-        NSLog(@"ViewController : %@",[error description]);
+        NSLog(@"%@",[error description]);
+        [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:self.view];
     } offset:0 limit:1000];
     [self setTitle:@"Suggestions"];
     
