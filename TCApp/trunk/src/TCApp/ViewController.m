@@ -12,6 +12,8 @@
 #import "TCActivity.h"
 #import "TCTchillrServerClient.h"
 #import "TCActivityTableViewCell.h"
+#import "TCActivityDetailViewController.h"
+#import "UITableViewCell+TCAddititons.h"
 
 @interface ViewController ()
 
@@ -43,6 +45,8 @@
         NSLog(@"%@",[error description]);
     } offset:0 limit:1000];
     [self setTitle:@"Suggestions"];
+    
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -69,6 +73,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TCActivityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActivityTableViewCellIdentifier"];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    [cell customizeAsLightWhiteCell];
     TCActivity * activity = [self activityAtIndex:indexPath.row];
     [cell.activityNameLabel setText:activity.name];
     [cell.activityShortDescriptionLabel setText:activity.shortDescription];
@@ -88,6 +93,13 @@
         
         self.interestsPickerHasBeenShown = YES;
 	}
+    else if ([segue.identifier isEqualToString:NSStringFromClass([TCActivityDetailViewController class])]) {
+        TCActivityTableViewCell * cellTouched = (TCActivityTableViewCell *)sender;
+        NSIndexPath * indexPath = [self.tableView indexPathForCell:cellTouched];
+        TCActivity * activity = [self activityAtIndex:indexPath.row];
+        TCActivityDetailViewController * activityDetailViewController = (TCActivityDetailViewController *) segue.destinationViewController;
+        [activityDetailViewController setActivity:activity];
+    }
 }
 
 -(void)interestsPickerViewControllerDidPushBack:(TCInterestsPickerViewController *)viewController {
