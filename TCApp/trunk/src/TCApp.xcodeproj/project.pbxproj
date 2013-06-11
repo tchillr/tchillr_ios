@@ -21,6 +21,9 @@
 		05D7BF5517677A4E00166475 /* TCTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BF5417677A4E00166475 /* TCTagView.m */; };
 		05D7BF5817677ABD00166475 /* heart_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D7BF5617677ABB00166475 /* heart_selected.png */; };
 		05D7BF5917677ABD00166475 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D7BF5717677ABB00166475 /* heart.png */; };
+		05D7BF6117679DA900166475 /* TCActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BF5E17679DA900166475 /* TCActivityDetailViewController.m */; };
+		05D7BF6217679DA900166475 /* TCUserActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BF6017679DA900166475 /* TCUserActivitiesViewController.m */; };
+		05D7BFD017679EA000166475 /* TCActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BFCF17679E9F00166475 /* TCActivityTableViewCell.m */; };
 		85FB680317666D5100C491CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85FB680217666D5100C491CF /* UIKit.framework */; };
 		85FB680517666D5100C491CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85FB680417666D5100C491CF /* Foundation.framework */; };
 		85FB680717666D5100C491CF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85FB680617666D5100C491CF /* CoreGraphics.framework */; };
@@ -62,6 +65,12 @@
 		05D7BF5617677ABB00166475 /* heart_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart_selected.png; path = ../heart_selected.png; sourceTree = "<group>"; };
 		05D7BF5717677ABB00166475 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart.png; path = ../heart.png; sourceTree = "<group>"; };
 		05D7BF5C1767840B00166475 /* TCInterestModelDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCInterestModelDelegate.h; sourceTree = "<group>"; };
+		05D7BF5D17679DA800166475 /* TCActivityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCActivityDetailViewController.h; path = ../../../../TCClient/trunk/src/TCClient/TCActivityDetailViewController.h; sourceTree = "<group>"; };
+		05D7BF5E17679DA900166475 /* TCActivityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCActivityDetailViewController.m; path = ../../../../TCClient/trunk/src/TCClient/TCActivityDetailViewController.m; sourceTree = "<group>"; };
+		05D7BF5F17679DA900166475 /* TCUserActivitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCUserActivitiesViewController.h; path = ../../../../TCClient/trunk/src/TCClient/TCUserActivitiesViewController.h; sourceTree = "<group>"; };
+		05D7BF6017679DA900166475 /* TCUserActivitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCUserActivitiesViewController.m; path = ../../../../TCClient/trunk/src/TCClient/TCUserActivitiesViewController.m; sourceTree = "<group>"; };
+		05D7BFCE17679E9F00166475 /* TCActivityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCActivityTableViewCell.h; path = ../../../../TCClient/trunk/src/TCClient/TCActivityTableViewCell.h; sourceTree = "<group>"; };
+		05D7BFCF17679E9F00166475 /* TCActivityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCActivityTableViewCell.m; path = ../../../../TCClient/trunk/src/TCClient/TCActivityTableViewCell.m; sourceTree = "<group>"; };
 		85FB67FF17666D5100C491CF /* TCApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85FB680217666D5100C491CF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		85FB680417666D5100C491CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -311,6 +320,10 @@
 		85FB685B17666EB100C491CF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				05D7BF5D17679DA800166475 /* TCActivityDetailViewController.h */,
+				05D7BF5E17679DA900166475 /* TCActivityDetailViewController.m */,
+				05D7BF5F17679DA900166475 /* TCUserActivitiesViewController.h */,
+				05D7BF6017679DA900166475 /* TCUserActivitiesViewController.m */,
 				85FB681D17666D5100C491CF /* ViewController.h */,
 				85FB681E17666D5100C491CF /* ViewController.m */,
 				85FB687417666FFA00C491CF /* TCInterestsPickerViewController.h */,
@@ -322,6 +335,8 @@
 		85FB685C17666EB700C491CF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				05D7BFCE17679E9F00166475 /* TCActivityTableViewCell.h */,
+				05D7BFCF17679E9F00166475 /* TCActivityTableViewCell.m */,
 				05D7BF5317677A4E00166475 /* TCTagView.h */,
 				05D7BF5417677A4E00166475 /* TCTagView.m */,
 				85FB686E17666F8100C491CF /* BMStretchableImageView.h */,
@@ -440,6 +455,9 @@
 				05D7BF4F1767482F00166475 /* TCColor.m in Sources */,
 				05D7BF521767484B00166475 /* TCColors.m in Sources */,
 				05D7BF5517677A4E00166475 /* TCTagView.m in Sources */,
+				05D7BF6117679DA900166475 /* TCActivityDetailViewController.m in Sources */,
+				05D7BF6217679DA900166475 /* TCUserActivitiesViewController.m in Sources */,
+				05D7BFD017679EA000166475 /* TCActivityTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
