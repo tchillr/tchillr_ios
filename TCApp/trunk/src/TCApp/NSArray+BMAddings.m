@@ -11,6 +11,7 @@
 
 @implementation NSArray (BMAddings)
 
+/*
 - (NSArray *)initWithTitlesBackgroundColorsAndTitleColors:(id)objects, ... {
     
     NSMutableArray *tmpArray = [[NSMutableArray alloc] init];
@@ -49,5 +50,6 @@
     
     return self;
 }
+ */
 
 @end

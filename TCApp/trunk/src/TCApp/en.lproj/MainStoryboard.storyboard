@@ -159,6 +159,9 @@
                             <constraint firstItem="gy2-Ev-GSw" firstAttribute="trailing" secondItem="4wr-l9-KjU" secondAttribute="trailing" type="default" id="xD8-Gp-M6e"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="gy2-Ev-GSw" id="QxE-xg-t6G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yI4-sB-FuQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

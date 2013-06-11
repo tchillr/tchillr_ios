@@ -15,6 +15,7 @@
 @property (nonatomic, readonly) NSNumber *identifier;
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) NSArray *tags;
+@property (nonatomic, assign, getter = isOpen) BOOL open;
 
 
 @end

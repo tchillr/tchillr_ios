@@ -7,9 +7,13 @@
 //
 
 #import "TCInterestsPickerViewController.h"
+#import "TCColors.h"
+#import "TCColor.h"
+#import "TCTchillrServerClient.h"
 
 // Models
 #import "TCInterestPickerItemModel.h"
+#import "TCTheme.h"
 
 // Categories
 #import "UIColor+BMAddings.h"
@@ -21,38 +25,30 @@
 @interface TCInterestsPickerViewController ()
 
 @property (nonatomic, retain) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, retain) NSArray *interests;
+@property (nonatomic, retain) NSArray *themes;
+
 
 @end
 
 @implementation TCInterestsPickerViewController
 
 @synthesize collectionView = _collectionView;
-@synthesize interests = _interests;
--(NSArray *)interests {
-    if(!_interests) {
-        _interests = [[NSArray alloc] initWithTitlesBackgroundColorsAndTitleColors:
-                      @"Nature",[UIColor colorWithCommaSeparatedRGBString:@"219	126	80	"],[UIColor colorWithCommaSeparatedRGBString:@"60	58	55	"],
-                      @"Sport",[UIColor colorWithCommaSeparatedRGBString:@"129	157	122	"],[UIColor colorWithCommaSeparatedRGBString:@"238	236	216	"],
-                      @"Expos",[UIColor colorWithCommaSeparatedRGBString:@"245	232	145	"],[UIColor colorWithCommaSeparatedRGBString:@"57	57	56	"],
-                      @"Concerts",[UIColor colorWithCommaSeparatedRGBString:@"101	119	147	"],[UIColor colorWithCommaSeparatedRGBString:@"238	236	216	"],
-                      @"Cinéma",[UIColor colorWithCommaSeparatedRGBString:@"221	128	124	"],[UIColor colorWithCommaSeparatedRGBString:@"57	57	55	"],
-                      @"Clubing",[UIColor colorWithCommaSeparatedRGBString:@"57	57	55	"],[UIColor colorWithCommaSeparatedRGBString:@"238	236	216	"],
-                      @"Culture",[UIColor colorWithCommaSeparatedRGBString:@"173	223	221	"],[UIColor colorWithCommaSeparatedRGBString:@"57	57	55	"],
-                      @"Detente",[UIColor colorWithCommaSeparatedRGBString:@"94	87	105	"],[UIColor colorWithCommaSeparatedRGBString:@"237	236	215	"],
-                      nil];
-    }
-    return _interests;
-}
+@synthesize themes = _themes;
 
 #pragma mark Controller Lifecycle
 -(void)viewDidLoad {
     [super viewDidLoad];
+    [[TCTchillrServerClient sharedTchillrServerClient] startThemesRequestWithSuccess:^(NSArray *themeTagsArray) {
+        self.themes = themeTagsArray;
+        [self.collectionView reloadData];
+    } failure:^(NSError *error) {
+        NSLog(@"%@",[error description]);
+    }];   
 }
 
 #pragma mark - UICollectionView Datasource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self numberOfInterests];
+    return [self numberOfThemes];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -61,13 +57,13 @@
         cell.delegate = self;
     }
     
-    TCInterestPickerItemModel *interest = [self interestAtIndex:indexPath.row];
+    TCTheme * theme = [self themeAtIndex:indexPath.row];
     
-    cell.frontColor = [interest backgroundColor];
-    cell.titleColor = [interest titleColor];
-    cell.title = [interest title];
+    cell.frontColor = ((TCColor *)[TCColors colorAtIndex:indexPath.row]).backgroundColor;
+    cell.titleColor = ((TCColor *)[TCColors colorAtIndex:indexPath.row]).titleColor;
+    cell.title = theme.title;
     
-    if([interest isOpen]) {
+    if([theme isOpen]) {
         [cell openCell];
     }
     else {
@@ -79,18 +75,27 @@
 
 #pragma mark - InterestsItemCollectionViewCellDelegate Methods
 - (void)interestPickerItemCollectionViewCell:(TCInterestPickerItemCollectionViewCell *)cell frontViewHasBeenTapped:(UIView *)frontView {
-    
-    TCInterestPickerItemModel *interest = [self interestAtIndex:[self.collectionView indexPathForCell:cell].row];
+    TCTheme *theme = [self themeAtIndex:[self.collectionView indexPathForCell:cell].row];
     if (![cell isOpen]) {
         [cell openCellAnimated:^{
-            interest.open = [cell isOpen];
+            theme.open = [cell isOpen];
         }];
     }
     else {
         [cell closeCellAnimated:^{
-            interest.open = [cell isOpen];
+            theme.open = [cell isOpen];
         }];
     }
+}
+
+- (NSUInteger)interestPickerItemCollectionViewCellNumberOfTags:(TCInterestPickerItemCollectionViewCell *)cell{
+    TCTheme *theme = [self themeAtIndex:[self.collectionView indexPathForCell:cell].row];
+    return [theme.tags count];
+}
+
+- (TCTag *)interestPickerItemCollectionViewCell:(TCInterestPickerItemCollectionViewCell *)cell tagForItemAtIndex:(NSUInteger)index{
+    TCTheme *theme = [self themeAtIndex:[self.collectionView indexPathForCell:cell].row];
+    return (TCTag *)[theme.tags objectAtIndex:index];
 }
 
 #pragma mark - InterestsItemCollectionViewDelegate Methods
@@ -100,12 +105,12 @@
     }
 }
 
-#pragma mark - Interects Collection Methods
-- (TCInterestPickerItemModel *)interestAtIndex:(NSUInteger)index {
-    return [self.interests objectAtIndex:index];
+#pragma mark - Themes Collection Methods
+- (TCTheme *)themeAtIndex:(NSUInteger)index {
+    return [self.themes objectAtIndex:index];
 }
-- (NSUInteger)numberOfInterests {
-    return [self.interests count];
+- (NSUInteger)numberOfThemes {
+    return [self.themes count];
 }
 
 @end

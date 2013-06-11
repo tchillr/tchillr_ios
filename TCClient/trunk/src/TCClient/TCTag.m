@@ -11,8 +11,6 @@
 #define kTagWeightKey @"weight"
 #define kTagIdentifierKey @"identifier"
 
-
-
 @implementation TCTag
 
 #pragma mark Accessors

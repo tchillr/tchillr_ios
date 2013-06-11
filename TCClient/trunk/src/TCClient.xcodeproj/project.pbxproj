@@ -22,9 +22,9 @@
 		05D7BF311763867A00166475 /* heart_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D7BF301763867900166475 /* heart_selected.png */; };
 		05D7BF351764E5D100166475 /* NSString+TCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BF341764E5D100166475 /* NSString+TCAdditions.m */; };
 		05D7BF381765425400166475 /* TCUserActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BF371765425300166475 /* TCUserActivitiesViewController.m */; };
-		05D7BF3A17663D9600166475 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D7BF3917663D9500166475 /* MapKit.framework */; };
 		05D7BF3D1766591600166475 /* TCOccurence.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BF3C1766591600166475 /* TCOccurence.m */; };
 		05D7BF401766836200166475 /* NSDate+TCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BF3F1766836200166475 /* NSDate+TCAdditions.m */; };
+		05D7BF431767332C00166475 /* TCTchillrServerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F575B3E1760939400BB4087 /* TCTchillrServerClient.m */; };
 		5F575B411760939400BB4087 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F575B1D1760939400BB4087 /* Default-568h@2x.png */; };
 		5F575B421760939400BB4087 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F575B1E1760939400BB4087 /* Default.png */; };
 		5F575B431760939400BB4087 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F575B1F1760939400BB4087 /* Default@2x.png */; };
@@ -44,7 +44,6 @@
 		5F575B511760939400BB4087 /* TCCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F575B361760939400BB4087 /* TCCategory.m */; };
 		5F575B521760939400BB4087 /* TCCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F575B381760939400BB4087 /* TCCategoryTableViewCell.m */; };
 		5F575B541760939400BB4087 /* TCObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F575B3C1760939400BB4087 /* TCObject.m */; };
-		5F575B551760939400BB4087 /* TCTchillrServerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F575B3E1760939400BB4087 /* TCTchillrServerClient.m */; };
 		5F575B561760939400BB4087 /* TCVelibContract.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F575B401760939400BB4087 /* TCVelibContract.m */; };
 		5F8FC4221760949E003803EE /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F8FC4101760949E003803EE /* AFHTTPClient.m */; };
 		5F8FC4231760949E003803EE /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F8FC4121760949E003803EE /* AFHTTPRequestOperation.m */; };
@@ -86,7 +85,6 @@
 		05D7BF341764E5D100166475 /* NSString+TCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TCAdditions.m"; sourceTree = "<group>"; };
 		05D7BF361765425300166475 /* TCUserActivitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUserActivitiesViewController.h; sourceTree = "<group>"; };
 		05D7BF371765425300166475 /* TCUserActivitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUserActivitiesViewController.m; sourceTree = "<group>"; };
-		05D7BF3917663D9500166475 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		05D7BF3B1766591600166475 /* TCOccurence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCOccurence.h; sourceTree = "<group>"; };
 		05D7BF3C1766591600166475 /* TCOccurence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCOccurence.m; sourceTree = "<group>"; };
 		05D7BF3E1766836200166475 /* NSDate+TCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TCAdditions.h"; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05D7BF3A17663D9600166475 /* MapKit.framework in Frameworks */,
 				5F8FC42E176094CC003803EE /* MobileCoreServices.framework in Frameworks */,
 				5F8FC42C176094C6003803EE /* SystemConfiguration.framework in Frameworks */,
 				0546E566175E0FB500A8BF38 /* UIKit.framework in Frameworks */,
@@ -168,7 +165,6 @@
 		0546E559175E0FB500A8BF38 = {
 			isa = PBXGroup;
 			children = (
-				05D7BF3917663D9500166475 /* MapKit.framework */,
 				5F8FC40D1760949E003803EE /* vendor */,
 				5F575B1C1760939400BB4087 /* src */,
 				0546E564175E0FB500A8BF38 /* Frameworks */,
@@ -430,7 +426,6 @@
 				5F575B511760939400BB4087 /* TCCategory.m in Sources */,
 				5F575B521760939400BB4087 /* TCCategoryTableViewCell.m in Sources */,
 				5F575B541760939400BB4087 /* TCObject.m in Sources */,
-				5F575B551760939400BB4087 /* TCTchillrServerClient.m in Sources */,
 				5F575B561760939400BB4087 /* TCVelibContract.m in Sources */,
 				5F8FC4221760949E003803EE /* AFHTTPClient.m in Sources */,
 				5F8FC4231760949E003803EE /* AFHTTPRequestOperation.m in Sources */,
@@ -453,6 +448,7 @@
 				05D7BF381765425400166475 /* TCUserActivitiesViewController.m in Sources */,
 				05D7BF3D1766591600166475 /* TCOccurence.m in Sources */,
 				05D7BF401766836200166475 /* NSDate+TCAdditions.m in Sources */,
+				05D7BF431767332C00166475 /* TCTchillrServerClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

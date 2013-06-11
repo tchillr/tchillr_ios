@@ -7,6 +7,7 @@
 //
 
 #import "TCTheme.h"
+#import "TCTag.h"
 
 #define kThemeTitleKey @"title"
 #define kThemeIdentifierKey @"identifier"
@@ -20,7 +21,14 @@
 }
 
 - (NSArray *)tags {
-    return (NSArray *)[self.jsonDictionary objectForKey:kThemeTagsKey];
+    NSMutableArray * tagsArray = [[NSMutableArray alloc]init];
+    NSArray * tags = (NSArray *)[self.jsonDictionary objectForKey:kThemeTagsKey];
+    
+    for (NSDictionary * tagsDict in tags) {
+        TCTag * tag = [[TCTag alloc]initWithJsonDictionary:tagsDict];
+        [tagsArray addObject:tag];
+    }
+    return [NSArray arrayWithArray:tagsArray];
 }
 
 - (NSNumber *)identifier {

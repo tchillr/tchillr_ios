@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05D7BF441767334700166475 /* TCTchillrServerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB68B11766875500C491CF /* TCTchillrServerClient.m */; };
+		05D7BF451767337800166475 /* TCActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB68B31766875500C491CF /* TCActivity.m */; };
+		05D7BF461767337800166475 /* TCCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB68B51766875500C491CF /* TCCategory.m */; };
+		05D7BF471767337800166475 /* TCObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB68B71766875500C491CF /* TCObject.m */; };
+		05D7BF481767337800166475 /* TCVelibContract.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB68B91766875600C491CF /* TCVelibContract.m */; };
+		05D7BF491767337800166475 /* TCKeyword.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB68BB1766875600C491CF /* TCKeyword.m */; };
+		05D7BF4A1767337800166475 /* TCTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB68BD1766875600C491CF /* TCTag.m */; };
+		05D7BF4B1767337800166475 /* TCTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB68BF1766875700C491CF /* TCTheme.m */; };
+		05D7BF4C1767337800166475 /* TCOccurence.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB68C11766875700C491CF /* TCOccurence.m */; };
+		05D7BF4F1767482F00166475 /* TCColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BF4E1767482F00166475 /* TCColor.m */; };
+		05D7BF521767484B00166475 /* TCColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BF511767484B00166475 /* TCColors.m */; };
 		85FB680317666D5100C491CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85FB680217666D5100C491CF /* UIKit.framework */; };
 		85FB680517666D5100C491CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85FB680417666D5100C491CF /* Foundation.framework */; };
 		85FB680717666D5100C491CF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85FB680617666D5100C491CF /* CoreGraphics.framework */; };
@@ -39,6 +50,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05D7BF4D1767482F00166475 /* TCColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCColor.h; sourceTree = "<group>"; };
+		05D7BF4E1767482F00166475 /* TCColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCColor.m; sourceTree = "<group>"; };
+		05D7BF501767484B00166475 /* TCColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCColors.h; sourceTree = "<group>"; };
+		05D7BF511767484B00166475 /* TCColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCColors.m; sourceTree = "<group>"; };
 		85FB67FF17666D5100C491CF /* TCApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85FB680217666D5100C491CF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		85FB680417666D5100C491CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -266,6 +281,10 @@
 				85FB68C11766875700C491CF /* TCOccurence.m */,
 				85FB68761766717A00C491CF /* TCInterestPickerItemModel.h */,
 				85FB68771766717A00C491CF /* TCInterestPickerItemModel.m */,
+				05D7BF4D1767482F00166475 /* TCColor.h */,
+				05D7BF4E1767482F00166475 /* TCColor.m */,
+				05D7BF501767484B00166475 /* TCColors.h */,
+				05D7BF511767484B00166475 /* TCColors.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -386,6 +405,17 @@
 				85FB687E176672CE00C491CF /* TCInterestPickerItemCollectionViewCell.m in Sources */,
 				85FB687F176672D300C491CF /* TCTagItemCollectionViewCell.m in Sources */,
 				85FB6880176672D700C491CF /* BMStretchableImageView.m in Sources */,
+				05D7BF441767334700166475 /* TCTchillrServerClient.m in Sources */,
+				05D7BF451767337800166475 /* TCActivity.m in Sources */,
+				05D7BF461767337800166475 /* TCCategory.m in Sources */,
+				05D7BF471767337800166475 /* TCObject.m in Sources */,
+				05D7BF481767337800166475 /* TCVelibContract.m in Sources */,
+				05D7BF491767337800166475 /* TCKeyword.m in Sources */,
+				05D7BF4A1767337800166475 /* TCTag.m in Sources */,
+				05D7BF4B1767337800166475 /* TCTheme.m in Sources */,
+				05D7BF4C1767337800166475 /* TCOccurence.m in Sources */,
+				05D7BF4F1767482F00166475 /* TCColor.m in Sources */,
+				05D7BF521767484B00166475 /* TCColors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

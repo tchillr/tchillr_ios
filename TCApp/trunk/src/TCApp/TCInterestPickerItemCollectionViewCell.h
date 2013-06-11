@@ -10,10 +10,13 @@
 #import "TCTagItemCollectionViewCell.h"
 
 @class TCInterestPickerItemCollectionViewCell;
+@class TCTag;
 
 @protocol TCInterestPickerItemCollectionViewCellDelegate <NSObject>
 
--(void)interestPickerItemCollectionViewCell:(TCInterestPickerItemCollectionViewCell *)cell frontViewHasBeenTapped:(UIView *)frontView;
+- (void)interestPickerItemCollectionViewCell:(TCInterestPickerItemCollectionViewCell *)cell frontViewHasBeenTapped:(UIView *)frontView;
+- (NSUInteger)interestPickerItemCollectionViewCellNumberOfTags:(TCInterestPickerItemCollectionViewCell *)cell;
+- (TCTag*)interestPickerItemCollectionViewCell:(TCInterestPickerItemCollectionViewCell *)cell tagForItemAtIndex:(NSUInteger)index;
 
 @end
 

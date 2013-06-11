@@ -44,7 +44,6 @@
 }
 
 #pragma mark Tag Access
-
 - (NSUInteger)numberOfTags {
     return [self.tags count];
 }

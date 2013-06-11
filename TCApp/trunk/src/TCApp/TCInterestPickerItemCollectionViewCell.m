@@ -7,6 +7,11 @@
 //
 
 #import "TCInterestPickerItemCollectionViewCell.h"
+#import "TCTag.h"
+
+// Colors
+#import "TCColors.h"
+#import "TCColor.h"
 
 // Model
 #import "TCInterestPickerItemModel.h"
@@ -22,10 +27,7 @@
 
 @property (nonatomic, retain, readwrite) IBOutlet UILabel *titleLabel;
 @property (nonatomic, retain, readwrite) IBOutlet UIView *frontView;
-
 @property (nonatomic, assign, readwrite, getter = isOpen) BOOL open;
-
-@property (nonatomic, retain, readwrite) NSArray *tags;
 @property (nonatomic, retain, readwrite) IBOutlet UICollectionView *collectionView;
 
 @end
@@ -56,23 +58,6 @@
         _frontColor = frontColor;
         [self.frontView setBackgroundColor:frontColor];
     }
-}
-
-@synthesize tags = _tags;
--(NSArray *)tags {
-    if(!_tags) {
-        _tags = [[NSArray alloc] initWithTitlesBackgroundColorsAndTitleColors:
-                      @"Nature",[UIColor colorWithCommaSeparatedRGBString:@"219	126	80	0.8"],[UIColor colorWithCommaSeparatedRGBString:@"60	58	55	"],
-                      @"Sport",[UIColor colorWithCommaSeparatedRGBString:@"129	157	122	0.8"],[UIColor colorWithCommaSeparatedRGBString:@"238	236	216	"],
-                      @"Expos",[UIColor colorWithCommaSeparatedRGBString:@"245	232	145	0.8"],[UIColor colorWithCommaSeparatedRGBString:@"57	57	56	"],
-                      @"Concerts",[UIColor colorWithCommaSeparatedRGBString:@"101	119	147	0.8"],[UIColor colorWithCommaSeparatedRGBString:@"238	236	216	"],
-                 @"Nature",[UIColor colorWithCommaSeparatedRGBString:@"219	126	80	0.8"],[UIColor colorWithCommaSeparatedRGBString:@"60	58	55	"],
-                 @"Sport",[UIColor colorWithCommaSeparatedRGBString:@"129	157	122	0.8"],[UIColor colorWithCommaSeparatedRGBString:@"238	236	216	"],
-                 @"Expos",[UIColor colorWithCommaSeparatedRGBString:@"245	232	145	0.8"],[UIColor colorWithCommaSeparatedRGBString:@"57	57	56	"],
-                 @"Concerts",[UIColor colorWithCommaSeparatedRGBString:@"101	119	147	0.8"],[UIColor colorWithCommaSeparatedRGBString:@"238	236	216	"],
-                      nil];
-    }
-    return _tags;
 }
 
 #pragma mark - LifeCycles Methods
@@ -155,22 +140,27 @@
         
     }
     
-    TCInterestPickerItemModel *interest = [self tagAtIndex:indexPath.row];
-    
-    cell.backgroundColor = [interest backgroundColor];
+    TCTag *tag = [self tagAtIndex:indexPath.row];
+    cell.backgroundColor = ((TCColor *)[TCColors colorAtIndex:indexPath.row]).backgroundColor;
     cell.backgroundView.alpha = 0.8;
-    cell.titleColor = [interest titleColor];
-    cell.title = [interest title];
-    
+    cell.titleColor = ((TCColor *)[TCColors colorAtIndex:indexPath.row]).titleColor;
+    cell.title = tag.title;
     return cell;
 }
 
-#pragma mark - Tags Collection Methods
-- (TCInterestPickerItemModel *)tagAtIndex:(NSUInteger)index {
-    return [self.tags objectAtIndex:index];
-}
+#pragma mark Tag Collection methods
 - (NSUInteger)numberOfTags {
-    return [self.tags count];
+    if ([self.delegate respondsToSelector:@selector(interestPickerItemCollectionViewCellNumberOfTags:)]) {
+        return [self.delegate interestPickerItemCollectionViewCellNumberOfTags:self];
+    }
+    return 0;
+}
+
+- (TCTag *)tagAtIndex:(NSUInteger)index {
+    if ([self.delegate respondsToSelector:@selector(interestPickerItemCollectionViewCell:tagForItemAtIndex:)]) {
+        return [self.delegate interestPickerItemCollectionViewCell:self tagForItemAtIndex:index];
+    }
+    return nil;
 }
 
 #pragma mark - TagCollectionViewCell Delegate Methods
