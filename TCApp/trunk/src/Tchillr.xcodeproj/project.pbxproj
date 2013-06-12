@@ -33,13 +33,13 @@
 		05D7BFE61767CC7400166475 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D7BFE51767CC7200166475 /* Icon.png */; };
 		05D7BFE81767CC8500166475 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D7BFE71767CC8400166475 /* Icon@2x.png */; };
 		05D7BFEB1767D3B800166475 /* UITableViewCell+TCAddititons.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BFEA1767D3B800166475 /* UITableViewCell+TCAddititons.m */; };
+		05D7BFEF1767DC2100166475 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BFEE1767DC2100166475 /* MBProgressHUD.m */; };
 		8578C42A1767CDDF00B1C14E /* StretchableInnerShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8578C4281767CDDF00B1C14E /* StretchableInnerShadow.png */; };
 		8578C42B1767CDDF00B1C14E /* StretchableInnerShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8578C4291767CDDF00B1C14E /* StretchableInnerShadow@2x.png */; };
 		8578C4301767DEA200B1C14E /* heart_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 8578C42C1767DEA200B1C14E /* heart_selected.png */; };
 		8578C4311767DEA200B1C14E /* heart_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8578C42D1767DEA200B1C14E /* heart_selected@2x.png */; };
 		8578C4321767DEA200B1C14E /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 8578C42E1767DEA200B1C14E /* heart.png */; };
 		8578C4331767DEA200B1C14E /* heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8578C42F1767DEA200B1C14E /* heart@2x.png */; };
-		05D7BFEF1767DC2100166475 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D7BFEE1767DC2100166475 /* MBProgressHUD.m */; };
 		85FB680317666D5100C491CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85FB680217666D5100C491CF /* UIKit.framework */; };
 		85FB680517666D5100C491CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85FB680417666D5100C491CF /* Foundation.framework */; };
 		85FB680717666D5100C491CF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85FB680617666D5100C491CF /* CoreGraphics.framework */; };
@@ -91,23 +91,23 @@
 		05D7BFE71767CC8400166475 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		05D7BFE91767D3B700166475 /* UITableViewCell+TCAddititons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+TCAddititons.h"; sourceTree = "<group>"; };
 		05D7BFEA1767D3B800166475 /* UITableViewCell+TCAddititons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+TCAddititons.m"; sourceTree = "<group>"; };
+		05D7BFED1767DC2100166475 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		05D7BFEE1767DC2100166475 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		05D7BFF01767DCF800166475 /* TCConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCConstants.h; sourceTree = "<group>"; };
 		8578C4281767CDDF00B1C14E /* StretchableInnerShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StretchableInnerShadow.png; sourceTree = "<group>"; };
 		8578C4291767CDDF00B1C14E /* StretchableInnerShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StretchableInnerShadow@2x.png"; sourceTree = "<group>"; };
 		8578C42C1767DEA200B1C14E /* heart_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_selected.png; sourceTree = "<group>"; };
 		8578C42D1767DEA200B1C14E /* heart_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart_selected@2x.png"; sourceTree = "<group>"; };
 		8578C42E1767DEA200B1C14E /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
 		8578C42F1767DEA200B1C14E /* heart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart@2x.png"; sourceTree = "<group>"; };
-		05D7BFED1767DC2100166475 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		05D7BFEE1767DC2100166475 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		05D7BFF01767DCF800166475 /* TCConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCConstants.h; sourceTree = "<group>"; };
-		85FB67FF17666D5100C491CF /* TCApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		85FB67FF17666D5100C491CF /* Tchillr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tchillr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85FB680217666D5100C491CF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		85FB680417666D5100C491CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		85FB680617666D5100C491CF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		85FB680A17666D5100C491CF /* TCApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TCApp-Info.plist"; sourceTree = "<group>"; };
+		85FB680A17666D5100C491CF /* Tchillr-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tchillr-Info.plist"; sourceTree = "<group>"; };
 		85FB680C17666D5100C491CF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		85FB680E17666D5100C491CF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		85FB681017666D5100C491CF /* TCApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TCApp-Prefix.pch"; sourceTree = "<group>"; };
+		85FB681017666D5100C491CF /* Tchillr-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tchillr-Prefix.pch"; sourceTree = "<group>"; };
 		85FB681117666D5100C491CF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		85FB681217666D5100C491CF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		85FB681B17666D5100C491CF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 		85FB680017666D5100C491CF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				85FB67FF17666D5100C491CF /* TCApp.app */,
+				85FB67FF17666D5100C491CF /* Tchillr.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -254,10 +254,10 @@
 		85FB680917666D5100C491CF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				85FB680A17666D5100C491CF /* TCApp-Info.plist */,
+				85FB680A17666D5100C491CF /* Tchillr-Info.plist */,
 				85FB680B17666D5100C491CF /* InfoPlist.strings */,
 				85FB680E17666D5100C491CF /* main.m */,
-				85FB681017666D5100C491CF /* TCApp-Prefix.pch */,
+				85FB681017666D5100C491CF /* Tchillr-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -397,9 +397,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		85FB67FE17666D5100C491CF /* TCApp */ = {
+		85FB67FE17666D5100C491CF /* Tchillr */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 85FB682217666D5100C491CF /* Build configuration list for PBXNativeTarget "TCApp" */;
+			buildConfigurationList = 85FB682217666D5100C491CF /* Build configuration list for PBXNativeTarget "Tchillr" */;
 			buildPhases = (
 				85FB67FB17666D5100C491CF /* Sources */,
 				85FB67FC17666D5100C491CF /* Frameworks */,
@@ -409,9 +409,9 @@
 			);
 			dependencies = (
 			);
-			name = TCApp;
+			name = Tchillr;
 			productName = TCApp;
-			productReference = 85FB67FF17666D5100C491CF /* TCApp.app */;
+			productReference = 85FB67FF17666D5100C491CF /* Tchillr.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -423,7 +423,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Meski Badr";
 			};
-			buildConfigurationList = 85FB67FA17666D5100C491CF /* Build configuration list for PBXProject "TCApp" */;
+			buildConfigurationList = 85FB67FA17666D5100C491CF /* Build configuration list for PBXProject "Tchillr" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -435,7 +435,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				85FB67FE17666D5100C491CF /* TCApp */,
+				85FB67FE17666D5100C491CF /* Tchillr */,
 			);
 		};
 /* End PBXProject section */
@@ -591,9 +591,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TCApp/TCApp-Prefix.pch";
-				INFOPLIST_FILE = "TCApp/TCApp-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "TCApp/Tchillr-Prefix.pch";
+				INFOPLIST_FILE = "TCApp/Tchillr-Info.plist";
+				PRODUCT_NAME = Tchillr;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -602,9 +602,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TCApp/TCApp-Prefix.pch";
-				INFOPLIST_FILE = "TCApp/TCApp-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "TCApp/Tchillr-Prefix.pch";
+				INFOPLIST_FILE = "TCApp/Tchillr-Info.plist";
+				PRODUCT_NAME = Tchillr;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -612,7 +612,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		85FB67FA17666D5100C491CF /* Build configuration list for PBXProject "TCApp" */ = {
+		85FB67FA17666D5100C491CF /* Build configuration list for PBXProject "Tchillr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				85FB682017666D5100C491CF /* Debug */,
@@ -621,7 +621,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		85FB682217666D5100C491CF /* Build configuration list for PBXNativeTarget "TCApp" */ = {
+		85FB682217666D5100C491CF /* Build configuration list for PBXNativeTarget "Tchillr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				85FB682317666D5100C491CF /* Debug */,
