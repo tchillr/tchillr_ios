@@ -146,7 +146,7 @@
     cell.backgroundView.alpha = 0.8;
     cell.titleColor = ((TCColor *)[TCColors colorAtIndex:indexPath.row]).titleColor;
     cell.title = tag.title;
-    
+
     // Image view for "liking" interest
     if ([self.modelDelegate respondsToSelector:@selector(userInterests)]) {
         NSUInteger index = [[self.modelDelegate userInterests] indexOfObjectPassingTest:^BOOL(NSNumber * interestId, NSUInteger idx, BOOL *stop) {
