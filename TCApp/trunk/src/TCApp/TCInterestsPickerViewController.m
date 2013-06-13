@@ -58,16 +58,18 @@
     TCInterestPickerItemCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCInterestPickerItemCollectionViewCell class]) forIndexPath:indexPath];
     
     if(cell) {
-        cell.delegate = self;
-        cell.modelDelegate = self;
     }
+    
+    cell.delegate = self;
+    cell.modelDelegate = self;
     
     TCTheme * theme = [self themeAtIndex:indexPath.row];
     
     cell.frontColor = ((TCColor *)[TCColors colorAtIndex:indexPath.row]).backgroundColor;
     cell.titleColor = ((TCColor *)[TCColors colorAtIndex:indexPath.row]).titleColor;
     cell.title = theme.title;
-
+    [cell.collectionView reloadData];
+    
     if([theme isOpen]) {
         [cell openCell];
     }
