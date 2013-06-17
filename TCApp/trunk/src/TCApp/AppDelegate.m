@@ -73,12 +73,10 @@
 	if (self.progressHud) {
 		[self.progressHud hide:YES];
 		[self setProgressHud:nil];
-//		[_progressHud release];
 	}
 	if (!self.progressHud) {
 		MBProgressHUD *tmpProgressHud = [[MBProgressHUD alloc] initWithView:view];
 		self.progressHud = tmpProgressHud;
-//		[tmpProgressHud release];
 		self.progressHud.delegate = self;
 		self.progressHud.dimBackground = YES;
 	}

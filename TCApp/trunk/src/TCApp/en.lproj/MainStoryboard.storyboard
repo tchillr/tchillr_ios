@@ -234,7 +234,7 @@
                                                 <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="VYU-tY-ZTp" userLabel="Tags Collection View">
                                                     <rect key="frame" x="0.0" y="26" width="160" height="134"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="FKB-Nj-kb4">
                                                         <size key="itemSize" width="67" height="67"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -305,6 +305,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="collectionView" destination="VYU-tY-ZTp" id="WOe-ob-MVf"/>
                                             <outlet property="frontView" destination="T8G-IN-6FI" id="0pg-a2-FRy"/>
