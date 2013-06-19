@@ -83,10 +83,10 @@
     zoomLocation.longitude= -76.580806;
     
     // 2
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
+    //MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
     
     // 3
-    [_mapView setRegion:viewRegion animated:YES];
+    //[_mapView setRegion:viewRegion animated:YES];
 }
 #pragma mark - TCInterestViewDelegate methods
 - (void) userDidTapInterestView:(TCInterestView *)interestView atIndex:(NSInteger)index{
@@ -197,6 +197,7 @@
 
 
 #pragma mark - PDV methods
+/*
 - (void)getPDVSucceeded:(NSNotification *)notification {
 	NSArray *pdvDatas = (NSArray *)[notification userInfo];
     
@@ -248,7 +249,7 @@
         }
 	}
 }
-
+*/
 
 
 @end
