@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		057BB245176FC4EF00EDC52D /* TCInterestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 057BB244176FC4EF00EDC52D /* TCInterestView.m */; };
+		057BB2471770794E00EDC52D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057BB2461770794E00EDC52D /* MapKit.framework */; };
+		057BB249177094BA00EDC52D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057BB248177094BA00EDC52D /* CoreLocation.framework */; };
+		057BB24C1770976E00EDC52D /* TCAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 057BB24B1770976E00EDC52D /* TCAnnotationView.m */; };
 		05D7BF441767334700166475 /* TCTchillrServerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB68B11766875500C491CF /* TCTchillrServerClient.m */; };
 		05D7BF451767337800166475 /* TCActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB68B31766875500C491CF /* TCActivity.m */; };
 		05D7BF461767337800166475 /* TCCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FB68B51766875500C491CF /* TCCategory.m */; };
@@ -66,6 +70,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		057BB243176FC4EF00EDC52D /* TCInterestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCInterestView.h; sourceTree = "<group>"; };
+		057BB244176FC4EF00EDC52D /* TCInterestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCInterestView.m; sourceTree = "<group>"; };
+		057BB2461770794E00EDC52D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		057BB248177094BA00EDC52D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		057BB24A1770976E00EDC52D /* TCAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAnnotationView.h; sourceTree = "<group>"; };
+		057BB24B1770976E00EDC52D /* TCAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAnnotationView.m; sourceTree = "<group>"; };
 		05D7BF4D1767482F00166475 /* TCColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCColor.h; sourceTree = "<group>"; };
 		05D7BF4E1767482F00166475 /* TCColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCColor.m; sourceTree = "<group>"; };
 		05D7BF501767484B00166475 /* TCColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCColors.h; sourceTree = "<group>"; };
@@ -169,6 +179,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				057BB249177094BA00EDC52D /* CoreLocation.framework in Frameworks */,
+				057BB2471770794E00EDC52D /* MapKit.framework in Frameworks */,
 				85FB687C1766722E00C491CF /* SystemConfiguration.framework in Frameworks */,
 				85FB687A1766722900C491CF /* MobileCoreServices.framework in Frameworks */,
 				85FB680317666D5100C491CF /* UIKit.framework in Frameworks */,
@@ -232,6 +244,8 @@
 		85FB680117666D5100C491CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				057BB248177094BA00EDC52D /* CoreLocation.framework */,
+				057BB2461770794E00EDC52D /* MapKit.framework */,
 				85FB687B1766722E00C491CF /* SystemConfiguration.framework */,
 				85FB68791766722900C491CF /* MobileCoreServices.framework */,
 				85FB680217666D5100C491CF /* UIKit.framework */,
@@ -383,6 +397,10 @@
 				85FB687117666F8100C491CF /* TCInterestPickerItemCollectionViewCell.m */,
 				85FB687217666F8100C491CF /* TCTagItemCollectionViewCell.h */,
 				85FB687317666F8100C491CF /* TCTagItemCollectionViewCell.m */,
+				057BB243176FC4EF00EDC52D /* TCInterestView.h */,
+				057BB244176FC4EF00EDC52D /* TCInterestView.m */,
+				057BB24A1770976E00EDC52D /* TCAnnotationView.h */,
+				057BB24B1770976E00EDC52D /* TCAnnotationView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -506,6 +524,8 @@
 				05D7BFD017679EA000166475 /* TCActivityTableViewCell.m in Sources */,
 				05D7BFEB1767D3B800166475 /* UITableViewCell+TCAddititons.m in Sources */,
 				05D7BFEF1767DC2100166475 /* MBProgressHUD.m in Sources */,
+				057BB245176FC4EF00EDC52D /* TCInterestView.m in Sources */,
+				057BB24C1770976E00EDC52D /* TCAnnotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

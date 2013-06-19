@@ -139,6 +139,14 @@
     return [self.contextualTags count] > 0;
 }
 
+- (NSString *)tagAtIndex:(NSUInteger) index{
+    return (NSString *)[self.contextualTags objectAtIndex:index];
+}
+
+- (NSInteger)numberOfTags{
+    return [self.contextualTags count];
+}
+
 #pragma mark Formatted contextual tags
 - (NSString *)formattedContextualTags{
     NSMutableString * fullTags = [[NSMutableString alloc] init];

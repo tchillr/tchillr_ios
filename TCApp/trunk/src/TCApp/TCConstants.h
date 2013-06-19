@@ -18,4 +18,19 @@
 #define kHudTargetView @"kHudTargetView"
 #define kHudCustomView @"kHudCustomView"
 
+/*  Heart images */
+#define kHeartImage [UIImage imageNamed:@"heart.png"]
+#define kHeartImageSelected [UIImage imageNamed:@"heart_selected.png"]
+
+/* InterestView height*/
+#define kInterestViewHeight 34
+
+/* InterestView Spacing */
+#define kInterestViewSpacing 5
+
+/* Mapview */
+#define kMapViewHeight 250
+
+
+
 #endif

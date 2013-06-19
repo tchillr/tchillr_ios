@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "TCActivity.h"
+#import "TCInterestView.h"
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface TCActivityDetailViewController : UIViewController
+@interface TCActivityDetailViewController : UIViewController<TCInterestViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, retain) TCActivity * activity;
 
@@ -22,4 +25,3 @@
 @property (weak, nonatomic) IBOutlet UILabel *activityContextualTags;
 
 @end
-

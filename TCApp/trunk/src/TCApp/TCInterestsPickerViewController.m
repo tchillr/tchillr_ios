@@ -18,6 +18,9 @@
 // Views
 #import "TCInterestPickerItemCollectionViewCell.h"
 
+// Constants
+#import "TCConstants.h"
+
 @interface TCInterestsPickerViewController ()
 
 @property (nonatomic, retain) IBOutlet UICollectionView *collectionView;
@@ -34,6 +37,7 @@
 #pragma mark Controller Lifecycle
 -(void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_PROGRESS_HUD object:self.view];
     // Call to themes/theme tags
     [[TCTchillrServerClient sharedTchillrServerClient] startThemesRequestWithSuccess:^(NSArray *themeTagsArray) {
         self.themes = themeTagsArray;
@@ -41,8 +45,10 @@
         [[TCTchillrServerClient sharedTchillrServerClient] startInterestsRequestWithSuccess:^(NSArray *interestsArray) {
             self.interestsIds = interestsArray;
             [self.collectionView reloadData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:self.view];
         } failure:^(NSError *error) {
             NSLog(@"%@", [error description]);
+            [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:self.view];
         }];
     } failure:^(NSError *error) {
         NSLog(@"%@",[error description]);
@@ -131,12 +137,14 @@
 #warning Only music theme for now
     TCTheme * theme = [self themeAtIndex:[self.collectionView indexPathForCell:cell].row];
     TCTag * tag = [theme tagAtIndex:index];
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_PROGRESS_HUD object:cell];
     [[TCTchillrServerClient sharedTchillrServerClient] startUpdateInterestRequestWithIdentifier:tag.identifier success:^(NSArray * interestsArray) {
         self.interestsIds = interestsArray;
         [cell.collectionView reloadData];
+        [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:cell];
     } failure:^(NSError *error) {
         NSLog(@"%@",[error description]);
+        [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:cell];
     }];
     
 }

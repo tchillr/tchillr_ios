@@ -7,9 +7,7 @@
 //
 
 #import "TCTagView.h"
-
-#define kHeartImage @"heart.png"
-#define kHeartImageSelected @"heart_selected.png"
+#import "TCConstants.h"
 
 @implementation TCTagView
 
@@ -25,7 +23,7 @@
 
 - (void)setUserInterest:(BOOL)userInterest{
     _userInterest = userInterest;
-    [self.heartImageView setImage:[UIImage imageNamed:(_userInterest) ? kHeartImageSelected : kHeartImage]];
+    [self.heartImageView setImage:(_userInterest) ? kHeartImageSelected : kHeartImage];
 }
 
 @end

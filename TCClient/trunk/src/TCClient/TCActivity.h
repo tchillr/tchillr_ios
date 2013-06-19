@@ -30,6 +30,8 @@
 - (NSString *)fullAdress;
 #pragma mark Tags
 - (BOOL)hasTags;
+- (NSString *)tagAtIndex:(NSUInteger) index;
+- (NSInteger)numberOfTags;
 #pragma mark Formatted contextual tags
 - (NSString *)formattedContextualTags;
 
