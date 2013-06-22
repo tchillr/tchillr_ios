@@ -9,7 +9,7 @@
 #import "TCTchillrServerClient.h"
 #import "AFJSONRequestOperation.h"
 #import "TCActivity.h"
-#import "TCCategory.h"
+//#import "TCCategory.h"
 #import "TCTag.h"
 
 #define kTchillrServiceBaseURL @"http://tchillr.azurewebsites.net/TchillrService.svc/"
@@ -104,6 +104,7 @@ static TCTchillrServerClient *sharedTchillrServerClient;
 }
 
 #pragma mark Categories
+/*
 - (void)startCategoriesRequestWithSuccess:(void (^)(NSArray * categoriesArray))success failure:(void (^)(NSError *error))failure {
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:kTchillrServiceURL(kTchillrServiceNameCategories)]];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
@@ -124,6 +125,7 @@ static TCTchillrServerClient *sharedTchillrServerClient;
     
     [operation start];
 }
+ */
 
 #pragma mark Themes (with their N2 tags)
 - (void)startThemesRequestWithSuccess:(void (^)(NSArray * themeTagsArray))success failure:(void (^)(NSError *error))failure {

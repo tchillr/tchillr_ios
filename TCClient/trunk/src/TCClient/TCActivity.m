@@ -69,36 +69,31 @@
    return (NSString *)[self.jsonDictionary objectForKey:kActivityAddressKey];
 }
 
-- (NSString *)longitude {
-    return (NSString *)[self.jsonDictionary objectForKey:kActivityLongitudeKey];
+- (CGFloat)longitude {
+    return [(NSString *)[self.jsonDictionary objectForKey:kActivityLongitudeKey] floatValue];
 }
 
-- (NSString *)latitude {
-    return (NSString *)[self.jsonDictionary objectForKey:kActivityLatitudeKey];
+- (CGFloat)latitude {
+    return [(NSString *)[self.jsonDictionary objectForKey:kActivityLatitudeKey] floatValue];
 }
 
 - (NSString *)zipcode {
     return (NSString *)[self.jsonDictionary objectForKey:kActivityZipcodeKey];
 }
 
-- (NSArray *)keywords {
-    NSMutableArray * keywords = [NSMutableArray array];
-    NSArray * keywordDictionnaries = (NSArray *)[self.jsonDictionary objectForKey:kActivityKeywordsKey];
-    for (NSDictionary * dict in keywordDictionnaries) {
-        TCKeyword * keyword = [[TCKeyword alloc] initWithWord:[dict objectForKey:kActivityWordKey] andWeight:[[dict objectForKey:kActivityWeightKey] intValue]];
-        [keywords addObject:keyword];
-    }
-    return [NSArray arrayWithArray:keywords];
-}
-
 - (NSArray *)contextualTags {
     return (NSArray *)[self.jsonDictionary objectForKey:kActivityContextualTagsKey];
+}
+
+#pragma mark First access
+- (TCOccurence *) firstOccurence {
+   return (TCOccurence *) [self.occurences objectAtIndex:0];
 }
 
 #pragma mark Formatted occurence
 - (NSString *)formattedOccurence{
     if ([self.occurences count]) {
-        TCOccurence * firstOccurence = (TCOccurence *) [self.occurences objectAtIndex:0];
+        TCOccurence * firstOccurence = [self firstOccurence];
         NSString * formattedOccurence = [NSString stringWithFormat:@"Le %@ de %@ à %@",firstOccurence.day,firstOccurence.startTime,firstOccurence.endTime];
         return formattedOccurence;
     }
@@ -132,6 +127,26 @@
         }
     }
     return [NSString stringWithString:fullAdress];
+}
+
+#pragma mark Formatted Day
+- (NSString *) formattedDay{
+    if ([self.occurences count]) {
+        TCOccurence * firstOccurence = [self firstOccurence];
+        NSString * formattedDay = [NSString stringWithFormat:@"%@",firstOccurence.day];
+        return formattedDay;
+    }
+    return @"";
+}
+
+#pragma mark Formatted Time
+- (NSString *) formattedTime{
+    if ([self.occurences count]) {
+        TCOccurence * firstOccurence = [self firstOccurence];
+        NSString * formattedTime = [NSString stringWithFormat:@"%@-%@",firstOccurence.startTime,firstOccurence.endTime];
+        return formattedTime;
+    }
+    return @"";
 }
 
 #pragma mark Tags

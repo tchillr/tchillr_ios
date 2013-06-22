@@ -23,16 +23,26 @@
     return formattedDay;
 }
 
+#pragma mark Start/End time Formatting
+- (NSString *)formatTime:(NSString *)time {
+    NSMutableString* mTime = [time mutableCopy];
+    [mTime replaceOccurrencesOfString:@":" withString:@"h" options:NSLiteralSearch range:NSMakeRange(0, [mTime length])];
+    NSString * formattedTime = [mTime substringToIndex:5];
+    BOOL isExactHour = ([formattedTime rangeOfString:@"h00"].location != NSNotFound);
+    if (isExactHour) {
+        formattedTime = [formattedTime substringToIndex:3];
+    }
+    return formattedTime;
+}
+
 - (NSString *)startTime {
     NSString * startTimeString = (NSString *)[self.jsonDictionary objectForKey:kOccurenceStartTimeKey];
-    NSString * formattedStartTime = [startTimeString substringToIndex:5];
-    return formattedStartTime;
+    return [self formatTime:startTimeString];
 }
 
 - (NSString *)endTime {
     NSString * endTimeString = (NSString *)[self.jsonDictionary objectForKey:kOccurenceEndTimeKey];
-    NSString * formattedEndTime = [endTimeString substringToIndex:5];
-    return formattedEndTime;
+    return [self formatTime:endTimeString];
 }
 
 

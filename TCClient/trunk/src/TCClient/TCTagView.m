@@ -23,7 +23,7 @@
 
 - (void)setUserInterest:(BOOL)userInterest{
     _userInterest = userInterest;
-    [self.heartImageView setImage:(_userInterest) ? kHeartImageSelected : kHeartImage];
+   // [self.heartImageView setImage:(_userInterest) ? kHeartImageSelected : kHeartImage];
 }
 
 @end
