@@ -25,7 +25,6 @@
 @property (nonatomic, retain) IBOutlet UICollectionView * collectionView;
 @property (nonatomic, retain) IBOutlet UIButton * showInterestsButton;
 @property (nonatomic, retain) IBOutlet UIButton * showListButton;
-
 @property (nonatomic, retain) NSArray * activities;
 
 @end
@@ -85,14 +84,9 @@
         */
         CLLocationCoordinate2D newCoord = {guyMoquet.latitude+latDelta, guyMoquet.longitude+longDelta};
         TCLocationAnnotation* annotation = [[TCLocationAnnotation alloc] initWithName:activity.name address:activity.fullAdress coordinate:newCoord];
-        [annotation setIndex:i];
+        annotation.index = i;
         [self.mapView addAnnotation:annotation];
     }
-}
-
-#pragma mark Open annotation 
-- (void)openAnnotation:(id)annotation {
-    [self.mapView selectAnnotation:annotation animated:NO];
 }
 
 #pragma mark MKMapView delegate
@@ -100,6 +94,7 @@
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
 
     if ([annotation isKindOfClass:[TCLocationAnnotation class]]) {
+        NSLog(@"Annotation %@ at index %i",[annotation description],((TCLocationAnnotation *)annotation).index);
         TCLocationAnnotationView *annotationView = (TCLocationAnnotationView *) [mapView dequeueReusableAnnotationViewWithIdentifier:NSStringFromClass([TCLocationAnnotation class])];
         if (annotationView == nil) {
             annotationView = [[TCLocationAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:NSStringFromClass([TCLocationAnnotationView class])];
@@ -115,33 +110,25 @@
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    NSArray * selectedAnnotations = [self.mapView selectedAnnotations];
-    TCLocationAnnotation * annotation = (TCLocationAnnotation *) [selectedAnnotations objectAtIndex:0];
-    NSUInteger index = annotation.index;
-    //[self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
-    [self.collectionView scrollRectToVisible:CGRectMake(index * self.collectionView.bounds.size.width, 0.0, self.collectionView.bounds.size.width, self.collectionView.bounds.size.height) animated:YES];
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, METERS_FOR_DISTANCE, METERS_FOR_DISTANCE);    
+    TCLocationAnnotation * annotation = view.annotation;
+    NSLog(@"Annotation is at index %i",annotation.index);
+    [self.collectionView scrollRectToVisible:CGRectMake(annotation.index * self.collectionView.bounds.size.width, 0.0, self.collectionView.bounds.size.width, self.collectionView.bounds.size.height) animated:YES];
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, METERS_FOR_DISTANCE, METERS_FOR_DISTANCE);
     [self.mapView setRegion:region animated:YES];
 }
 
-- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views{
-    if ([mapView.selectedAnnotations count] == 0) {
-        NSInteger firstSelectionIndex = [self.mapView.annotations indexOfObjectPassingTest:^BOOL(id<MKAnnotation>  annotation, NSUInteger idx, BOOL *stop) {
-            return ([annotation isKindOfClass:[TCLocationAnnotation class]] && ((TCLocationAnnotation *)annotation).index == 0);
-        }];
-        if (firstSelectionIndex != NSNotFound) {
-            TCLocationAnnotation * annotationToSelect = [self.mapView.annotations objectAtIndex:firstSelectionIndex];
-            [mapView selectAnnotation:(id<MKAnnotation>)annotationToSelect animated:NO];
-        }
-    }
+- (id <MKAnnotation>) annotationForIndex:(NSInteger)index {
+    NSUInteger i = [self.mapView.annotations indexOfObjectPassingTest:^BOOL(TCLocationAnnotation * annotation, NSUInteger idx, BOOL *stop) {
+        return annotation.index == index;
+    }];
+    return (i != NSNotFound) ? [self.mapView.annotations objectAtIndex:i] : nil ;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     NSUInteger index = scrollView.contentOffset.x / scrollView.bounds.size.width;
-    MKAnnotationView * annotation  = [self.mapView.annotations objectAtIndex:index];
-    [self openAnnotation:annotation];
-
-    NSLog(@"%i",index);
+    NSLog(@"scrollViewDidEndDecelerating at index : %i",index);
+    TCLocationAnnotation * annotation = [self annotationForIndex:index];    
+    [self.mapView selectAnnotation:annotation animated:NO];
 }
 
 #pragma mark Activities access
@@ -169,7 +156,7 @@
         cell.activityShortDescriptionLabel.text = activity.shortDescription;
         cell.activityHeartImageView.image = [UIImage imageNamed:@"heart"];
         cell.activityTagsLabel.text = activity.formattedContextualTags;
-    }    
+    }
     return cell;
 }
 
