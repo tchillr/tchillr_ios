@@ -72,16 +72,18 @@ static TCServerClient *sharedTchillrServerClient;
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             NSDictionary *jsonDict = (NSDictionary *) JSON;
-                                                                                            NSDictionary *result = [jsonDict objectForKey:kTCUserActivitiesActivitiesKey];
-                                                                                            NSString * resultActivitiesDataString = [result objectForKey:KTCDataKey];
+                                                                                            NSDictionary *result = [jsonDict objectForKey:@"data"];
+                       
+                                                                                            /*
                                                                                             NSData * data  = [resultActivitiesDataString dataUsingEncoding: [NSString defaultCStringEncoding] ];
                                                                                             NSArray *arr = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                                                                                            */
                                                                                             
                                                                                             NSMutableArray * activities = [NSMutableArray array];
-                                                                                            [arr enumerateObjectsUsingBlock:^(id obj,NSUInteger idx, BOOL *stop){
+                                                                                           /* [arr enumerateObjectsUsingBlock:^(id obj,NSUInteger idx, BOOL *stop){
                                                                                                 TCActivity * activity = [[TCActivity alloc] initWithJsonDictionary:obj];
                                                                                                 [activities addObject:activity];
-                                                                                            }];
+                                                                                            }];*/
                                                                                             success(activities);
                                                                                         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response,
                                                                                                     NSError *error, id JSON) {

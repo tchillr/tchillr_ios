@@ -46,6 +46,8 @@
 	[[TCTchillrServerClient sharedTchillrServerClient] startUserActivitiesRequestWithSuccess:^(NSArray *activitiesArray) {
         self.activities = activitiesArray;
         [self pinLocations];
+        TCLocationAnnotation * annotation = [self annotationForIndex:0];
+        [self.mapView selectAnnotation:annotation animated:NO];
         [self.collectionView reloadData];        
         [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             [self.collectionView setAlpha:0.8];
