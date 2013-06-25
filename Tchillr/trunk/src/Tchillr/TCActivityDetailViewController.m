@@ -9,11 +9,13 @@
 #import "TCActivityDetailViewController.h"
 #import "TCConstants.h"
 #import <MapKit/MapKit.h>
+#import "TCTriangleView.h"
+#import "TCColors.h"
 
 @interface TCActivityDetailViewController ()
 
 @property (nonatomic, retain) IBOutlet UIButton * backButton;
-
+@property (nonatomic, retain) IBOutlet TCTriangleView * triangleView;
 
 @end
 
@@ -29,6 +31,7 @@
     [self.activityFullAdressLabel setText:self.activity.fullAdress];
     [self.activityNextOccurenceLabel setText:self.activity.formattedOccurence];
     [self.activityContextualTags setText:self.activity.formattedContextualTags];
+    self.triangleView.style = TCColorsStyleMusic;
 }
 
 #pragma mark Pop 
