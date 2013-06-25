@@ -40,7 +40,7 @@
     CGContextAddLineToPoint(ctx, CGRectGetMaxX(rect), CGRectGetMinY(rect));  // top right point
     CGContextClosePath(ctx);
     
-    UIColor * color = [TCColors colorAtIndex:self.style];
+    UIColor * color = [UIColor tcColorWithStyle:self.style];
     if (CGColorGetNumberOfComponents(color.CGColor) == 2) {
         const CGFloat *colorComponents = CGColorGetComponents(color.CGColor);
         CGContextSetRGBFillColor(ctx, colorComponents[0], colorComponents[0], colorComponents[0], colorComponents[1]);

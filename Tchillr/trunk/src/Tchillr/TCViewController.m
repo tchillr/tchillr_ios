@@ -19,7 +19,7 @@
 {
     [super viewDidLoad];
     UIImageView * backgroungImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height)];
-    [backgroungImageView setImage:(IS_IPHONE_5) ? kIphone5DefaultImage : kIphone4DefaultImage];
+    [backgroungImageView setImage:kDefaultImage];
     [backgroungImageView setAlpha:0.8];
     [self.view insertSubview:backgroungImageView atIndex:0];
 }

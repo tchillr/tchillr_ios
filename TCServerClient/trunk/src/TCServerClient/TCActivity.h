@@ -17,7 +17,7 @@
 @property (nonatomic, readonly) NSArray  *occurences;
 @property (nonatomic, readonly) NSString *city;
 @property (nonatomic, readonly) NSString *place;
-@property (nonatomic, readonly) NSString *adress;
+@property (nonatomic, readonly) NSString *address;
 @property (nonatomic, readonly) CGFloat longitude;
 @property (nonatomic, readonly) CGFloat latitude;
 @property (nonatomic, readonly) NSString *zipcode;
@@ -30,8 +30,8 @@
 - (NSString *) formattedDay;
 #pragma mark Formatted Time
 - (NSString *) formattedTime;
-#pragma mark Adress formatting
-- (NSString *)fullAdress;
+#pragma mark Address formatting
+- (NSString *)fullAddress;
 #pragma mark Tags
 - (BOOL)hasTags;
 - (NSString *)tagAtIndex:(NSUInteger) index;

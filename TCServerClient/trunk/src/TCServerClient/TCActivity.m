@@ -64,7 +64,7 @@
     return (NSString *)[self.jsonDictionary objectForKey:kActivityPlaceKey];
 }
 
-- (NSString *)adress {
+- (NSString *)address {
    return (NSString *)[self.jsonDictionary objectForKey:kActivityAddressKey];
 }
 
@@ -99,16 +99,16 @@
     return @"";    
 }
 
-#pragma mark Formatted Adress 
-- (NSString *)fullAdress{
+#pragma mark Formatted Address 
+- (NSString *)fullAddress{
     NSMutableString * fullAdress = [[NSMutableString alloc] init];
     NSMutableArray * availableStrings = [[NSMutableArray alloc]init];
     
     if (![self.place isEqualToString:@""]) {
         [availableStrings addObject:[self.place capitalizedString]];
     }
-    if (![self.adress isEqualToString:@""]) {
-        [availableStrings addObject:[self.adress capitalizedString]];
+    if (![self.address isEqualToString:@""]) {
+        [availableStrings addObject:[self.address capitalizedString]];
     }
     if (self.zipcode) {
         [availableStrings addObject:[NSString stringWithFormat:@"%@",self.zipcode]];

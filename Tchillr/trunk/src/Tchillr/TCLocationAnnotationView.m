@@ -7,7 +7,7 @@
 //
 
 #import "TCLocationAnnotationView.h"
-#import "TCColors.h"
+#import "UIColor+Tchillr.h"
 
 @implementation TCLocationAnnotationView
 
@@ -34,7 +34,7 @@
     CGContextAddLineToPoint(ctx, CGRectGetMaxX(rect), CGRectGetMinY(rect));  // top right point
     CGContextClosePath(ctx);
     
-    UIColor * color = [TCColors colorAtIndex:self.style];
+    UIColor * color = [UIColor tcColorWithStyle:self.style];
     if (CGColorGetNumberOfComponents(color.CGColor) == 2) {
         const CGFloat *colorComponents = CGColorGetComponents(color.CGColor);
         CGContextSetRGBFillColor(ctx, colorComponents[0], colorComponents[0], colorComponents[0], colorComponents[1]);
@@ -49,7 +49,7 @@
     
     CGContextFillPath(ctx);
     
-    CGContextSetStrokeColorWithColor(ctx, [TCColors tcBlackSemiTransparent].CGColor);
+    CGContextSetStrokeColorWithColor(ctx, [UIColor tcBlackSemiTransparent].CGColor);
     CGContextSetLineWidth(ctx, 1.0);
     CGContextMoveToPoint(ctx, CGRectGetMidX(rect), CGRectGetMaxY(rect));
     CGContextAddLineToPoint(ctx, CGRectGetMinX(rect), CGRectGetMinY(rect));

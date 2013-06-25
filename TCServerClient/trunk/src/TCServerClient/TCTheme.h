@@ -16,6 +16,7 @@
 @property (nonatomic, readonly) NSNumber *identifier;
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) NSArray *tags;
+#warning Element d'interface : ne devrait pas être là
 @property (nonatomic, assign, getter = isOpen) BOOL open;
 
 #pragma mark Tag Access

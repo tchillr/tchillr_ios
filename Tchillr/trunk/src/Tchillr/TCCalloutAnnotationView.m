@@ -8,7 +8,7 @@
 
 #import "TCCalloutAnnotationView.h"
 #import "TCCalloutAnnotation.h"
-#import "TCColors.h"
+#import "UIColor+Tchillr.h"
 
 @interface TCCalloutAnnotationView()
 
@@ -29,13 +29,13 @@
     if (self) {
         self.frame = CGRectMake(0, 0, 135, 80);
         UIView * backgroundBlackView = [[UIView alloc] initWithFrame:CGRectMake(0, 5, 135, 30)];
-        backgroundBlackView.backgroundColor = [TCColors tcBlack];
+        backgroundBlackView.backgroundColor = [UIColor tcBlack];
         [self addSubview:backgroundBlackView];
         
         //self.backgroundColor = [UIColor redColor];
        
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 105, 30)];
-        _titleLabel.textColor = [TCColors tcWhite];
+        _titleLabel.textColor = [UIColor tcWhite];
 
         _titleLabel.backgroundColor = [UIColor clearColor];
         [_titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:14]];

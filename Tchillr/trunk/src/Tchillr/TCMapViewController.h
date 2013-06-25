@@ -6,11 +6,8 @@
 //  Copyright (c) 2013 Tchillr. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <MapKit/MapKit.h>
 #import "TCViewController.h"
-#import "TCCalloutAnnotationView.h"
 
-@interface TCMapViewController : TCViewController<UICollectionViewDelegate, MKMapViewDelegate, TCCalloutAnnotationViewDelegate>
+@interface TCMapViewController : TCViewController
 
 @end

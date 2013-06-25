@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TCColors.h"
+#import "UIColor+Tchillr.h"
 
 @interface TCTriangleView : UIView
 
-@property (nonatomic, assign) TCColorsStyle style;
+@property (nonatomic, assign) TCColorStyle style;
 
 @end

@@ -4,37 +4,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="5">
-            <objects>
-                <viewController id="2" customClass="TCViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7CL-gW-yHJ">
-                                <rect key="frame" x="114" y="114" width="94" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="View map">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="ISz-qb-uRV" kind="push" id="VO4-Eg-zfn"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Ff9-xb-e67"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="153" y="82"/>
-        </scene>
         <!--Map View Controller-->
         <scene sceneID="eTl-ig-QK4">
             <objects>
@@ -122,7 +91,7 @@
                                             <outlet property="activityShortDescriptionLabel" destination="BH2-qb-PvL" id="0EL-sR-A2M"/>
                                             <outlet property="activityTagsLabel" destination="gLf-gI-dsM" id="8G5-Hr-Xtp"/>
                                             <outlet property="activityTimeLabel" destination="8Cv-Ig-AyY" id="YPW-fD-CTK"/>
-                                            <segue destination="S32-X6-FAJ" kind="push" id="23i-hX-lKy"/>
+                                            <segue destination="S32-X6-FAJ" kind="push" identifier="ShowActivityDetailSegue" id="23i-hX-lKy"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -170,12 +139,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FFu-nB-Vis" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="514" y="82"/>
+            <point key="canvasLocation" x="242" y="82"/>
         </scene>
         <!--Activity Detail View Controller-->
         <scene sceneID="6Fb-UZ-SFT">
             <objects>
-                <viewController storyboardIdentifier="TCActivityDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="S32-X6-FAJ" customClass="TCActivityDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="" id="S32-X6-FAJ" customClass="TCActivityDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hyf-lQ-qeV">
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -233,7 +202,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.21176470589999999" green="0.21176470589999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" backgroundImage="88x88_back.png">
+                                <state key="normal" backgroundImage="back.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -256,7 +225,7 @@
                     <connections>
                         <outlet property="activityContextualTags" destination="dop-ZL-EW6" id="Jd3-qw-jPy"/>
                         <outlet property="activityDescriptionLabel" destination="m1B-WJ-DkU" id="3Uq-Sh-XdH"/>
-                        <outlet property="activityFullAdressLabel" destination="m0Q-5A-KzD" id="U4I-sO-cJu"/>
+                        <outlet property="activityFullAddressLabel" destination="m0Q-5A-KzD" id="Kit-JE-KlA"/>
                         <outlet property="activityNameLabel" destination="8ai-RH-O75" id="eWL-f8-7rz"/>
                         <outlet property="activityNextOccurenceLabel" destination="fXA-lT-ixa" id="yvS-Iw-ddK"/>
                         <outlet property="activityShortDescriptionLabel" destination="ze7-sV-C1X" id="NNk-4q-nAv"/>
@@ -266,7 +235,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WAE-eb-Zec" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="876" y="70"/>
+            <point key="canvasLocation" x="732" y="82"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sVn-2L-3K2">
@@ -280,7 +249,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="2" kind="relationship" relationship="rootViewController" id="ojB-ek-HnF"/>
+                        <segue destination="ISz-qb-uRV" kind="relationship" relationship="rootViewController" id="ec9-aY-RCc"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dDn-0Q-0Ii" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -289,7 +258,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="88x88_back.png" width="44" height="44"/>
+        <image name="back.png" width="44" height="44"/>
         <image name="btn_heart_menu.png" width="44" height="44"/>
         <image name="btn_list.png" width="44" height="44"/>
         <image name="heart_selected.png" width="18" height="16"/>
@@ -313,7 +282,7 @@
                 <relationship kind="action" name="popViewController:"/>
                 <relationship kind="outlet" name="activityContextualTags" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="activityDescriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="activityFullAdressLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="activityFullAddressLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="activityNameLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="activityNextOccurenceLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="activityShortDescriptionLabel" candidateClass="UILabel"/>
@@ -345,6 +314,9 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

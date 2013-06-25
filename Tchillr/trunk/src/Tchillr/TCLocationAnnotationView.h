@@ -7,10 +7,10 @@
 //
 
 #import <MapKit/MapKit.h>
-#import "TCColors.h"
+#import "UIColor+Tchillr.h"
 
 @interface TCLocationAnnotationView : MKAnnotationView
 
-@property (nonatomic, assign) TCColorsStyle style;
+@property (nonatomic, assign) TCColorStyle style;
 
 @end

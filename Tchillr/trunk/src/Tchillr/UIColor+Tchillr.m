@@ -1,31 +1,18 @@
 //
-//  TCColors.m
-//  TCApp
+//  UIColor+Tchillr.m
+//  Tchillr
 //
-//  Created by Jad on 11/06/13.
-//  Copyright (c) 2013 Meski Badr. All rights reserved.
+//  Created by Zouhair on 25/06/13.
+//  Copyright (c) 2013 Tchillr. All rights reserved.
 //
 
-#import "TCColors.h"
+#import "UIColor+Tchillr.h"
 
-@implementation TCColors
+@implementation UIColor (Tchillr)
 
-@synthesize colors = _colors;
-
-#pragma mark Singleton
-static TCColors *sharedColors;
-
-+ (void)initialize {
-	static BOOL initialized = NO;
-	if (!initialized) {
-		initialized = YES;
-		sharedColors = [[TCColors alloc] init];
-	}
-}
-
-+ (NSArray *)colors{
++ (NSArray *)tcColors {
     CGFloat alpha = 1;
-
+	
     UIColor * color0 = [UIColor colorWithRed:242.0/255.0 green:106.0/255.0 blue:120.0/255.0 alpha:alpha];
     UIColor * color1 = [UIColor colorWithRed:96.0/255.0  green:86.0/255.0  blue:152.0/255.0 alpha:alpha];
     UIColor * color2 = [UIColor colorWithRed:255.0/255.0 green:215.0/255.0 blue:123.0/255.0 alpha:alpha];
@@ -36,8 +23,29 @@ static TCColors *sharedColors;
     return [NSArray arrayWithObjects:color0, color1, color2, color3, color4, color5, color6, nil];
 }
 
-+ (UIColor*) colorAtIndex:(NSInteger)index{
-    return [[self colors] objectAtIndex:index];
++ (UIColor *)tcColorWithStyle:(TCColorStyle)style {
+	UIColor *color = nil;
+	switch (style) {
+		case TCColorStyleMusic:
+			color = [UIColor colorWithRed:242.0/255.0 green:106.0/255.0 blue:120.0/255.0 alpha:1.0];
+			break;
+		case TCColorStyleCinema:
+			color = [UIColor colorWithRed:96.0/255.0  green:86.0/255.0  blue:152.0/255.0 alpha:1.0];
+			break;
+		case TCColorStyleExpo:
+			color = [UIColor colorWithRed:255.0/255.0 green:215.0/255.0 blue:123.0/255.0 alpha:1.0];
+			break;
+		case TCColorStyleNature:
+			color = [UIColor colorWithRed:247.0/255.0 green:146.0/255.0 blue:113.0/255.0 alpha:1.0];
+			break;
+		default:
+			color = [UIColor tcWhite];
+			break;
+	}
+	return color;
+}
++ (UIColor*)tcColorAtIndex:(NSInteger)index{
+    return [[self tcColors] objectAtIndex:index];
 }
 
 + (UIColor*) tcBlack {

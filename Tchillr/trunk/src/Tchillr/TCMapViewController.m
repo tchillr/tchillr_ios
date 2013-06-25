@@ -7,26 +7,32 @@
 //
 
 #import "TCMapViewController.h"
-#import "TCLocationAnnotation.h"
+
+// Frameworks
 #import <MapKit/MapKit.h>
+
+// Controllers
+#import "TCActivityDetailViewController.h"
+
+// Views & Controls
+#import "TCLocationAnnotationView.h"
+#import "TCCalloutAnnotationView.h"
+#import "TCActivityCollectionViewCell.h"
+
+// Model
 #import "TCServerClient.h"
 #import "TCActivity.h"
-#import "TCActivityCollectionViewCell.h"
-#import "TCActivityDetailViewController.h"
-#import "TCLocationAnnotationView.h"
+#import "TCLocationAnnotation.h"
 #import "TCCalloutAnnotation.h"
-#import "TCCalloutAnnotationView.h"
-
-#define kCircleImage [UIImage imageNamed:@"circle"]
 
 #define METERS_FOR_DISTANCE 1250
 
-@interface TCMapViewController ()
+@interface TCMapViewController () <UICollectionViewDelegate, MKMapViewDelegate, TCCalloutAnnotationViewDelegate>
 
 @property (nonatomic, weak) IBOutlet MKMapView * mapView;
-@property (nonatomic, retain) IBOutlet UICollectionView * collectionView;
-@property (nonatomic, retain) IBOutlet UIButton * showInterestsButton;
-@property (nonatomic, retain) IBOutlet UIButton * showListButton;
+@property (nonatomic, weak) IBOutlet UICollectionView * collectionView;
+@property (nonatomic, weak) IBOutlet UIButton * showInterestsButton;
+@property (nonatomic, weak) IBOutlet UIButton * showListButton;
 @property (nonatomic, retain) NSArray * activities;
 
 @end
@@ -45,20 +51,23 @@
     [super viewDidLoad];
     [self.collectionView setAlpha:0];
     [self.showListButton setAlpha:0];
-    [[TCServerClient sharedTchillrServerClient] startUserActivitiesRequestForDays:10 success:^(NSArray *activitiesArray) {
-        self.activities = activitiesArray;
-        [self pinLocations];
-        TCLocationAnnotation * annotation = [self annotationForIndex:0];
-        [self.mapView selectAnnotation:annotation animated:NO];
-        [self.collectionView reloadData];
-        [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            [self.collectionView setAlpha:0.8];
-            [self.showListButton setAlpha:0.8];
-        } completion:^(BOOL finished) {
-        }];
-    } failure:^(NSError *error) {
-        NSLog(@"%@",[error description]);
-    }];
+    [[TCServerClient sharedTchillrServerClient]
+	 startUserActivitiesRequestForDays:10
+	 success:^(NSArray *activitiesArray) {
+		 self.activities = activitiesArray;
+		 [self pinLocations];
+		 TCLocationAnnotation * annotation = [self annotationForIndex:0];
+		 [self.mapView selectAnnotation:annotation animated:NO];
+		 [self.collectionView reloadData];
+		 [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+			 [self.collectionView setAlpha:0.8];
+			 [self.showListButton setAlpha:0.8];
+		 } completion:^(BOOL finished) {
+		 }];
+	 }
+	 failure:^(NSError *error) {
+		 NSLog(@"%@",[error description]);
+	 }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -70,7 +79,7 @@
 - (void) pinLocations{
     for (int i = 0; i < [self numberOfActivities]; i++) {
         TCActivity * activity = [self activityAtIndex:i];
-        TCLocationAnnotation* annotation = [[TCLocationAnnotation alloc] initWithName:activity.name address:activity.fullAdress coordinate:CLLocationCoordinate2DMake(activity.latitude,activity.longitude)];
+        TCLocationAnnotation* annotation = [[TCLocationAnnotation alloc] initWithName:activity.name address:activity.fullAddress coordinate:CLLocationCoordinate2DMake(activity.latitude,activity.longitude)];
         annotation.index = i;
         [self.mapView addAnnotation:annotation];
     }
@@ -79,34 +88,34 @@
 #pragma mark MKMapView delegate
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
-
-    if ([annotation isKindOfClass:[TCLocationAnnotation class]]) {
+	id annotationView = nil;
+	if ([annotation isKindOfClass:[TCLocationAnnotation class]]) {
         NSLog(@"Annotation %@ at index %i",[annotation description],((TCLocationAnnotation *)annotation).index);
         TCLocationAnnotationView *annotationView = (TCLocationAnnotationView *) [mapView dequeueReusableAnnotationViewWithIdentifier:NSStringFromClass([TCLocationAnnotation class])];
         if (annotationView == nil) {
             annotationView = [[TCLocationAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:NSStringFromClass([TCLocationAnnotationView class])];
-            annotationView.style = TCColorsStyleMusic;
+            annotationView.style = TCColorStyleMusic;
             annotationView.enabled = YES;
             annotationView.canShowCallout = NO;
         } else {
             annotationView.annotation = annotation;
         }
-        return annotationView;
+        annotationView = annotationView;
     }
     else if ([annotation isKindOfClass:[TCCalloutAnnotation class]]) {
-        TCCalloutAnnotationView *annotationView = (TCCalloutAnnotationView *) [mapView dequeueReusableAnnotationViewWithIdentifier:NSStringFromClass([TCCalloutAnnotation class])];
+        TCCalloutAnnotationView *annotationView = (TCCalloutAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:NSStringFromClass([TCCalloutAnnotation class])];
         
         if (!annotationView) {
             annotationView = [[TCCalloutAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:NSStringFromClass([TCCalloutAnnotation class])];
         }
         TCCalloutAnnotation *calloutAnnotation = (TCCalloutAnnotation *)annotation;
         
-        ((TCCalloutAnnotationView *)annotationView).title = calloutAnnotation.title;
-        ((TCCalloutAnnotationView *)annotationView).delegate = self;
-       [annotationView setNeedsLayout];
-        return annotationView;
+        annotationView.title = calloutAnnotation.title;
+        annotationView.delegate = self;
+		[annotationView setNeedsLayout];
+        annotationView = annotationView;
     }
-    return nil;
+	return annotationView;
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
@@ -149,53 +158,59 @@
 
 #pragma mark Activities access
 - (TCActivity *) activityAtIndex:(NSInteger)index {
-    return (TCActivity *)[self.activities objectAtIndex:index];
+    return [self.activities objectAtIndex:index];
 }
 
 - (NSInteger)numberOfActivities {
     return [self.activities count];
 }
 
+- (TCActivity *) currentActivity {
+    NSUInteger index = self.collectionView.contentOffset.x / self.collectionView.bounds.size.width;
+    return [self activityAtIndex:index];
+}
+
 #pragma mark UICollectionViewDelegate methods
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self numberOfActivities];;
+    return [self numberOfActivities];
 }
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     TCActivityCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCActivityCollectionViewCell class]) forIndexPath:indexPath];
     TCActivity * activity = [self activityAtIndex:indexPath.row];
-    if (cell) {
-        cell.activityDayLabel.text = activity.formattedDay;
-        cell.activityTimeLabel.text = activity.formattedTime;
-        cell.activityTimeLabel.text = activity.formattedTime;
-        cell.activityShortDescriptionLabel.text = activity.shortDescription;
-        cell.activityTagsLabel.text = activity.formattedContextualTags;
-    }
+	
+	cell.activityDayLabel.text = activity.formattedDay;
+	cell.activityTimeLabel.text = activity.formattedTime;
+	cell.activityTimeLabel.text = activity.formattedTime;
+	cell.activityShortDescriptionLabel.text = activity.shortDescription;
+	cell.activityTagsLabel.text = activity.formattedContextualTags;
+	
     return cell;
 }
 
+#define kShowActivityDetailSegueIdentifier @"ShowActivityDetailSegue"
+
 #pragma mark Prepare segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    TCActivityCollectionViewCell * cellTouched = (TCActivityCollectionViewCell *)sender;
-    NSIndexPath * indexPath = [self.collectionView indexPathForCell:cellTouched];
-    TCActivity * activity = [self activityAtIndex:indexPath.row];
-    TCActivityDetailViewController * activityDetailViewController = (TCActivityDetailViewController *) segue.destinationViewController;
-    [activityDetailViewController setActivity:activity];
-}
-
-- (TCActivity *) getCurrentActivity {
-    NSUInteger index = self.collectionView.contentOffset.x / self.collectionView.bounds.size.width;
-    return [self activityAtIndex:index];    
+	if ([segue.identifier isEqualToString:kShowActivityDetailSegueIdentifier]) {
+		TCActivity * activity = nil;
+		if (sender) {
+			TCActivityCollectionViewCell * cellTouched = (TCActivityCollectionViewCell *)sender;
+			NSIndexPath * indexPath = [self.collectionView indexPathForCell:cellTouched];
+			activity = [self activityAtIndex:indexPath.row];
+		}
+		else {
+			activity = [self currentActivity];
+		}
+		TCActivityDetailViewController * activityDetailViewController = (TCActivityDetailViewController *) segue.destinationViewController;
+		[activityDetailViewController setActivity:activity];
+	}
 }
 
 #pragma mark TCCalloutAnnotationViewDelegate methods
 - (void) calloutAnnotationButtonClicked {
-    TCActivity * activity = [self getCurrentActivity];
-    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    TCActivityDetailViewController* activityDetailViewController = [sb instantiateViewControllerWithIdentifier:NSStringFromClass([TCActivityDetailViewController class])];
-    [activityDetailViewController setActivity:activity];
-    [self.navigationController pushViewController:activityDetailViewController animated:YES];
+	[self performSegueWithIdentifier:kShowActivityDetailSegueIdentifier sender:nil];
 }
 
 @end
