@@ -96,7 +96,7 @@
     else if ([annotation isKindOfClass:[TCCalloutAnnotation class]]) {
         TCCalloutAnnotationView *annotationView = (TCCalloutAnnotationView *) [mapView dequeueReusableAnnotationViewWithIdentifier:NSStringFromClass([TCCalloutAnnotation class])];
         
-        if (annotationView == nil) {
+        if (!annotationView) {
             annotationView = [[TCCalloutAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:NSStringFromClass([TCCalloutAnnotation class])];
         }
         TCCalloutAnnotation *calloutAnnotation = (TCCalloutAnnotation *)annotation;
@@ -104,12 +104,6 @@
         ((TCCalloutAnnotationView *)annotationView).title = calloutAnnotation.title;
         ((TCCalloutAnnotationView *)annotationView).delegate = self;
        [annotationView setNeedsLayout];
-        
-        // Move the display position of MapView.
-        [UIView animateWithDuration:0.5f
-                         animations:^(void) {
-                             mapView.centerCoordinate = calloutAnnotation.coordinate;
-                         }];
         return annotationView;
     }
     return nil;
@@ -124,10 +118,10 @@
         annotation.calloutAnnotation = calloutAnnotation;
         [mapView addAnnotation:calloutAnnotation];
         
-        NSLog(@"Annotation is at index %i",annotation.index);
+//        NSLog(@"Annotation is at index %i",annotation.index);
         [self.collectionView scrollRectToVisible:CGRectMake(annotation.index * self.collectionView.bounds.size.width, 0.0, self.collectionView.bounds.size.width, self.collectionView.bounds.size.height) animated:YES];
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, METERS_FOR_DISTANCE, METERS_FOR_DISTANCE);
-        [self.mapView setRegion:region animated:YES];
+        [mapView setRegion:region animated:YES];
     }
 }
 
