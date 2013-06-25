@@ -23,6 +23,9 @@
 #define kActivityZipcodeKey @"zipcode"
 #define kActivityKeywordsKey @"keywords"
 #define kActivityContextualTagsKey @"activityContextualTags"
+#define kActivityAccessTypeKey @"accessType"
+#define kActivityPriceKey @"price"
+#define kActivityHasFeeKey @"hasFee"
 
 #define kActivityWordKey @"Key"
 #define kActivityWeightKey @"Value"
@@ -82,6 +85,18 @@
 
 - (NSArray *)contextualTags {
     return (NSArray *)[self.jsonDictionary objectForKey:kActivityContextualTagsKey];
+}
+
+- (NSString *)accessType {
+    return (NSString *)[self.jsonDictionary objectForKey:kActivityAccessTypeKey];
+}
+
+- (NSNumber *)price {
+    return (NSNumber *)[self.jsonDictionary objectForKey:kActivityPriceKey];
+}
+
+- (BOOL)hasFee {
+    return [(NSNumber *)[self.jsonDictionary objectForKey:kActivityHasFeeKey] boolValue];
 }
 
 #pragma mark First access
@@ -146,6 +161,18 @@
         return formattedTime;
     }
     return @"";
+}
+
+#pragma mark Formatted Access Type / Price
+- (NSString*) formattedAccessTypeAndPrice {
+    NSString * formattedAccessTypeAndPrice = nil;
+    if (self.hasFee) {
+        formattedAccessTypeAndPrice = [NSString stringWithFormat:@"%@ / %@",self.accessType,self.price];
+    }
+    else {
+        formattedAccessTypeAndPrice = [NSString stringWithFormat:@"%@",self.accessType];
+    }    
+    return formattedAccessTypeAndPrice;
 }
 
 #pragma mark Tags

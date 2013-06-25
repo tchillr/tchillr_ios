@@ -24,6 +24,11 @@
 @property (nonatomic, readonly) NSArray *keywords;
 @property (nonatomic, readonly) NSArray *contextualTags;
 
+@property (nonatomic, readonly) NSString *accessType;
+@property (nonatomic, readonly) BOOL hasFee;
+@property (nonatomic, readonly) NSNumber *price;
+
+
 #pragma mark Formatted occurence
 - (NSString *)formattedOccurence;
 #pragma mark Formatted Day
@@ -32,6 +37,8 @@
 - (NSString *) formattedTime;
 #pragma mark Address formatting
 - (NSString *)fullAddress;
+#pragma mark Formatted Access Type / Price
+- (NSString*) formattedAccessTypeAndPrice;
 #pragma mark Tags
 - (BOOL)hasTags;
 - (NSString *)tagAtIndex:(NSUInteger) index;
