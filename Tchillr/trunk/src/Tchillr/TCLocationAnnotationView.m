@@ -46,7 +46,17 @@
     else {
         NSLog(@"Color not recognized");
     }
+    
     CGContextFillPath(ctx);
+    
+    CGContextSetStrokeColorWithColor(ctx, [TCColors tcBlackSemiTransparent].CGColor);
+    CGContextSetLineWidth(ctx, 1.0);
+    CGContextMoveToPoint(ctx, CGRectGetMidX(rect), CGRectGetMaxY(rect));
+    CGContextAddLineToPoint(ctx, CGRectGetMinX(rect), CGRectGetMinY(rect));
+    CGContextAddLineToPoint(ctx, CGRectGetMaxX(rect), CGRectGetMinY(rect));
+    CGContextAddLineToPoint(ctx, CGRectGetMidX(rect), CGRectGetMaxY(rect));
+    
+    CGContextStrokePath(ctx);
 }
 
 

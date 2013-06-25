@@ -8,6 +8,7 @@
 
 #import "TCLocationAnnotation.h"
 #import <MapKit/MapKit.h>
+#import "TCCalloutAnnotation.h"
 
 @interface TCLocationAnnotation ()
 @property (nonatomic, copy) NSString *name;

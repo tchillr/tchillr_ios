@@ -12,16 +12,13 @@
 
 @interface TCActivityDetailViewController ()
 
-@property (nonatomic, retain) IBOutlet UIView * contentView;
-@property (nonatomic, retain) IBOutlet UIView * headerView;
-@property (nonatomic, retain) IBOutlet UIScrollView * scrollView;
-@property (nonatomic, retain) IBOutlet UIButton * goingButton;
 @property (nonatomic, retain) IBOutlet UIButton * backButton;
 
 
 @end
 
 @implementation TCActivityDetailViewController
+
 
 #pragma mark LifeCycle
 - (void)viewDidLoad {

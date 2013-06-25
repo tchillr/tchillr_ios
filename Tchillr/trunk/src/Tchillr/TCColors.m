@@ -40,4 +40,16 @@ static TCColors *sharedColors;
     return [[self colors] objectAtIndex:index];
 }
 
++ (UIColor*) tcBlack {
+    return [UIColor colorWithRed:54.0/255.0 green:54.0/255.0 blue:52.0/255.0 alpha:1];
+}
+
++ (UIColor*) tcBlackSemiTransparent {
+    return [UIColor colorWithRed:54.0/255.0 green:54.0/255.0 blue:52.0/255.0 alpha:0.8];
+}
+
++ (UIColor*) tcWhite {
+    return [UIColor colorWithRed:240.0/255.0 green:238.0/255.0 blue:234.0/255.0 alpha:1];
+}
+
 @end

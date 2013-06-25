@@ -23,7 +23,7 @@
 #define kTCServerActivities @"DBActivities"
 
 /* User Activities */
-#define kTCServerUserActivities(user,timespan) [NSString stringWithFormat:@"users/%@/activities/timespan/%@",user,timespan]
+#define kTCServerUserActivities(user,timespan) [NSString stringWithFormat:@"users/%@/activities/timespan/%i",user,timespan]
 
 /* User Interests */
 #define kTCServerUserInterests(user) [NSString stringWithFormat:@"users/%@/interests", user]

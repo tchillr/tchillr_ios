@@ -15,24 +15,35 @@
 #pragma mark Accessors
 - (NSString *)day {
     NSString * dayString = (NSString *)[self.jsonDictionary objectForKey:kOccurenceDayKey];
+    NSString * substring = [dayString substringToIndex:10];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
-    NSDate *date = [dateFormat dateFromString:dayString];
-    [dateFormat setDateFormat:@"dd MMM"];
+    [dateFormat setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date = [dateFormat dateFromString:substring];
+    [dateFormat setDateFormat:@"dd MMMM"];
     NSString * formattedDay = [dateFormat stringFromDate:date];
     return formattedDay;
 }
 
+#pragma mark Start/End time Formatting
+- (NSString *)formatTime:(NSString *)time {
+    NSMutableString* mTime = [time mutableCopy];
+    [mTime replaceOccurrencesOfString:@":" withString:@"h" options:NSLiteralSearch range:NSMakeRange(0, [mTime length])];
+    NSString * formattedTime = [mTime substringToIndex:5];
+    BOOL isExactHour = ([formattedTime rangeOfString:@"h00"].location != NSNotFound);
+    if (isExactHour) {
+        formattedTime = [formattedTime substringToIndex:3];
+    }
+    return formattedTime;
+}
+
 - (NSString *)startTime {
     NSString * startTimeString = (NSString *)[self.jsonDictionary objectForKey:kOccurenceStartTimeKey];
-    NSString * formattedStartTime = [startTimeString substringToIndex:5];
-    return formattedStartTime;
+    return [self formatTime:startTimeString];
 }
 
 - (NSString *)endTime {
     NSString * endTimeString = (NSString *)[self.jsonDictionary objectForKey:kOccurenceEndTimeKey];
-    NSString * formattedEndTime = [endTimeString substringToIndex:5];
-    return formattedEndTime;
+    return [self formatTime:endTimeString];
 }
 
 

@@ -21,5 +21,8 @@ typedef enum{
 @property (nonatomic, retain) NSArray * colors;
 
 +(UIColor*) colorAtIndex:(NSInteger)index;
++ (UIColor*) tcBlack;
++ (UIColor*) tcWhite;
++ (UIColor*) tcBlackSemiTransparent;
 
 @end

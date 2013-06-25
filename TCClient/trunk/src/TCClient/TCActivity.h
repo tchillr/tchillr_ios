@@ -20,7 +20,7 @@
 @property (nonatomic, readonly) NSString *adress;
 @property (nonatomic, readonly) CGFloat longitude;
 @property (nonatomic, readonly) CGFloat latitude;
-@property (nonatomic, readonly) NSString *zipcode;
+@property (nonatomic, readonly) NSNumber *zipcode;
 @property (nonatomic, readonly) NSArray *keywords;
 @property (nonatomic, readonly) NSArray *contextualTags;
 
