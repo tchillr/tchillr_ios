@@ -86,34 +86,35 @@
 }
 
 #pragma mark MKMapView delegate
-
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
 	id annotationView = nil;
-	if ([annotation isKindOfClass:[TCLocationAnnotation class]]) {
+	if ([annotation isMemberOfClass:[TCLocationAnnotation class]]) {
         NSLog(@"Annotation %@ at index %i",[annotation description],((TCLocationAnnotation *)annotation).index);
-        TCLocationAnnotationView *annotationView = (TCLocationAnnotationView *) [mapView dequeueReusableAnnotationViewWithIdentifier:NSStringFromClass([TCLocationAnnotation class])];
-        if (annotationView == nil) {
-            annotationView = [[TCLocationAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:NSStringFromClass([TCLocationAnnotationView class])];
-            annotationView.style = TCColorStyleMusic;
-            annotationView.enabled = YES;
-            annotationView.canShowCallout = NO;
-        } else {
-            annotationView.annotation = annotation;
+        TCLocationAnnotationView *locationAnnotationView = (TCLocationAnnotationView *) [mapView dequeueReusableAnnotationViewWithIdentifier:NSStringFromClass([TCLocationAnnotation class])];
+        if (locationAnnotationView == nil) {
+            locationAnnotationView = [[TCLocationAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:NSStringFromClass([TCLocationAnnotationView class])];
+            locationAnnotationView.style = TCColorStyleMusic;
+            locationAnnotationView.enabled = YES;
+            locationAnnotationView.canShowCallout = NO;
         }
-        annotationView = annotationView;
+		else {
+            locationAnnotationView.annotation = annotation;
+        }
+		annotationView = locationAnnotationView;
     }
-    else if ([annotation isKindOfClass:[TCCalloutAnnotation class]]) {
-        TCCalloutAnnotationView *annotationView = (TCCalloutAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:NSStringFromClass([TCCalloutAnnotation class])];
+    else if ([annotation isMemberOfClass:[TCCalloutAnnotation class]]) {
+        TCCalloutAnnotationView *calloutAnnotationView = (TCCalloutAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:NSStringFromClass([TCCalloutAnnotation class])];
         
-        if (!annotationView) {
-            annotationView = [[TCCalloutAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:NSStringFromClass([TCCalloutAnnotation class])];
+        if (!calloutAnnotationView) {
+            calloutAnnotationView = [[TCCalloutAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:NSStringFromClass([TCCalloutAnnotation class])];
         }
         TCCalloutAnnotation *calloutAnnotation = (TCCalloutAnnotation *)annotation;
         
-        annotationView.title = calloutAnnotation.title;
-        annotationView.delegate = self;
-		[annotationView setNeedsLayout];
-        annotationView = annotationView;
+        calloutAnnotationView.title = calloutAnnotation.title;
+        calloutAnnotationView.delegate = self;
+		[calloutAnnotationView setNeedsLayout];
+		
+		annotationView = calloutAnnotationView;
     }
 	return annotationView;
 }
