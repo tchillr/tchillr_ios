@@ -44,7 +44,7 @@
 
 #pragma mark UICollectionViewDelegate methods
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 7;
+    return 4;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 	return CGSizeMake(((UICollectionViewFlowLayout *)collectionViewLayout).itemSize.width, collectionView.bounds.size.height);
@@ -52,43 +52,27 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TCTastesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCTastesCollectionViewCell class]) forIndexPath:indexPath];
 
-	TCColorStyle colorStyle;
 	switch (indexPath.row) {
 		case 0:
 			cell.titleLabel.text = @"Cinéma";
-			colorStyle = TCColorStyleCinema;
+			cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.95] objectAtIndex:2];
 			break;
 		case 1:
 			cell.titleLabel.text = @"Musique";
-			colorStyle = TCColorStyleMusic;
+			cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.95] objectAtIndex:0];
 			break;
 		case 2:
 			cell.titleLabel.text = @"Nature";
-			colorStyle = TCColorStyleNature;
+			cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.95] objectAtIndex:5];
 			break;
 		case 3:
 			cell.titleLabel.text = @"Expos";
-			colorStyle = TCColorStyleExpo;
-			break;
-		case 4:
-			cell.titleLabel.text = @"Expos";
-			colorStyle = TCColorStyleExpo;
-			break;
-		case 5:
-			cell.titleLabel.text = @"Expos";
-			colorStyle = TCColorStyleExpo;
-			break;
-		case 6:
-			cell.titleLabel.text = @"Expos";
-			colorStyle = TCColorStyleExpo;
-			break;
-		case 7:
-			cell.titleLabel.text = @"Expos";
-			colorStyle = TCColorStyleExpo;
+			cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.95] objectAtIndex:4];
 			break;
 	}
 	
-	cell.backgroundColor = [UIColor tcColorWithStyle:colorStyle alpha:0.95];
+	cell.titleLabel.text = [cell.titleLabel.text uppercaseString];
+	
 	
     return cell;
 }

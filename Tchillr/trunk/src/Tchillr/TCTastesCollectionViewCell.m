@@ -34,7 +34,7 @@
 
 - (void)layoutSubviews {
 	[super layoutSubviews];
-	self.titleLabel.transform = CGAffineTransformMakeRotation(- M_PI_2);
+	self.titleLabel.transform = CGAffineTransformMakeRotation(M_PI_2);
 	self.titleLabel.frame = CGRectMake(self.bounds.size.width - self.titleLabel.frame.size.width - 10.0,
 									   self.bounds.size.height - self.titleLabel.frame.size.height - 50.0,
 									   self.titleLabel.frame.size.width,
@@ -43,8 +43,8 @@
 
 #pragma mark Setup
 - (void)setup {
-	[self.titleLabel setTextColor:[UIColor tcWhite]];
-	[self.titleLabel setHighlightedTextColor:[UIColor tcBlack]];
+	[self.titleLabel setTextColor:[UIColor tcBlack]];
+	[self.titleLabel setHighlightedTextColor:[UIColor tcWhite]];
 }
 
 @end
