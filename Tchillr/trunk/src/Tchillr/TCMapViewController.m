@@ -35,6 +35,7 @@
 @property (nonatomic, weak) IBOutlet UIButton * showInterestsButton;
 @property (nonatomic, weak) IBOutlet UIButton * showListButton;
 @property (nonatomic, retain) NSArray * activities;
+@property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
 
 @end
 
@@ -47,11 +48,19 @@
 @synthesize showListButton = _showListButton;
 
 #pragma mark - Lifecycle
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    [self.collectionView setAlpha:0];
-    [self.showListButton setAlpha:0];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.activities = nil;
+    [self.collectionView reloadData];
+    [self.loadingLabel setAlpha:1.0];
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    
+    
     [[TCServerClient sharedTchillrServerClient]
 	 startUserActivitiesRequestForDays:10
 	 success:^(NSArray *activitiesArray) {
@@ -60,19 +69,14 @@
 		 TCLocationAnnotation * annotation = [self annotationForIndex:0];
 		 [self.mapView selectAnnotation:annotation animated:NO];
 		 [self.collectionView reloadData];
-		 [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-			 [self.collectionView setAlpha:0.8];
-			 [self.showListButton setAlpha:0.8];
-		 } completion:^(BOOL finished) {
-		 }];
+         [UIView animateWithDuration:0.2
+                          animations:^{
+                              [self.loadingLabel setAlpha:0.0];
+                          }];
 	 }
 	 failure:^(NSError *error) {
 		 NSLog(@"%@",[error description]);
 	 }];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
     [self.mapView setShowsUserLocation:YES];
 }
 

@@ -33,6 +33,8 @@
 		0594D6C71771E13000744BF3 /* TCMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0594D6C61771E13000744BF3 /* TCMapViewController.m */; };
 		0594D6C91771E14800744BF3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0594D6C81771E14800744BF3 /* MapKit.framework */; };
 		0594D6CB1771E14F00744BF3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0594D6CA1771E14F00744BF3 /* CoreLocation.framework */; };
+		05BDD602177AFB6E00CF282E /* ima.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 05BDD601177AFB6E00CF282E /* ima.gpx */; };
+		05BDD605177AFC5800CF282E /* TCRouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BDD604177AFC5800CF282E /* TCRouteViewController.m */; };
 		05EA91B217731BA100DC2619 /* heart_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 05EA91AE17731BA100DC2619 /* heart_selected.png */; };
 		05EA91B317731BA100DC2619 /* heart_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05EA91AF17731BA100DC2619 /* heart_selected@2x.png */; };
 		05EA91B417731BA100DC2619 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 05EA91B017731BA100DC2619 /* heart.png */; };
@@ -123,6 +125,9 @@
 		0594D6C61771E13000744BF3 /* TCMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCMapViewController.m; sourceTree = "<group>"; };
 		0594D6C81771E14800744BF3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		0594D6CA1771E14F00744BF3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		05BDD601177AFB6E00CF282E /* ima.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ima.gpx; sourceTree = "<group>"; };
+		05BDD603177AFC5800CF282E /* TCRouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRouteViewController.h; sourceTree = "<group>"; };
+		05BDD604177AFC5800CF282E /* TCRouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRouteViewController.m; sourceTree = "<group>"; };
 		05EA91AE17731BA100DC2619 /* heart_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_selected.png; sourceTree = "<group>"; };
 		05EA91AF17731BA100DC2619 /* heart_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart_selected@2x.png"; sourceTree = "<group>"; };
 		05EA91B017731BA100DC2619 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
@@ -288,6 +293,7 @@
 		0594D69C1771DD6E00744BF3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				05BDD601177AFB6E00CF282E /* ima.gpx */,
 				0594D69D1771DD6E00744BF3 /* Tchillr-Info.plist */,
 				0594D69E1771DD6E00744BF3 /* InfoPlist.strings */,
 				0594D6A11771DD6E00744BF3 /* main.m */,
@@ -353,6 +359,8 @@
 				05EA91C817747B3F00DC2619 /* TCActivityDetailViewController.m */,
 				5F435EC21779CF4600D99CA8 /* TCTastesViewController.h */,
 				5F435EC31779CF4600D99CA8 /* TCTastesViewController.m */,
+				05BDD603177AFC5800CF282E /* TCRouteViewController.h */,
+				05BDD604177AFC5800CF282E /* TCRouteViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -538,6 +546,7 @@
 				05EA922C1779F0D100DC2619 /* wander1.jpg in Resources */,
 				05EA922D1779F0D100DC2619 /* wander2.jpg in Resources */,
 				05EA922E1779F0D100DC2619 /* wander3.jpg in Resources */,
+				05BDD602177AFB6E00CF282E /* ima.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,6 +593,7 @@
 				05EA92311779F7CC00DC2619 /* TCAttendanceTableViewCell.m in Sources */,
 				05EA92341779F7E700DC2619 /* TCGalleryTableViewCell.m in Sources */,
 				05EA9239177A20EC00DC2619 /* TCDescriptionTableViewCell.m in Sources */,
+				05BDD605177AFC5800CF282E /* TCRouteViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
