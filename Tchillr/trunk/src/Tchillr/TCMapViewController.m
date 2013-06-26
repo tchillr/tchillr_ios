@@ -181,7 +181,7 @@
 	cell.activityTimeLabel.text = activity.formattedTime;
 	cell.activityTimeLabel.text = activity.formattedTime;
 	cell.activityShortDescriptionLabel.text = activity.shortDescription;
-	cell.activityTagsLabel.text = activity.formattedContextualTags;
+	cell.activityTagsLabel.text = activity.formattedTags;
 	
     return cell;
 }

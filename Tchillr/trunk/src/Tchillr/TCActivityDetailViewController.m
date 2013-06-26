@@ -6,35 +6,34 @@
 //  Copyright (c) 2013 Tchillr. All rights reserved.
 //
 
-// Categories
+#import <MapKit/MapKit.h>
+#import "TCConstants.h"
 
 #import "TCActivityDetailViewController.h"
-#import "TCConstants.h"
-#import <MapKit/MapKit.h>
+
+// Views
 #import "TCTriangleView.h"
-#import "UIColor+Tchillr.h"
 #import "TCActivityDetailViewHeader.h"
+
+// View cells
 #import "TCAddressTableViewCell.h"
-#import "UITableViewCell+Tchillr.h"
 #import "TCTagsTableViewCell.h"
 #import "TCAttendanceTableViewCell.h"
 #import "TCGalleryTableViewCell.h"
+#import "TCDescriptionTableViewCell.h"
 
-#define KNumberOfRows 4
+// Categories
+#import "UITableViewCell+Tchillr.h"
+#import "UIColor+Tchillr.h"
+
+
+#define KNumberOfRows 5
 
 
 @interface TCActivityDetailViewController ()
 
-
-@property (weak, nonatomic) IBOutlet UILabel *activityDescriptionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *activityFullAddressLabel;
-@property (weak, nonatomic) IBOutlet UICollectionView *activityTagsView;
-@property (weak, nonatomic) IBOutlet UILabel *activityNextOccurenceLabel;
-@property (weak, nonatomic) IBOutlet UILabel *activityContextualTags;
-
 @property (weak, nonatomic) IBOutlet TCActivityDetailViewHeader *activityHeaderView;
 @property (weak, nonatomic) IBOutlet UITableView * tableView;
-
 @property (nonatomic, retain) IBOutlet UIButton * backButton;
 
 
@@ -54,14 +53,6 @@
     [self.activityHeaderView.timeLabel setText:self.activity.formattedTime];
     [self.activityHeaderView.shortDescriptionLabel setText:[self.activity.shortDescription capitalizedString]];
     [self.activityHeaderView.feeLabel setText:self.activity.formattedAccessTypeAndPrice];
-
-    
-    
-    
-    //[self.activityDescriptionLabel setText:self.activity.description];
-    //[self.activityFullAddressLabel setText:self.activity.fullAddress];
-    //[self.activityNextOccurenceLabel setText:self.activity.formattedOccurence];
-    //[self.activityContextualTags setText:self.activity.formattedContextualTags];
 }
 
 #pragma mark UITableViewDelegate / DataSource methods
@@ -97,6 +88,12 @@
             cell = galleryTableViewCell;
         }
             break;
+        case 4:{
+            TCDescriptionTableViewCell * descriptionTableViewCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCDescriptionTableViewCell class])];
+            descriptionTableViewCell.descriptionLabel.text = self.activity.description;
+            cell = descriptionTableViewCell;
+        }
+            break;
         default:
             break;
     }
@@ -117,7 +114,10 @@
             heightForRowAtIndexPath = 52.0;
             break;
         case 3:
-            heightForRowAtIndexPath = 135.0;
+            heightForRowAtIndexPath = 110.0;
+            break;
+        case 4:
+            heightForRowAtIndexPath = 150.0;
             break;
         default:
             break;

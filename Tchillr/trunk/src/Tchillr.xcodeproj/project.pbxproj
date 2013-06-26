@@ -70,6 +70,7 @@
 		05EA922E1779F0D100DC2619 /* wander3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 05EA922B1779F0D100DC2619 /* wander3.jpg */; };
 		05EA92311779F7CC00DC2619 /* TCAttendanceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA92301779F7CB00DC2619 /* TCAttendanceTableViewCell.m */; };
 		05EA92341779F7E700DC2619 /* TCGalleryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA92331779F7E600DC2619 /* TCGalleryTableViewCell.m */; };
+		05EA9239177A20EC00DC2619 /* TCDescriptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA9238177A20EB00DC2619 /* TCDescriptionTableViewCell.m */; };
 		5F435E911779AA9300D99CA8 /* UIColor+Tchillr.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F435E901779AA9300D99CA8 /* UIColor+Tchillr.m */; };
 /* End PBXBuildFile section */
 
@@ -173,6 +174,8 @@
 		05EA92301779F7CB00DC2619 /* TCAttendanceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAttendanceTableViewCell.m; sourceTree = "<group>"; };
 		05EA92321779F7E500DC2619 /* TCGalleryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGalleryTableViewCell.h; sourceTree = "<group>"; };
 		05EA92331779F7E600DC2619 /* TCGalleryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGalleryTableViewCell.m; sourceTree = "<group>"; };
+		05EA9237177A20EB00DC2619 /* TCDescriptionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDescriptionTableViewCell.h; sourceTree = "<group>"; };
+		05EA9238177A20EB00DC2619 /* TCDescriptionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDescriptionTableViewCell.m; sourceTree = "<group>"; };
 		5F435E8F1779AA9300D99CA8 /* UIColor+Tchillr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Tchillr.h"; sourceTree = "<group>"; };
 		5F435E901779AA9300D99CA8 /* UIColor+Tchillr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Tchillr.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -414,6 +417,8 @@
 				05EA92301779F7CB00DC2619 /* TCAttendanceTableViewCell.m */,
 				05EA92321779F7E500DC2619 /* TCGalleryTableViewCell.h */,
 				05EA92331779F7E600DC2619 /* TCGalleryTableViewCell.m */,
+				05EA9237177A20EB00DC2619 /* TCDescriptionTableViewCell.h */,
+				05EA9238177A20EB00DC2619 /* TCDescriptionTableViewCell.m */,
 			);
 			name = "Activity Detail";
 			sourceTree = "<group>";
@@ -550,6 +555,7 @@
 				05EA92281779DC4800DC2619 /* TCTagsTableViewCell.m in Sources */,
 				05EA92311779F7CC00DC2619 /* TCAttendanceTableViewCell.m in Sources */,
 				05EA92341779F7E700DC2619 /* TCGalleryTableViewCell.m in Sources */,
+				05EA9239177A20EC00DC2619 /* TCDescriptionTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

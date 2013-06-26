@@ -22,7 +22,7 @@
 @property (nonatomic, readonly) CGFloat latitude;
 @property (nonatomic, readonly) NSString *zipcode;
 @property (nonatomic, readonly) NSArray *keywords;
-@property (nonatomic, readonly) NSArray *contextualTags;
+@property (nonatomic, readonly) NSArray *tags;
 
 @property (nonatomic, readonly) NSString *accessType;
 @property (nonatomic, readonly) BOOL hasFee;
@@ -43,7 +43,7 @@
 - (BOOL)hasTags;
 - (NSString *)tagAtIndex:(NSUInteger) index;
 - (NSInteger)numberOfTags;
-#pragma mark Formatted contextual tags
-- (NSString *)formattedContextualTags;
+#pragma mark Formatted Tags
+- (NSString *)formattedTags;
 
 @end
