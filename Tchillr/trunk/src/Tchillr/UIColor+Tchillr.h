@@ -17,7 +17,9 @@ typedef enum {
 
 @interface UIColor (Tchillr)
 
++ (NSArray *)tcColorsWithAlpha:(CGFloat)alpha;
 + (UIColor *)tcColorWithStyle:(TCColorStyle)style;
++ (UIColor *)tcColorWithStyle:(TCColorStyle)style alpha:(CGFloat)alpha;
 + (UIColor *)tcBlack;
 + (UIColor *)tcWhite;
 + (UIColor *)tcBlackSemiTransparent;

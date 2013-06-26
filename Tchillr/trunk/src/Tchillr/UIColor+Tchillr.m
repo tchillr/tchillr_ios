@@ -11,8 +11,9 @@
 @implementation UIColor (Tchillr)
 
 + (NSArray *)tcColors {
-    CGFloat alpha = 1;
-	
+    return [self tcColorsWithAlpha:1.0];
+}
++ (NSArray *)tcColorsWithAlpha:(CGFloat)alpha {
     UIColor * color0 = [UIColor colorWithRed:242.0/255.0 green:106.0/255.0 blue:120.0/255.0 alpha:alpha];
     UIColor * color1 = [UIColor colorWithRed:96.0/255.0  green:86.0/255.0  blue:152.0/255.0 alpha:alpha];
     UIColor * color2 = [UIColor colorWithRed:255.0/255.0 green:215.0/255.0 blue:123.0/255.0 alpha:alpha];
@@ -24,19 +25,22 @@
 }
 
 + (UIColor *)tcColorWithStyle:(TCColorStyle)style {
+	return [self tcColorWithStyle:style alpha:1.0];
+}
++ (UIColor *)tcColorWithStyle:(TCColorStyle)style alpha:(CGFloat)alpha {
 	UIColor *color = nil;
 	switch (style) {
 		case TCColorStyleMusic:
-			color = [UIColor colorWithRed:242.0/255.0 green:106.0/255.0 blue:120.0/255.0 alpha:1.0];
+			color = [UIColor colorWithRed:242.0/255.0 green:106.0/255.0 blue:120.0/255.0 alpha:alpha];
 			break;
 		case TCColorStyleCinema:
-			color = [UIColor colorWithRed:96.0/255.0  green:86.0/255.0  blue:152.0/255.0 alpha:1.0];
+			color = [UIColor colorWithRed:96.0/255.0  green:86.0/255.0  blue:152.0/255.0 alpha:alpha];
 			break;
 		case TCColorStyleExpo:
-			color = [UIColor colorWithRed:255.0/255.0 green:215.0/255.0 blue:123.0/255.0 alpha:1.0];
+			color = [UIColor colorWithRed:255.0/255.0 green:215.0/255.0 blue:123.0/255.0 alpha:alpha];
 			break;
 		case TCColorStyleNature:
-			color = [UIColor colorWithRed:247.0/255.0 green:146.0/255.0 blue:113.0/255.0 alpha:1.0];
+			color = [UIColor colorWithRed:247.0/255.0 green:146.0/255.0 blue:113.0/255.0 alpha:alpha];
 			break;
 		default:
 			color = [UIColor tcWhite];

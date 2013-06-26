@@ -13,6 +13,7 @@
 
 // Controllers
 #import "TCActivityDetailViewController.h"
+#import "TCTastesViewController.h"
 
 // Views & Controls
 #import "TCLocationAnnotationView.h"
@@ -27,7 +28,7 @@
 
 #define METERS_FOR_DISTANCE 1250
 
-@interface TCMapViewController () <UICollectionViewDelegate, MKMapViewDelegate, TCCalloutAnnotationViewDelegate>
+@interface TCMapViewController () <UICollectionViewDelegate, MKMapViewDelegate, TCCalloutAnnotationViewDelegate, TCTastesViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet MKMapView * mapView;
 @property (nonatomic, weak) IBOutlet UICollectionView * collectionView;
@@ -191,6 +192,7 @@
 }
 
 #define kShowActivityDetailSegueIdentifier @"ShowActivityDetailSegue"
+#define kshowTastesSegueIdentifier @"ShowTastesSegue"
 
 #pragma mark Prepare segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -207,11 +209,25 @@
 		TCActivityDetailViewController * activityDetailViewController = (TCActivityDetailViewController *) segue.destinationViewController;
 		[activityDetailViewController setActivity:activity];
 	}
+	else if ([segue.identifier isEqualToString:kshowTastesSegueIdentifier]) {
+		[segue.destinationViewController setDelegate:self];
+	}
 }
 
 #pragma mark TCCalloutAnnotationViewDelegate methods
 - (void) calloutAnnotationButtonClicked {
 	[self performSegueWithIdentifier:kShowActivityDetailSegueIdentifier sender:nil];
+}
+
+#pragma mark TCTastesViewControllerDelegate
+- (void)tastesViewControllerDidFinishEditing:(TCTastesViewController *)tastesViewController {
+	[self dismissViewControllerAnimated:YES
+							 completion:^{
+								 [self reloadData];
+							 }];
+}
+- (void)reloadData {
+#warning Ici, on a besoin d'une méthode simple pour recharger toute la vue (mapView + position, collectionView)
 }
 
 @end

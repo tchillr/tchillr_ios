@@ -58,6 +58,10 @@
 		05EA921117792C2D00DC2619 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05EA920F17792C2D00DC2619 /* back@2x.png */; };
 		05EA921417792CF800DC2619 /* TCTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA921317792CF700DC2619 /* TCTriangleView.m */; };
 		5F435E911779AA9300D99CA8 /* UIColor+Tchillr.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F435E901779AA9300D99CA8 /* UIColor+Tchillr.m */; };
+		5F435EC41779CF4600D99CA8 /* TCTastesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F435EC31779CF4600D99CA8 /* TCTastesViewController.m */; };
+		5F435EC71779CFF700D99CA8 /* btn_tick.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F435EC51779CFF700D99CA8 /* btn_tick.png */; };
+		5F435EC81779CFF700D99CA8 /* btn_tick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F435EC61779CFF700D99CA8 /* btn_tick@2x.png */; };
+		5F435ECB1779D42400D99CA8 /* TCTastesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F435ECA1779D42400D99CA8 /* TCTastesCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -143,6 +147,12 @@
 		05EA921317792CF700DC2619 /* TCTriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTriangleView.m; sourceTree = "<group>"; };
 		5F435E8F1779AA9300D99CA8 /* UIColor+Tchillr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Tchillr.h"; sourceTree = "<group>"; };
 		5F435E901779AA9300D99CA8 /* UIColor+Tchillr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Tchillr.m"; sourceTree = "<group>"; };
+		5F435EC21779CF4600D99CA8 /* TCTastesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTastesViewController.h; sourceTree = "<group>"; };
+		5F435EC31779CF4600D99CA8 /* TCTastesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTastesViewController.m; sourceTree = "<group>"; };
+		5F435EC51779CFF700D99CA8 /* btn_tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_tick.png; sourceTree = "<group>"; };
+		5F435EC61779CFF700D99CA8 /* btn_tick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_tick@2x.png"; sourceTree = "<group>"; };
+		5F435EC91779D42400D99CA8 /* TCTastesCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTastesCollectionViewCell.h; sourceTree = "<group>"; };
+		5F435ECA1779D42400D99CA8 /* TCTastesCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTastesCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +264,8 @@
 		0594D6B81771DF0C00744BF3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5F435EC51779CFF700D99CA8 /* btn_tick.png */,
+				5F435EC61779CFF700D99CA8 /* btn_tick@2x.png */,
 				05EA920E17792C2D00DC2619 /* back.png */,
 				05EA920F17792C2D00DC2619 /* back@2x.png */,
 				05EA920217790C6300DC2619 /* arrow.png */,
@@ -297,6 +309,8 @@
 				0594D6C61771E13000744BF3 /* TCMapViewController.m */,
 				05EA91C717747B3F00DC2619 /* TCActivityDetailViewController.h */,
 				05EA91C817747B3F00DC2619 /* TCActivityDetailViewController.m */,
+				5F435EC21779CF4600D99CA8 /* TCTastesViewController.h */,
+				5F435EC31779CF4600D99CA8 /* TCTastesViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -312,6 +326,8 @@
 				05EA92001778FD5300DC2619 /* TCCalloutAnnotationView.m */,
 				05EA921217792CF700DC2619 /* TCTriangleView.h */,
 				05EA921317792CF700DC2619 /* TCTriangleView.m */,
+				5F435EC91779D42400D99CA8 /* TCTastesCollectionViewCell.h */,
+				5F435ECA1779D42400D99CA8 /* TCTastesCollectionViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -433,6 +449,8 @@
 				05EA920D17790C6300DC2619 /* btn_list@2x.png in Resources */,
 				05EA921017792C2D00DC2619 /* back.png in Resources */,
 				05EA921117792C2D00DC2619 /* back@2x.png in Resources */,
+				5F435EC71779CFF700D99CA8 /* btn_tick.png in Resources */,
+				5F435EC81779CFF700D99CA8 /* btn_tick@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +488,8 @@
 				05EA92011778FD5300DC2619 /* TCCalloutAnnotationView.m in Sources */,
 				05EA921417792CF800DC2619 /* TCTriangleView.m in Sources */,
 				5F435E911779AA9300D99CA8 /* UIColor+Tchillr.m in Sources */,
+				5F435EC41779CF4600D99CA8 /* TCTastesViewController.m in Sources */,
+				5F435ECB1779D42400D99CA8 /* TCTastesCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
