@@ -9,7 +9,7 @@
 #import "TCActivity.h"
 #import "TCViewController.h"
 
-@interface TCActivityDetailViewController : TCViewController
+@interface TCActivityDetailViewController : UIViewController
 
 @property (nonatomic, retain) TCActivity * activity;
 

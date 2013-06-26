@@ -90,7 +90,6 @@
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
 	id annotationView = nil;
 	if ([annotation isMemberOfClass:[TCLocationAnnotation class]]) {
-        NSLog(@"Annotation %@ at index %i",[annotation description],((TCLocationAnnotation *)annotation).index);
         TCLocationAnnotationView *locationAnnotationView = (TCLocationAnnotationView *) [mapView dequeueReusableAnnotationViewWithIdentifier:NSStringFromClass([TCLocationAnnotation class])];
         if (locationAnnotationView == nil) {
             locationAnnotationView = [[TCLocationAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:NSStringFromClass([TCLocationAnnotationView class])];
@@ -128,8 +127,6 @@
         calloutAnnotation.coordinate = annotation.coordinate;
         annotation.calloutAnnotation = calloutAnnotation;
         [mapView addAnnotation:calloutAnnotation];
-        
-//        NSLog(@"Annotation is at index %i",annotation.index);
         [self.collectionView scrollRectToVisible:CGRectMake(annotation.index * self.collectionView.bounds.size.width, 0.0, self.collectionView.bounds.size.width, self.collectionView.bounds.size.height) animated:YES];
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, METERS_FOR_DISTANCE, METERS_FOR_DISTANCE);
         [mapView setRegion:region animated:YES];
@@ -153,7 +150,6 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     NSUInteger index = scrollView.contentOffset.x / scrollView.bounds.size.width;
-    NSLog(@"scrollViewDidEndDecelerating at index : %i",index);
     TCLocationAnnotation * annotation = [self annotationForIndex:index];    
     [self.mapView selectAnnotation:annotation animated:YES];
 }
@@ -186,7 +182,7 @@
 	cell.activityTimeLabel.text = activity.formattedTime;
 	cell.activityTimeLabel.text = activity.formattedTime;
 	cell.activityShortDescriptionLabel.text = activity.shortDescription;
-	cell.activityTagsLabel.text = activity.formattedContextualTags;
+	cell.activityTagsLabel.text = activity.formattedTags;
 	
     return cell;
 }

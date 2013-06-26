@@ -9,6 +9,7 @@
 #import "TCActivity.h"
 #import "TCOccurence.h"
 #import "NSString+TCAdditions.h"
+#import "TCTag.h"
 
 #define kActivityDescriptionKey @"description"
 #define kActivityShortDescriptionKey @"shortDescription"
@@ -22,7 +23,10 @@
 #define kActivityLatitudeKey @"latitude"
 #define kActivityZipcodeKey @"zipcode"
 #define kActivityKeywordsKey @"keywords"
-#define kActivityContextualTagsKey @"activityContextualTags"
+#define kActivityTagsKey @"tags"
+#define kActivityAccessTypeKey @"accessType"
+#define kActivityPriceKey @"price"
+#define kActivityHasFeeKey @"hasFee"
 
 #define kActivityWordKey @"Key"
 #define kActivityWeightKey @"Value"
@@ -80,8 +84,27 @@
     return (NSNumber *)[self.jsonDictionary objectForKey:kActivityZipcodeKey];
 }
 
-- (NSArray *)contextualTags {
-    return (NSArray *)[self.jsonDictionary objectForKey:kActivityContextualTagsKey];
+- (NSArray *)tags {
+    NSMutableArray * tagsArray = [[NSMutableArray alloc]init];
+    NSArray * tags = (NSArray *)[self.jsonDictionary objectForKey:kActivityTagsKey];
+    
+    for (NSDictionary * tagsDict in tags) {
+        TCTag * tag = [[TCTag alloc]initWithJsonDictionary:tagsDict];
+        [tagsArray addObject:tag];
+    }
+    return [NSArray arrayWithArray:tagsArray];
+}
+
+- (NSString *)accessType {
+    return (NSString *)[self.jsonDictionary objectForKey:kActivityAccessTypeKey];
+}
+
+- (NSNumber *)price {
+    return (NSNumber *)[self.jsonDictionary objectForKey:kActivityPriceKey];
+}
+
+- (BOOL)hasFee {
+    return [(NSNumber *)[self.jsonDictionary objectForKey:kActivityHasFeeKey] boolValue];
 }
 
 #pragma mark First access
@@ -148,31 +171,43 @@
     return @"";
 }
 
+#pragma mark Formatted Access Type / Price
+- (NSString*) formattedAccessTypeAndPrice {
+    NSString * formattedAccessTypeAndPrice = nil;
+    if (self.hasFee) {
+        formattedAccessTypeAndPrice = [NSString stringWithFormat:@"%@ / %@",self.accessType,self.price];
+    }
+    else {
+        formattedAccessTypeAndPrice = [NSString stringWithFormat:@"%@",self.accessType];
+    }    
+    return formattedAccessTypeAndPrice;
+}
+
 #pragma mark Tags
 - (BOOL)hasTags{
-    return [self.contextualTags count] > 0;
+    return [self.tags count] > 0;
 }
 
 - (NSString *)tagAtIndex:(NSUInteger) index{
-    return (NSString *)[self.contextualTags objectAtIndex:index];
+    return [self.tags objectAtIndex:index];
 }
 
 - (NSInteger)numberOfTags{
-    return [self.contextualTags count];
+    return [self.tags count];
 }
 
-#pragma mark Formatted contextual tags
-- (NSString *)formattedContextualTags{
+#pragma mark Formatted Tags
+- (NSString *)formattedTags{
     NSMutableString * fullTags = [[NSMutableString alloc] init];
-    for (int i = 0; i < [self.contextualTags count]; i++) {
-        if (i == [self.contextualTags count] - 1) {
-            [fullTags appendFormat:@"%@",[self.contextualTags objectAtIndex:i]];
+    for (int i = 0; i < [self.tags count]; i++) {
+        if (i == [self.tags count] - 1) {
+            [fullTags appendFormat:@"%@",((TCTag *)[self.tags objectAtIndex:i]).title];
         }
         else {
-            [fullTags appendFormat:@"%@ / ",[self.contextualTags objectAtIndex:i]];
+            [fullTags appendFormat:@"%@ / ",((TCTag *)[self.tags objectAtIndex:i]).title];
         }
     }
-    return [NSString stringWithString:fullTags];
+    return [[NSString stringWithString:fullTags] uppercaseString];
 }
 
 

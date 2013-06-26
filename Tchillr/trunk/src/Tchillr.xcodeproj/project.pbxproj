@@ -57,6 +57,20 @@
 		05EA921017792C2D00DC2619 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 05EA920E17792C2D00DC2619 /* back.png */; };
 		05EA921117792C2D00DC2619 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05EA920F17792C2D00DC2619 /* back@2x.png */; };
 		05EA921417792CF800DC2619 /* TCTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA921317792CF700DC2619 /* TCTriangleView.m */; };
+		05EA92171779B9A900DC2619 /* TCActivityDetailViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA92161779B9A900DC2619 /* TCActivityDetailViewHeader.m */; };
+		05EA921C1779BBDC00DC2619 /* arrow_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 05EA92181779BBDC00DC2619 /* arrow_black.png */; };
+		05EA921D1779BBDC00DC2619 /* arrow_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05EA92191779BBDC00DC2619 /* arrow_black@2x.png */; };
+		05EA921E1779BBDC00DC2619 /* separator_horizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = 05EA921A1779BBDC00DC2619 /* separator_horizontal.png */; };
+		05EA921F1779BBDC00DC2619 /* separator_horizontal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05EA921B1779BBDC00DC2619 /* separator_horizontal@2x.png */; };
+		05EA92221779D3C900DC2619 /* TCAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA92211779D3C800DC2619 /* TCAddressTableViewCell.m */; };
+		05EA92251779D3E500DC2619 /* UITableViewCell+Tchillr.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA92241779D3E500DC2619 /* UITableViewCell+Tchillr.m */; };
+		05EA92281779DC4800DC2619 /* TCTagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA92271779DC4700DC2619 /* TCTagsTableViewCell.m */; };
+		05EA922C1779F0D100DC2619 /* wander1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 05EA92291779F0CF00DC2619 /* wander1.jpg */; };
+		05EA922D1779F0D100DC2619 /* wander2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 05EA922A1779F0D000DC2619 /* wander2.jpg */; };
+		05EA922E1779F0D100DC2619 /* wander3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 05EA922B1779F0D100DC2619 /* wander3.jpg */; };
+		05EA92311779F7CC00DC2619 /* TCAttendanceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA92301779F7CB00DC2619 /* TCAttendanceTableViewCell.m */; };
+		05EA92341779F7E700DC2619 /* TCGalleryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA92331779F7E600DC2619 /* TCGalleryTableViewCell.m */; };
+		05EA9239177A20EC00DC2619 /* TCDescriptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA9238177A20EB00DC2619 /* TCDescriptionTableViewCell.m */; };
 		5F435E911779AA9300D99CA8 /* UIColor+Tchillr.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F435E901779AA9300D99CA8 /* UIColor+Tchillr.m */; };
 		5F435EC41779CF4600D99CA8 /* TCTastesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F435EC31779CF4600D99CA8 /* TCTastesViewController.m */; };
 		5F435EC71779CFF700D99CA8 /* btn_tick.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F435EC51779CFF700D99CA8 /* btn_tick.png */; };
@@ -145,6 +159,27 @@
 		05EA920F17792C2D00DC2619 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		05EA921217792CF700DC2619 /* TCTriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTriangleView.h; sourceTree = "<group>"; };
 		05EA921317792CF700DC2619 /* TCTriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTriangleView.m; sourceTree = "<group>"; };
+		05EA92151779B9A900DC2619 /* TCActivityDetailViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCActivityDetailViewHeader.h; sourceTree = "<group>"; };
+		05EA92161779B9A900DC2619 /* TCActivityDetailViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCActivityDetailViewHeader.m; sourceTree = "<group>"; };
+		05EA92181779BBDC00DC2619 /* arrow_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_black.png; sourceTree = "<group>"; };
+		05EA92191779BBDC00DC2619 /* arrow_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_black@2x.png"; sourceTree = "<group>"; };
+		05EA921A1779BBDC00DC2619 /* separator_horizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = separator_horizontal.png; sourceTree = "<group>"; };
+		05EA921B1779BBDC00DC2619 /* separator_horizontal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "separator_horizontal@2x.png"; sourceTree = "<group>"; };
+		05EA92201779D3C700DC2619 /* TCAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAddressTableViewCell.h; sourceTree = "<group>"; };
+		05EA92211779D3C800DC2619 /* TCAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAddressTableViewCell.m; sourceTree = "<group>"; };
+		05EA92231779D3E500DC2619 /* UITableViewCell+Tchillr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+Tchillr.h"; sourceTree = "<group>"; };
+		05EA92241779D3E500DC2619 /* UITableViewCell+Tchillr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+Tchillr.m"; sourceTree = "<group>"; };
+		05EA92261779DC4700DC2619 /* TCTagsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTagsTableViewCell.h; sourceTree = "<group>"; };
+		05EA92271779DC4700DC2619 /* TCTagsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTagsTableViewCell.m; sourceTree = "<group>"; };
+		05EA92291779F0CF00DC2619 /* wander1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wander1.jpg; sourceTree = "<group>"; };
+		05EA922A1779F0D000DC2619 /* wander2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wander2.jpg; sourceTree = "<group>"; };
+		05EA922B1779F0D100DC2619 /* wander3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wander3.jpg; sourceTree = "<group>"; };
+		05EA922F1779F7CA00DC2619 /* TCAttendanceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAttendanceTableViewCell.h; sourceTree = "<group>"; };
+		05EA92301779F7CB00DC2619 /* TCAttendanceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAttendanceTableViewCell.m; sourceTree = "<group>"; };
+		05EA92321779F7E500DC2619 /* TCGalleryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCGalleryTableViewCell.h; sourceTree = "<group>"; };
+		05EA92331779F7E600DC2619 /* TCGalleryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCGalleryTableViewCell.m; sourceTree = "<group>"; };
+		05EA9237177A20EB00DC2619 /* TCDescriptionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDescriptionTableViewCell.h; sourceTree = "<group>"; };
+		05EA9238177A20EB00DC2619 /* TCDescriptionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDescriptionTableViewCell.m; sourceTree = "<group>"; };
 		5F435E8F1779AA9300D99CA8 /* UIColor+Tchillr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Tchillr.h"; sourceTree = "<group>"; };
 		5F435E901779AA9300D99CA8 /* UIColor+Tchillr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Tchillr.m"; sourceTree = "<group>"; };
 		5F435EC21779CF4600D99CA8 /* TCTastesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTastesViewController.h; sourceTree = "<group>"; };
@@ -266,6 +301,13 @@
 			children = (
 				5F435EC51779CFF700D99CA8 /* btn_tick.png */,
 				5F435EC61779CFF700D99CA8 /* btn_tick@2x.png */,
+				05EA92291779F0CF00DC2619 /* wander1.jpg */,
+				05EA922A1779F0D000DC2619 /* wander2.jpg */,
+				05EA922B1779F0D100DC2619 /* wander3.jpg */,
+				05EA92181779BBDC00DC2619 /* arrow_black.png */,
+				05EA92191779BBDC00DC2619 /* arrow_black@2x.png */,
+				05EA921A1779BBDC00DC2619 /* separator_horizontal.png */,
+				05EA921B1779BBDC00DC2619 /* separator_horizontal@2x.png */,
 				05EA920E17792C2D00DC2619 /* back.png */,
 				05EA920F17792C2D00DC2619 /* back@2x.png */,
 				05EA920217790C6300DC2619 /* arrow.png */,
@@ -328,6 +370,8 @@
 				05EA921317792CF700DC2619 /* TCTriangleView.m */,
 				5F435EC91779D42400D99CA8 /* TCTastesCollectionViewCell.h */,
 				5F435ECA1779D42400D99CA8 /* TCTastesCollectionViewCell.m */,
+				05EA92361779F7FF00DC2619 /* Activity Detail */,
+				05EA92351779F7F100DC2619 /* Map */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -337,6 +381,8 @@
 			children = (
 				5F435E8F1779AA9300D99CA8 /* UIColor+Tchillr.h */,
 				5F435E901779AA9300D99CA8 /* UIColor+Tchillr.m */,
+				05EA92231779D3E500DC2619 /* UITableViewCell+Tchillr.h */,
+				05EA92241779D3E500DC2619 /* UITableViewCell+Tchillr.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -365,6 +411,40 @@
 				05EA91DC1778ED7000DC2619 /* TCServerClient.m */,
 			);
 			name = TCServerClient;
+			sourceTree = "<group>";
+		};
+		05EA92351779F7F100DC2619 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				05EA91D4177491C100DC2619 /* TCLocationAnnotationView.h */,
+				05EA91D5177491C100DC2619 /* TCLocationAnnotationView.m */,
+				05EA91FF1778FD5300DC2619 /* TCCalloutAnnotationView.h */,
+				05EA92001778FD5300DC2619 /* TCCalloutAnnotationView.m */,
+				05EA91B61773249800DC2619 /* TCActivityCollectionViewCell.h */,
+				05EA91B71773249800DC2619 /* TCActivityCollectionViewCell.m */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		05EA92361779F7FF00DC2619 /* Activity Detail */ = {
+			isa = PBXGroup;
+			children = (
+				05EA921217792CF700DC2619 /* TCTriangleView.h */,
+				05EA921317792CF700DC2619 /* TCTriangleView.m */,
+				05EA92151779B9A900DC2619 /* TCActivityDetailViewHeader.h */,
+				05EA92161779B9A900DC2619 /* TCActivityDetailViewHeader.m */,
+				05EA92201779D3C700DC2619 /* TCAddressTableViewCell.h */,
+				05EA92211779D3C800DC2619 /* TCAddressTableViewCell.m */,
+				05EA92261779DC4700DC2619 /* TCTagsTableViewCell.h */,
+				05EA92271779DC4700DC2619 /* TCTagsTableViewCell.m */,
+				05EA922F1779F7CA00DC2619 /* TCAttendanceTableViewCell.h */,
+				05EA92301779F7CB00DC2619 /* TCAttendanceTableViewCell.m */,
+				05EA92321779F7E500DC2619 /* TCGalleryTableViewCell.h */,
+				05EA92331779F7E600DC2619 /* TCGalleryTableViewCell.m */,
+				05EA9237177A20EB00DC2619 /* TCDescriptionTableViewCell.h */,
+				05EA9238177A20EB00DC2619 /* TCDescriptionTableViewCell.m */,
+			);
+			name = "Activity Detail";
 			sourceTree = "<group>";
 		};
 		5F435E921779AEEC00D99CA8 /* Model */ = {
@@ -451,6 +531,13 @@
 				05EA921117792C2D00DC2619 /* back@2x.png in Resources */,
 				5F435EC71779CFF700D99CA8 /* btn_tick.png in Resources */,
 				5F435EC81779CFF700D99CA8 /* btn_tick@2x.png in Resources */,
+				05EA921C1779BBDC00DC2619 /* arrow_black.png in Resources */,
+				05EA921D1779BBDC00DC2619 /* arrow_black@2x.png in Resources */,
+				05EA921E1779BBDC00DC2619 /* separator_horizontal.png in Resources */,
+				05EA921F1779BBDC00DC2619 /* separator_horizontal@2x.png in Resources */,
+				05EA922C1779F0D100DC2619 /* wander1.jpg in Resources */,
+				05EA922D1779F0D100DC2619 /* wander2.jpg in Resources */,
+				05EA922E1779F0D100DC2619 /* wander3.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +577,13 @@
 				5F435E911779AA9300D99CA8 /* UIColor+Tchillr.m in Sources */,
 				5F435EC41779CF4600D99CA8 /* TCTastesViewController.m in Sources */,
 				5F435ECB1779D42400D99CA8 /* TCTastesCollectionViewCell.m in Sources */,
+				05EA92171779B9A900DC2619 /* TCActivityDetailViewHeader.m in Sources */,
+				05EA92221779D3C900DC2619 /* TCAddressTableViewCell.m in Sources */,
+				05EA92251779D3E500DC2619 /* UITableViewCell+Tchillr.m in Sources */,
+				05EA92281779DC4800DC2619 /* TCTagsTableViewCell.m in Sources */,
+				05EA92311779F7CC00DC2619 /* TCAttendanceTableViewCell.m in Sources */,
+				05EA92341779F7E700DC2619 /* TCGalleryTableViewCell.m in Sources */,
+				05EA9239177A20EC00DC2619 /* TCDescriptionTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
