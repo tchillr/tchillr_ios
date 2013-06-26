@@ -23,15 +23,15 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TCTastesCollectionViewCell" id="7Dn-nn-sS6" customClass="TCTastesCollectionViewCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TCTastesCollectionViewCell" id="VbP-mT-dfO" customClass="TCTastesCollectionViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="87" height="548"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="87" height="548"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="egM-Hg-7p3">
-                                                    <rect key="frame" x="27" y="453" width="190" height="45"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d9x-l9-AIC">
+                                                    <rect key="frame" x="27" y="501" width="190" height="45"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="40"/>
@@ -43,7 +43,7 @@
                                         </view>
                                         <color key="backgroundColor" red="1" green="0.55294120309999995" blue="0.4784313738" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="titleLabel" destination="egM-Hg-7p3" id="Vmx-e3-Cpg"/>
+                                            <outlet property="titleLabel" destination="d9x-l9-AIC" id="Rd9-3T-Tcf"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -568,14 +568,6 @@
         <class className="TCActivityDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TCActivityDetailViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="activityContextualTags" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="activityDescriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="activityFullAddressLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="activityNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="activityNextOccurenceLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="activityShortDescriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="activityTagsView" candidateClass="UICollectionView"/>
-                <relationship kind="action" name="popViewController:"/>
                 <relationship kind="outlet" name="activityHeaderView" candidateClass="TCActivityDetailViewHeader"/>
                 <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
@@ -617,6 +609,9 @@
                 <relationship kind="outlet" name="showListButton" candidateClass="UIButton"/>
             </relationships>
         </class>
+        <class className="TCTagsTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TCTagsTableViewCell.h"/>
+        </class>
         <class className="TCTastesCollectionViewCell" superclassName="UICollectionViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TCTastesCollectionViewCell.h"/>
             <relationships>
@@ -630,8 +625,6 @@
                 <relationship kind="action" name="validateTastes:"/>
                 <relationship kind="outlet" name="delegate"/>
             </relationships>
-        <class className="TCTagsTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TCTagsTableViewCell.h"/>
         </class>
         <class className="TCTriangleView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TCTriangleView.h"/>
