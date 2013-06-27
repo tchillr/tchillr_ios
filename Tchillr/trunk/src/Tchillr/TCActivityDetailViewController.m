@@ -26,16 +26,22 @@
 #import "UITableViewCell+Tchillr.h"
 #import "UIColor+Tchillr.h"
 
+// TableView Rows
+#define KRowAddress     0
+#define KRowTags        1
+#define KRowAttendance  2
+#define KRowGallery     3
+#define KRowDescription 4
+
 
 #define KNumberOfRows 5
 
 
 @interface TCActivityDetailViewController ()
 
-@property (weak, nonatomic) IBOutlet TCActivityDetailViewHeader *activityHeaderView;
+@property (nonatomic, retain) TCActivityDetailViewHeader *activityHeaderView;
 @property (weak, nonatomic) IBOutlet UITableView * tableView;
 @property (nonatomic, retain) IBOutlet UIButton * backButton;
-
 
 @end
 
@@ -48,11 +54,17 @@
 #pragma mark LifeCycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.activityHeaderView = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([TCActivityDetailViewHeader class]) owner:nil options:nil] objectAtIndex:0];
     [self.activityHeaderView.nameLabel setText:[self.activity.name uppercaseString]];
     [self.activityHeaderView.dayLabel setText:self.activity.formattedDay];
     [self.activityHeaderView.timeLabel setText:self.activity.formattedTime];
     [self.activityHeaderView.shortDescriptionLabel setText:[self.activity.shortDescription capitalizedString]];
     [self.activityHeaderView.feeLabel setText:self.activity.formattedAccessTypeAndPrice];
+    CGSize headerIdealSize = [self.activityHeaderView idealSize];
+    self.activityHeaderView.frame = CGRectMake(0.0, 0.0, headerIdealSize.width, headerIdealSize.height);
+    [self.tableView setTableHeaderView:self.activityHeaderView];
+    
 }
 
 #pragma mark UITableViewDelegate / DataSource methods
@@ -63,7 +75,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell * cell = nil;
     switch (indexPath.row) {
-        case 0:{
+        case KRowAddress:{
             TCAddressTableViewCell * addressTableViewCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCAddressTableViewCell class])];
             addressTableViewCell.placeLabel.text = self.activity.place;
             addressTableViewCell.addressLabel.text = self.activity.fullAddress;
@@ -72,23 +84,23 @@
             cell = addressTableViewCell;
         }           
             break;
-        case 1:{
+        case KRowTags:{
             TCTagsTableViewCell * tagsTableViewCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCTagsTableViewCell class])];
             [tagsTableViewCell customizeAsWhiteCell];
             cell = tagsTableViewCell;
         }
             break;
-        case 2:{
+        case KRowAttendance:{
             TCAttendanceTableViewCell * attendanceTableViewCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCAttendanceTableViewCell class])];
             cell = attendanceTableViewCell;
         }
             break;
-        case 3:{
+        case KRowGallery:{
             TCGalleryTableViewCell * galleryTableViewCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCGalleryTableViewCell class])];
             cell = galleryTableViewCell;
         }
             break;
-        case 4:{
+        case KRowDescription:{
             TCDescriptionTableViewCell * descriptionTableViewCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCDescriptionTableViewCell class])];
             descriptionTableViewCell.descriptionLabel.text = self.activity.description;
             cell = descriptionTableViewCell;
@@ -104,20 +116,22 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat heightForRowAtIndexPath = 0.0;
     switch (indexPath.row) {
-        case 0:
-            heightForRowAtIndexPath = 60.0;
+        case KRowAddress:
+        case KRowDescription:
+        {
+            UITableViewCell * cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+            TCActivityDetailResizableCell * descriptionCell = (TCActivityDetailResizableCell *)cell;
+            heightForRowAtIndexPath = [descriptionCell idealSizeForCell].height;
+        }
             break;
-        case 1:
+        case KRowTags:
             heightForRowAtIndexPath = 90.0;
             break;
-        case 2:
+        case KRowAttendance:
             heightForRowAtIndexPath = 52.0;
             break;
-        case 3:
-            heightForRowAtIndexPath = 110.0;
-            break;
-        case 4:
-            heightForRowAtIndexPath = 150.0;
+        case KRowGallery:
+            heightForRowAtIndexPath = 112.0;
             break;
         default:
             break;

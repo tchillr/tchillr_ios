@@ -16,4 +16,6 @@
 @property (nonatomic, retain) IBOutlet UILabel * shortDescriptionLabel;
 @property (nonatomic, retain) IBOutlet UILabel * feeLabel;
 
+- (CGSize) idealSize;
+
 @end

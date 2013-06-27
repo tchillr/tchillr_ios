@@ -35,6 +35,9 @@
 		0594D6CB1771E14F00744BF3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0594D6CA1771E14F00744BF3 /* CoreLocation.framework */; };
 		05BDD602177AFB6E00CF282E /* ima.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 05BDD601177AFB6E00CF282E /* ima.gpx */; };
 		05BDD605177AFC5800CF282E /* TCRouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BDD604177AFC5800CF282E /* TCRouteViewController.m */; };
+		05BDD60B177B9F6F00CF282E /* TCActivityDetailResizableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BDD60A177B9F6F00CF282E /* TCActivityDetailResizableCell.m */; };
+		05BDD60E177BA54600CF282E /* UILabel+Tchillr.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BDD60D177BA54600CF282E /* UILabel+Tchillr.m */; };
+		05BDD610177BC13800CF282E /* TCActivityDetailViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05BDD60F177BC13700CF282E /* TCActivityDetailViewHeader.xib */; };
 		05EA91B217731BA100DC2619 /* heart_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 05EA91AE17731BA100DC2619 /* heart_selected.png */; };
 		05EA91B317731BA100DC2619 /* heart_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05EA91AF17731BA100DC2619 /* heart_selected@2x.png */; };
 		05EA91B417731BA100DC2619 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 05EA91B017731BA100DC2619 /* heart.png */; };
@@ -128,6 +131,11 @@
 		05BDD601177AFB6E00CF282E /* ima.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ima.gpx; sourceTree = "<group>"; };
 		05BDD603177AFC5800CF282E /* TCRouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRouteViewController.h; sourceTree = "<group>"; };
 		05BDD604177AFC5800CF282E /* TCRouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRouteViewController.m; sourceTree = "<group>"; };
+		05BDD609177B9F6F00CF282E /* TCActivityDetailResizableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCActivityDetailResizableCell.h; sourceTree = "<group>"; };
+		05BDD60A177B9F6F00CF282E /* TCActivityDetailResizableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCActivityDetailResizableCell.m; sourceTree = "<group>"; };
+		05BDD60C177BA54500CF282E /* UILabel+Tchillr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Tchillr.h"; sourceTree = "<group>"; };
+		05BDD60D177BA54600CF282E /* UILabel+Tchillr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Tchillr.m"; sourceTree = "<group>"; };
+		05BDD60F177BC13700CF282E /* TCActivityDetailViewHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCActivityDetailViewHeader.xib; sourceTree = "<group>"; };
 		05EA91AE17731BA100DC2619 /* heart_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_selected.png; sourceTree = "<group>"; };
 		05EA91AF17731BA100DC2619 /* heart_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart_selected@2x.png"; sourceTree = "<group>"; };
 		05EA91B017731BA100DC2619 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
@@ -380,6 +388,8 @@
 				5F435ECA1779D42400D99CA8 /* TCTastesCollectionViewCell.m */,
 				05EA92361779F7FF00DC2619 /* Activity Detail */,
 				05EA92351779F7F100DC2619 /* Map */,
+				05BDD609177B9F6F00CF282E /* TCActivityDetailResizableCell.h */,
+				05BDD60A177B9F6F00CF282E /* TCActivityDetailResizableCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -391,6 +401,8 @@
 				5F435E901779AA9300D99CA8 /* UIColor+Tchillr.m */,
 				05EA92231779D3E500DC2619 /* UITableViewCell+Tchillr.h */,
 				05EA92241779D3E500DC2619 /* UITableViewCell+Tchillr.m */,
+				05BDD60C177BA54500CF282E /* UILabel+Tchillr.h */,
+				05BDD60D177BA54600CF282E /* UILabel+Tchillr.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -451,6 +463,7 @@
 				05EA92331779F7E600DC2619 /* TCGalleryTableViewCell.m */,
 				05EA9237177A20EB00DC2619 /* TCDescriptionTableViewCell.h */,
 				05EA9238177A20EB00DC2619 /* TCDescriptionTableViewCell.m */,
+				05BDD60F177BC13700CF282E /* TCActivityDetailViewHeader.xib */,
 			);
 			name = "Activity Detail";
 			sourceTree = "<group>";
@@ -547,6 +560,7 @@
 				05EA922D1779F0D100DC2619 /* wander2.jpg in Resources */,
 				05EA922E1779F0D100DC2619 /* wander3.jpg in Resources */,
 				05BDD602177AFB6E00CF282E /* ima.gpx in Resources */,
+				05BDD610177BC13800CF282E /* TCActivityDetailViewHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +608,8 @@
 				05EA92341779F7E700DC2619 /* TCGalleryTableViewCell.m in Sources */,
 				05EA9239177A20EC00DC2619 /* TCDescriptionTableViewCell.m in Sources */,
 				05BDD605177AFC5800CF282E /* TCRouteViewController.m in Sources */,
+				05BDD60B177B9F6F00CF282E /* TCActivityDetailResizableCell.m in Sources */,
+				05BDD60E177BA54600CF282E /* UILabel+Tchillr.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

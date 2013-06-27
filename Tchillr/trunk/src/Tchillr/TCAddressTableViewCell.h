@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCActivityDetailResizableCell.h"
 
-@interface TCAddressTableViewCell : UITableViewCell
+@interface TCAddressTableViewCell : TCActivityDetailResizableCell
 
 @property (nonatomic, weak) IBOutlet UILabel * placeLabel;
 @property (nonatomic, weak) IBOutlet UILabel * addressLabel;

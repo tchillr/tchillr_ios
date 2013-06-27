@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCActivityDetailResizableCell.h"
 
-@interface TCDescriptionTableViewCell : UITableViewCell
+@interface TCDescriptionTableViewCell : TCActivityDetailResizableCell
 
 @property (nonatomic, weak) IBOutlet UILabel * descriptionLabel;
+
 
 @end
