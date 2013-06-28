@@ -41,7 +41,7 @@
 
 #pragma mark Tag Access 
 - (TCTag *)tagAtIndex:(NSInteger)index{
-    return (TCTag *) [self.tags objectAtIndex:index];
+    return [self.tags objectAtIndex:index];
 }
 
 

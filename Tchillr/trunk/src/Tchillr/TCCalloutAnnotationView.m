@@ -48,7 +48,7 @@
         _calloutButton.backgroundColor = [UIColor clearColor];
         [_calloutButton setBackgroundImage: [UIImage imageNamed:@"arrow.png"] forState:UIControlStateNormal];
         [self addSubview:_calloutButton];
-        [_calloutButton addTarget:self action:@selector(calloutAnnotationButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+       // [_calloutButton addTarget:self action:@selector(calloutAnnotationButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return self;
@@ -60,10 +60,11 @@
 }
 
 #pragma mark - Button clicked
+/*
 - (void)calloutAnnotationButtonClicked:(UIButton *)button {
     if ([self.delegate respondsToSelector:@selector(calloutAnnotationButtonClicked)]) {
         [self.delegate calloutAnnotationButtonClicked];
     }
-}
+}*/
 
 @end

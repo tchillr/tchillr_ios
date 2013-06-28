@@ -30,8 +30,8 @@
     self.alpha = 1.0;
 }
 
-- (void)drawRect:(CGRect)rect
-{
+#pragma mark Triangle drawer
++ (void) drawTriangleWithRect:(CGRect)rect andStyle:(TCColorStyle)style{
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextBeginPath(ctx);
     
@@ -40,7 +40,7 @@
     CGContextAddLineToPoint(ctx, CGRectGetMaxX(rect), CGRectGetMinY(rect));  // top right point
     CGContextClosePath(ctx);
     
-    UIColor * color = [UIColor tcColorWithStyle:self.style];
+    UIColor * color = [UIColor tcColorWithStyle:style];
     if (CGColorGetNumberOfComponents(color.CGColor) == 2) {
         const CGFloat *colorComponents = CGColorGetComponents(color.CGColor);
         CGContextSetRGBFillColor(ctx, colorComponents[0], colorComponents[0], colorComponents[0], colorComponents[1]);
@@ -53,6 +53,19 @@
         NSLog(@"Color not recognized");
     }
     CGContextFillPath(ctx);
+    
+    CGContextSetStrokeColorWithColor(ctx, [UIColor tcBlackSemiTransparent].CGColor);
+    CGContextSetLineWidth(ctx, 1.0);
+    CGContextMoveToPoint(ctx, CGRectGetMidX(rect), CGRectGetMaxY(rect));
+    CGContextAddLineToPoint(ctx, CGRectGetMinX(rect), CGRectGetMinY(rect));
+    CGContextAddLineToPoint(ctx, CGRectGetMaxX(rect), CGRectGetMinY(rect));
+    CGContextAddLineToPoint(ctx, CGRectGetMidX(rect), CGRectGetMaxY(rect));
+    CGContextStrokePath(ctx);
+}
+
+- (void)drawRect:(CGRect)rect
+{
+    [[self class] drawTriangleWithRect:rect andStyle:self.style];
 }
 
 

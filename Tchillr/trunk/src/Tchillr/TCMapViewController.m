@@ -26,6 +26,9 @@
 #import "TCLocationAnnotation.h"
 #import "TCCalloutAnnotation.h"
 
+#define kShowActivityDetailSegueIdentifier @"ShowActivityDetailSegue"
+#define kshowTastesSegueIdentifier @"ShowTastesSegue"
+
 #define METERS_FOR_DISTANCE 1250
 
 @interface TCMapViewController () <UICollectionViewDelegate, MKMapViewDelegate, TCCalloutAnnotationViewDelegate, TCTastesViewControllerDelegate>
@@ -50,16 +53,7 @@
 #pragma mark - Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    self.activities = nil;
-    [self.collectionView reloadData];
-    [self.loadingLabel setAlpha:1.0];
-    [self.mapView removeAnnotations:self.mapView.annotations];
-    
+    [self.loadingLabel setAlpha:1.0]; 
     
     [[TCServerClient sharedTchillrServerClient]
 	 startUserActivitiesRequestForDays:10
@@ -135,6 +129,9 @@
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, METERS_FOR_DISTANCE, METERS_FOR_DISTANCE);
         [mapView setRegion:region animated:YES];
     }
+    else if ([view isKindOfClass:[TCCalloutAnnotationView class]]) {
+        [self performSegueWithIdentifier:kShowActivityDetailSegueIdentifier sender:nil];
+    }
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
@@ -191,9 +188,6 @@
     return cell;
 }
 
-#define kShowActivityDetailSegueIdentifier @"ShowActivityDetailSegue"
-#define kshowTastesSegueIdentifier @"ShowTastesSegue"
-
 #pragma mark Prepare segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([segue.identifier isEqualToString:kShowActivityDetailSegueIdentifier]) {
@@ -215,9 +209,10 @@
 }
 
 #pragma mark TCCalloutAnnotationViewDelegate methods
+/*
 - (void) calloutAnnotationButtonClicked {
 	[self performSegueWithIdentifier:kShowActivityDetailSegueIdentifier sender:nil];
-}
+}*/
 
 #pragma mark TCTastesViewControllerDelegate
 - (void)tastesViewControllerDidFinishEditing:(TCTastesViewController *)tastesViewController {

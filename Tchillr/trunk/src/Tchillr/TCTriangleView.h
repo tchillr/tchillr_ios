@@ -13,4 +13,7 @@
 
 @property (nonatomic, assign) TCColorStyle style;
 
+#pragma mark Triangle drawer
++ (void) drawTriangleWithRect:(CGRect)rect andStyle:(TCColorStyle)style;
+
 @end

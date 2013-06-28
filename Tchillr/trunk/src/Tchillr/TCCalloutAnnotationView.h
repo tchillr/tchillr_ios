@@ -11,7 +11,7 @@
 @protocol TCCalloutAnnotationViewDelegate <NSObject>
 
 #pragma mark TCCalloutAnnotationViewDelegate methods
-- (void) calloutAnnotationButtonClicked;
+//- (void) calloutAnnotationButtonClicked;
 
 @end
 

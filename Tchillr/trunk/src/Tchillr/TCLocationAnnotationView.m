@@ -7,6 +7,7 @@
 //
 
 #import "TCLocationAnnotationView.h"
+#import "TCTriangleView.h"
 #import "UIColor+Tchillr.h"
 
 @implementation TCLocationAnnotationView
@@ -26,37 +27,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGContextBeginPath(ctx);
-    
-    CGContextMoveToPoint   (ctx, CGRectGetMidX(rect), CGRectGetMaxY(rect));  // bottom middle point
-    CGContextAddLineToPoint(ctx, CGRectGetMinX(rect), CGRectGetMinY(rect));  // top left point
-    CGContextAddLineToPoint(ctx, CGRectGetMaxX(rect), CGRectGetMinY(rect));  // top right point
-    CGContextClosePath(ctx);
-    
-    UIColor * color = [UIColor tcColorWithStyle:self.style];
-    if (CGColorGetNumberOfComponents(color.CGColor) == 2) {
-        const CGFloat *colorComponents = CGColorGetComponents(color.CGColor);
-        CGContextSetRGBFillColor(ctx, colorComponents[0], colorComponents[0], colorComponents[0], colorComponents[1]);
-    }
-    else if (CGColorGetNumberOfComponents(color.CGColor) == 4) {
-        const CGFloat * colorComponents = CGColorGetComponents(color.CGColor);
-        CGContextSetRGBFillColor(ctx, colorComponents[0], colorComponents[1], colorComponents[2], colorComponents[3]);
-    }
-    else {
-        NSLog(@"Color not recognized");
-    }
-    
-    CGContextFillPath(ctx);
-    
-    CGContextSetStrokeColorWithColor(ctx, [UIColor tcBlackSemiTransparent].CGColor);
-    CGContextSetLineWidth(ctx, 1.0);
-    CGContextMoveToPoint(ctx, CGRectGetMidX(rect), CGRectGetMaxY(rect));
-    CGContextAddLineToPoint(ctx, CGRectGetMinX(rect), CGRectGetMinY(rect));
-    CGContextAddLineToPoint(ctx, CGRectGetMaxX(rect), CGRectGetMinY(rect));
-    CGContextAddLineToPoint(ctx, CGRectGetMidX(rect), CGRectGetMaxY(rect));
-    
-    CGContextStrokePath(ctx);
+    [TCTriangleView drawTriangleWithRect:rect andStyle:self.style];
 }
 
 
