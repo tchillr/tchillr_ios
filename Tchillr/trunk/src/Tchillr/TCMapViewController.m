@@ -195,10 +195,7 @@
 	cell.activityTimeLabel.text = activity.formattedTime;
 	cell.activityShortDescriptionLabel.text = activity.shortDescription;
 	cell.activityTagsLabel.text = activity.formattedTags;
-    
-    id<MKAnnotation> annotation = [[self.mapView selectedAnnotations] objectAtIndex:0];
-	cell.activityDistanceLabel.text = [self distanceToAnnotation:annotation];
-    
+    cell.activityDistanceLabel.text = [self distanceToAnnotation:[self annotationForIndex:indexPath.row]];
     return cell;
 }
 
