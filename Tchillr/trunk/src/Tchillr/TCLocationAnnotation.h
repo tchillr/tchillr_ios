@@ -16,5 +16,7 @@
 @property (nonatomic, retain) TCCalloutAnnotation *calloutAnnotation;
 
 - (id)initWithName:(NSString*)name address:(NSString*)address coordinate:(CLLocationCoordinate2D)coordinate;
+#pragma mark - Coordinate validity
+- (BOOL)coordinateIsValid;
 
 @end

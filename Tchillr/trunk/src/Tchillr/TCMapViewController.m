@@ -56,7 +56,7 @@
     [self.loadingLabel setAlpha:1.0]; 
     
     [[TCServerClient sharedTchillrServerClient]
-	 startUserActivitiesRequestForDays:10
+	 startUserActivitiesRequestForDays:1
 	 success:^(NSArray *activitiesArray) {
 		 self.activities = activitiesArray;
 		 [self pinLocations];
@@ -80,7 +80,13 @@
         TCActivity * activity = [self activityAtIndex:i];
         TCLocationAnnotation* annotation = [[TCLocationAnnotation alloc] initWithName:activity.name address:activity.fullAddress coordinate:CLLocationCoordinate2DMake(activity.latitude,activity.longitude)];
         annotation.index = i;
-        [self.mapView addAnnotation:annotation];
+        BOOL valid = [annotation coordinateIsValid];
+        if (valid) {
+            [self.mapView addAnnotation:annotation];
+        }
+        else {
+            NSLog(@"Coordinates not valid for annotation %@",annotation.title);
+        }    
     }
 }
 
@@ -132,6 +138,7 @@
     else if ([view isKindOfClass:[TCCalloutAnnotationView class]]) {
         [self performSegueWithIdentifier:kShowActivityDetailSegueIdentifier sender:nil];
     }
+    [self distanceToAnnotation:view.annotation];
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
@@ -153,6 +160,10 @@
     NSUInteger index = scrollView.contentOffset.x / scrollView.bounds.size.width;
     TCLocationAnnotation * annotation = [self annotationForIndex:index];    
     [self.mapView selectAnnotation:annotation animated:YES];
+}
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+    [self distanceToAnnotation:[mapView.selectedAnnotations objectAtIndex:0]];
 }
 
 #pragma mark Activities access
@@ -184,7 +195,10 @@
 	cell.activityTimeLabel.text = activity.formattedTime;
 	cell.activityShortDescriptionLabel.text = activity.shortDescription;
 	cell.activityTagsLabel.text = activity.formattedTags;
-	
+    
+    id<MKAnnotation> annotation = [[self.mapView selectedAnnotations] objectAtIndex:0];
+	cell.activityDistanceLabel.text = [self distanceToAnnotation:annotation];
+    
     return cell;
 }
 
@@ -208,12 +222,6 @@
 	}
 }
 
-#pragma mark TCCalloutAnnotationViewDelegate methods
-/*
-- (void) calloutAnnotationButtonClicked {
-	[self performSegueWithIdentifier:kShowActivityDetailSegueIdentifier sender:nil];
-}*/
-
 #pragma mark TCTastesViewControllerDelegate
 - (void)tastesViewControllerDidFinishEditing:(TCTastesViewController *)tastesViewController {
 	[self dismissViewControllerAnimated:YES
@@ -223,6 +231,26 @@
 }
 - (void)reloadData {
 #warning Ici, on a besoin d'une méthode simple pour recharger toute la vue (mapView + position, collectionView)
+}
+
+#pragma mark 
+- (NSString *)distanceToAnnotation:(id<MKAnnotation>)annotation {
+    CLLocation *pinLocation = [[CLLocation alloc]
+                               initWithLatitude:annotation.coordinate.latitude
+                               longitude:annotation.coordinate.longitude];
+    CLLocation *userLocation = [[CLLocation alloc]
+                                initWithLatitude:self.mapView.userLocation.coordinate.latitude
+                                longitude:self.mapView.userLocation.coordinate.longitude];
+    CLLocationDistance distance = [pinLocation distanceFromLocation:userLocation];
+    NSString * distanceToAnnotation = nil;
+    if (distance > 1000) {
+        distanceToAnnotation = [NSString stringWithFormat:@"%.2f km", distance / 1000];
+    }
+    else {
+        distanceToAnnotation = [NSString stringWithFormat:@"%4.0f m", distance];
+
+    }
+    return distanceToAnnotation;
 }
 
 @end

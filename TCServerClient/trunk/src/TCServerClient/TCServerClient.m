@@ -13,7 +13,6 @@
 #import "TCServerConstants.h"
 
 #define user @"1"
-#define timespan @"20"
 
 @implementation TCServerClient
 

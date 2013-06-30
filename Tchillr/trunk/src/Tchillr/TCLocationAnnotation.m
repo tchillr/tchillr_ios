@@ -45,4 +45,9 @@
     return _index;
 }
 
+#pragma mark - Coordinate validity
+- (BOOL)coordinateIsValid {
+    return CLLocationCoordinate2DIsValid(CLLocationCoordinate2DMake(self.coordinate.latitude,self.coordinate.longitude));
+}
+
 @end
