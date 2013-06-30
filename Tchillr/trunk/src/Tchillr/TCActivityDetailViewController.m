@@ -11,37 +11,49 @@
 
 #import "TCActivityDetailViewController.h"
 
+// Server Client
+#import "TCServerClient.h"
+
+// Categories
+#import "UICollectionViewCell+Tchillr.h"
+#import "UIColor+Tchillr.h"
+
 // Views
 #import "TCTriangleView.h"
 #import "TCActivityDetailViewHeader.h"
 
-// View cells
+// View Cells
 #import "TCAddressTableViewCell.h"
 #import "TCTagsTableViewCell.h"
 #import "TCAttendanceTableViewCell.h"
 #import "TCGalleryTableViewCell.h"
 #import "TCDescriptionTableViewCell.h"
 
+// Collection View Cells
+#import "TCActivityTagsCollectionViewCell.h"
+
 // Categories
 #import "UITableViewCell+Tchillr.h"
 #import "UIColor+Tchillr.h"
 
+// Model
+#import "TCTag.h"
+
 // TableView Rows
+#define KNumberOfRows   5
+
 #define KRowAddress     0
 #define KRowTags        1
 #define KRowAttendance  2
 #define KRowGallery     3
 #define KRowDescription 4
 
-
-#define KNumberOfRows 5
-
-
 @interface TCActivityDetailViewController ()
 
 @property (nonatomic, retain) TCActivityDetailViewHeader *activityHeaderView;
 @property (weak, nonatomic) IBOutlet UITableView * tableView;
 @property (nonatomic, retain) IBOutlet UIButton * backButton;
+@property (nonatomic, retain) NSArray * interests;
 
 @end
 
@@ -54,7 +66,6 @@
 #pragma mark LifeCycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.activityHeaderView = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([TCActivityDetailViewHeader class]) owner:nil options:nil] objectAtIndex:0];
     [self.activityHeaderView.nameLabel setText:[self.activity.name uppercaseString]];
     [self.activityHeaderView.dayLabel setText:self.activity.formattedDay];
@@ -65,6 +76,13 @@
     self.activityHeaderView.frame = CGRectMake(0.0, 0.0, headerIdealSize.width, headerIdealSize.height);
     [self.tableView setTableHeaderView:self.activityHeaderView];
     
+    // User interests
+    [[TCServerClient sharedTchillrServerClient] startInterestsRequestWithSuccess:^(NSArray *interestsArray) {
+        self.interests = interestsArray;
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:KRowTags inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    } failure:^(NSError *error) {
+        NSLog(@"%@", [error description]);
+    }];
 }
 
 #pragma mark UITableViewDelegate / DataSource methods
@@ -142,6 +160,34 @@
 #pragma mark Pop
 - (IBAction)popViewController:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark UICollectionViewDelegate methods
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return [self.activity numberOfTags];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    TCActivityTagsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCActivityTagsCollectionViewCell class]) forIndexPath:indexPath];
+    TCTag * tag = [self.activity tagAtIndex:indexPath.row];
+    cell.tagName.text = [tag.title uppercaseString];
+    NSUInteger index = [self.interests indexOfObjectPassingTest:^BOOL(TCTag * tagObject, NSUInteger idx, BOOL *stop) {
+        return [tag.identifier isEqualToNumber:tagObject.identifier];
+    }];
+    
+    [cell setUserInterest:(index != NSNotFound)];
+    [cell customizeWithStyle:indexPath.row];
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    TCTag * tag = [self.activity tagAtIndex:indexPath.row];
+    [[TCServerClient sharedTchillrServerClient] startUpdateInterestRequestWithIdentifier:tag.identifier success:^(NSArray *interestsArray) {
+        self.interests = interestsArray;
+        [collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexPath.row inSection:0]]];
+    } failure:^(NSError *error) {
+        NSLog(@"%@",[error description]);
+    }];
 }
 
 @end

@@ -188,7 +188,7 @@
     return [self.tags count] > 0;
 }
 
-- (NSString *)tagAtIndex:(NSUInteger) index{
+- (TCTag *)tagAtIndex:(NSUInteger) index{
     return [self.tags objectAtIndex:index];
 }
 

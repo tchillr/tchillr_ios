@@ -7,7 +7,7 @@
 //
 
 #import "TCObject.h"
-
+@class TCTag;
 @interface TCActivity : TCObject
 
 @property (nonatomic, readonly) NSNumber *identifier;
@@ -41,7 +41,7 @@
 - (NSString*) formattedAccessTypeAndPrice;
 #pragma mark Tags
 - (BOOL)hasTags;
-- (NSString *)tagAtIndex:(NSUInteger) index;
+- (TCTag *)tagAtIndex:(NSUInteger) index;
 - (NSInteger)numberOfTags;
 #pragma mark Formatted Tags
 - (NSString *)formattedTags;

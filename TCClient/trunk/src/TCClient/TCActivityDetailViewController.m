@@ -8,7 +8,7 @@
 
 #import "TCActivityDetailViewController.h"
 //#import "TCInterestView.h"
-#import "TCConstants.h"
+//#import "TCConstants.h"
 #import <MapKit/MapKit.h>
 //#import "TCAnnotationView.h"
 

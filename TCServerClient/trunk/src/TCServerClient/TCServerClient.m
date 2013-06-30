@@ -12,7 +12,7 @@
 #import "TCTag.h"
 #import "TCServerConstants.h"
 
-#define user @"3"
+#define user @"1"
 #define timespan @"20"
 
 @implementation TCServerClient
@@ -115,8 +115,12 @@ static TCServerClient *sharedTchillrServerClient;
     NSLog(@"Request : %@", [[request URL] absoluteString]);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                                                            NSDictionary *jsonDict = (NSDictionary *) JSON;
-                                                                                            NSArray *tags = [jsonDict objectForKey:kUserInterestsResult];
+                                                                                            NSArray *resultArray = [self getDataFromJSON:(NSDictionary *) JSON];
+                                                                                            NSMutableArray * tags = [NSMutableArray array];
+                                                                                            [resultArray enumerateObjectsUsingBlock:^(id obj,NSUInteger idx, BOOL *stop){
+                                                                                                TCTag * tag = [[TCTag alloc] initWithJsonDictionary:obj];
+                                                                                                [tags addObject:tag];
+                                                                                            }];
                                                                                             success(tags);
                                                                                         }failure:^(NSURLRequest *request, NSHTTPURLResponse *response,
                                                                                                    NSError *error, id JSON) {
@@ -136,8 +140,12 @@ static TCServerClient *sharedTchillrServerClient;
     NSLog(@"Request : %@", [[request URL] absoluteString]);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                                                            NSDictionary *jsonDict = (NSDictionary *) JSON;
-                                                                                            NSArray *tags = [jsonDict objectForKey:kPostInterestsResult];
+                                                                                            NSArray *resultArray = [self getDataFromJSON:(NSDictionary *) JSON];
+                                                                                            NSMutableArray * tags = [NSMutableArray array];
+                                                                                            [resultArray enumerateObjectsUsingBlock:^(id obj,NSUInteger idx, BOOL *stop){
+                                                                                                TCTag * tag = [[TCTag alloc] initWithJsonDictionary:obj];
+                                                                                                [tags addObject:tag];
+                                                                                            }];
                                                                                             success(tags);
                                                                                         }failure:^(NSURLRequest *request, NSHTTPURLResponse *response,
                                                                                                    NSError *error, id JSON) {

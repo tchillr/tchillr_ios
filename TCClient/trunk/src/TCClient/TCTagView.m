@@ -7,7 +7,7 @@
 //
 
 #import "TCTagView.h"
-#import "TCConstants.h"
+//#import "TCConstants.h"
 
 @implementation TCTagView
 

@@ -111,9 +111,10 @@
     if (![self.adress isEqualToString:@""]) {
         [availableStrings addObject:[self.adress capitalizedString]];
     }
+    /*
     if (![self.zipcode isEqualToString:@""]) {
         [availableStrings addObject:[self.zipcode capitalizedString]];
-    }
+    }*/
     if (![self.city isEqualToString:@""]) {
         [availableStrings addObject:[self.city capitalizedString]];
     }
