@@ -6,10 +6,13 @@
 //  Copyright (c) 2013 Tchillr. All rights reserved.
 //
 
-#import "TCActivity.h"
-#import "TCOccurence.h"
+// Categories
 #import "NSString+TCAdditions.h"
+// Model
+#import "TCActivity.h"
 #import "TCTag.h"
+#import "TCMedia.h"
+#import "TCOccurence.h"
 
 #define kActivityDescriptionKey @"description"
 #define kActivityShortDescriptionKey @"shortDescription"
@@ -28,9 +31,8 @@
 #define kActivityPriceKey @"price"
 #define kActivityHasFeeKey @"hasFee"
 #define kActivityScoreKey @"score"
+#define kActivityMediaKey @"Media"
 
-#define kActivityWordKey @"Key"
-#define kActivityWeightKey @"Value"
 
 @implementation TCActivity
 
@@ -112,19 +114,13 @@
     return (NSNumber *)[self.jsonDictionary objectForKey:kActivityScoreKey];
 }
 
+- (TCMedia *)media {
+    return [[TCMedia alloc] initWithJsonDictionary:[self.jsonDictionary objectForKey:kActivityMediaKey]];
+}
+
 #pragma mark First access
 - (TCOccurence *) firstOccurence {
    return (TCOccurence *) [self.occurences objectAtIndex:0];
-}
-
-#pragma mark Formatted occurence
-- (NSString *)formattedOccurence{
-    if ([self.occurences count]) {
-        TCOccurence * firstOccurence = [self firstOccurence];
-        NSString * formattedOccurence = [NSString stringWithFormat:@"Le %@ de %@ à %@",firstOccurence.day,firstOccurence.startTime,firstOccurence.endTime];
-        return formattedOccurence;
-    }
-    return @"";    
 }
 
 #pragma mark Formatted Address 

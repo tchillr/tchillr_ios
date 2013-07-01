@@ -8,6 +8,7 @@
 
 #import "TCObject.h"
 @class TCTag;
+@class TCMedia;
 @interface TCActivity : TCObject
 
 @property (nonatomic, readonly) NSNumber *identifier;
@@ -28,10 +29,8 @@
 @property (nonatomic, readonly) BOOL hasFee;
 @property (nonatomic, readonly) NSNumber *price;
 @property (nonatomic, readonly) NSNumber *score;
+@property (nonatomic, readonly) TCMedia *media;
 
-
-#pragma mark Formatted occurence
-- (NSString *)formattedOccurence;
 #pragma mark Formatted Day
 - (NSString *) formattedDay;
 #pragma mark Formatted Time

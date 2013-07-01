@@ -13,31 +13,25 @@
 
 // Server Client
 #import "TCServerClient.h"
-
 // Categories
 #import "UICollectionViewCell+Tchillr.h"
+#import "UITableViewCell+Tchillr.h"
 #import "UIColor+Tchillr.h"
-
 // Views
 #import "TCTriangleView.h"
 #import "TCActivityDetailViewHeader.h"
-
 // View Cells
 #import "TCAddressTableViewCell.h"
 #import "TCTagsTableViewCell.h"
 #import "TCAttendanceTableViewCell.h"
 #import "TCGalleryTableViewCell.h"
 #import "TCDescriptionTableViewCell.h"
-
 // Collection View Cells
 #import "TCActivityTagsCollectionViewCell.h"
-
-// Categories
-#import "UITableViewCell+Tchillr.h"
-#import "UIColor+Tchillr.h"
-
+#import "TCActivityGalleryCollectionViewCell.h"
 // Model
 #import "TCTag.h"
+#import "TCMedia.h"
 
 // TableView Rows
 #define KNumberOfRows   5
@@ -76,7 +70,6 @@
     self.activityHeaderView.frame = CGRectMake(0.0, 0.0, headerIdealSize.width, headerIdealSize.height);
     [self.tableView setTableHeaderView:self.activityHeaderView];
     
-    // User interests
     [[TCServerClient sharedTchillrServerClient] startInterestsRequestWithSuccess:^(NSArray *interestsArray) {
         self.interests = interestsArray;
         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:KRowTags inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -164,20 +157,42 @@
 
 #pragma mark UICollectionViewDelegate methods
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self.activity numberOfTags];
+    NSInteger numberOfItemsInSection = 0;
+    if ([collectionView isMemberOfClass:[TCActivityTagsCollectionViewCell class]]) {
+        numberOfItemsInSection = [self.activity numberOfTags];
+    }
+    else if ([collectionView isMemberOfClass:[TCActivityGalleryCollectionViewCell class]]) {
+        numberOfItemsInSection = 1;
+    }
+    return numberOfItemsInSection;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    TCActivityTagsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCActivityTagsCollectionViewCell class]) forIndexPath:indexPath];
-    TCTag * tag = [self.activity tagAtIndex:indexPath.row];
-    cell.tagName.text = [tag.title uppercaseString];
-    NSUInteger index = [self.interests indexOfObjectPassingTest:^BOOL(TCTag * tagObject, NSUInteger idx, BOOL *stop) {
-        return [tag.identifier isEqualToNumber:tagObject.identifier];
-    }];
-    
-    [cell setUserInterest:(index != NSNotFound)];
-    [cell customizeWithStyle:indexPath.row];
-    return cell;
+    UICollectionViewCell * cellForItemAtIndexPath = nil;
+    if ([collectionView isMemberOfClass:[TCActivityTagsCollectionViewCell class]]) {
+        TCActivityTagsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCActivityTagsCollectionViewCell class]) forIndexPath:indexPath];
+        TCTag * tag = [self.activity tagAtIndex:indexPath.row];
+        cell.tagName.text = [tag.title uppercaseString];
+        NSUInteger index = [self.interests indexOfObjectPassingTest:^BOOL(TCTag * tagObject, NSUInteger idx, BOOL *stop) {
+            return [tag.identifier isEqualToNumber:tagObject.identifier];
+        }];
+        
+        [cell setUserInterest:(index != NSNotFound)];
+        [cell customizeWithStyle:indexPath.row];
+        cellForItemAtIndexPath = cell;
+    }
+    else if ([collectionView isMemberOfClass:[TCActivityGalleryCollectionViewCell class]]) {
+        TCActivityGalleryCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCActivityGalleryCollectionViewCell class]) forIndexPath:indexPath];
+        
+        TCMedia * media = self.activity.media;
+        if (media.path) {
+            
+        }
+               
+        
+        cellForItemAtIndexPath = cell;
+    }
+    return cellForItemAtIndexPath;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {

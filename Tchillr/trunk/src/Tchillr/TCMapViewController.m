@@ -243,6 +243,7 @@
 							 }];
 }
 - (void)reloadData {
+    
 #warning Ici, on a besoin d'une méthode simple pour recharger toute la vue (mapView + position, collectionView)
 }
 
