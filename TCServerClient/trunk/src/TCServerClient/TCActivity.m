@@ -27,6 +27,7 @@
 #define kActivityAccessTypeKey @"accessType"
 #define kActivityPriceKey @"price"
 #define kActivityHasFeeKey @"hasFee"
+#define kActivityScoreKey @"score"
 
 #define kActivityWordKey @"Key"
 #define kActivityWeightKey @"Value"
@@ -105,6 +106,10 @@
 
 - (BOOL)hasFee {
     return [(NSNumber *)[self.jsonDictionary objectForKey:kActivityHasFeeKey] boolValue];
+}
+
+- (NSNumber *)score {
+    return (NSNumber *)[self.jsonDictionary objectForKey:kActivityScoreKey];
 }
 
 #pragma mark First access

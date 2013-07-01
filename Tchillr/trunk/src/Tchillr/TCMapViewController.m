@@ -85,9 +85,25 @@
             [self.mapView addAnnotation:annotation];
         }
         else {
-            NSLog(@"Coordinates not valid for annotation %@",annotation.title);
+            NSLog(@"Invalid coordinates for annotation %@",annotation.title);
         }    
     }
+}
+
+#pragma mark TCLocationAnnotationViewSizeType from Activity at Index
+- (TCLocationAnnotationViewSizeType) annotationSizeTypeForActivityAtIndex:(NSInteger)index {
+    TCLocationAnnotationViewSizeType sizeType;
+    TCActivity * activity = [self activityAtIndex:index];
+    if ([activity.score intValue] < 6) {
+        sizeType = TCLocationAnnotationViewSizeTypeSmall;
+    }
+    else if ([activity.score intValue] < 11) {
+        sizeType = TCLocationAnnotationViewSizeTypeMedium;
+    }
+    else {
+        sizeType = TCLocationAnnotationViewSizeTypeLarge;
+    }
+    return sizeType;
 }
 
 #pragma mark MKMapView delegate
@@ -96,7 +112,7 @@
 	if ([annotation isMemberOfClass:[TCLocationAnnotation class]]) {
         TCLocationAnnotationView *locationAnnotationView = (TCLocationAnnotationView *) [mapView dequeueReusableAnnotationViewWithIdentifier:NSStringFromClass([TCLocationAnnotation class])];
         if (locationAnnotationView == nil) {
-            locationAnnotationView = [[TCLocationAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:NSStringFromClass([TCLocationAnnotationView class])];
+            locationAnnotationView = [[TCLocationAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:NSStringFromClass([TCLocationAnnotationView class]) andSize:[self annotationSizeTypeForActivityAtIndex:((TCLocationAnnotation*)annotation).index]];
             locationAnnotationView.style = TCColorStyleMusic;
             locationAnnotationView.enabled = YES;
             locationAnnotationView.canShowCallout = NO;

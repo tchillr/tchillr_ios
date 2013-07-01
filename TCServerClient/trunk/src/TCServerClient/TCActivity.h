@@ -27,6 +27,7 @@
 @property (nonatomic, readonly) NSString *accessType;
 @property (nonatomic, readonly) BOOL hasFee;
 @property (nonatomic, readonly) NSNumber *price;
+@property (nonatomic, readonly) NSNumber *score;
 
 
 #pragma mark Formatted occurence

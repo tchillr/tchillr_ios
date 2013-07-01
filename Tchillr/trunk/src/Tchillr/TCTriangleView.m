@@ -63,8 +63,7 @@
     CGContextStrokePath(ctx);
 }
 
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect {
     [[self class] drawTriangleWithRect:rect andStyle:self.style];
 }
 
