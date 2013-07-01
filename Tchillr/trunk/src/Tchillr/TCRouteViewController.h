@@ -8,6 +8,10 @@
 
 #import "TCViewController.h"
 
+@class TCActivity;
+
 @interface TCRouteViewController : TCViewController
+
+@property (strong, nonatomic) TCActivity * activity;
 
 @end

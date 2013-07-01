@@ -9,7 +9,9 @@
 #import <MapKit/MapKit.h>
 #import "TCConstants.h"
 
+// Controllers
 #import "TCActivityDetailViewController.h"
+#import "TCRouteViewController.h"
 
 // Server Client
 #import "TCServerClient.h"
@@ -203,6 +205,16 @@
     } failure:^(NSError *error) {
         NSLog(@"%@",[error description]);
     }];
+}
+
+#define kShowRouteSegueIdentifier @"ShowRouteSegue"
+
+#pragma mark Segues
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if ([segue.identifier isEqualToString:kShowRouteSegueIdentifier]) {
+		TCRouteViewController *routeViewController = segue.destinationViewController;
+		[routeViewController setActivity:self.activity];
+	}
 }
 
 @end
