@@ -208,5 +208,4 @@
     return [[NSString stringWithString:fullTags] uppercaseString];
 }
 
-
 @end

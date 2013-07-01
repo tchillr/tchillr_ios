@@ -26,9 +26,6 @@
     [self.activityNameLabel setText:self.activity.name];
     [self.activityShortDescriptionLabel setText:self.activity.shortDescription];
     [self.activityDescriptionLabel setText:self.activity.description];
-    [self.activityFullAdressLabel setText:self.activity.fullAdress];
-    [self.activityNextOccurenceLabel setText:self.activity.formattedOccurence];
-    [self.activityContextualTags setText:self.activity.formattedContextualTags];
 }
 
 @end

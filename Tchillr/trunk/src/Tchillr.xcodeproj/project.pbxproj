@@ -41,8 +41,8 @@
 		05A5049D177E251600083CEF /* btn_heart_highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A50497177E251500083CEF /* btn_heart_highlighted@2x.png */; };
 		05A5049E177E251600083CEF /* btn_heart_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A50498177E251600083CEF /* btn_heart_selected.png */; };
 		05A5049F177E251600083CEF /* btn_heart_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A50499177E251600083CEF /* btn_heart_selected@2x.png */; };
-		05A889861781ADF2002DFE94 /* TCMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A889851781ADF2002DFE94 /* TCMedia.m */; };
 		05A889891781B7DA002DFE94 /* TCActivityGalleryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A889881781B7DA002DFE94 /* TCActivityGalleryCollectionViewCell.m */; };
+		05A88A801781D362002DFE94 /* TCMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A88A7F1781D362002DFE94 /* TCMedia.m */; };
 		05BDD602177AFB6E00CF282E /* ima.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 05BDD601177AFB6E00CF282E /* ima.gpx */; };
 		05BDD605177AFC5800CF282E /* TCRouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BDD604177AFC5800CF282E /* TCRouteViewController.m */; };
 		05BDD60B177B9F6F00CF282E /* TCActivityDetailResizableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BDD60A177B9F6F00CF282E /* TCActivityDetailResizableCell.m */; };
@@ -145,10 +145,10 @@
 		05A50497177E251500083CEF /* btn_heart_highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_heart_highlighted@2x.png"; sourceTree = "<group>"; };
 		05A50498177E251600083CEF /* btn_heart_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_heart_selected.png; sourceTree = "<group>"; };
 		05A50499177E251600083CEF /* btn_heart_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_heart_selected@2x.png"; sourceTree = "<group>"; };
-		05A889841781ADF2002DFE94 /* TCMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCMedia.h; sourceTree = "<group>"; };
-		05A889851781ADF2002DFE94 /* TCMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCMedia.m; sourceTree = "<group>"; };
 		05A889871781B7D9002DFE94 /* TCActivityGalleryCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCActivityGalleryCollectionViewCell.h; sourceTree = "<group>"; };
 		05A889881781B7DA002DFE94 /* TCActivityGalleryCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCActivityGalleryCollectionViewCell.m; sourceTree = "<group>"; };
+		05A88A7E1781D362002DFE94 /* TCMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCMedia.h; path = ../../../TCServerClient/trunk/src/TCServerClient/TCMedia.h; sourceTree = "<group>"; };
+		05A88A7F1781D362002DFE94 /* TCMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCMedia.m; path = ../../../TCServerClient/trunk/src/TCServerClient/TCMedia.m; sourceTree = "<group>"; };
 		05BDD601177AFB6E00CF282E /* ima.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ima.gpx; sourceTree = "<group>"; };
 		05BDD603177AFC5800CF282E /* TCRouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRouteViewController.h; sourceTree = "<group>"; };
 		05BDD604177AFC5800CF282E /* TCRouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRouteViewController.m; sourceTree = "<group>"; };
@@ -440,6 +440,8 @@
 		05EA91DA1778ED4B00DC2619 /* TCServerClient */ = {
 			isa = PBXGroup;
 			children = (
+				05A88A7E1781D362002DFE94 /* TCMedia.h */,
+				05A88A7F1781D362002DFE94 /* TCMedia.m */,
 				05EA91F31778F1FE00DC2619 /* TCObject.h */,
 				05EA91F41778F1FE00DC2619 /* TCObject.m */,
 				05EA91F51778F1FE00DC2619 /* TCOccurence.h */,
@@ -452,8 +454,6 @@
 				05EA91F11778F0C200DC2619 /* TCActivity.m */,
 				05EA91DB1778ED7000DC2619 /* TCServerClient.h */,
 				05EA91DC1778ED7000DC2619 /* TCServerClient.m */,
-				05A889841781ADF2002DFE94 /* TCMedia.h */,
-				05A889851781ADF2002DFE94 /* TCMedia.m */,
 			);
 			name = TCServerClient;
 			sourceTree = "<group>";
@@ -644,8 +644,8 @@
 				05BDD60E177BA54600CF282E /* UILabel+Tchillr.m in Sources */,
 				05A50490177DE5BE00083CEF /* UICollectionViewCell+Tchillr.m in Sources */,
 				05A50493177DE8C100083CEF /* TCActivityTagsCollectionViewCell.m in Sources */,
-				05A889861781ADF2002DFE94 /* TCMedia.m in Sources */,
 				05A889891781B7DA002DFE94 /* TCActivityGalleryCollectionViewCell.m in Sources */,
+				05A88A801781D362002DFE94 /* TCMedia.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

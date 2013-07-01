@@ -15,4 +15,9 @@
 @property (nonatomic, readonly) NSString * credit;
 @property (nonatomic, readonly) NSString * caption;
 
+@property (nonatomic, retain) UIImage *image;
+
+#pragma mark Media Web Images lazy loading
+- (void)loadImageWithSuccess:(void (^)())success failure:(void (^)(NSError *error))failure;
+
 @end

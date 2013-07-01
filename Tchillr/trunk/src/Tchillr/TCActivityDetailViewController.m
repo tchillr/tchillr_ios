@@ -188,6 +188,11 @@
         
         TCMedia * media = self.activity.media;
         if (media.path) {
+            [media loadImageWithSuccess:^{
+                
+            } failure:^(NSError *error) {
+                NSLog(@"%@",error);
+            }];
             
         }
                
