@@ -8,12 +8,6 @@
 
 #import "TCGalleryTableViewCell.h"
 
-@interface TCGalleryTableViewCell()
-
-@property (nonatomic, weak) IBOutlet UICollectionView * collectionView;
-
-@end
-
 @implementation TCGalleryTableViewCell
 
 @synthesize collectionView = _collectionView;

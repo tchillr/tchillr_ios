@@ -31,6 +31,11 @@
 // Collection View Cells
 #import "TCActivityTagsCollectionViewCell.h"
 #import "TCActivityGalleryCollectionViewCell.h"
+// Collection View tags
+#define kTCActivityTagsCollectionViewTag 1000
+#define kTCActivityGalleryCollectionViewTag 2000
+
+
 // Model
 #import "TCTag.h"
 #import "TCMedia.h"
@@ -99,6 +104,7 @@
             break;
         case KRowTags:{
             TCTagsTableViewCell * tagsTableViewCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCTagsTableViewCell class])];
+            tagsTableViewCell.collectionView.tag = kTCActivityTagsCollectionViewTag;
             [tagsTableViewCell customizeAsWhiteCell];
             cell = tagsTableViewCell;
         }
@@ -110,6 +116,7 @@
             break;
         case KRowGallery:{
             TCGalleryTableViewCell * galleryTableViewCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCGalleryTableViewCell class])];
+            galleryTableViewCell.collectionView.tag = kTCActivityGalleryCollectionViewTag;
             cell = galleryTableViewCell;
         }
             break;
@@ -144,7 +151,7 @@
             heightForRowAtIndexPath = 52.0;
             break;
         case KRowGallery:
-            heightForRowAtIndexPath = 112.0;
+            heightForRowAtIndexPath = 137.0;
             break;
         default:
             break;
@@ -160,10 +167,10 @@
 #pragma mark UICollectionViewDelegate methods
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     NSInteger numberOfItemsInSection = 0;
-    if ([collectionView isMemberOfClass:[TCActivityTagsCollectionViewCell class]]) {
+    if (collectionView.tag == kTCActivityTagsCollectionViewTag) {
         numberOfItemsInSection = [self.activity numberOfTags];
     }
-    else if ([collectionView isMemberOfClass:[TCActivityGalleryCollectionViewCell class]]) {
+    else if (collectionView.tag == kTCActivityGalleryCollectionViewTag) {
         numberOfItemsInSection = 1;
     }
     return numberOfItemsInSection;
@@ -171,7 +178,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewCell * cellForItemAtIndexPath = nil;
-    if ([collectionView isMemberOfClass:[TCActivityTagsCollectionViewCell class]]) {
+    if (collectionView.tag == kTCActivityTagsCollectionViewTag) {
         TCActivityTagsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCActivityTagsCollectionViewCell class]) forIndexPath:indexPath];
         TCTag * tag = [self.activity tagAtIndex:indexPath.row];
         cell.tagName.text = [tag.title uppercaseString];
@@ -183,33 +190,36 @@
         [cell customizeWithStyle:indexPath.row];
         cellForItemAtIndexPath = cell;
     }
-    else if ([collectionView isMemberOfClass:[TCActivityGalleryCollectionViewCell class]]) {
+    else if (collectionView.tag == kTCActivityGalleryCollectionViewTag) {
         TCActivityGalleryCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCActivityGalleryCollectionViewCell class]) forIndexPath:indexPath];
         
-        TCMedia * media = self.activity.media;
+        TCMedia * media = [self.activity mediaAtIndex:indexPath.row];
         if (media.path) {
             [media loadImageWithSuccess:^{
-                
+                cell.imageView.image = media.image;
             } failure:^(NSError *error) {
                 NSLog(@"%@",error);
             }];
             
-        }
-               
-        
+        }       
         cellForItemAtIndexPath = cell;
     }
     return cellForItemAtIndexPath;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    TCTag * tag = [self.activity tagAtIndex:indexPath.row];
-    [[TCServerClient sharedTchillrServerClient] startUpdateInterestRequestWithIdentifier:tag.identifier success:^(NSArray *interestsArray) {
-        self.interests = interestsArray;
-        [collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexPath.row inSection:0]]];
-    } failure:^(NSError *error) {
-        NSLog(@"%@",[error description]);
-    }];
+    if (collectionView.tag == kTCActivityTagsCollectionViewTag) {
+        TCTag * tag = [self.activity tagAtIndex:indexPath.row];
+        [[TCServerClient sharedTchillrServerClient] startUpdateInterestRequestWithIdentifier:tag.identifier success:^(NSArray *interestsArray) {
+            self.interests = interestsArray;
+            [collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexPath.row inSection:0]]];
+        } failure:^(NSError *error) {
+            NSLog(@"%@",[error description]);
+        }];
+    }
+    else if (collectionView.tag == kTCActivityGalleryCollectionViewTag) {
+
+    }
 }
 
 #define kShowRouteSegueIdentifier @"ShowRouteSegue"

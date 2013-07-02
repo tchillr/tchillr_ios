@@ -114,8 +114,23 @@
     return (NSNumber *)[self.jsonDictionary objectForKey:kActivityScoreKey];
 }
 
-- (TCMedia *)media {
-    return [[TCMedia alloc] initWithJsonDictionary:[self.jsonDictionary objectForKey:kActivityMediaKey]];
+- (TCMedia *)medias {
+    NSArray * medias = [self.jsonDictionary objectForKey:kActivityMediaKey];
+    NSMutableArray * mediasArray = [NSMutableArray array];
+    for (int i = 0; i < [medias count]; i++) {
+        NSDictionary * mediaDictionnary = [medias objectAtIndex:i];
+        TCMedia * media = [[TCMedia alloc] initWithJsonDictionary:mediaDictionnary];
+        [mediasArray addObject:media];
+    }
+    return [NSArray arrayWithArray:mediasArray];
+}
+#pragma mark Medias access
+- (TCMedia *)mediaAtIndex:(NSInteger)index {
+    return [self.medias objectAtIndex:index];
+}
+
+- (NSInteger)numberOfMedias {
+    return [self.medias count];
 }
 
 #pragma mark First access
