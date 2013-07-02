@@ -48,5 +48,6 @@
 #pragma mark Medias access
 - (TCMedia *)mediaAtIndex:(NSInteger)index;
 - (NSInteger)numberOfMedias;
+- (BOOL)hasMedias;
 
 @end

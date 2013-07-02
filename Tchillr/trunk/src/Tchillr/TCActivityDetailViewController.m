@@ -151,7 +151,7 @@
             heightForRowAtIndexPath = 52.0;
             break;
         case KRowGallery:
-            heightForRowAtIndexPath = 137.0;
+            heightForRowAtIndexPath = ([self.activity hasMedias]) ? 137.0 : 0;
             break;
         default:
             break;
@@ -197,6 +197,7 @@
         if (media.path) {
             [media loadImageWithSuccess:^{
                 cell.imageView.image = media.image;
+                [self.tableView reloadData];
             } failure:^(NSError *error) {
                 NSLog(@"%@",error);
             }];
