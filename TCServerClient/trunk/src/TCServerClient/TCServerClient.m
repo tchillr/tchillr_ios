@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 Tchillr. All rights reserved.
 //
 
-
 #import "TCServerClient.h"
 #import "AFJSONRequestOperation.h"
 #import "AFImageRequestOperation.h"
 #import "TCActivity.h"
 #import "TCTag.h"
 #import "TCServerConstants.h"
+#import "TCUser.h"
 
-#define user @"1"
+#define user @"3"
 
 @implementation TCServerClient
 
@@ -65,6 +65,7 @@ static TCServerClient *sharedTchillrServerClient;
 
 #pragma mark User Activities
 - (void)startUserActivitiesRequestForDays:(NSUInteger)days success:(void (^)(NSArray * activitiesArray))success failure:(void (^)(NSError *error))failure {
+    NSLog(@"User UUID %@",[TCUser identifier]);
     NSString * urlString = kTCServerServiceURL(kTCServerUserActivities(user, days));
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     NSLog(@"Request : %@", [[request URL] absoluteString]);
@@ -112,6 +113,7 @@ static TCServerClient *sharedTchillrServerClient;
 #pragma mark Get User interests
 - (void)startInterestsRequestWithSuccess:(void (^)(NSArray * interestsArray))success failure:(void (^)(NSError *error))failure {
     NSString * urlString = kTCServerServiceURL(kTCServerUserInterests(user));
+    NSLog(@"User UUID %@",[TCUser identifier]);
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     NSLog(@"Request : %@", [[request URL] absoluteString]);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
@@ -132,6 +134,7 @@ static TCServerClient *sharedTchillrServerClient;
 #pragma mark Add/remove User interest
 - (NSMutableURLRequest *)updateInterestRequestWithParameters:(NSDictionary *)parameters {
     NSString * path = kTCServerServiceURL(kTCServerUserInterests(user));
+    NSLog(@"User UUID %@",[TCUser identifier]);
     return [self requestWithMethod:@"POST" path:path parameters:parameters];
 }
 

@@ -13,15 +13,14 @@
 @interface TCCalloutAnnotationView()
 
 @property (nonatomic, retain) UILabel * titleLabel;
-@property (nonatomic, retain) UIButton * calloutButton;
+@property (nonatomic, retain) UIImageView * arrowImageView;
 
 @end
 
 @implementation TCCalloutAnnotationView
 
 @synthesize title = _title;
-@synthesize delegate = _delegate;
-@synthesize calloutButton = _calloutButton;
+@synthesize arrowImageView = _arrowImageView;
 @synthesize titleLabel = _titleLabel;
 
 - (id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier {
@@ -31,9 +30,7 @@
         UIView * backgroundBlackView = [[UIView alloc] initWithFrame:CGRectMake(0, 5, 135, 30)];
         backgroundBlackView.backgroundColor = [UIColor tcBlack];
         [self addSubview:backgroundBlackView];
-        
-        //self.backgroundColor = [UIColor redColor];
-       
+              
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 105, 30)];
         _titleLabel.textColor = [UIColor tcWhite];
 
@@ -43,12 +40,11 @@
         _titleLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:_titleLabel];
         
-        _calloutButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _calloutButton.frame = CGRectMake(110, 5, 25, 30);
-        _calloutButton.backgroundColor = [UIColor clearColor];
-        [_calloutButton setBackgroundImage: [UIImage imageNamed:@"arrow.png"] forState:UIControlStateNormal];
-        [self addSubview:_calloutButton];
-       // [_calloutButton addTarget:self action:@selector(calloutAnnotationButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        _arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]];
+                                
+        _arrowImageView.frame = CGRectMake(110, 5, 25, 30);
+        _arrowImageView.backgroundColor = [UIColor clearColor];
+        [self addSubview:_arrowImageView];
     }
     
     return self;
@@ -58,13 +54,5 @@
     [super layoutSubviews];
     _titleLabel.text = self.title;
 }
-
-#pragma mark - Button clicked
-/*
-- (void)calloutAnnotationButtonClicked:(UIButton *)button {
-    if ([self.delegate respondsToSelector:@selector(calloutAnnotationButtonClicked)]) {
-        [self.delegate calloutAnnotationButtonClicked];
-    }
-}*/
 
 @end

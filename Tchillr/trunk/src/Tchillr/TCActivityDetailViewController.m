@@ -193,16 +193,18 @@
     else if (collectionView.tag == kTCActivityGalleryCollectionViewTag) {
         TCActivityGalleryCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCActivityGalleryCollectionViewCell class]) forIndexPath:indexPath];
         
-        TCMedia * media = [self.activity mediaAtIndex:indexPath.row];
-        if (media.path) {
-            [media loadImageWithSuccess:^{
-                cell.imageView.image = media.image;
-                [self.tableView reloadData];
-            } failure:^(NSError *error) {
-                NSLog(@"%@",error);
-            }];
-            
-        }       
+        if ([self.activity hasMedias]) {
+            TCMedia * media = [self.activity mediaAtIndex:indexPath.row];
+            if (media.path) {
+                [media loadImageWithSuccess:^{
+                    cell.imageView.image = media.image;
+                    [self.tableView reloadData];
+                } failure:^(NSError *error) {
+                    NSLog(@"%@",error);
+                }];
+            }
+        }
+       
         cellForItemAtIndexPath = cell;
     }
     return cellForItemAtIndexPath;
