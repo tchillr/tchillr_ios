@@ -64,9 +64,7 @@
     TCActivityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActivityTableViewCellIdentifier"];
     TCActivity * activity = [self activityAtIndex:indexPath.row];
     [cell.activityNameLabel setText:activity.name];
-    [cell.activityFullAdressLabel setText:activity.fullAdress];
     [cell.activityShortDescriptionLabel setText:activity.shortDescription];
-   // [cell.textLabel setText:[NSString stringWithFormat:@"%i - %@ (%@)",indexPath.row,activity.name,activity.identifier]];
     return cell;
 }
 

@@ -10,4 +10,6 @@
 
 @interface TCActivityGalleryCollectionViewCell : UICollectionViewCell
 
+@property (nonatomic, weak) IBOutlet UIImageView * imageView;
+
 @end

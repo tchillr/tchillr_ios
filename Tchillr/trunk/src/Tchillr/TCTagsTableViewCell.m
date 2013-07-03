@@ -8,12 +8,6 @@
 
 #import "TCTagsTableViewCell.h"
 
-@interface TCTagsTableViewCell()
-
-@property (nonatomic, weak) IBOutlet UICollectionView * collectionView;
-
-@end
-
 @implementation TCTagsTableViewCell
 
 @synthesize collectionView = _collectionView;

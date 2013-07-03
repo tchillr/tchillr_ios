@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 Tchillr. All rights reserved.
 //
 
+
 #import "TCServerClient.h"
 #import "AFJSONRequestOperation.h"
+#import "AFImageRequestOperation.h"
 #import "TCActivity.h"
 #import "TCTag.h"
 #import "TCServerConstants.h"
@@ -153,6 +155,21 @@ static TCServerClient *sharedTchillrServerClient;
                                          ];
     
     [operation start];
+}
+
+#pragma mark Images Loading
+- (void)startImageRequestForURLString:(NSString *)imageURLString success:(void (^)(UIImage *image))success failure:(void (^)(NSError *error))failure {
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:imageURLString]];
+    AFImageRequestOperation *operation;
+    operation = [AFImageRequestOperation imageRequestOperationWithRequest:request
+                                                     imageProcessingBlock:nil
+                                                                  success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                                                      success(image);
+                                                                  } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                                                      failure(error);
+                                                                  }];
+    [operation start];    
 }
 
 @end

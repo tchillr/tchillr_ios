@@ -52,6 +52,7 @@
 		053AC3B417723A0900CD8C3F /* TCActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 053AC3B317723A0900CD8C3F /* TCActivityDetailViewController.m */; };
 		053AC3BC17723D7400CD8C3F /* TCTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 053AC3B917723D7400CD8C3F /* TCTagTableViewCell.m */; };
 		053AC3BD17723D7400CD8C3F /* TCTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 053AC3BB17723D7400CD8C3F /* TCTagView.m */; };
+		05A88A7D1781CD1A002DFE94 /* TCMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A88A7C1781CD1A002DFE94 /* TCMedia.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -137,6 +138,8 @@
 		053AC3B917723D7400CD8C3F /* TCTagTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTagTableViewCell.m; sourceTree = "<group>"; };
 		053AC3BA17723D7400CD8C3F /* TCTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTagView.h; sourceTree = "<group>"; };
 		053AC3BB17723D7400CD8C3F /* TCTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTagView.m; sourceTree = "<group>"; };
+		05A88A7B1781CD1A002DFE94 /* TCMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCMedia.h; sourceTree = "<group>"; };
+		05A88A7C1781CD1A002DFE94 /* TCMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCMedia.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +218,8 @@
 		053AC33A177229A100CD8C3F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				05A88A7B1781CD1A002DFE94 /* TCMedia.h */,
+				05A88A7C1781CD1A002DFE94 /* TCMedia.m */,
 				053AC34D17722A1A00CD8C3F /* TCServerClient.h */,
 				053AC34E17722A1A00CD8C3F /* TCServerClient.m */,
 				053AC34F17722A1A00CD8C3F /* TCActivity.h */,
@@ -434,6 +439,7 @@
 				053AC3B417723A0900CD8C3F /* TCActivityDetailViewController.m in Sources */,
 				053AC3BC17723D7400CD8C3F /* TCTagTableViewCell.m in Sources */,
 				053AC3BD17723D7400CD8C3F /* TCTagView.m in Sources */,
+				05A88A7D1781CD1A002DFE94 /* TCMedia.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,7 +29,7 @@
 @property (nonatomic, readonly) BOOL hasFee;
 @property (nonatomic, readonly) NSNumber *price;
 @property (nonatomic, readonly) NSNumber *score;
-@property (nonatomic, readonly) TCMedia *media;
+@property (nonatomic, readonly) NSArray *medias;
 
 #pragma mark Formatted Day
 - (NSString *) formattedDay;
@@ -45,5 +45,9 @@
 - (NSInteger)numberOfTags;
 #pragma mark Formatted Tags
 - (NSString *)formattedTags;
+#pragma mark Medias access
+- (TCMedia *)mediaAtIndex:(NSInteger)index;
+- (NSInteger)numberOfMedias;
+- (BOOL)hasMedias;
 
 @end

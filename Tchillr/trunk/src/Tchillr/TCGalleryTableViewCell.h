@@ -10,4 +10,6 @@
 
 @interface TCGalleryTableViewCell : UITableViewCell
 
+@property (nonatomic, weak) IBOutlet UICollectionView * collectionView;
+
 @end

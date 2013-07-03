@@ -114,8 +114,37 @@
     return (NSNumber *)[self.jsonDictionary objectForKey:kActivityScoreKey];
 }
 
-- (TCMedia *)media {
-    return [[TCMedia alloc] initWithJsonDictionary:[self.jsonDictionary objectForKey:kActivityMediaKey]];
+#warning Medias support / only images files
+@synthesize medias = _medias;
+- (NSArray *)medias {
+    if (!_medias) {
+        NSArray * medias = [self.jsonDictionary objectForKey:kActivityMediaKey];
+        NSMutableArray * mediasArray = [NSMutableArray array];
+        for (int i = 0; i < [medias count]; i++) {
+            NSDictionary * mediaDictionnary = [medias objectAtIndex:i];
+            TCMedia * media = [[TCMedia alloc] initWithJsonDictionary:mediaDictionnary];
+            if ([[media.path pathExtension] isEqualToString:@"jpg"]) {
+                [mediasArray addObject:media];
+            }    
+        }
+        _medias = [NSArray arrayWithArray:mediasArray];
+    }
+    return _medias;
+}
+#pragma mark Medias access
+- (TCMedia *)mediaAtIndex:(NSInteger)index {
+    return [self.medias objectAtIndex:index];
+}
+
+- (NSInteger)numberOfMedias {
+    return [self.medias count];
+}
+
+- (BOOL)hasMedias {
+    NSInteger index = [self.medias indexOfObjectPassingTest:^BOOL(TCMedia * media, NSUInteger idx, BOOL *stop) {
+        return (media.image != nil);
+    }];
+    return index != NSNotFound;
 }
 
 #pragma mark First access
@@ -207,6 +236,5 @@
     }
     return [[NSString stringWithString:fullTags] uppercaseString];
 }
-
 
 @end

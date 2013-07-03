@@ -28,13 +28,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[TCServerClient sharedTchillrServerClient] startTagsRequestForTheme:self.themeString success:^(NSArray *themeTagsArray) {
-        self.tags = themeTagsArray;
-        [self.tableView reloadData];
-    } failure:^(NSError *error) {
-        NSLog(@"%@", [error description]);
-    }];
-    
     [[TCServerClient sharedTchillrServerClient] startInterestsRequestWithSuccess:^(NSArray *interestsArray) {
         self.interestsIds = interestsArray;
         [self.tableView reloadData];
