@@ -88,6 +88,8 @@
 		5F435EC71779CFF700D99CA8 /* btn_tick.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F435EC51779CFF700D99CA8 /* btn_tick.png */; };
 		5F435EC81779CFF700D99CA8 /* btn_tick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F435EC61779CFF700D99CA8 /* btn_tick@2x.png */; };
 		5F435ECB1779D42400D99CA8 /* TCTastesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F435ECA1779D42400D99CA8 /* TCTastesCollectionViewCell.m */; };
+		5FAA5A511781D1B2009ECDA4 /* TCRouteClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FAA5A501781D1B2009ECDA4 /* TCRouteClient.m */; };
+		5FAA5A541781D63E009ECDA4 /* NavitiaHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FAA5A531781D63E009ECDA4 /* NavitiaHTTPClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -219,6 +221,10 @@
 		5F435EC61779CFF700D99CA8 /* btn_tick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_tick@2x.png"; sourceTree = "<group>"; };
 		5F435EC91779D42400D99CA8 /* TCTastesCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTastesCollectionViewCell.h; sourceTree = "<group>"; };
 		5F435ECA1779D42400D99CA8 /* TCTastesCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTastesCollectionViewCell.m; sourceTree = "<group>"; };
+		5FAA5A4F1781D1B2009ECDA4 /* TCRouteClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRouteClient.h; sourceTree = "<group>"; };
+		5FAA5A501781D1B2009ECDA4 /* TCRouteClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRouteClient.m; sourceTree = "<group>"; };
+		5FAA5A521781D63E009ECDA4 /* NavitiaHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavitiaHTTPClient.h; sourceTree = "<group>"; };
+		5FAA5A531781D63E009ECDA4 /* NavitiaHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavitiaHTTPClient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -500,12 +506,24 @@
 		5F435E921779AEEC00D99CA8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5FAA5A4E1781D19D009ECDA4 /* Routes */,
 				053AC2F51772112000CD8C3F /* TCLocationAnnotation.h */,
 				053AC2F61772112000CD8C3F /* TCLocationAnnotation.m */,
 				05EA91D717789A2700DC2619 /* TCCalloutAnnotation.h */,
 				05EA91D817789A2700DC2619 /* TCCalloutAnnotation.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		5FAA5A4E1781D19D009ECDA4 /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				5FAA5A4F1781D1B2009ECDA4 /* TCRouteClient.h */,
+				5FAA5A501781D1B2009ECDA4 /* TCRouteClient.m */,
+				5FAA5A521781D63E009ECDA4 /* NavitiaHTTPClient.h */,
+				5FAA5A531781D63E009ECDA4 /* NavitiaHTTPClient.m */,
+			);
+			name = Routes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -646,6 +664,8 @@
 				05A50493177DE8C100083CEF /* TCActivityTagsCollectionViewCell.m in Sources */,
 				05A889861781ADF2002DFE94 /* TCMedia.m in Sources */,
 				05A889891781B7DA002DFE94 /* TCActivityGalleryCollectionViewCell.m in Sources */,
+				5FAA5A511781D1B2009ECDA4 /* TCRouteClient.m in Sources */,
+				5FAA5A541781D63E009ECDA4 /* NavitiaHTTPClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
