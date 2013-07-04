@@ -39,7 +39,6 @@
 		053AC38717722AAB00CD8C3F /* TCActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 053AC38017722AAB00CD8C3F /* TCActivityTableViewCell.m */; };
 		053AC38817722AAB00CD8C3F /* TCCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 053AC38217722AAB00CD8C3F /* TCCategoryTableViewCell.m */; };
 		053AC39017722B3600CD8C3F /* NSString+TCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 053AC38D17722B3600CD8C3F /* NSString+TCAdditions.m */; };
-		053AC39117722B3600CD8C3F /* NSDate+TCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 053AC38F17722B3600CD8C3F /* NSDate+TCAdditions.m */; };
 		053AC3A717722B5600CD8C3F /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 053AC39517722B5600CD8C3F /* AFHTTPClient.m */; };
 		053AC3A817722B5600CD8C3F /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 053AC39717722B5600CD8C3F /* AFHTTPRequestOperation.m */; };
 		053AC3A917722B5600CD8C3F /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 053AC39917722B5600CD8C3F /* AFImageRequestOperation.m */; };
@@ -111,8 +110,6 @@
 		053AC38217722AAB00CD8C3F /* TCCategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCategoryTableViewCell.m; sourceTree = "<group>"; };
 		053AC38C17722B3600CD8C3F /* NSString+TCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TCAdditions.h"; sourceTree = "<group>"; };
 		053AC38D17722B3600CD8C3F /* NSString+TCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TCAdditions.m"; sourceTree = "<group>"; };
-		053AC38E17722B3600CD8C3F /* NSDate+TCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TCAdditions.h"; sourceTree = "<group>"; };
-		053AC38F17722B3600CD8C3F /* NSDate+TCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TCAdditions.m"; sourceTree = "<group>"; };
 		053AC39417722B5600CD8C3F /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		053AC39517722B5600CD8C3F /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		053AC39617722B5600CD8C3F /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -288,8 +285,6 @@
 			children = (
 				053AC38C17722B3600CD8C3F /* NSString+TCAdditions.h */,
 				053AC38D17722B3600CD8C3F /* NSString+TCAdditions.m */,
-				053AC38E17722B3600CD8C3F /* NSDate+TCAdditions.h */,
-				053AC38F17722B3600CD8C3F /* NSDate+TCAdditions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -431,7 +426,6 @@
 				053AC38717722AAB00CD8C3F /* TCActivityTableViewCell.m in Sources */,
 				053AC38817722AAB00CD8C3F /* TCCategoryTableViewCell.m in Sources */,
 				053AC39017722B3600CD8C3F /* NSString+TCAdditions.m in Sources */,
-				053AC39117722B3600CD8C3F /* NSDate+TCAdditions.m in Sources */,
 				053AC3A717722B5600CD8C3F /* AFHTTPClient.m in Sources */,
 				053AC3A817722B5600CD8C3F /* AFHTTPRequestOperation.m in Sources */,
 				053AC3A917722B5600CD8C3F /* AFImageRequestOperation.m in Sources */,

@@ -19,6 +19,7 @@
 #import "UICollectionViewCell+Tchillr.h"
 #import "UITableViewCell+Tchillr.h"
 #import "UIColor+Tchillr.h"
+#import "NSString+Tchillr.h"
 // Views
 #import "TCTriangleView.h"
 #import "TCActivityDetailViewHeader.h"
@@ -54,7 +55,6 @@
 @property (nonatomic, retain) TCActivityDetailViewHeader *activityHeaderView;
 @property (weak, nonatomic) IBOutlet UITableView * tableView;
 @property (nonatomic, retain) IBOutlet UIButton * backButton;
-@property (nonatomic, retain) NSArray * interests;
 
 @end
 
@@ -62,7 +62,7 @@
 
 @synthesize activityHeaderView = _activityHeaderView;
 @synthesize tableView = _tableView;
-
+@synthesize interests = _interests;
 
 #pragma mark LifeCycle
 - (void)viewDidLoad {
@@ -71,19 +71,12 @@
     [self.activityHeaderView.nameLabel setText:[self.activity.name uppercaseString]];
     [self.activityHeaderView.dayLabel setText:self.activity.formattedDay];
     [self.activityHeaderView.timeLabel setText:self.activity.formattedTime];
-    [self.activityHeaderView.shortDescriptionLabel setText:[self.activity.shortDescription capitalizedString]];
+    [self.activityHeaderView.shortDescriptionLabel setText:[self.activity.shortDescription stringWithCapitalizedFirstWord]];
     [self.activityHeaderView.feeLabel setText:self.activity.formattedAccessTypeAndPrice];
     CGSize headerIdealSize = [self.activityHeaderView idealSize];
     self.activityHeaderView.frame = CGRectMake(0.0, 0.0, headerIdealSize.width, headerIdealSize.height);
     [self.tableView setTableHeaderView:self.activityHeaderView];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    
-    [[TCServerClient sharedTchillrServerClient] startInterestsRequestWithSuccess:^(NSArray *interestsArray) {
-        self.interests = interestsArray;
-        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:KRowTags inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-    } failure:^(NSError *error) {
-        NSLog(@"%@", [error description]);
-    }];
 }
 
 #pragma mark UITableViewDelegate / DataSource methods

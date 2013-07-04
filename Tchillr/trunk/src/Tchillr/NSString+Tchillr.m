@@ -1,18 +1,14 @@
 //
-//  NSString+TCAdditions.m
-//  TCClient
+//  NSString+Tchillr.m
+//  Tchillr
 //
-//  Created by Jad on 09/06/13.
+//  Created by Jad on 04/07/13.
 //  Copyright (c) 2013 Tchillr. All rights reserved.
 //
 
-#import "NSString+TCAdditions.h"
+#import "NSString+Tchillr.h"
 
-@implementation NSString (TCAdditions)
-
-- (BOOL)isEmpty {
-    return ([self length] == 0) || [[self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0;
-}
+@implementation NSString (Tchillr)
 
 - (NSString *)stringWithCapitalizedFirstWord {
     NSString * stringWithCapitalizedFirstWord = nil;
@@ -21,5 +17,7 @@
     }
     return stringWithCapitalizedFirstWord;
 }
+
+
 
 @end
