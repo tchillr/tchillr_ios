@@ -14,6 +14,8 @@
 // Categories
 #import "UIColor+Tchillr.h"
 
+#define kOpenedCollectionCellWidth 174
+
 @interface TCTastesViewController ()
 
 - (IBAction)validateTastes:(id)sender;
@@ -47,7 +49,12 @@
     return 4;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return CGSizeMake(((UICollectionViewFlowLayout *)collectionViewLayout).itemSize.width, collectionView.bounds.size.height);
+    if([collectionView cellForItemAtIndexPath:indexPath].selected) {
+        return CGSizeMake(kOpenedCollectionCellWidth, collectionView.bounds.size.height);
+    }
+    else {
+        return CGSizeMake(((UICollectionViewFlowLayout *)collectionViewLayout).itemSize.width, collectionView.bounds.size.height);
+    }
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TCTastesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCTastesCollectionViewCell class]) forIndexPath:indexPath];
@@ -75,6 +82,11 @@
 	
 	
     return cell;
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if([collectionView cellForItemAtIndexPath:indexPath].selected) {
+        [collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+    }
 }
 
 @end

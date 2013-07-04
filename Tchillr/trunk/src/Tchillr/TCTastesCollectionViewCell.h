@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCTastesCollectionViewCell : UICollectionViewCell
+@interface TCTastesCollectionViewCell : UICollectionViewCell <UITableViewDelegate, UITableViewDataSource>
 
 @property (assign, nonatomic) IBOutlet UILabel *titleLabel;
 @property (assign, nonatomic) IBOutlet UITableView *tastesTableView;
+@property (nonatomic, assign, getter = isOpen) BOOL open;
 
 @end

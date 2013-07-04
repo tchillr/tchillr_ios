@@ -10,4 +10,7 @@
 
 @interface TCTastesTagsTableViewCell : UITableViewCell
 
+@property (nonatomic, retain) IBOutlet UILabel *tagLabel;
+@property (nonatomic, retain) IBOutlet UIButton *heartButton;
+
 @end

@@ -55,7 +55,8 @@
 #pragma mark - Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.loadingLabel setAlpha:1.0]; 
+    [self.loadingLabel setAlpha:1.0];
+    
     // User activities
     [[TCServerClient sharedTchillrServerClient]
 	 startUserActivitiesRequestForDays:1
