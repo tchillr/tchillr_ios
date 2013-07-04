@@ -31,7 +31,7 @@
 
 #define METERS_FOR_DISTANCE 1250
 
-@interface TCMapViewController () <UICollectionViewDelegate, MKMapViewDelegate, TCCalloutAnnotationViewDelegate, TCTastesViewControllerDelegate>
+@interface TCMapViewController () <UICollectionViewDelegate, MKMapViewDelegate, TCTastesViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet MKMapView * mapView;
 @property (nonatomic, weak) IBOutlet UICollectionView * collectionView;
@@ -131,7 +131,6 @@
         TCCalloutAnnotation *calloutAnnotation = (TCCalloutAnnotation *)annotation;
         
         calloutAnnotationView.title = calloutAnnotation.title;
-        calloutAnnotationView.delegate = self;
 		[calloutAnnotationView setNeedsLayout];
 		
 		annotationView = calloutAnnotationView;

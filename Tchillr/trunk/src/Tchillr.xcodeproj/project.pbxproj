@@ -19,6 +19,10 @@
 		053AC47C177258EA00CD8C3F /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 053AC471177258EA00CD8C3F /* AFURLConnectionOperation.m */; };
 		053AC47D177258EA00CD8C3F /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 053AC473177258EA00CD8C3F /* AFXMLRequestOperation.m */; };
 		053AC47E177258EA00CD8C3F /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 053AC475177258EA00CD8C3F /* UIImageView+AFNetworking.m */; };
+		05495863178448D600DE67C9 /* TCCalloutAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05495862178448D600DE67C9 /* TCCalloutAnnotationView.m */; };
+		054958641784490E00DE67C9 /* TCLocationAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA91D5177491C100DC2619 /* TCLocationAnnotationView.m */; };
+		0549586A1784529A00DE67C9 /* TCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 054958691784529A00DE67C9 /* TCUser.m */; };
+		05495875178462EF00DE67C9 /* TCWeatherClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 05495874178462EF00DE67C9 /* TCWeatherClient.m */; };
 		0594D6961771DD6E00744BF3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0594D6951771DD6E00744BF3 /* UIKit.framework */; };
 		0594D6981771DD6E00744BF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0594D6971771DD6E00744BF3 /* Foundation.framework */; };
 		0594D69A1771DD6E00744BF3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0594D6991771DD6E00744BF3 /* CoreGraphics.framework */; };
@@ -53,7 +57,6 @@
 		05EA91B517731BA100DC2619 /* heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05EA91B117731BA100DC2619 /* heart@2x.png */; };
 		05EA91B81773249800DC2619 /* TCActivityCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA91B71773249800DC2619 /* TCActivityCollectionViewCell.m */; };
 		05EA91C917747B3F00DC2619 /* TCActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA91C817747B3F00DC2619 /* TCActivityDetailViewController.m */; };
-		05EA91D6177491C200DC2619 /* TCLocationAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA91D5177491C100DC2619 /* TCLocationAnnotationView.m */; };
 		05EA91D917789A2700DC2619 /* TCCalloutAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA91D817789A2700DC2619 /* TCCalloutAnnotation.m */; };
 		05EA91DD1778ED7000DC2619 /* TCServerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA91DC1778ED7000DC2619 /* TCServerClient.m */; };
 		05EA91F21778F0C200DC2619 /* TCActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA91F11778F0C200DC2619 /* TCActivity.m */; };
@@ -61,7 +64,6 @@
 		05EA91FC1778F1FF00DC2619 /* TCOccurence.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA91F61778F1FE00DC2619 /* TCOccurence.m */; };
 		05EA91FD1778F1FF00DC2619 /* TCTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA91F81778F1FE00DC2619 /* TCTag.m */; };
 		05EA91FE1778F1FF00DC2619 /* TCTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA91FA1778F1FE00DC2619 /* TCTheme.m */; };
-		05EA92011778FD5300DC2619 /* TCCalloutAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA92001778FD5300DC2619 /* TCCalloutAnnotationView.m */; };
 		05EA920817790C6300DC2619 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 05EA920217790C6300DC2619 /* arrow.png */; };
 		05EA920917790C6300DC2619 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05EA920317790C6300DC2619 /* arrow@2x.png */; };
 		05EA920A17790C6300DC2619 /* btn_heart_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 05EA920417790C6300DC2619 /* btn_heart_menu.png */; };
@@ -150,6 +152,12 @@
 		053AC473177258EA00CD8C3F /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		053AC474177258EA00CD8C3F /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		053AC475177258EA00CD8C3F /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		05495861178448D600DE67C9 /* TCCalloutAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCalloutAnnotationView.h; sourceTree = "<group>"; };
+		05495862178448D600DE67C9 /* TCCalloutAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCalloutAnnotationView.m; sourceTree = "<group>"; };
+		054958681784529A00DE67C9 /* TCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCUser.h; path = ../../../TCServerClient/trunk/src/TCServerClient/TCUser.h; sourceTree = "<group>"; };
+		054958691784529A00DE67C9 /* TCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCUser.m; path = ../../../TCServerClient/trunk/src/TCServerClient/TCUser.m; sourceTree = "<group>"; };
+		05495873178462EF00DE67C9 /* TCWeatherClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCWeatherClient.h; sourceTree = "<group>"; };
+		05495874178462EF00DE67C9 /* TCWeatherClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWeatherClient.m; sourceTree = "<group>"; };
 		0594D6921771DD6E00744BF3 /* Tchillr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tchillr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0594D6951771DD6E00744BF3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0594D6971771DD6E00744BF3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -215,8 +223,6 @@
 		05EA91F81778F1FE00DC2619 /* TCTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCTag.m; path = ../../../TCServerClient/trunk/src/TCServerClient/TCTag.m; sourceTree = "<group>"; };
 		05EA91F91778F1FE00DC2619 /* TCTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCTheme.h; path = ../../../TCServerClient/trunk/src/TCServerClient/TCTheme.h; sourceTree = "<group>"; };
 		05EA91FA1778F1FE00DC2619 /* TCTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCTheme.m; path = ../../../TCServerClient/trunk/src/TCServerClient/TCTheme.m; sourceTree = "<group>"; };
-		05EA91FF1778FD5300DC2619 /* TCCalloutAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCalloutAnnotationView.h; sourceTree = "<group>"; };
-		05EA92001778FD5300DC2619 /* TCCalloutAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCalloutAnnotationView.m; sourceTree = "<group>"; };
 		05EA920217790C6300DC2619 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		05EA920317790C6300DC2619 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
 		05EA920417790C6300DC2619 /* btn_heart_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_heart_menu.png; sourceTree = "<group>"; };
@@ -364,6 +370,15 @@
 			path = ../../../TCClient/vendor/AFNetworking;
 			sourceTree = "<group>";
 		};
+		05495872178462D600DE67C9 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				05495873178462EF00DE67C9 /* TCWeatherClient.h */,
+				05495874178462EF00DE67C9 /* TCWeatherClient.m */,
+			);
+			name = Weather;
+			sourceTree = "<group>";
+		};
 		0594D6891771DD6E00744BF3 = {
 			isa = PBXGroup;
 			children = (
@@ -476,7 +491,6 @@
 			isa = PBXGroup;
 			children = (
 				5F435E921779AEEC00D99CA8 /* Model */,
-				05EA91CA17748AEF00DC2619 /* Utils */,
 				0594D6C41771E04100744BF3 /* Categories */,
 				0594D6C31771E02E00744BF3 /* Views */,
 				0594D6C21771E02400744BF3 /* Controllers */,
@@ -508,10 +522,6 @@
 				5FA76F8A1784752100B2180D /* Routes */,
 				05EA91B61773249800DC2619 /* TCActivityCollectionViewCell.h */,
 				05EA91B71773249800DC2619 /* TCActivityCollectionViewCell.m */,
-				05EA91D4177491C100DC2619 /* TCLocationAnnotationView.h */,
-				05EA91D5177491C100DC2619 /* TCLocationAnnotationView.m */,
-				05EA91FF1778FD5300DC2619 /* TCCalloutAnnotationView.h */,
-				05EA92001778FD5300DC2619 /* TCCalloutAnnotationView.m */,
 				05EA921217792CF700DC2619 /* TCTriangleView.h */,
 				05EA921317792CF700DC2619 /* TCTriangleView.m */,
 				5F435EC91779D42400D99CA8 /* TCTastesCollectionViewCell.h */,
@@ -539,16 +549,11 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		05EA91CA17748AEF00DC2619 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Utils;
-			sourceTree = "<group>";
-		};
 		05EA91DA1778ED4B00DC2619 /* TCServerClient */ = {
 			isa = PBXGroup;
 			children = (
+				054958681784529A00DE67C9 /* TCUser.h */,
+				054958691784529A00DE67C9 /* TCUser.m */,
 				05A88A7E1781D362002DFE94 /* TCMedia.h */,
 				05A88A7F1781D362002DFE94 /* TCMedia.m */,
 				05EA91F31778F1FE00DC2619 /* TCObject.h */,
@@ -570,10 +575,12 @@
 		05EA92351779F7F100DC2619 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				05495861178448D600DE67C9 /* TCCalloutAnnotationView.h */,
+				05495862178448D600DE67C9 /* TCCalloutAnnotationView.m */,
 				05EA91D4177491C100DC2619 /* TCLocationAnnotationView.h */,
 				05EA91D5177491C100DC2619 /* TCLocationAnnotationView.m */,
-				05EA91FF1778FD5300DC2619 /* TCCalloutAnnotationView.h */,
-				05EA92001778FD5300DC2619 /* TCCalloutAnnotationView.m */,
+				05EA91D4177491C100DC2619 /* TCLocationAnnotationView.h */,
+				05EA91D5177491C100DC2619 /* TCLocationAnnotationView.m */,
 				05EA91B61773249800DC2619 /* TCActivityCollectionViewCell.h */,
 				05EA91B71773249800DC2619 /* TCActivityCollectionViewCell.m */,
 			);
@@ -609,6 +616,7 @@
 		5F435E921779AEEC00D99CA8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				05495872178462D600DE67C9 /* Weather */,
 				5FAA5A4E1781D19D009ECDA4 /* Routes */,
 				053AC2F51772112000CD8C3F /* TCLocationAnnotation.h */,
 				053AC2F61772112000CD8C3F /* TCLocationAnnotation.m */,
@@ -806,7 +814,6 @@
 				053AC47E177258EA00CD8C3F /* UIImageView+AFNetworking.m in Sources */,
 				05EA91B81773249800DC2619 /* TCActivityCollectionViewCell.m in Sources */,
 				05EA91C917747B3F00DC2619 /* TCActivityDetailViewController.m in Sources */,
-				05EA91D6177491C200DC2619 /* TCLocationAnnotationView.m in Sources */,
 				05EA91D917789A2700DC2619 /* TCCalloutAnnotation.m in Sources */,
 				05EA91DD1778ED7000DC2619 /* TCServerClient.m in Sources */,
 				05EA91F21778F0C200DC2619 /* TCActivity.m in Sources */,
@@ -814,7 +821,6 @@
 				05EA91FC1778F1FF00DC2619 /* TCOccurence.m in Sources */,
 				05EA91FD1778F1FF00DC2619 /* TCTag.m in Sources */,
 				05EA91FE1778F1FF00DC2619 /* TCTheme.m in Sources */,
-				05EA92011778FD5300DC2619 /* TCCalloutAnnotationView.m in Sources */,
 				05EA921417792CF800DC2619 /* TCTriangleView.m in Sources */,
 				5F435E911779AA9300D99CA8 /* UIColor+Tchillr.m in Sources */,
 				5F435EC41779CF4600D99CA8 /* TCTastesViewController.m in Sources */,
@@ -851,6 +857,10 @@
 				5F9A0EA117846F65004A2FE1 /* TCVelibStation.m in Sources */,
 				5F9A0EA4178472C6004A2FE1 /* TCTransportAnnotation.m in Sources */,
 				5FA76F8D1784756800B2180D /* TCTransportAnnotationView.m in Sources */,
+				05495863178448D600DE67C9 /* TCCalloutAnnotationView.m in Sources */,
+				054958641784490E00DE67C9 /* TCLocationAnnotationView.m in Sources */,
+				0549586A1784529A00DE67C9 /* TCUser.m in Sources */,
+				05495875178462EF00DE67C9 /* TCWeatherClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -392,7 +392,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="125"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="tAl-i2-bV4">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="tAl-i2-bV4">
                                                                         <rect key="frame" x="0.0" y="0.0" width="100" height="125"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     </imageView>
@@ -428,7 +428,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="2"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Short desc" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1G2-R2-H6F">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Long desc" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1G2-R2-H6F">
                                                     <rect key="frame" x="10" y="2" width="300" height="145"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

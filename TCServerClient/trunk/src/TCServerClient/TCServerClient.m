@@ -6,15 +6,13 @@
 //  Copyright (c) 2013 Tchillr. All rights reserved.
 //
 
-
 #import "TCServerClient.h"
 #import "AFJSONRequestOperation.h"
 #import "AFImageRequestOperation.h"
 #import "TCActivity.h"
 #import "TCTag.h"
 #import "TCServerConstants.h"
-
-#define user @"1"
+#import "TCUser.h"
 
 @implementation TCServerClient
 
@@ -65,7 +63,8 @@ static TCServerClient *sharedTchillrServerClient;
 
 #pragma mark User Activities
 - (void)startUserActivitiesRequestForDays:(NSUInteger)days success:(void (^)(NSArray * activitiesArray))success failure:(void (^)(NSError *error))failure {
-    NSString * urlString = kTCServerServiceURL(kTCServerUserActivities(user, days));
+    NSLog(@"User UUID %@",[TCUser identifier]);
+    NSString * urlString = kTCServerServiceURL(kTCServerUserActivities([TCUser identifier], days));
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     NSLog(@"Request : %@", [[request URL] absoluteString]);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
@@ -111,7 +110,8 @@ static TCServerClient *sharedTchillrServerClient;
 
 #pragma mark Get User interests
 - (void)startInterestsRequestWithSuccess:(void (^)(NSArray * interestsArray))success failure:(void (^)(NSError *error))failure {
-    NSString * urlString = kTCServerServiceURL(kTCServerUserInterests(user));
+    NSString * urlString = kTCServerServiceURL(kTCServerUserInterests([TCUser identifier]));
+    NSLog(@"User UUID %@",[TCUser identifier]);
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     NSLog(@"Request : %@", [[request URL] absoluteString]);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
@@ -131,7 +131,8 @@ static TCServerClient *sharedTchillrServerClient;
 }
 #pragma mark Add/remove User interest
 - (NSMutableURLRequest *)updateInterestRequestWithParameters:(NSDictionary *)parameters {
-    NSString * path = kTCServerServiceURL(kTCServerUserInterests(user));
+    NSString * path = kTCServerServiceURL(kTCServerUserInterests([TCUser identifier]));
+    NSLog(@"User UUID %@",[TCUser identifier]);
     return [self requestWithMethod:@"POST" path:path parameters:parameters];
 }
 
@@ -170,6 +171,30 @@ static TCServerClient *sharedTchillrServerClient;
                                                                       failure(error);
                                                                   }];
     [operation start];    
+}
+
+#pragma mark User Login
+- (void)startUserCreationRequestForUUIDString:(NSString *)UUIDString success:(void (^)(BOOL success))success failure:(void (^)(NSError *error))failure {
+    NSString * urlString = kTCServerServiceURL(kTCLogin([TCUser identifier]));
+    NSLog(@"User UUID %@",[TCUser identifier]);
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    NSLog(@"Request : %@", [[request URL] absoluteString]);
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                            NSDictionary * dict = (NSDictionary *) JSON;
+                                                                                            /*
+                                                                                            NSArray *resultArray = [self getDataFromJSON:(NSDictionary *) JSON];
+                                                                                            NSMutableArray * tags = [NSMutableArray array];
+                                                                                            [resultArray enumerateObjectsUsingBlock:^(id obj,NSUInteger idx, BOOL *stop){
+                                                                                                TCTag * tag = [[TCTag alloc] initWithJsonDictionary:obj];
+                                                                                                [tags addObject:tag];
+                                                                                            }];
+                                                                                            success(tags);*/
+                                                                                        }failure:^(NSURLRequest *request, NSHTTPURLResponse *response,
+                                                                                                   NSError *error, id JSON) {
+                                                                                            failure(error);
+                                                                                        }];
+    [operation start];
 }
 
 @end

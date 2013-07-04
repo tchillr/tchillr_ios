@@ -15,6 +15,9 @@
 
 /* Server - URL Suffixes */
 
+/* Login */
+#define kTCLogin(UUID) [NSString stringWithFormat:@"login/adduser/%@",UUID]
+
 /* All Themes */
 #define KTCServerThemes @"Themes"
 #define kTCServerTags

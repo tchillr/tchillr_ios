@@ -7,12 +7,24 @@
 //
 
 #import "TCAppDelegate.h"
+#import "TCWeatherClient.h"
+#import "TCServerClient.h"
+#import "TCUser.h"
 
 @implementation TCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+#warning calls the weather service / for testing
+    [[TCWeatherClient sharedInstance] findWeatherCodeForParisWithCompletion:^(BOOL success, TCWeatherCode code, NSError *error) {
+        
+    }];
+    
+    [[TCServerClient sharedTchillrServerClient] startUserCreationRequestForUUIDString:[TCUser identifier] success:^(BOOL success) {
+
+    } failure:^(NSError *error) {
+        NSLog(@"%@",[error description]);
+    }];    
     return YES;
 }
 							

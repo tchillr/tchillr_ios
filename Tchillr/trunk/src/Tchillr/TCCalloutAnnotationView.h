@@ -8,17 +8,10 @@
 
 #import <MapKit/MapKit.h>
 
-@protocol TCCalloutAnnotationViewDelegate <NSObject>
-
-#pragma mark TCCalloutAnnotationViewDelegate methods
-//- (void) calloutAnnotationButtonClicked;
-
-@end
-
 @interface TCCalloutAnnotationView : MKAnnotationView
 
 @property (nonatomic, retain) NSString *title;
-@property (nonatomic, assign) id<TCCalloutAnnotationViewDelegate> delegate;
+
 
 @end
 

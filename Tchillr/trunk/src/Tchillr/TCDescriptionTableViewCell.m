@@ -12,33 +12,25 @@
 
 @implementation TCDescriptionTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 - (void)layoutSubviews {
     [super layoutSubviews];
     CGSize idealSize = [self idealSizeForCell];
-    self.descriptionLabel.frame = CGRectMake(self.descriptionLabel.frame.origin.x, self.descriptionLabel.frame.origin.y, idealSize.width, idealSize.height);
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, idealSize.height);
+    if (idealSize.height > 0) {
+        self.descriptionLabel.frame = CGRectMake(self.descriptionLabel.frame.origin.x, self.descriptionLabel.frame.origin.y, idealSize.width, idealSize.height);
+        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, idealSize.height);
+    }
+    else {
+        self.descriptionLabel.frame = CGRectZero;
+        self.frame = CGRectZero;
+    }
 }
 
 #pragma mark Ideal Size For Cell
 - (CGSize) idealSizeForCell {
-    CGSize idealSize = [self.descriptionLabel idealSize];                        
-    idealSize.height += kActivityDetailSeparatorHeight + self.descriptionLabel.frame.origin.x * 2;
+    CGSize idealSize = [self.descriptionLabel idealSize];
+    if (idealSize.height > 0) {
+        idealSize.height += kActivityDetailSeparatorHeight + self.descriptionLabel.frame.origin.x * 2;
+    }
     return idealSize;
 }
 
