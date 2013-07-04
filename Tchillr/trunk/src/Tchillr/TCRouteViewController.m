@@ -14,7 +14,15 @@
 // Model
 #import "TCActivity.h"
 #import "TCLocationAnnotation.h"
-#import "NavitiaHTTPClient.h"
+#import "TCRoute.h"
+#import "TCTransportAnnotation.h"
+
+// Categories
+#import "UIColor+Tchillr.h"
+
+// Views & Controls
+#import "TCLocationAnnotationView.h"
+#import "TCTransportAnnotationView.h"
 
 #pragma mark Utilities
 CLLocationCoordinate2D midPoint(CLLocationCoordinate2D locationA, CLLocationCoordinate2D locationB);
@@ -31,6 +39,9 @@ CLLocationCoordinate2D midPoint(CLLocationCoordinate2D locationA, CLLocationCoor
 #pragma mark Activity Location
 - (CLLocation *)activityLocation;
 - (void)pinActivity;
+@property (assign, nonatomic) TCRouteTransport transport;
+@property (strong, nonatomic) id route;
+@property (strong, nonatomic) MKPolylineView *polylineView;
 
 #pragma mark Map Management
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -44,11 +55,31 @@ CLLocationCoordinate2D midPoint(CLLocationCoordinate2D locationA, CLLocationCoor
     [super viewDidLoad];
 	[self pinActivity];
 	[self startUpdatingUserLocation];
+	self.transport = TCRouteTransportWalk;
+	[[TCRouteClient sharedInstance] findRouteFrom:self.mapView.userLocation.coordinate
+											   to:self.activityLocation.coordinate
+										transport:self.transport
+									   completion:^(BOOL success, id route, NSError *error) {
+										   self.route = route;
+										   switch (self.transport) {
+											   case TCRouteTransportWalk: {
+												   TCWalkingRoute *walkingRoute = self.route;
+												   [self.mapView addOverlay:walkingRoute.polyline];
+											   }  break;
+												default:
+												   break;
+										   }
+									   }];
+	TCVelibStation *nearestVelibStation = [[TCRouteClient sharedInstance] nearestVelibStationFrom:self.mapView.userLocation.location];
 	
-	[[NavitiaHTTPClient sharedInstance] findPlacesNearLocation:self.activityLocation.coordinate
-													completion:^(BOOL success, NSArray *places, NSError *error) {
-														
-													}];
+	TCTransportAnnotation* annotation = [[TCTransportAnnotation alloc] initWithTransport:self.transport name:nearestVelibStation.name address:nearestVelibStation.address coordinate:nearestVelibStation.location.coordinate];
+	[self.mapView addAnnotation:annotation];
+	
+	
+	nearestVelibStation = [[TCRouteClient sharedInstance] nearestVelibStationFrom:self.activityLocation];
+	
+	annotation = [[TCTransportAnnotation alloc] initWithTransport:self.transport name:nearestVelibStation.name address:nearestVelibStation.address coordinate:nearestVelibStation.location.coordinate];
+	[self.mapView addAnnotation:annotation];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -97,7 +128,67 @@ CLLocationCoordinate2D midPoint(CLLocationCoordinate2D locationA, CLLocationCoor
 	// Center point (user, activity)
 	CLLocationCoordinate2D middleLocation = midPoint(userLocation.coordinate, self.activityLocation.coordinate);
 	
-	[self.mapView setRegion:MKCoordinateRegionMakeWithDistance(middleLocation, distance/2, distance/2)];
+	[self.mapView setRegion:MKCoordinateRegionMakeWithDistance(middleLocation, distance, distance)];
+}
+
+#pragma mark MKMapViewDelegate
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id)overlay {
+	MKOverlayView* overlayView = nil;
+	
+	if(!self.polylineView) {
+		self.polylineView = [[MKPolylineView alloc] initWithPolyline:overlay];
+		self.polylineView.fillColor = [UIColor tcWhite];
+		self.polylineView.strokeColor = [UIColor tcBlack];
+		self.polylineView.lineWidth = 5.0;
+		self.polylineView.lineCap = kCGLineCapRound;
+		self.polylineView.lineJoin = kCGLineJoinRound;
+		self.polylineView.lineDashPattern = @[@10.0,@10.0];
+	}
+	overlayView = self.polylineView;
+	
+	return overlayView;
+}
+
+#warning - À Remonter dans une classe parente de TCRouteVC et TCMapVC
+- (TCLocationAnnotationViewSizeType)annotationSizeTypeForActivity:(TCActivity *)activity {
+    TCLocationAnnotationViewSizeType sizeType;
+    if ([activity.score intValue] < 6) {
+        sizeType = TCLocationAnnotationViewSizeTypeSmall;
+    }
+    else if ([activity.score intValue] < 11) {
+        sizeType = TCLocationAnnotationViewSizeTypeMedium;
+    }
+    else {
+        sizeType = TCLocationAnnotationViewSizeTypeLarge;
+    }
+    return sizeType;
+}
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+	id annotationView = nil;
+	if ([annotation isMemberOfClass:[TCLocationAnnotation class]]) {
+        TCLocationAnnotationView *locationAnnotationView = (TCLocationAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:NSStringFromClass([TCLocationAnnotationView class])];
+        if (!locationAnnotationView) {
+            locationAnnotationView = [[TCLocationAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:NSStringFromClass([TCLocationAnnotationView class]) andSize:[self annotationSizeTypeForActivity:self.activity]];
+            locationAnnotationView.style = TCColorStyleMusic;
+            locationAnnotationView.enabled = YES;
+            locationAnnotationView.canShowCallout = NO;
+        }
+		else {
+            locationAnnotationView.annotation = annotation;
+        }
+		annotationView = locationAnnotationView;
+    }
+	else if ([annotation isMemberOfClass:[TCTransportAnnotation class]]) {
+		TCTransportAnnotationView *transportAnnotationView = (TCTransportAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:NSStringFromClass([TCTransportAnnotationView class])];
+		if (!transportAnnotationView) {
+			transportAnnotationView = [[TCTransportAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:NSStringFromClass([TCTransportAnnotationView class])];
+		}
+		else {
+			transportAnnotationView.annotation = annotation;
+		}
+		annotationView = transportAnnotationView;
+	}
+	return annotationView;
 }
 
 @end

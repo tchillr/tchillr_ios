@@ -31,7 +31,11 @@
 }
 
 #pragma mark Triangle drawer
-+ (void) drawTriangleWithRect:(CGRect)rect andStyle:(TCColorStyle)style{
++ (void)drawTriangleWithRect:(CGRect)rect andStyle:(TCColorStyle)style {
+    UIColor * color = [UIColor tcColorWithStyle:style];
+	[self drawTriangleWithRect:rect andColor:color];
+}
++ (void)drawTriangleWithRect:(CGRect)rect andColor:(UIColor *)color {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextBeginPath(ctx);
     
@@ -40,7 +44,6 @@
     CGContextAddLineToPoint(ctx, CGRectGetMaxX(rect), CGRectGetMinY(rect));  // top right point
     CGContextClosePath(ctx);
     
-    UIColor * color = [UIColor tcColorWithStyle:style];
     if (CGColorGetNumberOfComponents(color.CGColor) == 2) {
         const CGFloat *colorComponents = CGColorGetComponents(color.CGColor);
         CGContextSetRGBFillColor(ctx, colorComponents[0], colorComponents[0], colorComponents[0], colorComponents[1]);

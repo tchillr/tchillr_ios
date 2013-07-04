@@ -88,6 +88,39 @@
 		5F435EC81779CFF700D99CA8 /* btn_tick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F435EC61779CFF700D99CA8 /* btn_tick@2x.png */; };
 		5F435ECB1779D42400D99CA8 /* TCTastesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F435ECA1779D42400D99CA8 /* TCTastesCollectionViewCell.m */; };
 		5F9A0E50178433FB004A2FE1 /* Paris.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E4F178433FB004A2FE1 /* Paris.gpx */; };
+		5F9A0E531784463C004A2FE1 /* TCWalkingRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0E521784463C004A2FE1 /* TCWalkingRoute.m */; };
+		5F9A0E6317845CCC004A2FE1 /* arrow_route.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E5717845CCA004A2FE1 /* arrow_route.png */; };
+		5F9A0E6417845CCC004A2FE1 /* arrow_route@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E5817845CCB004A2FE1 /* arrow_route@2x.png */; };
+		5F9A0E6517845CCC004A2FE1 /* auto.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E5917845CCB004A2FE1 /* auto.png */; };
+		5F9A0E6617845CCC004A2FE1 /* auto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E5A17845CCB004A2FE1 /* auto@2x.png */; };
+		5F9A0E6717845CCC004A2FE1 /* bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E5B17845CCB004A2FE1 /* bus.png */; };
+		5F9A0E6817845CCC004A2FE1 /* bus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E5C17845CCB004A2FE1 /* bus@2x.png */; };
+		5F9A0E6917845CCC004A2FE1 /* separator_vertical.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E5D17845CCB004A2FE1 /* separator_vertical.png */; };
+		5F9A0E6A17845CCC004A2FE1 /* separator_vertical@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E5E17845CCC004A2FE1 /* separator_vertical@2x.png */; };
+		5F9A0E6B17845CCC004A2FE1 /* velib.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E5F17845CCC004A2FE1 /* velib.png */; };
+		5F9A0E6C17845CCC004A2FE1 /* velib@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E6017845CCC004A2FE1 /* velib@2x.png */; };
+		5F9A0E6D17845CCC004A2FE1 /* walker.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E6117845CCC004A2FE1 /* walker.png */; };
+		5F9A0E6E17845CCC004A2FE1 /* walker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E6217845CCC004A2FE1 /* walker@2x.png */; };
+		5F9A0E7317845FD4004A2FE1 /* btn_bg_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E6F17845FD3004A2FE1 /* btn_bg_selected.png */; };
+		5F9A0E7417845FD4004A2FE1 /* btn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E7017845FD4004A2FE1 /* btn_bg.png */; };
+		5F9A0E7517845FD4004A2FE1 /* btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E7117845FD4004A2FE1 /* btn_bg@2x.png */; };
+		5F9A0E7617845FD4004A2FE1 /* btn_bg_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E7217845FD4004A2FE1 /* btn_bg_selected@2x.png */; };
+		5F9A0E9117846B94004A2FE1 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0E7917846B94004A2FE1 /* NSObject+SBJson.m */; };
+		5F9A0E9217846B94004A2FE1 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0E7C17846B94004A2FE1 /* SBJsonParser.m */; };
+		5F9A0E9317846B94004A2FE1 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0E7E17846B94004A2FE1 /* SBJsonStreamParser.m */; };
+		5F9A0E9417846B94004A2FE1 /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0E8017846B94004A2FE1 /* SBJsonStreamParserAccumulator.m */; };
+		5F9A0E9517846B94004A2FE1 /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0E8217846B94004A2FE1 /* SBJsonStreamParserAdapter.m */; };
+		5F9A0E9617846B94004A2FE1 /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0E8417846B94004A2FE1 /* SBJsonStreamParserState.m */; };
+		5F9A0E9717846B94004A2FE1 /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0E8617846B94004A2FE1 /* SBJsonStreamWriter.m */; };
+		5F9A0E9817846B94004A2FE1 /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0E8817846B94004A2FE1 /* SBJsonStreamWriterAccumulator.m */; };
+		5F9A0E9917846B94004A2FE1 /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0E8A17846B94004A2FE1 /* SBJsonStreamWriterState.m */; };
+		5F9A0E9A17846B94004A2FE1 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0E8C17846B94004A2FE1 /* SBJsonTokeniser.m */; };
+		5F9A0E9B17846B94004A2FE1 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0E8E17846B94004A2FE1 /* SBJsonUTF8Stream.m */; };
+		5F9A0E9C17846B94004A2FE1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0E9017846B94004A2FE1 /* SBJsonWriter.m */; };
+		5F9A0E9E17846CAA004A2FE1 /* Paris.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E9D17846CAA004A2FE1 /* Paris.json */; };
+		5F9A0EA117846F65004A2FE1 /* TCVelibStation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0EA017846F65004A2FE1 /* TCVelibStation.m */; };
+		5F9A0EA4178472C6004A2FE1 /* TCTransportAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0EA3178472C5004A2FE1 /* TCTransportAnnotation.m */; };
+		5FA76F8D1784756800B2180D /* TCTransportAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA76F8C1784756800B2180D /* TCTransportAnnotationView.m */; };
 		5FAA5A511781D1B2009ECDA4 /* TCRouteClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FAA5A501781D1B2009ECDA4 /* TCRouteClient.m */; };
 		5FAA5A541781D63E009ECDA4 /* NavitiaHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FAA5A531781D63E009ECDA4 /* NavitiaHTTPClient.m */; };
 /* End PBXBuildFile section */
@@ -221,6 +254,57 @@
 		5F435EC91779D42400D99CA8 /* TCTastesCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTastesCollectionViewCell.h; sourceTree = "<group>"; };
 		5F435ECA1779D42400D99CA8 /* TCTastesCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTastesCollectionViewCell.m; sourceTree = "<group>"; };
 		5F9A0E4F178433FB004A2FE1 /* Paris.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Paris.gpx; sourceTree = "<group>"; };
+		5F9A0E511784463C004A2FE1 /* TCWalkingRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCWalkingRoute.h; sourceTree = "<group>"; };
+		5F9A0E521784463C004A2FE1 /* TCWalkingRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWalkingRoute.m; sourceTree = "<group>"; };
+		5F9A0E5417844C4C004A2FE1 /* TCRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRoute.h; sourceTree = "<group>"; };
+		5F9A0E5717845CCA004A2FE1 /* arrow_route.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_route.png; sourceTree = "<group>"; };
+		5F9A0E5817845CCB004A2FE1 /* arrow_route@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_route@2x.png"; sourceTree = "<group>"; };
+		5F9A0E5917845CCB004A2FE1 /* auto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = auto.png; sourceTree = "<group>"; };
+		5F9A0E5A17845CCB004A2FE1 /* auto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "auto@2x.png"; sourceTree = "<group>"; };
+		5F9A0E5B17845CCB004A2FE1 /* bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus.png; sourceTree = "<group>"; };
+		5F9A0E5C17845CCB004A2FE1 /* bus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bus@2x.png"; sourceTree = "<group>"; };
+		5F9A0E5D17845CCB004A2FE1 /* separator_vertical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = separator_vertical.png; sourceTree = "<group>"; };
+		5F9A0E5E17845CCC004A2FE1 /* separator_vertical@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "separator_vertical@2x.png"; sourceTree = "<group>"; };
+		5F9A0E5F17845CCC004A2FE1 /* velib.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = velib.png; sourceTree = "<group>"; };
+		5F9A0E6017845CCC004A2FE1 /* velib@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "velib@2x.png"; sourceTree = "<group>"; };
+		5F9A0E6117845CCC004A2FE1 /* walker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walker.png; sourceTree = "<group>"; };
+		5F9A0E6217845CCC004A2FE1 /* walker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "walker@2x.png"; sourceTree = "<group>"; };
+		5F9A0E6F17845FD3004A2FE1 /* btn_bg_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_bg_selected.png; sourceTree = "<group>"; };
+		5F9A0E7017845FD4004A2FE1 /* btn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_bg.png; sourceTree = "<group>"; };
+		5F9A0E7117845FD4004A2FE1 /* btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_bg@2x.png"; sourceTree = "<group>"; };
+		5F9A0E7217845FD4004A2FE1 /* btn_bg_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_bg_selected@2x.png"; sourceTree = "<group>"; };
+		5F9A0E7817846B94004A2FE1 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
+		5F9A0E7917846B94004A2FE1 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
+		5F9A0E7A17846B94004A2FE1 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
+		5F9A0E7B17846B94004A2FE1 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		5F9A0E7C17846B94004A2FE1 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		5F9A0E7D17846B94004A2FE1 /* SBJsonStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParser.h; sourceTree = "<group>"; };
+		5F9A0E7E17846B94004A2FE1 /* SBJsonStreamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParser.m; sourceTree = "<group>"; };
+		5F9A0E7F17846B94004A2FE1 /* SBJsonStreamParserAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAccumulator.h; sourceTree = "<group>"; };
+		5F9A0E8017846B94004A2FE1 /* SBJsonStreamParserAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserAccumulator.m; sourceTree = "<group>"; };
+		5F9A0E8117846B94004A2FE1 /* SBJsonStreamParserAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAdapter.h; sourceTree = "<group>"; };
+		5F9A0E8217846B94004A2FE1 /* SBJsonStreamParserAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserAdapter.m; sourceTree = "<group>"; };
+		5F9A0E8317846B94004A2FE1 /* SBJsonStreamParserState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserState.h; sourceTree = "<group>"; };
+		5F9A0E8417846B94004A2FE1 /* SBJsonStreamParserState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserState.m; sourceTree = "<group>"; };
+		5F9A0E8517846B94004A2FE1 /* SBJsonStreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriter.h; sourceTree = "<group>"; };
+		5F9A0E8617846B94004A2FE1 /* SBJsonStreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriter.m; sourceTree = "<group>"; };
+		5F9A0E8717846B94004A2FE1 /* SBJsonStreamWriterAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterAccumulator.h; sourceTree = "<group>"; };
+		5F9A0E8817846B94004A2FE1 /* SBJsonStreamWriterAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterAccumulator.m; sourceTree = "<group>"; };
+		5F9A0E8917846B94004A2FE1 /* SBJsonStreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterState.h; sourceTree = "<group>"; };
+		5F9A0E8A17846B94004A2FE1 /* SBJsonStreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterState.m; sourceTree = "<group>"; };
+		5F9A0E8B17846B94004A2FE1 /* SBJsonTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonTokeniser.h; sourceTree = "<group>"; };
+		5F9A0E8C17846B94004A2FE1 /* SBJsonTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonTokeniser.m; sourceTree = "<group>"; };
+		5F9A0E8D17846B94004A2FE1 /* SBJsonUTF8Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonUTF8Stream.h; sourceTree = "<group>"; };
+		5F9A0E8E17846B94004A2FE1 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
+		5F9A0E8F17846B94004A2FE1 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		5F9A0E9017846B94004A2FE1 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		5F9A0E9D17846CAA004A2FE1 /* Paris.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Paris.json; sourceTree = "<group>"; };
+		5F9A0E9F17846F65004A2FE1 /* TCVelibStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCVelibStation.h; sourceTree = "<group>"; };
+		5F9A0EA017846F65004A2FE1 /* TCVelibStation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCVelibStation.m; sourceTree = "<group>"; };
+		5F9A0EA2178472C5004A2FE1 /* TCTransportAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTransportAnnotation.h; sourceTree = "<group>"; };
+		5F9A0EA3178472C5004A2FE1 /* TCTransportAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTransportAnnotation.m; sourceTree = "<group>"; };
+		5FA76F8B1784756800B2180D /* TCTransportAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTransportAnnotationView.h; sourceTree = "<group>"; };
+		5FA76F8C1784756800B2180D /* TCTransportAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTransportAnnotationView.m; sourceTree = "<group>"; };
 		5FAA5A4F1781D1B2009ECDA4 /* TCRouteClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRouteClient.h; sourceTree = "<group>"; };
 		5FAA5A501781D1B2009ECDA4 /* TCRouteClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRouteClient.m; sourceTree = "<group>"; };
 		5FAA5A521781D63E009ECDA4 /* NavitiaHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavitiaHTTPClient.h; sourceTree = "<group>"; };
@@ -248,6 +332,7 @@
 			children = (
 				05EA91DA1778ED4B00DC2619 /* TCServerClient */,
 				053AC462177258EA00CD8C3F /* AFNetworking */,
+				5F9A0E7717846B94004A2FE1 /* SBJson */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
@@ -326,6 +411,7 @@
 			isa = PBXGroup;
 			children = (
 				5F9A0E4F178433FB004A2FE1 /* Paris.gpx */,
+				5F9A0E9D17846CAA004A2FE1 /* Paris.json */,
 				0594D69D1771DD6E00744BF3 /* Tchillr-Info.plist */,
 				0594D69E1771DD6E00744BF3 /* InfoPlist.strings */,
 				0594D6A11771DD6E00744BF3 /* main.m */,
@@ -366,6 +452,22 @@
 				0594D6BA1771DF8E00744BF3 /* Default-568h@2x.png */,
 				0594D6BB1771DF8E00744BF3 /* Default.png */,
 				0594D6BC1771DF8E00744BF3 /* Default@2x.png */,
+				5F9A0E5717845CCA004A2FE1 /* arrow_route.png */,
+				5F9A0E5817845CCB004A2FE1 /* arrow_route@2x.png */,
+				5F9A0E5917845CCB004A2FE1 /* auto.png */,
+				5F9A0E5A17845CCB004A2FE1 /* auto@2x.png */,
+				5F9A0E5B17845CCB004A2FE1 /* bus.png */,
+				5F9A0E5C17845CCB004A2FE1 /* bus@2x.png */,
+				5F9A0E5D17845CCB004A2FE1 /* separator_vertical.png */,
+				5F9A0E5E17845CCC004A2FE1 /* separator_vertical@2x.png */,
+				5F9A0E5F17845CCC004A2FE1 /* velib.png */,
+				5F9A0E6017845CCC004A2FE1 /* velib@2x.png */,
+				5F9A0E6117845CCC004A2FE1 /* walker.png */,
+				5F9A0E6217845CCC004A2FE1 /* walker@2x.png */,
+				5F9A0E6F17845FD3004A2FE1 /* btn_bg_selected.png */,
+				5F9A0E7017845FD4004A2FE1 /* btn_bg.png */,
+				5F9A0E7117845FD4004A2FE1 /* btn_bg@2x.png */,
+				5F9A0E7217845FD4004A2FE1 /* btn_bg_selected@2x.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -403,6 +505,7 @@
 		0594D6C31771E02E00744BF3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5FA76F8A1784752100B2180D /* Routes */,
 				05EA91B61773249800DC2619 /* TCActivityCollectionViewCell.h */,
 				05EA91B71773249800DC2619 /* TCActivityCollectionViewCell.m */,
 				05EA91D4177491C100DC2619 /* TCLocationAnnotationView.h */,
@@ -515,13 +618,62 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		5F9A0E7717846B94004A2FE1 /* SBJson */ = {
+			isa = PBXGroup;
+			children = (
+				5F9A0E7817846B94004A2FE1 /* NSObject+SBJson.h */,
+				5F9A0E7917846B94004A2FE1 /* NSObject+SBJson.m */,
+				5F9A0E7A17846B94004A2FE1 /* SBJson.h */,
+				5F9A0E7B17846B94004A2FE1 /* SBJsonParser.h */,
+				5F9A0E7C17846B94004A2FE1 /* SBJsonParser.m */,
+				5F9A0E7D17846B94004A2FE1 /* SBJsonStreamParser.h */,
+				5F9A0E7E17846B94004A2FE1 /* SBJsonStreamParser.m */,
+				5F9A0E7F17846B94004A2FE1 /* SBJsonStreamParserAccumulator.h */,
+				5F9A0E8017846B94004A2FE1 /* SBJsonStreamParserAccumulator.m */,
+				5F9A0E8117846B94004A2FE1 /* SBJsonStreamParserAdapter.h */,
+				5F9A0E8217846B94004A2FE1 /* SBJsonStreamParserAdapter.m */,
+				5F9A0E8317846B94004A2FE1 /* SBJsonStreamParserState.h */,
+				5F9A0E8417846B94004A2FE1 /* SBJsonStreamParserState.m */,
+				5F9A0E8517846B94004A2FE1 /* SBJsonStreamWriter.h */,
+				5F9A0E8617846B94004A2FE1 /* SBJsonStreamWriter.m */,
+				5F9A0E8717846B94004A2FE1 /* SBJsonStreamWriterAccumulator.h */,
+				5F9A0E8817846B94004A2FE1 /* SBJsonStreamWriterAccumulator.m */,
+				5F9A0E8917846B94004A2FE1 /* SBJsonStreamWriterState.h */,
+				5F9A0E8A17846B94004A2FE1 /* SBJsonStreamWriterState.m */,
+				5F9A0E8B17846B94004A2FE1 /* SBJsonTokeniser.h */,
+				5F9A0E8C17846B94004A2FE1 /* SBJsonTokeniser.m */,
+				5F9A0E8D17846B94004A2FE1 /* SBJsonUTF8Stream.h */,
+				5F9A0E8E17846B94004A2FE1 /* SBJsonUTF8Stream.m */,
+				5F9A0E8F17846B94004A2FE1 /* SBJsonWriter.h */,
+				5F9A0E9017846B94004A2FE1 /* SBJsonWriter.m */,
+			);
+			name = SBJson;
+			path = ../vendor/SBJson;
+			sourceTree = "<group>";
+		};
+		5FA76F8A1784752100B2180D /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				5FA76F8B1784756800B2180D /* TCTransportAnnotationView.h */,
+				5FA76F8C1784756800B2180D /* TCTransportAnnotationView.m */,
+			);
+			name = Routes;
+			sourceTree = "<group>";
+		};
 		5FAA5A4E1781D19D009ECDA4 /* Routes */ = {
 			isa = PBXGroup;
 			children = (
+				5F9A0E5417844C4C004A2FE1 /* TCRoute.h */,
 				5FAA5A4F1781D1B2009ECDA4 /* TCRouteClient.h */,
 				5FAA5A501781D1B2009ECDA4 /* TCRouteClient.m */,
 				5FAA5A521781D63E009ECDA4 /* NavitiaHTTPClient.h */,
 				5FAA5A531781D63E009ECDA4 /* NavitiaHTTPClient.m */,
+				5F9A0E511784463C004A2FE1 /* TCWalkingRoute.h */,
+				5F9A0E521784463C004A2FE1 /* TCWalkingRoute.m */,
+				5F9A0E9F17846F65004A2FE1 /* TCVelibStation.h */,
+				5F9A0EA017846F65004A2FE1 /* TCVelibStation.m */,
+				5F9A0EA2178472C5004A2FE1 /* TCTransportAnnotation.h */,
+				5F9A0EA3178472C5004A2FE1 /* TCTransportAnnotation.m */,
 			);
 			name = Routes;
 			sourceTree = "<group>";
@@ -611,6 +763,23 @@
 				05A5049E177E251600083CEF /* btn_heart_selected.png in Resources */,
 				05A5049F177E251600083CEF /* btn_heart_selected@2x.png in Resources */,
 				5F9A0E50178433FB004A2FE1 /* Paris.gpx in Resources */,
+				5F9A0E6317845CCC004A2FE1 /* arrow_route.png in Resources */,
+				5F9A0E6417845CCC004A2FE1 /* arrow_route@2x.png in Resources */,
+				5F9A0E6517845CCC004A2FE1 /* auto.png in Resources */,
+				5F9A0E6617845CCC004A2FE1 /* auto@2x.png in Resources */,
+				5F9A0E6717845CCC004A2FE1 /* bus.png in Resources */,
+				5F9A0E6817845CCC004A2FE1 /* bus@2x.png in Resources */,
+				5F9A0E6917845CCC004A2FE1 /* separator_vertical.png in Resources */,
+				5F9A0E6A17845CCC004A2FE1 /* separator_vertical@2x.png in Resources */,
+				5F9A0E6B17845CCC004A2FE1 /* velib.png in Resources */,
+				5F9A0E6C17845CCC004A2FE1 /* velib@2x.png in Resources */,
+				5F9A0E6D17845CCC004A2FE1 /* walker.png in Resources */,
+				5F9A0E6E17845CCC004A2FE1 /* walker@2x.png in Resources */,
+				5F9A0E7317845FD4004A2FE1 /* btn_bg_selected.png in Resources */,
+				5F9A0E7417845FD4004A2FE1 /* btn_bg.png in Resources */,
+				5F9A0E7517845FD4004A2FE1 /* btn_bg@2x.png in Resources */,
+				5F9A0E7617845FD4004A2FE1 /* btn_bg_selected@2x.png in Resources */,
+				5F9A0E9E17846CAA004A2FE1 /* Paris.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,6 +835,22 @@
 				5FAA5A511781D1B2009ECDA4 /* TCRouteClient.m in Sources */,
 				5FAA5A541781D63E009ECDA4 /* NavitiaHTTPClient.m in Sources */,
 				05A88A801781D362002DFE94 /* TCMedia.m in Sources */,
+				5F9A0E531784463C004A2FE1 /* TCWalkingRoute.m in Sources */,
+				5F9A0E9117846B94004A2FE1 /* NSObject+SBJson.m in Sources */,
+				5F9A0E9217846B94004A2FE1 /* SBJsonParser.m in Sources */,
+				5F9A0E9317846B94004A2FE1 /* SBJsonStreamParser.m in Sources */,
+				5F9A0E9417846B94004A2FE1 /* SBJsonStreamParserAccumulator.m in Sources */,
+				5F9A0E9517846B94004A2FE1 /* SBJsonStreamParserAdapter.m in Sources */,
+				5F9A0E9617846B94004A2FE1 /* SBJsonStreamParserState.m in Sources */,
+				5F9A0E9717846B94004A2FE1 /* SBJsonStreamWriter.m in Sources */,
+				5F9A0E9817846B94004A2FE1 /* SBJsonStreamWriterAccumulator.m in Sources */,
+				5F9A0E9917846B94004A2FE1 /* SBJsonStreamWriterState.m in Sources */,
+				5F9A0E9A17846B94004A2FE1 /* SBJsonTokeniser.m in Sources */,
+				5F9A0E9B17846B94004A2FE1 /* SBJsonUTF8Stream.m in Sources */,
+				5F9A0E9C17846B94004A2FE1 /* SBJsonWriter.m in Sources */,
+				5F9A0EA117846F65004A2FE1 /* TCVelibStation.m in Sources */,
+				5F9A0EA4178472C6004A2FE1 /* TCTransportAnnotation.m in Sources */,
+				5FA76F8D1784756800B2180D /* TCTransportAnnotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,6 +18,8 @@ typedef enum {
 	TCRouteTransportAutolib
 } TCRouteTransport;
 
+@class TCVelibStation;
+
 @interface TCRouteClient : NSObject
 
 #pragma mark Shared Instance
@@ -26,5 +28,7 @@ typedef enum {
 #pragma mark Routing
 - (void)findRouteFrom:(CLLocationCoordinate2D)fromLocation to:(CLLocationCoordinate2D)toLocation transport:(TCRouteTransport)transport completion:(void (^)(BOOL success, id route, NSError *error))completion;
 
+#pragma mark Velib Specifics
+- (TCVelibStation *)nearestVelibStationFrom:(CLLocation *)location;
 
 @end
