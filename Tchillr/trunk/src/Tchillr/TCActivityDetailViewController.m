@@ -76,6 +76,7 @@
     CGSize headerIdealSize = [self.activityHeaderView idealSize];
     self.activityHeaderView.frame = CGRectMake(0.0, 0.0, headerIdealSize.width, headerIdealSize.height);
     [self.tableView setTableHeaderView:self.activityHeaderView];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     [[TCServerClient sharedTchillrServerClient] startInterestsRequestWithSuccess:^(NSArray *interestsArray) {
         self.interests = interestsArray;

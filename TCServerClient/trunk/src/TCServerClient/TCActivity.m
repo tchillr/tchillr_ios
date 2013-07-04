@@ -125,7 +125,10 @@
             TCMedia * media = [[TCMedia alloc] initWithJsonDictionary:mediaDictionnary];
             if ([[media.path pathExtension] isEqualToString:@"jpg"]) {
                 [mediasArray addObject:media];
-            }    
+            }
+            else {
+                NSLog(@"%@",[media.path pathExtension]);
+            }
         }
         _medias = [NSArray arrayWithArray:mediasArray];
     }
