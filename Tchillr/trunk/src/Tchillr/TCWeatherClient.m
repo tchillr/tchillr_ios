@@ -7,7 +7,7 @@
 //
 
 #import "TCWeatherClient.h"
-#import "XMLParser.h"
+//#import "XMLParser.h"
 
 #define YAHOO_WEATHER_BASE [NSString stringWithFormat:@"http://weather.yahooapis.com/forecastrss?w=615702&u=c"]
 
@@ -34,6 +34,7 @@ static TCWeatherClient *sharedInstance;
     NSURL *url = [NSURL URLWithString:requestURLString];
     NSData *weatherData = [NSData dataWithContentsOfURL:url];
     if (weatherData) {
+        /*
         XMLParser * parser = [[XMLParser alloc] init];
         [parser parseData:weatherData success:^(id parsedData) {
             NSDictionary * weatherDict = (NSDictionary *)parsedData;
@@ -43,7 +44,7 @@ static TCWeatherClient *sharedInstance;
         } failure:^(NSError *error) {
             NSLog(@"Failed to retreive weather forecast");
             completion(NO, TCWeatherCodeNotAvailable, error);
-        }];
+        }];*/
     }
 }
 /*

@@ -22,8 +22,6 @@
 		05495863178448D600DE67C9 /* TCCalloutAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05495862178448D600DE67C9 /* TCCalloutAnnotationView.m */; };
 		054958641784490E00DE67C9 /* TCLocationAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA91D5177491C100DC2619 /* TCLocationAnnotationView.m */; };
 		0549586A1784529A00DE67C9 /* TCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 054958691784529A00DE67C9 /* TCUser.m */; };
-		054958701784620000DE67C9 /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0549586D1784620000DE67C9 /* Stack.m */; };
-		054958711784620000DE67C9 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0549586F1784620000DE67C9 /* XMLParser.m */; };
 		05495875178462EF00DE67C9 /* TCWeatherClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 05495874178462EF00DE67C9 /* TCWeatherClient.m */; };
 		0594D6961771DD6E00744BF3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0594D6951771DD6E00744BF3 /* UIKit.framework */; };
 		0594D6981771DD6E00744BF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0594D6971771DD6E00744BF3 /* Foundation.framework */; };
@@ -125,10 +123,6 @@
 		05495862178448D600DE67C9 /* TCCalloutAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCalloutAnnotationView.m; sourceTree = "<group>"; };
 		054958681784529A00DE67C9 /* TCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCUser.h; path = ../../../TCServerClient/trunk/src/TCServerClient/TCUser.h; sourceTree = "<group>"; };
 		054958691784529A00DE67C9 /* TCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCUser.m; path = ../../../TCServerClient/trunk/src/TCServerClient/TCUser.m; sourceTree = "<group>"; };
-		0549586C1784620000DE67C9 /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stack.h; path = ../../vendor/XMLParser/XMLParser/Stack.h; sourceTree = "<group>"; };
-		0549586D1784620000DE67C9 /* Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stack.m; path = ../../vendor/XMLParser/XMLParser/Stack.m; sourceTree = "<group>"; };
-		0549586E1784620000DE67C9 /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLParser.h; path = ../../vendor/XMLParser/XMLParser/XMLParser.h; sourceTree = "<group>"; };
-		0549586F1784620000DE67C9 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParser.m; path = ../../vendor/XMLParser/XMLParser/XMLParser.m; sourceTree = "<group>"; };
 		05495873178462EF00DE67C9 /* TCWeatherClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCWeatherClient.h; sourceTree = "<group>"; };
 		05495874178462EF00DE67C9 /* TCWeatherClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWeatherClient.m; sourceTree = "<group>"; };
 		0594D6921771DD6E00744BF3 /* Tchillr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tchillr.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,7 +252,6 @@
 		053AC4481772583500CD8C3F /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				0549586B178461E800DE67C9 /* XMLParser */,
 				05EA91DA1778ED4B00DC2619 /* TCServerClient */,
 				053AC462177258EA00CD8C3F /* AFNetworking */,
 			);
@@ -290,17 +283,6 @@
 			);
 			name = AFNetworking;
 			path = ../../../TCClient/vendor/AFNetworking;
-			sourceTree = "<group>";
-		};
-		0549586B178461E800DE67C9 /* XMLParser */ = {
-			isa = PBXGroup;
-			children = (
-				0549586C1784620000DE67C9 /* Stack.h */,
-				0549586D1784620000DE67C9 /* Stack.m */,
-				0549586E1784620000DE67C9 /* XMLParser.h */,
-				0549586F1784620000DE67C9 /* XMLParser.m */,
-			);
-			name = XMLParser;
 			sourceTree = "<group>";
 		};
 		05495872178462D600DE67C9 /* Weather */ = {
@@ -693,8 +675,6 @@
 				05495863178448D600DE67C9 /* TCCalloutAnnotationView.m in Sources */,
 				054958641784490E00DE67C9 /* TCLocationAnnotationView.m in Sources */,
 				0549586A1784529A00DE67C9 /* TCUser.m in Sources */,
-				054958701784620000DE67C9 /* Stack.m in Sources */,
-				054958711784620000DE67C9 /* XMLParser.m in Sources */,
 				05495875178462EF00DE67C9 /* TCWeatherClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
