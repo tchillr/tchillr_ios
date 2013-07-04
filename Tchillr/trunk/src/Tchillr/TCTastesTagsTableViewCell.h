@@ -1,5 +1,5 @@
 //
-//  TCTagsTableViewCell.h
+//  TCTastesTagsTableViewCell.h
 //  Tchillr
 //
 //  Created by Meski Badr on 04/07/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCTagsTableViewCell : UITableViewCell
+@interface TCTastesTagsTableViewCell : UITableViewCell
 
 @end
