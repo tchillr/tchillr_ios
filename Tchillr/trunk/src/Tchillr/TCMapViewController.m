@@ -37,8 +37,10 @@
 @property (nonatomic, weak) IBOutlet UICollectionView * collectionView;
 @property (nonatomic, weak) IBOutlet UIButton * showInterestsButton;
 @property (nonatomic, weak) IBOutlet UIButton * showListButton;
-@property (nonatomic, retain) NSArray * activities;
 @property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
+
+@property (nonatomic, retain) NSArray * activities;
+@property (nonatomic, retain) NSArray * interests;
 
 @end
 
@@ -54,7 +56,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.loadingLabel setAlpha:1.0]; 
-    
+    // User activities
     [[TCServerClient sharedTchillrServerClient]
 	 startUserActivitiesRequestForDays:1
 	 success:^(NSArray *activitiesArray) {
@@ -71,6 +73,13 @@
 	 failure:^(NSError *error) {
 		 NSLog(@"%@",[error description]);
 	 }];
+    // User interests
+    [[TCServerClient sharedTchillrServerClient] startInterestsRequestWithSuccess:^(NSArray *interestsArray) {
+        self.interests = interestsArray;
+    } failure:^(NSError *error) {
+        NSLog(@"%@", [error description]);
+    }];
+    
     [self.mapView setShowsUserLocation:YES];
 }
 
@@ -228,6 +237,7 @@
 		}
 		TCActivityDetailViewController * activityDetailViewController = (TCActivityDetailViewController *) segue.destinationViewController;
 		[activityDetailViewController setActivity:activity];
+        [activityDetailViewController setInterests:self.interests];
 	}
 	else if ([segue.identifier isEqualToString:kshowTastesSegueIdentifier]) {
 		[segue.destinationViewController setDelegate:self];

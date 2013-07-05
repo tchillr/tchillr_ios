@@ -23,6 +23,8 @@
 		054958641784490E00DE67C9 /* TCLocationAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA91D5177491C100DC2619 /* TCLocationAnnotationView.m */; };
 		0549586A1784529A00DE67C9 /* TCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 054958691784529A00DE67C9 /* TCUser.m */; };
 		05495875178462EF00DE67C9 /* TCWeatherClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 05495874178462EF00DE67C9 /* TCWeatherClient.m */; };
+		0549587817858E1600DE67C9 /* NSString+Tchillr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0549587717858E1600DE67C9 /* NSString+Tchillr.m */; };
+		0549587B1785954F00DE67C9 /* NSString+TCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0549587A1785954F00DE67C9 /* NSString+TCAdditions.m */; };
 		0594D6961771DD6E00744BF3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0594D6951771DD6E00744BF3 /* UIKit.framework */; };
 		0594D6981771DD6E00744BF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0594D6971771DD6E00744BF3 /* Foundation.framework */; };
 		0594D69A1771DD6E00744BF3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0594D6991771DD6E00744BF3 /* CoreGraphics.framework */; };
@@ -158,6 +160,10 @@
 		054958691784529A00DE67C9 /* TCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCUser.m; path = ../../../TCServerClient/trunk/src/TCServerClient/TCUser.m; sourceTree = "<group>"; };
 		05495873178462EF00DE67C9 /* TCWeatherClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCWeatherClient.h; sourceTree = "<group>"; };
 		05495874178462EF00DE67C9 /* TCWeatherClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWeatherClient.m; sourceTree = "<group>"; };
+		0549587617858E1600DE67C9 /* NSString+Tchillr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Tchillr.h"; sourceTree = "<group>"; };
+		0549587717858E1600DE67C9 /* NSString+Tchillr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Tchillr.m"; sourceTree = "<group>"; };
+		054958791785954F00DE67C9 /* NSString+TCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TCAdditions.h"; path = "../../../TCServerClient/trunk/src/TCServerClient/NSString+TCAdditions.h"; sourceTree = "<group>"; };
+		0549587A1785954F00DE67C9 /* NSString+TCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TCAdditions.m"; path = "../../../TCServerClient/trunk/src/TCServerClient/NSString+TCAdditions.m"; sourceTree = "<group>"; };
 		0594D6921771DD6E00744BF3 /* Tchillr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tchillr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0594D6951771DD6E00744BF3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0594D6971771DD6E00744BF3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -545,6 +551,8 @@
 				05BDD60D177BA54600CF282E /* UILabel+Tchillr.m */,
 				05A5048E177DE5BE00083CEF /* UICollectionViewCell+Tchillr.h */,
 				05A5048F177DE5BE00083CEF /* UICollectionViewCell+Tchillr.m */,
+				0549587617858E1600DE67C9 /* NSString+Tchillr.h */,
+				0549587717858E1600DE67C9 /* NSString+Tchillr.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -552,6 +560,8 @@
 		05EA91DA1778ED4B00DC2619 /* TCServerClient */ = {
 			isa = PBXGroup;
 			children = (
+				054958791785954F00DE67C9 /* NSString+TCAdditions.h */,
+				0549587A1785954F00DE67C9 /* NSString+TCAdditions.m */,
 				054958681784529A00DE67C9 /* TCUser.h */,
 				054958691784529A00DE67C9 /* TCUser.m */,
 				05A88A7E1781D362002DFE94 /* TCMedia.h */,
@@ -861,6 +871,8 @@
 				054958641784490E00DE67C9 /* TCLocationAnnotationView.m in Sources */,
 				0549586A1784529A00DE67C9 /* TCUser.m in Sources */,
 				05495875178462EF00DE67C9 /* TCWeatherClient.m in Sources */,
+				0549587817858E1600DE67C9 /* NSString+Tchillr.m in Sources */,
+				0549587B1785954F00DE67C9 /* NSString+TCAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
