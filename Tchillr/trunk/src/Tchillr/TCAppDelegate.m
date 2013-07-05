@@ -13,6 +13,14 @@
 
 @implementation TCAppDelegate
 
+@synthesize locationManager = _locationManager;
+- (CLLocationManager *)locationManager {
+    if (_locationManager == nil) {
+        _locationManager = [[CLLocationManager alloc] init];
+    }
+    return _locationManager;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 #warning calls the weather service / for testing
@@ -24,7 +32,13 @@
 
     } failure:^(NSError *error) {
         NSLog(@"%@",[error description]);
-    }];    
+    }];
+    // Location manager
+    // Region monitoring
+    if ([CLLocationManager regionMonitoringAvailable] && [CLLocationManager locationServicesEnabled]) {
+        self.locationManager.delegate = self;
+    }
+    
     return YES;
 }
 							
@@ -53,6 +67,22 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark CLLocationManager delegate
+- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
+    NSLog(@"didEnterRegion");
+    NSString * message = [NSString stringWithFormat:@"Il semblerait que tu ne sois pas très loin d'un plan sympa ! Veux-tu prévenir tes amis ?"];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Tchillr" message:message delegate:self cancelButtonTitle:@"Non !" otherButtonTitles:@"Oui !", nil];
+    [alert show];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region{
+    NSLog(@"didExitRegion");
+}
+
+- (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error {
+    NSLog(@"Region monitoring failed with error: %@", [error localizedDescription]);
 }
 
 @end
