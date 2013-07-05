@@ -94,6 +94,7 @@
 		5F9A0E50178433FB004A2FE1 /* Paris.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E4F178433FB004A2FE1 /* Paris.gpx */; };
 		5FAA5A511781D1B2009ECDA4 /* TCRouteClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FAA5A501781D1B2009ECDA4 /* TCRouteClient.m */; };
 		5FAA5A541781D63E009ECDA4 /* NavitiaHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FAA5A531781D63E009ECDA4 /* NavitiaHTTPClient.m */; };
+		85C39AD01786185D00158D37 /* TCTastesTagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C39ACF1786185D00158D37 /* TCTastesTagsTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -237,6 +238,8 @@
 		5FAA5A501781D1B2009ECDA4 /* TCRouteClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRouteClient.m; sourceTree = "<group>"; };
 		5FAA5A521781D63E009ECDA4 /* NavitiaHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavitiaHTTPClient.h; sourceTree = "<group>"; };
 		5FAA5A531781D63E009ECDA4 /* NavitiaHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavitiaHTTPClient.m; sourceTree = "<group>"; };
+		85C39ACE1786185D00158D37 /* TCTastesTagsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTastesTagsTableViewCell.h; sourceTree = "<group>"; };
+		85C39ACF1786185D00158D37 /* TCTastesTagsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTastesTagsTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -423,12 +426,11 @@
 		0594D6C31771E02E00744BF3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				85C39AC7178617C300158D37 /* Tastes */,
 				05EA91B61773249800DC2619 /* TCActivityCollectionViewCell.h */,
 				05EA91B71773249800DC2619 /* TCActivityCollectionViewCell.m */,
 				05EA921217792CF700DC2619 /* TCTriangleView.h */,
 				05EA921317792CF700DC2619 /* TCTriangleView.m */,
-				5F435EC91779D42400D99CA8 /* TCTastesCollectionViewCell.h */,
-				5F435ECA1779D42400D99CA8 /* TCTastesCollectionViewCell.m */,
 				05EA92361779F7FF00DC2619 /* Activity Detail */,
 				05EA92351779F7F100DC2619 /* Map */,
 				05BDD609177B9F6F00CF282E /* TCActivityDetailResizableCell.h */,
@@ -542,6 +544,17 @@
 				5FAA5A531781D63E009ECDA4 /* NavitiaHTTPClient.m */,
 			);
 			name = Routes;
+			sourceTree = "<group>";
+		};
+		85C39AC7178617C300158D37 /* Tastes */ = {
+			isa = PBXGroup;
+			children = (
+				5F435EC91779D42400D99CA8 /* TCTastesCollectionViewCell.h */,
+				5F435ECA1779D42400D99CA8 /* TCTastesCollectionViewCell.m */,
+				85C39ACE1786185D00158D37 /* TCTastesTagsTableViewCell.h */,
+				85C39ACF1786185D00158D37 /* TCTastesTagsTableViewCell.m */,
+			);
+			name = Tastes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -688,6 +701,7 @@
 				05495875178462EF00DE67C9 /* TCWeatherClient.m in Sources */,
 				0549587817858E1600DE67C9 /* NSString+Tchillr.m in Sources */,
 				0549587B1785954F00DE67C9 /* NSString+TCAdditions.m in Sources */,
+				85C39AD01786185D00158D37 /* TCTastesTagsTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
