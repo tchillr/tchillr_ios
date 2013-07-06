@@ -25,6 +25,7 @@
 		05495875178462EF00DE67C9 /* TCWeatherClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 05495874178462EF00DE67C9 /* TCWeatherClient.m */; };
 		0549587817858E1600DE67C9 /* NSString+Tchillr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0549587717858E1600DE67C9 /* NSString+Tchillr.m */; };
 		0549587B1785954F00DE67C9 /* NSString+TCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0549587A1785954F00DE67C9 /* NSString+TCAdditions.m */; };
+		0549587E17882E4E00DE67C9 /* NSDate+Tchillr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0549587D17882E4E00DE67C9 /* NSDate+Tchillr.m */; };
 		0594D6961771DD6E00744BF3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0594D6951771DD6E00744BF3 /* UIKit.framework */; };
 		0594D6981771DD6E00744BF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0594D6971771DD6E00744BF3 /* Foundation.framework */; };
 		0594D69A1771DD6E00744BF3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0594D6991771DD6E00744BF3 /* CoreGraphics.framework */; };
@@ -132,6 +133,8 @@
 		0549587717858E1600DE67C9 /* NSString+Tchillr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Tchillr.m"; sourceTree = "<group>"; };
 		054958791785954F00DE67C9 /* NSString+TCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TCAdditions.h"; path = "../../../TCServerClient/trunk/src/TCServerClient/NSString+TCAdditions.h"; sourceTree = "<group>"; };
 		0549587A1785954F00DE67C9 /* NSString+TCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TCAdditions.m"; path = "../../../TCServerClient/trunk/src/TCServerClient/NSString+TCAdditions.m"; sourceTree = "<group>"; };
+		0549587C17882E4E00DE67C9 /* NSDate+Tchillr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Tchillr.h"; sourceTree = "<group>"; };
+		0549587D17882E4E00DE67C9 /* NSDate+Tchillr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Tchillr.m"; sourceTree = "<group>"; };
 		0594D6921771DD6E00744BF3 /* Tchillr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tchillr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0594D6951771DD6E00744BF3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0594D6971771DD6E00744BF3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -452,6 +455,8 @@
 				05A5048F177DE5BE00083CEF /* UICollectionViewCell+Tchillr.m */,
 				0549587617858E1600DE67C9 /* NSString+Tchillr.h */,
 				0549587717858E1600DE67C9 /* NSString+Tchillr.m */,
+				0549587C17882E4E00DE67C9 /* NSDate+Tchillr.h */,
+				0549587D17882E4E00DE67C9 /* NSDate+Tchillr.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -702,6 +707,7 @@
 				0549587817858E1600DE67C9 /* NSString+Tchillr.m in Sources */,
 				0549587B1785954F00DE67C9 /* NSString+TCAdditions.m in Sources */,
 				85C39AD01786185D00158D37 /* TCTastesTagsTableViewCell.m in Sources */,
+				0549587E17882E4E00DE67C9 /* NSDate+Tchillr.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

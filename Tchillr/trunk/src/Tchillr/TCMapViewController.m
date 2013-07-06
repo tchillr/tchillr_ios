@@ -73,31 +73,23 @@
     [super viewDidLoad];
     [self.loadingLabel setAlpha:1.0];
     
-    // User activities
-    [[TCServerClient sharedTchillrServerClient]
-	 startUserActivitiesRequestForDays:1
-	 success:^(NSArray *activitiesArray) {
-		 self.activities = activitiesArray;
-		 [self pinLocations];
-		 TCLocationAnnotation * annotation = [self annotationForIndex:0];
-		 [self.mapView selectAnnotation:annotation animated:NO];
-		 [self.collectionView reloadData];
-         [UIView animateWithDuration:0.2
-                          animations:^{
-                              [self.loadingLabel setAlpha:0.0];
-                          }];
-	 }
-	 failure:^(NSError *error) {
-		 NSLog(@"%@",[error description]);
-	 }];
-    // User interests
-    [[TCServerClient sharedTchillrServerClient] startInterestsRequestWithSuccess:^(NSArray *interestsArray) {
-        self.interests = interestsArray;
+    NSDate * now = [NSDate date];
+    NSDate *tomorrow = [now dateByAddingTimeInterval:60*60*24*1];
+    [[TCServerClient sharedTchillrServerClient] startUserActivitiesRequestFrom:now to:tomorrow success:^(NSArray *activitiesArray) {
+        self.activities = activitiesArray;
+        [self pinLocations];
+        TCLocationAnnotation * annotation = [self annotationForIndex:0];
+        [self.mapView selectAnnotation:annotation animated:NO];
+        [self.collectionView reloadData];
+        [UIView animateWithDuration:0.2
+                         animations:^{
+                             [self.loadingLabel setAlpha:0.0];
+                         }];
     } failure:^(NSError *error) {
-        NSLog(@"%@", [error description]);
+        NSLog(@"%@",[error description]);
     }];
+
     [self.mapView setShowsUserLocation:YES];
-    
 }
 
 #pragma mark - Pin locations
