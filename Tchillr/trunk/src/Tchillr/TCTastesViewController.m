@@ -57,7 +57,7 @@
 
 #pragma mark UICollectionViewDelegate methods
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 4;
+    return 5;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger openedCellIndex = [self.openedCellsIndex indexOfObjectPassingTest:^BOOL(NSNumber *index, NSUInteger idx, BOOL *stop) {
@@ -89,6 +89,10 @@
 		case 3:
 			cell.titleLabel.text = @"Expos";
 			cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.95] objectAtIndex:4];
+			break;
+        case 4:
+			cell.titleLabel.text = @"Cinema";
+			cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.95] objectAtIndex:1];
 			break;
 	}
 	

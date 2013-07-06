@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class TCSelectedTagsView;
+
 @interface TCTastesCollectionViewCell : UICollectionViewCell <UITableViewDelegate, UITableViewDataSource>
 
 @property (assign, nonatomic) IBOutlet UILabel *titleLabel;
 @property (assign, nonatomic) IBOutlet UITableView *tastesTableView;
 @property (nonatomic, assign, getter = isOpen) BOOL open;
+@property (retain, nonatomic) IBOutlet TCSelectedTagsView *selectedTagsView;
 
 @end

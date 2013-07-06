@@ -10,6 +10,7 @@
 
 // Views
 #import "TCTastesTagsTableViewCell.h"
+#import "TCSelectedTagsView.h"
 
 // Categories
 #import "UIColor+Tchillr.h"
@@ -30,7 +31,19 @@
     }
     [UIView animateWithDuration:0.250 animations:^{
         [self.tastesTableView setHidden:!_open];
+        [self.selectedTagsView setHidden:_open];
+        [self.titleLabel setHighlighted:_open];
     }];
+}
+
+@synthesize selectedTagsView = _selectedTagsView;
+- (TCSelectedTagsView *)selectedTagsView {
+    if(!_selectedTagsView) {
+        _selectedTagsView = [[TCSelectedTagsView alloc] initWithFrame:CGRectMake(self.frame.size.width-(40+10), 10, 0, 0)];
+        [_selectedTagsView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
+        [self addSubview:_selectedTagsView];
+    }
+    return _selectedTagsView;
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -60,9 +73,10 @@
 	[self.titleLabel setHighlightedTextColor:[UIColor tcWhite]];
     self.tastesTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.open = NO;
+    [self.selectedTagsView setNumberOfSelectedTags:arc4random()%7+1];
 }
 
-#pragma mark - TableView Delegate methods
+#pragma mark - Tags TableView Delegate methods
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TCTastesTagsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCTastesTagsTableViewCell class]) forIndexPath:indexPath];
     
