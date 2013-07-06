@@ -18,10 +18,21 @@
 
 @interface TCTastesViewController ()
 
+@property (nonatomic, retain) NSMutableArray *openedCellsIndex;
+
 - (IBAction)validateTastes:(id)sender;
+
 @end
 
 @implementation TCTastesViewController
+
+@synthesize openedCellsIndex = _openedCellsIndex;
+- (NSArray *)openedCellsIndex {
+    if(!_openedCellsIndex) {
+        _openedCellsIndex = [[NSMutableArray alloc] init];
+    }
+    return _openedCellsIndex;
+}
 
 #pragma mark View Lifecycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -49,11 +60,14 @@
     return 4;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if([collectionView cellForItemAtIndexPath:indexPath].selected) {
-        return CGSizeMake(kOpenedCollectionCellWidth, collectionView.bounds.size.height);
+    NSInteger openedCellIndex = [self.openedCellsIndex indexOfObjectPassingTest:^BOOL(NSNumber *index, NSUInteger idx, BOOL *stop) {
+        return indexPath.row == index.integerValue;
+    }];
+    if(openedCellIndex == NSNotFound) {
+        return CGSizeMake(((UICollectionViewFlowLayout *)collectionViewLayout).itemSize.width, collectionView.bounds.size.height);
     }
     else {
-        return CGSizeMake(((UICollectionViewFlowLayout *)collectionViewLayout).itemSize.width, collectionView.bounds.size.height);
+        return CGSizeMake(kOpenedCollectionCellWidth, collectionView.bounds.size.height);
     }
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -78,15 +92,22 @@
 			break;
 	}
 	
+    cell.open = [self.openedCellsIndex containsObject:[NSNumber numberWithInteger:indexPath.row]];
 	cell.titleLabel.text = [cell.titleLabel.text uppercaseString];
-	
 	
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if([collectionView cellForItemAtIndexPath:indexPath].selected) {
-        [collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+    NSInteger openedCellIndex = [self.openedCellsIndex indexOfObjectPassingTest:^BOOL(NSNumber *index, NSUInteger idx, BOOL *stop) {
+        return indexPath.row == index.integerValue;
+    }];
+    if(openedCellIndex == NSNotFound) {
+        [self.openedCellsIndex addObject:[NSNumber numberWithInteger:indexPath.row]];
     }
+    else {
+        [self.openedCellsIndex removeObject:[NSNumber numberWithInteger:indexPath.row]];
+    }
+    [collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
 }
 
 @end

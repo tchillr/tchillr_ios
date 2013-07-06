@@ -23,6 +23,16 @@
 
 @implementation TCTastesCollectionViewCell
 
+@synthesize open = _open;
+- (void)setOpen:(BOOL)open {
+    if(open != _open) {
+        _open = open;
+    }
+    [UIView animateWithDuration:0.250 animations:^{
+        [self.tastesTableView setHidden:!_open];
+    }];
+}
+
 - (id)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
 	if (self) {
@@ -42,15 +52,8 @@
 									   self.bounds.size.height - self.titleLabel.frame.size.height - 50.0,
 									   self.titleLabel.frame.size.width,
 									   self.titleLabel.frame.size.height);
-    [self.tastesTableView setHidden:!self.selected];
 }
 
--(void)setSelected:(BOOL)selected {
-    NSLog(@"self.selected : %d ,selected : %d",self.selected,selected);
-    if(self.selected != selected) {
-        [super setSelected:selected];
-    }
-}
 #pragma mark Setup
 - (void)setup {
 	[self.titleLabel setTextColor:[UIColor tcBlack]];
@@ -63,6 +66,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TCTastesTagsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCTastesTagsTableViewCell class]) forIndexPath:indexPath];
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.contentView.backgroundColor = [UIColor clearColor];
     cell.tagLabel.text = @"test";
 
