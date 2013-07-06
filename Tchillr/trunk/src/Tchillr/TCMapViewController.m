@@ -25,6 +25,7 @@
 #import "TCActivity.h"
 #import "TCLocationAnnotation.h"
 #import "TCCalloutAnnotation.h"
+#import "TCAppDelegate.h"
 
 #define kShowActivityDetailSegueIdentifier @"ShowActivityDetailSegue"
 #define kshowTastesSegueIdentifier @"ShowTastesSegue"
@@ -41,6 +42,8 @@
 
 @property (nonatomic, retain) NSArray * activities;
 @property (nonatomic, retain) NSArray * interests;
+@property (nonatomic, readonly) CLLocationManager * locationManager;
+@property (nonatomic, retain) CLRegion * monitoredRegion;
 
 @end
 
@@ -51,36 +54,41 @@
 @synthesize collectionView = _collectionView;
 @synthesize showInterestsButton = _showInterestsButton;
 @synthesize showListButton = _showListButton;
+@synthesize monitoredRegion = _monitoredRegion;
+- (void)setMonitoredRegion:(CLRegion *)monitoredRegion {
+    if (_monitoredRegion != monitoredRegion) {
+        [self.locationManager stopMonitoringForRegion:_monitoredRegion];
+        _monitoredRegion = monitoredRegion;
+        [self.locationManager startMonitoringForRegion:_monitoredRegion];
+    }    
+}
+
+- (CLLocationManager *)locationManager {
+    TCAppDelegate *appDelegate = (TCAppDelegate *)[[UIApplication sharedApplication] delegate];
+    return appDelegate.locationManager;
+}
 
 #pragma mark - Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.loadingLabel setAlpha:1.0];
     
-    // User activities
-    [[TCServerClient sharedTchillrServerClient]
-	 startUserActivitiesRequestForDays:1
-	 success:^(NSArray *activitiesArray) {
-		 self.activities = activitiesArray;
-		 [self pinLocations];
-		 TCLocationAnnotation * annotation = [self annotationForIndex:0];
-		 [self.mapView selectAnnotation:annotation animated:NO];
-		 [self.collectionView reloadData];
-         [UIView animateWithDuration:0.2
-                          animations:^{
-                              [self.loadingLabel setAlpha:0.0];
-                          }];
-	 }
-	 failure:^(NSError *error) {
-		 NSLog(@"%@",[error description]);
-	 }];
-    // User interests
-    [[TCServerClient sharedTchillrServerClient] startInterestsRequestWithSuccess:^(NSArray *interestsArray) {
-        self.interests = interestsArray;
+    NSDate * now = [NSDate date];
+    NSDate *tomorrow = [now dateByAddingTimeInterval:60*60*24*1];
+    [[TCServerClient sharedTchillrServerClient] startUserActivitiesRequestFrom:now to:tomorrow success:^(NSArray *activitiesArray) {
+        self.activities = activitiesArray;
+        [self pinLocations];
+        TCLocationAnnotation * annotation = [self annotationForIndex:0];
+        [self.mapView selectAnnotation:annotation animated:NO];
+        [self.collectionView reloadData];
+        [UIView animateWithDuration:0.2
+                         animations:^{
+                             [self.loadingLabel setAlpha:0.0];
+                         }];
     } failure:^(NSError *error) {
-        NSLog(@"%@", [error description]);
+        NSLog(@"%@",[error description]);
     }];
-    
+
     [self.mapView setShowsUserLocation:YES];
 }
 
@@ -214,7 +222,6 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     TCActivityCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCActivityCollectionViewCell class]) forIndexPath:indexPath];
     TCActivity * activity = [self activityAtIndex:indexPath.row];
-	
 	cell.activityDayLabel.text = activity.formattedDay;
 	cell.activityTimeLabel.text = activity.formattedTime;
 	cell.activityTimeLabel.text = activity.formattedTime;
@@ -239,6 +246,14 @@
 		TCActivityDetailViewController * activityDetailViewController = (TCActivityDetailViewController *) segue.destinationViewController;
 		[activityDetailViewController setActivity:activity];
         [activityDetailViewController setInterests:self.interests];
+        
+        // Start monitoring region for current Activity
+        CLLocationCoordinate2D activityCoordinate = CLLocationCoordinate2DMake(activity.latitude,activity.longitude);
+        if (CLLocationCoordinate2DIsValid(activityCoordinate)) {
+            CLRegion *region = [[CLRegion alloc] initCircularRegionWithCenter:activityCoordinate radius:250.0 identifier:[NSString stringWithFormat:@"%@",activity.identifier]];
+            [self setMonitoredRegion:region];
+        }
+        NSLog(@"%@",self.locationManager.monitoredRegions);
 	}
 	else if ([segue.identifier isEqualToString:kshowTastesSegueIdentifier]) {
 		[segue.destinationViewController setDelegate:self];

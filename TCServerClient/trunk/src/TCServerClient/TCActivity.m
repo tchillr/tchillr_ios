@@ -47,7 +47,7 @@
 
 - (NSArray *)occurences {
     NSArray * occurencesDictionnaries = (NSArray *)[self.jsonDictionary objectForKey:kActivityOccurencesKey];
-    if ([occurencesDictionnaries isKindOfClass:[NSDictionary class]]) {
+    if ([occurencesDictionnaries isKindOfClass:[NSArray class]]) {
         NSMutableArray * occurences = [NSMutableArray array];
         for (NSDictionary * dict in occurencesDictionnaries) {
             TCOccurence * occurence = [[TCOccurence alloc] initWithJsonDictionary:dict];

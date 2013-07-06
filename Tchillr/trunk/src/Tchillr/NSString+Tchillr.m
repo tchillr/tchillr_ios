@@ -10,6 +10,7 @@
 
 @implementation NSString (Tchillr)
 
+
 - (NSString *)stringWithCapitalizedFirstWord {
     NSString * stringWithCapitalizedFirstWord = nil;
     if ([self length] > 0) {

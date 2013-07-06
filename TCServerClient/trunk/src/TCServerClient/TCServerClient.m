@@ -13,6 +13,7 @@
 #import "TCTag.h"
 #import "TCServerConstants.h"
 #import "TCUser.h"
+#import "NSDate+Tchillr.h"
 
 @implementation TCServerClient
 
@@ -61,10 +62,10 @@ static TCServerClient *sharedTchillrServerClient;
     [operation start];
 }
 
-#pragma mark User Activities
-- (void)startUserActivitiesRequestForDays:(NSUInteger)days success:(void (^)(NSArray * activitiesArray))success failure:(void (^)(NSError *error))failure {
+#pragma mark User Activities with from/to dates
+- (void)startUserActivitiesRequestFrom:(NSDate *) fromDate to:(NSDate *) toDate success:(void (^)(NSArray * activitiesArray))success failure:(void (^)(NSError *error))failure{
     NSLog(@"User UUID %@",[TCUser identifier]);
-    NSString * urlString = kTCServerServiceURL(kTCServerUserActivities([TCUser identifier], days));
+    NSString * urlString = kTCServerServiceURL(kTCServerUserActivities([TCUser identifier], [fromDate formattedDate], [toDate formattedDate]));
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     NSLog(@"Request : %@", [[request URL] absoluteString]);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
