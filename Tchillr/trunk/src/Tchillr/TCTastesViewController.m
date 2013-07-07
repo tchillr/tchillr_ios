@@ -10,11 +10,14 @@
 
 // Views & Controls
 #import "TCTastesCollectionViewCell.h"
+#import "TCSelectedTagsView.h"
 
 // Categories
 #import "UIColor+Tchillr.h"
 
+// Models
 #import "TCServerClient.h"
+#import "TCTag.h"
 
 #define kOpenedCollectionCellWidth 174
 
@@ -23,6 +26,7 @@
 @property (nonatomic, retain) NSMutableArray *openedCellsIndex;
 @property (nonatomic, retain) NSArray * themes;
 @property (nonatomic, weak) IBOutlet UICollectionView * collectionView;
+@property (nonatomic, strong) NSMutableArray *selectedTagsIdentifiers;
 
 - (IBAction)validateTastes:(id)sender;
 
@@ -38,6 +42,14 @@
     return _openedCellsIndex;
 }
 
+@synthesize selectedTagsIdentifiers = _selectedTagsIdentifiers;
+- (NSMutableArray *)selectedTagsIdentifiers {
+    if(!_selectedTagsIdentifiers) {
+        _selectedTagsIdentifiers = [[NSMutableArray alloc] init];
+    }
+    return _selectedTagsIdentifiers;
+}
+
 #pragma mark View Lifecycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -50,7 +62,14 @@
     [super viewDidLoad];
     [[TCServerClient sharedTchillrServerClient] startThemesRequestWithSuccess:^(NSArray *themeTagsArray) {
         self.themes = themeTagsArray;
-        [self.collectionView reloadData];
+        [[TCServerClient sharedTchillrServerClient] startInterestsRequestWithSuccess:^(NSArray *interestsArray) {
+            for (TCTag *tag in interestsArray) {
+                [self.selectedTagsIdentifiers addObject:tag.identifier];
+            }
+            [self.collectionView reloadData];
+        } failure:^(NSError *error) {
+            NSLog(@"%@",[error description]);
+        }];
     } failure:^(NSError *error) {
         NSLog(@"%@",[error description]);
     }];
@@ -67,7 +86,16 @@
 
 #pragma mark Tastes Validation
 - (IBAction)validateTastes:(id)sender {
-	[self.delegate tastesViewControllerDidFinishEditing:self];
+    [[TCServerClient sharedTchillrServerClient] startRefreshInterestRequestWithInterestsList:self.selectedTagsIdentifiers
+                                                                                    success:^(NSArray *interestsArray) {
+                                                                                        [self.delegate tastesViewControllerDidFinishEditing:self];
+                                                                                    }
+                                                                                    failure:^(NSError *error) {
+                                                                                        NSString * message = [NSString stringWithFormat:NSLocalizedString(@"TASTES_PICKER_UPDATE_INTERESTS_FAILURE", nil)];
+                                                                                        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Tchillr" message:message delegate:self cancelButtonTitle:@"Mince !" otherButtonTitles:nil];
+                                                                                        [alert show];
+                                                                                    }];
+	
 }
 
 #pragma mark UICollectionViewDelegate methods
@@ -88,12 +116,20 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TCTastesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCTastesCollectionViewCell class]) forIndexPath:indexPath];
     
+    TCTheme *theme = [self themeAtIndex:indexPath.row];
+    
     cell.themesModelDelegate = self;
     cell.themeIndex = indexPath.row;
     cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.95] objectAtIndex:indexPath.row];
-    cell.titleLabel.text = [[self themeAtIndex:indexPath.row].title uppercaseString];
+    cell.titleLabel.text = [theme.title uppercaseString];
     cell.open = [self.openedCellsIndex containsObject:[NSNumber numberWithInteger:indexPath.row]];
     cell.delegate = self;
+    cell.selectedTagsIdentifiers = self.selectedTagsIdentifiers;
+    
+    NSIndexSet *setOfTags =[theme.tags indexesOfObjectsPassingTest:^BOOL(TCTag *tag, NSUInteger idx, BOOL *stop) {
+        return [self.selectedTagsIdentifiers containsObject:tag.identifier];
+    }];
+    [cell.selectedTagsView setNumberOfSelectedTags:setOfTags.count];
     
     [cell.tastesTableView reloadData];
     
@@ -114,8 +150,19 @@
 
 #pragma mark TCTastesCollectionViewCellDelegate methods
 
-- (void)tastesCollectionViewCell:(TCTastesTagsTableViewCell *)cell didSelectTagAtIndex:(NSInteger)index {
-    NSLog(@"TCTastesTagsTableViewCell tag %d has been tapped",index);
+- (void)tastesCollectionViewCell:(TCTastesCollectionViewCell *)cell didSelectTagAtIndex:(NSInteger)index {
+    TCTheme *theme = [self themeAtIndex:[self.collectionView indexPathForCell:cell].row];
+    NSNumber *tagId = [theme tagAtIndex:index].identifier;
+    
+    BOOL isTagAlreadySelected = [self.selectedTagsIdentifiers containsObject:tagId];
+    if(isTagAlreadySelected) {
+        [self.selectedTagsIdentifiers removeObject:tagId];
+    }
+    else {
+        [self.selectedTagsIdentifiers addObject:tagId];
+    }
+    
+    [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:[self.collectionView indexPathForCell:cell]]];
 }
 
 @end

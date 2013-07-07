@@ -49,6 +49,8 @@
     return _selectedTagsView;
 }
 
+@synthesize selectedTagsIdentifiers = _selectedTagsIdentifiers;
+
 - (id)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
 	if (self) {
@@ -76,7 +78,6 @@
 	[self.titleLabel setHighlightedTextColor:[UIColor tcWhite]];
     self.tastesTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.open = NO;
-    [self.selectedTagsView setNumberOfSelectedTags:arc4random()%7+1];
 }
 
 -(TCTheme*)themeAtIndex:(NSInteger)index{
@@ -88,17 +89,19 @@
     TCTastesTagsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCTastesTagsTableViewCell class]) forIndexPath:indexPath];
 
     TCTheme * theme = [self themeAtIndex:self.themeIndex];
-    cell.tagLabel.text = [theme tagAtIndex:indexPath.row].title;
+    TCTag *currenTag = [theme tagAtIndex:indexPath.row];
+    
+    cell.tagLabel.text = currenTag.title;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell.heartButton setUserInteractionEnabled:NO];
+    [cell.heartButton setHighlighted:[self.selectedTagsIdentifiers containsObject:currenTag.identifier]];
     
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if([self.delegate respondsToSelector:@selector(tastesCollectionViewCell:didSelectTagAtIndex:)]) {
-        [self.delegate tastesCollectionViewCell:(TCTastesTagsTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] didSelectTagAtIndex:indexPath.row];
+        [self.delegate tastesCollectionViewCell:self didSelectTagAtIndex:indexPath.row];
     }
-    //[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 40;
@@ -111,6 +114,5 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
-
 
 @end

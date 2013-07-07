@@ -131,10 +131,38 @@ static TCServerClient *sharedTchillrServerClient;
     [operation start];
 }
 #pragma mark Add/remove User interest
+- (NSMutableURLRequest *)refreshInterestRequestWithParameters:(NSDictionary *)parameters {
+    NSString * path = kTCServerServiceURL(kTCServerUserInterests([TCUser identifier]));
+    NSLog(@"User UUID %@",[TCUser identifier]);
+    return [self requestWithMethod:@"PUT" path:path parameters:parameters];
+}
+
 - (NSMutableURLRequest *)updateInterestRequestWithParameters:(NSDictionary *)parameters {
     NSString * path = kTCServerServiceURL(kTCServerUserInterests([TCUser identifier]));
     NSLog(@"User UUID %@",[TCUser identifier]);
     return [self requestWithMethod:@"POST" path:path parameters:parameters];
+}
+
+- (void)startRefreshInterestRequestWithInterestsList:(NSArray*) interestsList success:(void (^)(NSArray * interestsArray))success failure:(void (^)(NSError *error))failure {
+    NSDictionary * parameters = [NSDictionary dictionaryWithObject:interestsList forKey:KTCInterestsIdentifierListKey];
+    NSURLRequest *request = [self refreshInterestRequestWithParameters:parameters];
+    NSLog(@"Request : %@", [[request URL] absoluteString]);
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                            NSArray *resultArray = [self getDataFromJSON:(NSDictionary *) JSON];
+                                                                                            NSMutableArray * tags = [NSMutableArray array];
+                                                                                            [resultArray enumerateObjectsUsingBlock:^(id obj,NSUInteger idx, BOOL *stop){
+                                                                                                TCTag * tag = [[TCTag alloc] initWithJsonDictionary:obj];
+                                                                                                [tags addObject:tag];
+                                                                                            }];
+                                                                                            success(tags);
+                                                                                        }failure:^(NSURLRequest *request, NSHTTPURLResponse *response,
+                                                                                                   NSError *error, id JSON) {
+                                                                                            failure(error);
+                                                                                        }
+                                         ];
+    
+    [operation start];
 }
 
 - (void)startUpdateInterestRequestWithInterestsList:(NSArray*) interestsList success:(void (^)(NSArray * interestsArray))success failure:(void (^)(NSError *error))failure {
