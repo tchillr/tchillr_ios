@@ -87,11 +87,16 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TCTastesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCTastesCollectionViewCell class]) forIndexPath:indexPath];
+    
     cell.themesModelDelegate = self;
     cell.themeIndex = indexPath.row;
     cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.95] objectAtIndex:indexPath.row];
     cell.titleLabel.text = [[self themeAtIndex:indexPath.row].title uppercaseString];
     cell.open = [self.openedCellsIndex containsObject:[NSNumber numberWithInteger:indexPath.row]];
+    cell.delegate = self;
+    
+    [cell.tastesTableView reloadData];
+    
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -105,6 +110,12 @@
         [self.openedCellsIndex removeObject:[NSNumber numberWithInteger:indexPath.row]];
     }
     [collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+}
+
+#pragma mark TCTastesCollectionViewCellDelegate methods
+
+- (void)tastesCollectionViewCell:(TCTastesTagsTableViewCell *)cell didSelectTagAtIndex:(NSInteger)index {
+    NSLog(@"TCTastesTagsTableViewCell tag %d has been tapped",index);
 }
 
 @end

@@ -86,21 +86,27 @@
 #pragma mark - Tags TableView Delegate methods
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TCTastesTagsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCTastesTagsTableViewCell class]) forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.contentView.backgroundColor = [UIColor clearColor];
+
     TCTheme * theme = [self themeAtIndex:self.themeIndex];
     cell.tagLabel.text = [theme tagAtIndex:indexPath.row].title;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell.heartButton setUserInteractionEnabled:NO];
+    
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if([self.delegate respondsToSelector:@selector(tastesCollectionViewCell:didSelectTagAtIndex:)]) {
+        [self.delegate tastesCollectionViewCell:(TCTastesTagsTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] didSelectTagAtIndex:indexPath.row];
+    }
+    //[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 40;
 }
+#define kMaxNUmberOFTags 7
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    TCTheme * theme = [self themeAtIndex:self.themeIndex];    
-    return [theme numberOfTags];
+    TCTheme * theme = [self themeAtIndex:self.themeIndex];
+    return [theme numberOfTags]>kMaxNUmberOFTags?kMaxNUmberOFTags:[theme numberOfTags];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;

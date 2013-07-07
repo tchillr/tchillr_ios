@@ -10,6 +10,13 @@
 #import "TCThemesModelDelegate.h"
 
 @class TCSelectedTagsView;
+@class TCTastesTagsTableViewCell;
+
+@protocol TCTastesCollectionViewCellDelegate <NSObject>
+
+- (void)tastesCollectionViewCell:(TCTastesTagsTableViewCell *)cell didSelectTagAtIndex:(NSInteger)index;
+
+@end
 
 @interface TCTastesCollectionViewCell : UICollectionViewCell <UITableViewDelegate, UITableViewDataSource>
 
@@ -19,5 +26,6 @@
 @property (retain, nonatomic) IBOutlet TCSelectedTagsView *selectedTagsView;
 @property (nonatomic, assign) id<TCThemesModelDelegate> themesModelDelegate;
 @property (nonatomic, assign) NSInteger themeIndex;
+@property (nonatomic, assign) id<TCTastesCollectionViewCellDelegate> delegate;
 
 @end
