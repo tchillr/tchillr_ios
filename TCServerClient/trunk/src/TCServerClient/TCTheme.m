@@ -46,8 +46,7 @@
         tag = [self.tags objectAtIndex:index];
     }
     return tag;
-}
-
+} 
 
 - (NSInteger)numberOfTags {
     return [self.tags count];
