@@ -11,7 +11,7 @@
 
 #define kThemeTitleKey @"title"
 #define kThemeIdentifierKey @"identifier"
-#define kThemeTagsKey @"tags"
+#define kThemeTagsKey @"Tags"
 
 
 @implementation TCTheme
@@ -41,8 +41,16 @@
 
 #pragma mark Tag Access 
 - (TCTag *)tagAtIndex:(NSInteger)index{
-    return [self.tags objectAtIndex:index];
+    TCTag * tag = nil;
+    if ([self numberOfTags]) {
+        tag = [self.tags objectAtIndex:index];
+    }
+    return tag;
 }
 
+
+- (NSInteger)numberOfTags {
+    return [self.tags count];
+}
 
 @end

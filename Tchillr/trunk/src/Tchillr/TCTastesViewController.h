@@ -7,6 +7,7 @@
 //
 
 #import "TCViewController.h"
+#import "TCThemesModelDelegate.h"
 
 @class TCTastesViewController;
 @protocol TCTastesViewControllerDelegate <NSObject>
@@ -15,7 +16,7 @@
 
 @end
 
-@interface TCTastesViewController : TCViewController
+@interface TCTastesViewController : TCViewController<TCThemesModelDelegate>
 
 @property (weak, nonatomic) IBOutlet id<TCTastesViewControllerDelegate> delegate;
 

@@ -15,6 +15,9 @@
 // Categories
 #import "UIColor+Tchillr.h"
 
+#import "TCTheme.h"
+#import "TCTag.h"
+
 @interface TCTastesCollectionViewCell ()
 
 #pragma mark Setup
@@ -76,14 +79,17 @@
     [self.selectedTagsView setNumberOfSelectedTags:arc4random()%7+1];
 }
 
+-(TCTheme*)themeAtIndex:(NSInteger)index{
+    return [self.themesModelDelegate themeAtIndex:index];
+}
+
 #pragma mark - Tags TableView Delegate methods
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TCTastesTagsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCTastesTagsTableViewCell class]) forIndexPath:indexPath];
-    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.contentView.backgroundColor = [UIColor clearColor];
-    cell.tagLabel.text = @"test";
-
+    TCTheme * theme = [self themeAtIndex:self.themeIndex];
+    cell.tagLabel.text = [theme tagAtIndex:indexPath.row].title;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -93,7 +99,8 @@
     return 40;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 7;
+    TCTheme * theme = [self themeAtIndex:self.themeIndex];    
+    return [theme numberOfTags];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;

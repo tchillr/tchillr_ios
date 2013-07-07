@@ -172,6 +172,7 @@
 		05A88A7F1781D362002DFE94 /* TCMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCMedia.m; path = ../../../TCServerClient/trunk/src/TCServerClient/TCMedia.m; sourceTree = "<group>"; };
 		05AB0FE1178996AE00F8ABD0 /* TCSelectedTagsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSelectedTagsView.h; sourceTree = "<group>"; };
 		05AB0FE2178996AE00F8ABD0 /* TCSelectedTagsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSelectedTagsView.m; sourceTree = "<group>"; };
+		05AB0FE41789C3CE00F8ABD0 /* TCThemesModelDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCThemesModelDelegate.h; sourceTree = "<group>"; };
 		05BDD603177AFC5800CF282E /* TCRouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRouteViewController.h; sourceTree = "<group>"; };
 		05BDD604177AFC5800CF282E /* TCRouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRouteViewController.m; sourceTree = "<group>"; };
 		05BDD609177B9F6F00CF282E /* TCActivityDetailResizableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCActivityDetailResizableCell.h; sourceTree = "<group>"; };
@@ -408,6 +409,7 @@
 				0594D6C31771E02E00744BF3 /* Views */,
 				0594D6C21771E02400744BF3 /* Controllers */,
 				053AC2F41771E54500CD8C3F /* TCConstants.h */,
+				05AB0FE41789C3CE00F8ABD0 /* TCThemesModelDelegate.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";

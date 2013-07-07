@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCThemesModelDelegate.h"
 
 @class TCSelectedTagsView;
 
@@ -16,5 +17,7 @@
 @property (assign, nonatomic) IBOutlet UITableView *tastesTableView;
 @property (nonatomic, assign, getter = isOpen) BOOL open;
 @property (retain, nonatomic) IBOutlet TCSelectedTagsView *selectedTagsView;
+@property (nonatomic, assign) id<TCThemesModelDelegate> themesModelDelegate;
+@property (nonatomic, assign) NSInteger themeIndex;
 
 @end

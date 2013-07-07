@@ -87,13 +87,11 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TCTastesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCTastesCollectionViewCell class]) forIndexPath:indexPath];
-
+    cell.themesModelDelegate = self;
+    cell.themeIndex = indexPath.row;
     cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.95] objectAtIndex:indexPath.row];
-    cell.titleLabel.text = [self themeAtIndex:indexPath.row].title;
-	
+    cell.titleLabel.text = [[self themeAtIndex:indexPath.row].title uppercaseString];
     cell.open = [self.openedCellsIndex containsObject:[NSNumber numberWithInteger:indexPath.row]];
-	cell.titleLabel.text = [cell.titleLabel.text uppercaseString];
-	
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {

@@ -20,4 +20,5 @@
 #pragma mark Tag Access
 - (TCTag *)tagAtIndex:(NSInteger)index;
 
+- (NSInteger)numberOfTags;
 @end
