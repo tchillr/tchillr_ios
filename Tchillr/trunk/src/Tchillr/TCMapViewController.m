@@ -267,12 +267,15 @@
 								 [self reloadData];
 							 }];
 }
-- (void)reloadData {
-    
+
 #warning Ici, on a besoin d'une méthode simple pour recharger toute la vue (mapView + position, collectionView)
+
+- (void)reloadData {
+    [self pinLocations];
+    [self.collectionView reloadData];
 }
 
-#pragma mark 
+#pragma mark
 - (NSString *)distanceToAnnotation:(id<MKAnnotation>)annotation {
     CLLocation *pinLocation = [[CLLocation alloc]
                                initWithLatitude:annotation.coordinate.latitude
