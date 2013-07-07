@@ -72,10 +72,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.loadingLabel setAlpha:1.0];
-    
+#warning remove this code 
     NSDate * now = [NSDate date];
     NSDate *tomorrow = [now dateByAddingTimeInterval:60*60*24*1];
-    [[TCServerClient sharedTchillrServerClient] startUserActivitiesRequestFrom:now to:tomorrow success:^(NSArray *activitiesArray) {
+    
+    NSDate * finaleDate = [now dateByAddingTimeInterval:60*60*24*2];
+    NSDate * finaleDatePlusUn = [finaleDate dateByAddingTimeInterval:60*60*24*1];
+    
+    
+    [[TCServerClient sharedTchillrServerClient] startUserActivitiesRequestFrom:finaleDate to:finaleDatePlusUn success:^(NSArray *activitiesArray) {
         self.activities = activitiesArray;
         [self pinLocations];
         TCLocationAnnotation * annotation = [self annotationForIndex:0];
