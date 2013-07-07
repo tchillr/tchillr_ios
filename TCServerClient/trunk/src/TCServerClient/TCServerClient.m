@@ -137,8 +137,8 @@ static TCServerClient *sharedTchillrServerClient;
     return [self requestWithMethod:@"POST" path:path parameters:parameters];
 }
 
-- (void)startUpdateInterestRequestWithIdentifier:(NSNumber*) interestIdentifier success:(void (^)(NSArray * interestsArray))success failure:(void (^)(NSError *error))failure {
-    NSDictionary * parameters = [NSDictionary dictionaryWithObject:interestIdentifier forKey:KTCInterestIdentifierKey];
+- (void)startUpdateInterestRequestWithInterestsList:(NSArray*) interestsList success:(void (^)(NSArray * interestsArray))success failure:(void (^)(NSError *error))failure {
+    NSDictionary * parameters = [NSDictionary dictionaryWithObject:interestsList forKey:KTCInterestsIdentifierListKey];
     NSURLRequest *request = [self updateInterestRequestWithParameters:parameters];
     NSLog(@"Request : %@", [[request URL] absoluteString]);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request

@@ -207,7 +207,9 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (collectionView.tag == kTCActivityTagsCollectionViewTag) {
         TCTag * tag = [self.activity tagAtIndex:indexPath.row];
-        [[TCServerClient sharedTchillrServerClient] startUpdateInterestRequestWithIdentifier:tag.identifier success:^(NSArray *interestsArray) {
+        NSArray * array = [NSArray arrayWithObject:tag.identifier];
+        
+        [[TCServerClient sharedTchillrServerClient] startUpdateInterestRequestWithInterestsList:array success:^(NSArray *interestsArray) {
             self.interests = interestsArray;
             [collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexPath.row inSection:0]]];
         } failure:^(NSError *error) {

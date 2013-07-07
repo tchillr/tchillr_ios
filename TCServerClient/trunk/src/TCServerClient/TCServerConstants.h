@@ -42,7 +42,7 @@
 #define kPostInterestsResult @"PostInterestsResult"
 #define kTCUserActivitiesActivitiesKey @"GetUserActivitiesForDaysResult"
 #define kGetTagsResult @"GetTagsResult"
-#define KTCInterestIdentifierKey @"identifier"
+#define KTCInterestsIdentifierListKey @"identifiers"
 #define KTCDataKey @"data"
 
 
