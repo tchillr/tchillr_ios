@@ -14,11 +14,15 @@
 // Categories
 #import "UIColor+Tchillr.h"
 
+#import "TCServerClient.h"
+
 #define kOpenedCollectionCellWidth 174
 
 @interface TCTastesViewController ()
 
 @property (nonatomic, retain) NSMutableArray *openedCellsIndex;
+@property (nonatomic, retain) NSArray * themes;
+@property (nonatomic, weak) IBOutlet UICollectionView * collectionView;
 
 - (IBAction)validateTastes:(id)sender;
 
@@ -44,10 +48,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[TCServerClient sharedTchillrServerClient] startThemesRequestWithSuccess:^(NSArray *themeTagsArray) {
+        self.themes = themeTagsArray;
+        [self.collectionView reloadData];
+    } failure:^(NSError *error) {
+        NSLog(@"%@",[error description]);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark ThemesAccess
+-(TCTheme *)themeAtIndex:(NSInteger)index{
+    return [self.themes objectAtIndex:index];
 }
 
 #pragma mark Tastes Validation
@@ -57,7 +72,7 @@
 
 #pragma mark UICollectionViewDelegate methods
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 5;
+    return [self.themes count];
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger openedCellIndex = [self.openedCellsIndex indexOfObjectPassingTest:^BOOL(NSNumber *index, NSUInteger idx, BOOL *stop) {
@@ -73,28 +88,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TCTastesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCTastesCollectionViewCell class]) forIndexPath:indexPath];
 
-	switch (indexPath.row) {
-		case 0:
-			cell.titleLabel.text = @"Cinéma";
-			cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.95] objectAtIndex:2];
-			break;
-		case 1:
-			cell.titleLabel.text = @"Musique";
-			cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.95] objectAtIndex:0];
-			break;
-		case 2:
-			cell.titleLabel.text = @"Nature";
-			cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.95] objectAtIndex:5];
-			break;
-		case 3:
-			cell.titleLabel.text = @"Expos";
-			cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.95] objectAtIndex:4];
-			break;
-        case 4:
-			cell.titleLabel.text = @"Cinema";
-			cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.95] objectAtIndex:1];
-			break;
-	}
+    cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.95] objectAtIndex:indexPath.row];
+    cell.titleLabel.text = [self themeAtIndex:indexPath.row].title;
 	
     cell.open = [self.openedCellsIndex containsObject:[NSNumber numberWithInteger:indexPath.row]];
 	cell.titleLabel.text = [cell.titleLabel.text uppercaseString];

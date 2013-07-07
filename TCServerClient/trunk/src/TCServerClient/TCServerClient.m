@@ -66,6 +66,7 @@ static TCServerClient *sharedTchillrServerClient;
 - (void)startUserActivitiesRequestFrom:(NSDate *) fromDate to:(NSDate *) toDate success:(void (^)(NSArray * activitiesArray))success failure:(void (^)(NSError *error))failure{
     NSLog(@"User UUID %@",[TCUser identifier]);
     NSString * urlString = kTCServerServiceURL(kTCServerUserActivities([TCUser identifier], [fromDate formattedDate], [toDate formattedDate]));
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     NSLog(@"Request : %@", [[request URL] absoluteString]);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
@@ -92,10 +93,9 @@ static TCServerClient *sharedTchillrServerClient;
     NSLog(@"Request : %@", [[request URL] absoluteString]);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                                                            NSDictionary *jsonDict = (NSDictionary *) JSON;
+                                                                                            NSArray *resultArray = [self getDataFromJSON:(NSDictionary *) JSON];
                                                                                             NSMutableArray * resultThemes = [[NSMutableArray alloc] init];
-                                                                                            NSArray *themes = [jsonDict objectForKey:kTCAllThemesKey];
-                                                                                            [themes enumerateObjectsUsingBlock:^(id obj,NSUInteger idx, BOOL *stop){
+                                                                                            [resultArray enumerateObjectsUsingBlock:^(id obj,NSUInteger idx, BOOL *stop){
                                                                                                 TCTheme * theme = [[TCTheme alloc] initWithJsonDictionary:obj];
                                                                                                 [resultThemes addObject:theme];
                                                                                             }];

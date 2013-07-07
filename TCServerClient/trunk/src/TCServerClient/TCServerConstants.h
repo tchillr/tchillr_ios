@@ -37,7 +37,7 @@
 /* JSON Result Parsing Keys */
 #define kTCAllActivitiesKey @"GetFromDBAllActivitiesResult"
 #define kTCAllCategoriesKey @"GetDBCategoriesResult"
-#define kTCAllThemesKey @"GetThemesResult"
+
 #define kUserInterestsResult @"GetInterestsResult"
 #define kPostInterestsResult @"PostInterestsResult"
 #define kTCUserActivitiesActivitiesKey @"GetUserActivitiesForDaysResult"
