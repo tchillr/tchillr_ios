@@ -13,6 +13,7 @@
 #import "TCTag.h"
 #import "TCServerConstants.h"
 #import "TCUser.h"
+#import "NSDate+Tchillr.h"
 
 @implementation TCServerClient
 
@@ -61,10 +62,11 @@ static TCServerClient *sharedTchillrServerClient;
     [operation start];
 }
 
-#pragma mark User Activities
-- (void)startUserActivitiesRequestForDays:(NSUInteger)days success:(void (^)(NSArray * activitiesArray))success failure:(void (^)(NSError *error))failure {
+#pragma mark User Activities with from/to dates
+- (void)startUserActivitiesRequestFrom:(NSDate *) fromDate to:(NSDate *) toDate success:(void (^)(NSArray * activitiesArray))success failure:(void (^)(NSError *error))failure{
     NSLog(@"User UUID %@",[TCUser identifier]);
-    NSString * urlString = kTCServerServiceURL(kTCServerUserActivities([TCUser identifier], days));
+    NSString * urlString = kTCServerServiceURL(kTCServerUserActivities([TCUser identifier], [fromDate formattedDate], [toDate formattedDate]));
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     NSLog(@"Request : %@", [[request URL] absoluteString]);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
@@ -91,10 +93,9 @@ static TCServerClient *sharedTchillrServerClient;
     NSLog(@"Request : %@", [[request URL] absoluteString]);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                                                            NSDictionary *jsonDict = (NSDictionary *) JSON;
+                                                                                            NSArray *resultArray = [self getDataFromJSON:(NSDictionary *) JSON];
                                                                                             NSMutableArray * resultThemes = [[NSMutableArray alloc] init];
-                                                                                            NSArray *themes = [jsonDict objectForKey:kTCAllThemesKey];
-                                                                                            [themes enumerateObjectsUsingBlock:^(id obj,NSUInteger idx, BOOL *stop){
+                                                                                            [resultArray enumerateObjectsUsingBlock:^(id obj,NSUInteger idx, BOOL *stop){
                                                                                                 TCTheme * theme = [[TCTheme alloc] initWithJsonDictionary:obj];
                                                                                                 [resultThemes addObject:theme];
                                                                                             }];
@@ -130,14 +131,42 @@ static TCServerClient *sharedTchillrServerClient;
     [operation start];
 }
 #pragma mark Add/remove User interest
+- (NSMutableURLRequest *)refreshInterestRequestWithParameters:(NSDictionary *)parameters {
+    NSString * path = kTCServerServiceURL(kTCServerUserInterests([TCUser identifier]));
+    NSLog(@"User UUID %@",[TCUser identifier]);
+    return [self requestWithMethod:@"PUT" path:path parameters:parameters];
+}
+
 - (NSMutableURLRequest *)updateInterestRequestWithParameters:(NSDictionary *)parameters {
     NSString * path = kTCServerServiceURL(kTCServerUserInterests([TCUser identifier]));
     NSLog(@"User UUID %@",[TCUser identifier]);
     return [self requestWithMethod:@"POST" path:path parameters:parameters];
 }
 
-- (void)startUpdateInterestRequestWithIdentifier:(NSNumber*) interestIdentifier success:(void (^)(NSArray * interestsArray))success failure:(void (^)(NSError *error))failure {
-    NSDictionary * parameters = [NSDictionary dictionaryWithObject:interestIdentifier forKey:KTCInterestIdentifierKey];
+- (void)startRefreshInterestRequestWithInterestsList:(NSArray*) interestsList success:(void (^)(NSArray * interestsArray))success failure:(void (^)(NSError *error))failure {
+    NSDictionary * parameters = [NSDictionary dictionaryWithObject:interestsList forKey:KTCInterestsIdentifierListKey];
+    NSURLRequest *request = [self refreshInterestRequestWithParameters:parameters];
+    NSLog(@"Request : %@", [[request URL] absoluteString]);
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                            NSArray *resultArray = [self getDataFromJSON:(NSDictionary *) JSON];
+                                                                                            NSMutableArray * tags = [NSMutableArray array];
+                                                                                            [resultArray enumerateObjectsUsingBlock:^(id obj,NSUInteger idx, BOOL *stop){
+                                                                                                TCTag * tag = [[TCTag alloc] initWithJsonDictionary:obj];
+                                                                                                [tags addObject:tag];
+                                                                                            }];
+                                                                                            success(tags);
+                                                                                        }failure:^(NSURLRequest *request, NSHTTPURLResponse *response,
+                                                                                                   NSError *error, id JSON) {
+                                                                                            failure(error);
+                                                                                        }
+                                         ];
+    
+    [operation start];
+}
+
+- (void)startUpdateInterestRequestWithInterestsList:(NSArray*) interestsList success:(void (^)(NSArray * interestsArray))success failure:(void (^)(NSError *error))failure {
+    NSDictionary * parameters = [NSDictionary dictionaryWithObject:interestsList forKey:KTCInterestsIdentifierListKey];
     NSURLRequest *request = [self updateInterestRequestWithParameters:parameters];
     NSLog(@"Request : %@", [[request URL] absoluteString]);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request

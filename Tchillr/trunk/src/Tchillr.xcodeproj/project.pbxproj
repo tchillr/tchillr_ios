@@ -25,6 +25,7 @@
 		05495875178462EF00DE67C9 /* TCWeatherClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 05495874178462EF00DE67C9 /* TCWeatherClient.m */; };
 		0549587817858E1600DE67C9 /* NSString+Tchillr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0549587717858E1600DE67C9 /* NSString+Tchillr.m */; };
 		0549587B1785954F00DE67C9 /* NSString+TCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0549587A1785954F00DE67C9 /* NSString+TCAdditions.m */; };
+		0549587E17882E4E00DE67C9 /* NSDate+Tchillr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0549587D17882E4E00DE67C9 /* NSDate+Tchillr.m */; };
 		0594D6961771DD6E00744BF3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0594D6951771DD6E00744BF3 /* UIKit.framework */; };
 		0594D6981771DD6E00744BF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0594D6971771DD6E00744BF3 /* Foundation.framework */; };
 		0594D69A1771DD6E00744BF3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0594D6991771DD6E00744BF3 /* CoreGraphics.framework */; };
@@ -49,6 +50,7 @@
 		05A5049F177E251600083CEF /* btn_heart_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A50499177E251600083CEF /* btn_heart_selected@2x.png */; };
 		05A889891781B7DA002DFE94 /* TCActivityGalleryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A889881781B7DA002DFE94 /* TCActivityGalleryCollectionViewCell.m */; };
 		05A88A801781D362002DFE94 /* TCMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A88A7F1781D362002DFE94 /* TCMedia.m */; };
+		05AB0FE3178996AE00F8ABD0 /* TCSelectedTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AB0FE2178996AE00F8ABD0 /* TCSelectedTagsView.m */; };
 		05BDD605177AFC5800CF282E /* TCRouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BDD604177AFC5800CF282E /* TCRouteViewController.m */; };
 		05BDD60B177B9F6F00CF282E /* TCActivityDetailResizableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BDD60A177B9F6F00CF282E /* TCActivityDetailResizableCell.m */; };
 		05BDD60E177BA54600CF282E /* UILabel+Tchillr.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BDD60D177BA54600CF282E /* UILabel+Tchillr.m */; };
@@ -127,6 +129,7 @@
 		5FA76F8D1784756800B2180D /* TCTransportAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA76F8C1784756800B2180D /* TCTransportAnnotationView.m */; };
 		5FAA5A511781D1B2009ECDA4 /* TCRouteClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FAA5A501781D1B2009ECDA4 /* TCRouteClient.m */; };
 		5FAA5A541781D63E009ECDA4 /* NavitiaHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FAA5A531781D63E009ECDA4 /* NavitiaHTTPClient.m */; };
+		85C39AD01786185D00158D37 /* TCTastesTagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C39ACF1786185D00158D37 /* TCTastesTagsTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -164,6 +167,8 @@
 		0549587717858E1600DE67C9 /* NSString+Tchillr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Tchillr.m"; sourceTree = "<group>"; };
 		054958791785954F00DE67C9 /* NSString+TCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TCAdditions.h"; path = "../../../TCServerClient/trunk/src/TCServerClient/NSString+TCAdditions.h"; sourceTree = "<group>"; };
 		0549587A1785954F00DE67C9 /* NSString+TCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TCAdditions.m"; path = "../../../TCServerClient/trunk/src/TCServerClient/NSString+TCAdditions.m"; sourceTree = "<group>"; };
+		0549587C17882E4E00DE67C9 /* NSDate+Tchillr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Tchillr.h"; sourceTree = "<group>"; };
+		0549587D17882E4E00DE67C9 /* NSDate+Tchillr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Tchillr.m"; sourceTree = "<group>"; };
 		0594D6921771DD6E00744BF3 /* Tchillr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tchillr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0594D6951771DD6E00744BF3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0594D6971771DD6E00744BF3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -198,6 +203,9 @@
 		05A889881781B7DA002DFE94 /* TCActivityGalleryCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCActivityGalleryCollectionViewCell.m; sourceTree = "<group>"; };
 		05A88A7E1781D362002DFE94 /* TCMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCMedia.h; path = ../../../TCServerClient/trunk/src/TCServerClient/TCMedia.h; sourceTree = "<group>"; };
 		05A88A7F1781D362002DFE94 /* TCMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCMedia.m; path = ../../../TCServerClient/trunk/src/TCServerClient/TCMedia.m; sourceTree = "<group>"; };
+		05AB0FE1178996AE00F8ABD0 /* TCSelectedTagsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSelectedTagsView.h; sourceTree = "<group>"; };
+		05AB0FE2178996AE00F8ABD0 /* TCSelectedTagsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSelectedTagsView.m; sourceTree = "<group>"; };
+		05AB0FE41789C3CE00F8ABD0 /* TCThemesModelDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCThemesModelDelegate.h; sourceTree = "<group>"; };
 		05BDD603177AFC5800CF282E /* TCRouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRouteViewController.h; sourceTree = "<group>"; };
 		05BDD604177AFC5800CF282E /* TCRouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRouteViewController.m; sourceTree = "<group>"; };
 		05BDD609177B9F6F00CF282E /* TCActivityDetailResizableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCActivityDetailResizableCell.h; sourceTree = "<group>"; };
@@ -321,6 +329,8 @@
 		5FAA5A501781D1B2009ECDA4 /* TCRouteClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRouteClient.m; sourceTree = "<group>"; };
 		5FAA5A521781D63E009ECDA4 /* NavitiaHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavitiaHTTPClient.h; sourceTree = "<group>"; };
 		5FAA5A531781D63E009ECDA4 /* NavitiaHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavitiaHTTPClient.m; sourceTree = "<group>"; };
+		85C39ACE1786185D00158D37 /* TCTastesTagsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTastesTagsTableViewCell.h; sourceTree = "<group>"; };
+		85C39ACF1786185D00158D37 /* TCTastesTagsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTastesTagsTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -501,6 +511,7 @@
 				0594D6C31771E02E00744BF3 /* Views */,
 				0594D6C21771E02400744BF3 /* Controllers */,
 				053AC2F41771E54500CD8C3F /* TCConstants.h */,
+				05AB0FE41789C3CE00F8ABD0 /* TCThemesModelDelegate.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -526,12 +537,11 @@
 			isa = PBXGroup;
 			children = (
 				5FA76F8A1784752100B2180D /* Routes */,
+				85C39AC7178617C300158D37 /* Tastes */,
 				05EA91B61773249800DC2619 /* TCActivityCollectionViewCell.h */,
 				05EA91B71773249800DC2619 /* TCActivityCollectionViewCell.m */,
 				05EA921217792CF700DC2619 /* TCTriangleView.h */,
 				05EA921317792CF700DC2619 /* TCTriangleView.m */,
-				5F435EC91779D42400D99CA8 /* TCTastesCollectionViewCell.h */,
-				5F435ECA1779D42400D99CA8 /* TCTastesCollectionViewCell.m */,
 				05EA92361779F7FF00DC2619 /* Activity Detail */,
 				05EA92351779F7F100DC2619 /* Map */,
 				05BDD609177B9F6F00CF282E /* TCActivityDetailResizableCell.h */,
@@ -553,6 +563,8 @@
 				05A5048F177DE5BE00083CEF /* UICollectionViewCell+Tchillr.m */,
 				0549587617858E1600DE67C9 /* NSString+Tchillr.h */,
 				0549587717858E1600DE67C9 /* NSString+Tchillr.m */,
+				0549587C17882E4E00DE67C9 /* NSDate+Tchillr.h */,
+				0549587D17882E4E00DE67C9 /* NSDate+Tchillr.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -694,6 +706,19 @@
 				5F9A0EA3178472C5004A2FE1 /* TCTransportAnnotation.m */,
 			);
 			name = Routes;
+			sourceTree = "<group>";
+		};
+		85C39AC7178617C300158D37 /* Tastes */ = {
+			isa = PBXGroup;
+			children = (
+				05AB0FE1178996AE00F8ABD0 /* TCSelectedTagsView.h */,
+				05AB0FE2178996AE00F8ABD0 /* TCSelectedTagsView.m */,
+				5F435EC91779D42400D99CA8 /* TCTastesCollectionViewCell.h */,
+				5F435ECA1779D42400D99CA8 /* TCTastesCollectionViewCell.m */,
+				85C39ACE1786185D00158D37 /* TCTastesTagsTableViewCell.h */,
+				85C39ACF1786185D00158D37 /* TCTastesTagsTableViewCell.m */,
+			);
+			name = Tastes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -873,6 +898,9 @@
 				05495875178462EF00DE67C9 /* TCWeatherClient.m in Sources */,
 				0549587817858E1600DE67C9 /* NSString+Tchillr.m in Sources */,
 				0549587B1785954F00DE67C9 /* NSString+TCAdditions.m in Sources */,
+				85C39AD01786185D00158D37 /* TCTastesTagsTableViewCell.m in Sources */,
+				0549587E17882E4E00DE67C9 /* NSDate+Tchillr.m in Sources */,
+				05AB0FE3178996AE00F8ABD0 /* TCSelectedTagsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

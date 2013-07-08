@@ -10,16 +10,45 @@
 
 // Views & Controls
 #import "TCTastesCollectionViewCell.h"
+#import "TCSelectedTagsView.h"
 
 // Categories
 #import "UIColor+Tchillr.h"
 
+// Models
+#import "TCServerClient.h"
+#import "TCTag.h"
+
+#define kOpenedCollectionCellWidth 174
+
 @interface TCTastesViewController ()
 
+@property (nonatomic, retain) NSMutableArray *openedCellsIndex;
+@property (nonatomic, retain) NSArray * themes;
+@property (nonatomic, weak) IBOutlet UICollectionView * collectionView;
+@property (nonatomic, strong) NSMutableArray *selectedTagsIdentifiers;
+
 - (IBAction)validateTastes:(id)sender;
+
 @end
 
 @implementation TCTastesViewController
+
+@synthesize openedCellsIndex = _openedCellsIndex;
+- (NSArray *)openedCellsIndex {
+    if(!_openedCellsIndex) {
+        _openedCellsIndex = [[NSMutableArray alloc] init];
+    }
+    return _openedCellsIndex;
+}
+
+@synthesize selectedTagsIdentifiers = _selectedTagsIdentifiers;
+- (NSMutableArray *)selectedTagsIdentifiers {
+    if(!_selectedTagsIdentifiers) {
+        _selectedTagsIdentifiers = [[NSMutableArray alloc] init];
+    }
+    return _selectedTagsIdentifiers;
+}
 
 #pragma mark View Lifecycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -31,50 +60,109 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[TCServerClient sharedTchillrServerClient] startThemesRequestWithSuccess:^(NSArray *themeTagsArray) {
+        self.themes = themeTagsArray;
+        [[TCServerClient sharedTchillrServerClient] startInterestsRequestWithSuccess:^(NSArray *interestsArray) {
+            for (TCTag *tag in interestsArray) {
+                [self.selectedTagsIdentifiers addObject:tag.identifier];
+            }
+            [self.collectionView reloadData];
+        } failure:^(NSError *error) {
+            NSLog(@"%@",[error description]);
+        }];
+    } failure:^(NSError *error) {
+        NSLog(@"%@",[error description]);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark ThemesAccess
+-(TCTheme *)themeAtIndex:(NSInteger)index{
+    return [self.themes objectAtIndex:index];
+}
+
 #pragma mark Tastes Validation
 - (IBAction)validateTastes:(id)sender {
-	[self.delegate tastesViewControllerDidFinishEditing:self];
+    [[TCServerClient sharedTchillrServerClient] startRefreshInterestRequestWithInterestsList:self.selectedTagsIdentifiers
+                                                                                    success:^(NSArray *interestsArray) {
+                                                                                        [self.delegate tastesViewControllerDidFinishEditing:self];
+                                                                                    }
+                                                                                    failure:^(NSError *error) {
+                                                                                        NSString * message = [NSString stringWithFormat:NSLocalizedString(@"TASTES_PICKER_UPDATE_INTERESTS_FAILURE", nil)];
+                                                                                        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Tchillr" message:message delegate:self cancelButtonTitle:@"Mince !" otherButtonTitles:nil];
+                                                                                        [alert show];
+                                                                                    }];
+	
 }
 
 #pragma mark UICollectionViewDelegate methods
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 4;
+    return [self.themes count];
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return CGSizeMake(((UICollectionViewFlowLayout *)collectionViewLayout).itemSize.width, collectionView.bounds.size.height);
+    NSInteger openedCellIndex = [self.openedCellsIndex indexOfObjectPassingTest:^BOOL(NSNumber *index, NSUInteger idx, BOOL *stop) {
+        return indexPath.row == index.integerValue;
+    }];
+    if(openedCellIndex == NSNotFound) {
+        return CGSizeMake(((UICollectionViewFlowLayout *)collectionViewLayout).itemSize.width, collectionView.bounds.size.height);
+    }
+    else {
+        return CGSizeMake(kOpenedCollectionCellWidth, collectionView.bounds.size.height);
+    }
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TCTastesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCTastesCollectionViewCell class]) forIndexPath:indexPath];
-
-	switch (indexPath.row) {
-		case 0:
-			cell.titleLabel.text = @"Cinéma";
-			cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.95] objectAtIndex:2];
-			break;
-		case 1:
-			cell.titleLabel.text = @"Musique";
-			cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.95] objectAtIndex:0];
-			break;
-		case 2:
-			cell.titleLabel.text = @"Nature";
-			cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.95] objectAtIndex:5];
-			break;
-		case 3:
-			cell.titleLabel.text = @"Expos";
-			cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.95] objectAtIndex:4];
-			break;
-	}
-	
-	cell.titleLabel.text = [cell.titleLabel.text uppercaseString];
-	
-	
+    
+    TCTheme *theme = [self themeAtIndex:indexPath.row];
+    
+    cell.themesModelDelegate = self;
+    cell.themeIndex = indexPath.row;
+    cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.95] objectAtIndex:indexPath.row];
+    cell.titleLabel.text = [theme.title uppercaseString];
+    cell.open = [self.openedCellsIndex containsObject:[NSNumber numberWithInteger:indexPath.row]];
+    cell.delegate = self;
+    cell.selectedTagsIdentifiers = self.selectedTagsIdentifiers;
+    
+    NSIndexSet *setOfTags =[theme.tags indexesOfObjectsPassingTest:^BOOL(TCTag *tag, NSUInteger idx, BOOL *stop) {
+        return [self.selectedTagsIdentifiers containsObject:tag.identifier];
+    }];
+    [cell.selectedTagsView setNumberOfSelectedTags:setOfTags.count];
+    
+    [cell.tastesTableView reloadData];
+    
     return cell;
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger openedCellIndex = [self.openedCellsIndex indexOfObjectPassingTest:^BOOL(NSNumber *index, NSUInteger idx, BOOL *stop) {
+        return indexPath.row == index.integerValue;
+    }];
+    if(openedCellIndex == NSNotFound) {
+        [self.openedCellsIndex addObject:[NSNumber numberWithInteger:indexPath.row]];
+    }
+    else {
+        [self.openedCellsIndex removeObject:[NSNumber numberWithInteger:indexPath.row]];
+    }
+    [collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
+}
+
+#pragma mark TCTastesCollectionViewCellDelegate methods
+
+- (void)tastesCollectionViewCell:(TCTastesCollectionViewCell *)cell didSelectTagAtIndex:(NSInteger)index {
+    TCTheme *theme = [self themeAtIndex:[self.collectionView indexPathForCell:cell].row];
+    NSNumber *tagId = [theme tagAtIndex:index].identifier;
+    
+    BOOL isTagAlreadySelected = [self.selectedTagsIdentifiers containsObject:tagId];
+    if(isTagAlreadySelected) {
+        [self.selectedTagsIdentifiers removeObject:tagId];
+    }
+    else {
+        [self.selectedTagsIdentifiers addObject:tagId];
+    }
+    
+    [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:[self.collectionView indexPathForCell:cell]]];
 }
 
 @end

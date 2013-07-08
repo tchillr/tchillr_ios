@@ -25,8 +25,10 @@
 /* All Activities */
 #define kTCServerActivities @"DBActivities"
 
+// activities/from/20130706105713/to/20130707235713
+
 /* User Activities */
-#define kTCServerUserActivities(user,timespan) [NSString stringWithFormat:@"users/%@/activities/timespan/%i",user,timespan]
+#define kTCServerUserActivities(user, from, to) [NSString stringWithFormat:@"users/%@/activities/from/%@/to/%@",user, from, to]
 
 /* User Interests */
 #define kTCServerUserInterests(user) [NSString stringWithFormat:@"users/%@/interests", user]
@@ -35,12 +37,12 @@
 /* JSON Result Parsing Keys */
 #define kTCAllActivitiesKey @"GetFromDBAllActivitiesResult"
 #define kTCAllCategoriesKey @"GetDBCategoriesResult"
-#define kTCAllThemesKey @"GetThemesResult"
+
 #define kUserInterestsResult @"GetInterestsResult"
 #define kPostInterestsResult @"PostInterestsResult"
 #define kTCUserActivitiesActivitiesKey @"GetUserActivitiesForDaysResult"
 #define kGetTagsResult @"GetTagsResult"
-#define KTCInterestIdentifierKey @"identifier"
+#define KTCInterestsIdentifierListKey @"identifiers"
 #define KTCDataKey @"data"
 
 

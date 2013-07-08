@@ -46,13 +46,18 @@
 }
 
 - (NSArray *)occurences {
-    NSMutableArray * occurences = [NSMutableArray array];
     NSArray * occurencesDictionnaries = (NSArray *)[self.jsonDictionary objectForKey:kActivityOccurencesKey];
-    for (NSDictionary * dict in occurencesDictionnaries) {
-        TCOccurence * occurence = [[TCOccurence alloc] initWithJsonDictionary:dict];
-        [occurences addObject:occurence];
+    if ([occurencesDictionnaries isKindOfClass:[NSArray class]]) {
+        NSMutableArray * occurences = [NSMutableArray array];
+        for (NSDictionary * dict in occurencesDictionnaries) {
+            TCOccurence * occurence = [[TCOccurence alloc] initWithJsonDictionary:dict];
+            [occurences addObject:occurence];
+        }
+        return [NSArray arrayWithArray:occurences];
     }
-    return [NSArray arrayWithArray:occurences];
+    else{
+        return nil;
+    }
 }
 
 - (NSString *)name {
@@ -183,12 +188,12 @@
 
 #pragma mark Formatted Day
 - (NSString *) formattedDay{
-    if ([self.occurences count]) {
+    if (self.occurences && [self.occurences count]) {
         TCOccurence * firstOccurence = [self firstOccurence];
         NSString * formattedDay = [NSString stringWithFormat:@"%@",firstOccurence.day];
         return formattedDay;
     }
-    return @"";
+    return nil;
 }
 
 #pragma mark Formatted Time
