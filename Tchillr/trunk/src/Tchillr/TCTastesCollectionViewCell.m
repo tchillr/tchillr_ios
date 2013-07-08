@@ -66,7 +66,7 @@
 - (void)layoutSubviews {
 	[super layoutSubviews];
 	self.titleLabel.transform = CGAffineTransformMakeRotation(M_PI_2);
-	self.titleLabel.frame = CGRectMake(self.bounds.size.width - self.titleLabel.frame.size.width - 10.0,
+	self.titleLabel.frame = CGRectMake(self.bounds.size.width - self.titleLabel.frame.size.width - 6.0,
 									   self.bounds.size.height - self.titleLabel.frame.size.height - 50.0,
 									   self.titleLabel.frame.size.width,
 									   self.titleLabel.frame.size.height);
@@ -107,7 +107,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 40;
 }
-#define kMaxNUmberOFTags 7
+#define kMaxNUmberOFTags 8
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     TCTheme * theme = [self themeAtIndex:self.themeIndex];
     return [theme numberOfTags]>kMaxNUmberOFTags?kMaxNUmberOFTags:[theme numberOfTags];
