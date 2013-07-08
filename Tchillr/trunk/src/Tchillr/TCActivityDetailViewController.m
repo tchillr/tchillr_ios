@@ -9,6 +9,8 @@
 #import <MapKit/MapKit.h>
 #import "TCConstants.h"
 
+// Interests
+#import "TCUserInterests.h"
 // Controllers
 #import "TCActivityDetailViewController.h"
 #import "TCRouteViewController.h"
@@ -62,7 +64,6 @@
 
 @synthesize activityHeaderView = _activityHeaderView;
 @synthesize tableView = _tableView;
-@synthesize interests = _interests;
 
 #pragma mark LifeCycle
 - (void)viewDidLoad {
@@ -176,7 +177,7 @@
         TCActivityTagsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCActivityTagsCollectionViewCell class]) forIndexPath:indexPath];
         TCTag * tag = [self.activity tagAtIndex:indexPath.row];
         cell.tagName.text = [tag.title uppercaseString];
-        NSUInteger index = [self.interests indexOfObjectPassingTest:^BOOL(TCTag * tagObject, NSUInteger idx, BOOL *stop) {
+        NSUInteger index = [[TCUserInterests sharedTchillrUserInterests].interests indexOfObjectPassingTest:^BOOL(TCTag * tagObject, NSUInteger idx, BOOL *stop) {
             return [tag.identifier isEqualToNumber:tagObject.identifier];
         }];
         
@@ -210,7 +211,7 @@
         NSArray * array = [NSArray arrayWithObject:tag.identifier];
         
         [[TCServerClient sharedTchillrServerClient] startUpdateInterestRequestWithInterestsList:array success:^(NSArray *interestsArray) {
-            self.interests = interestsArray;
+            [TCUserInterests sharedTchillrUserInterests].interests = interestsArray;
             [collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexPath.row inSection:0]]];
         } failure:^(NSError *error) {
             NSLog(@"%@",[error description]);

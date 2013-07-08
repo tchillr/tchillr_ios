@@ -18,6 +18,8 @@
 // Models
 #import "TCServerClient.h"
 #import "TCTag.h"
+#import "TCUserInterests.h"
+
 
 #define kOpenedCollectionCellWidth 174
 
@@ -86,16 +88,21 @@
 
 #pragma mark Tastes Validation
 - (IBAction)validateTastes:(id)sender {
-    [[TCServerClient sharedTchillrServerClient] startRefreshInterestRequestWithInterestsList:self.selectedTagsIdentifiers
-                                                                                    success:^(NSArray *interestsArray) {
-                                                                                        [self.delegate tastesViewControllerDidFinishEditing:self];
-                                                                                    }
-                                                                                    failure:^(NSError *error) {
-                                                                                        NSString * message = [NSString stringWithFormat:NSLocalizedString(@"TASTES_PICKER_UPDATE_INTERESTS_FAILURE", nil)];
-                                                                                        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Tchillr" message:message delegate:self cancelButtonTitle:@"Mince !" otherButtonTitles:nil];
-                                                                                        [alert show];
-                                                                                    }];
-	
+    if ([self.selectedTagsIdentifiers count] > 0) {
+        [self.delegate tastesViewControllerDidFinishEditing:self];
+    }
+    else {
+        [[TCServerClient sharedTchillrServerClient] startRefreshInterestRequestWithInterestsList:self.selectedTagsIdentifiers
+                                                                                         success:^(NSArray *interestsArray) {
+                                                                                             [TCUserInterests sharedTchillrUserInterests].interests = interestsArray;
+                                                                                             [self.delegate tastesViewControllerDidFinishEditing:self];
+                                                                                         }
+                                                                                         failure:^(NSError *error) {
+                                                                                             NSString * message = [NSString stringWithFormat:NSLocalizedString(@"TASTES_PICKER_UPDATE_INTERESTS_FAILURE", nil)];
+                                                                                             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Tchillr" message:message delegate:self cancelButtonTitle:@"Mince !" otherButtonTitles:nil];
+                                                                                             [alert show];
+                                                                                         }];
+    }
 }
 
 #pragma mark UICollectionViewDelegate methods

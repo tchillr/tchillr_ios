@@ -26,6 +26,7 @@
 #import "TCLocationAnnotation.h"
 #import "TCCalloutAnnotation.h"
 #import "TCAppDelegate.h"
+#import "TCUserInterests.h"
 
 #define kShowActivityDetailSegueIdentifier @"ShowActivityDetailSegue"
 #define kshowTastesSegueIdentifier @"ShowTastesSegue"
@@ -38,12 +39,11 @@
 @property (nonatomic, weak) IBOutlet UICollectionView * collectionView;
 @property (nonatomic, weak) IBOutlet UIButton * showInterestsButton;
 @property (nonatomic, weak) IBOutlet UIButton * showListButton;
-@property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
-
+@property (nonatomic, weak) IBOutlet UIView * loadingView;
 @property (nonatomic, retain) NSArray * activities;
-@property (nonatomic, retain) NSArray * interests;
 @property (nonatomic, readonly) CLLocationManager * locationManager;
 @property (nonatomic, retain) CLRegion * monitoredRegion;
+@property (nonatomic, assign) BOOL shouldReloadData;
 
 @end
 
@@ -54,6 +54,7 @@
 @synthesize collectionView = _collectionView;
 @synthesize showInterestsButton = _showInterestsButton;
 @synthesize showListButton = _showListButton;
+
 @synthesize monitoredRegion = _monitoredRegion;
 - (void)setMonitoredRegion:(CLRegion *)monitoredRegion {
     if (_monitoredRegion != monitoredRegion) {
@@ -68,28 +69,28 @@
     return appDelegate.locationManager;
 }
 
+- (void)reloadDataNeeded {
+    self.shouldReloadData = YES;
+}
+
 #pragma mark - Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.loadingLabel setAlpha:1.0];
-    
-    NSDate * now = [NSDate date];
-    NSDate *tomorrow = [now dateByAddingTimeInterval:60*60*24*1];
-    [[TCServerClient sharedTchillrServerClient] startUserActivitiesRequestFrom:now to:tomorrow success:^(NSArray *activitiesArray) {
-        self.activities = activitiesArray;
-        [self pinLocations];
-        TCLocationAnnotation * annotation = [self annotationForIndex:0];
-        [self.mapView selectAnnotation:annotation animated:NO];
-        [self.collectionView reloadData];
-        [UIView animateWithDuration:0.2
-                         animations:^{
-                             [self.loadingLabel setAlpha:0.0];
-                         }];
-    } failure:^(NSError *error) {
-        NSLog(@"%@",[error description]);
-    }];
-
+    self.shouldReloadData = YES;
     [self.mapView setShowsUserLocation:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadDataNeeded) name:kTCUserInterestsChangedNotification object:nil];
+}
+
+- (void)viewDidUnload {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kTCUserInterestsChangedNotification object:nil];
+    [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (self.shouldReloadData) {
+        [self reloadData];
+    }
 }
 
 #pragma mark - Pin locations
@@ -245,7 +246,6 @@
 		}
 		TCActivityDetailViewController * activityDetailViewController = (TCActivityDetailViewController *) segue.destinationViewController;
 		[activityDetailViewController setActivity:activity];
-        [activityDetailViewController setInterests:self.interests];
         
         // Start monitoring region for current Activity
         CLLocationCoordinate2D activityCoordinate = CLLocationCoordinate2DMake(activity.latitude,activity.longitude);
@@ -261,18 +261,47 @@
 }
 
 #pragma mark TCTastesViewControllerDelegate
-- (void)tastesViewControllerDidFinishEditing:(TCTastesViewController *)tastesViewController {
-	[self dismissViewControllerAnimated:YES
-							 completion:^{
-								 [self reloadData];
-							 }];
+- (void)tastesViewControllerDidFinishEditing:(TCTastesViewController *)tastesViewController{
+	[self dismissViewControllerAnimated:YES completion:^{}];
 }
 
-#warning Ici, on a besoin d'une méthode simple pour recharger toute la vue (mapView + position, collectionView)
-
 - (void)reloadData {
-    [self pinLocations];
-    [self.collectionView reloadData];
+    [self.loadingView setAlpha:1];
+    [self.collectionView setAlpha:0];
+    // Remove all annotations except the user location annotation
+    NSMutableArray * annotationsToRemove = [NSMutableArray array];
+    for (id<MKAnnotation> annotation in self.mapView.annotations) {
+        if (![annotation isKindOfClass:[MKUserLocation class]]) {
+            [annotationsToRemove addObject:annotation];
+        }        
+    }
+    [self.mapView removeAnnotations:annotationsToRemove];
+    
+#warning remove finale dates after demo code when done
+    // Reload map annotations
+    NSDate * now = [NSDate date];
+    NSDate *tomorrow = [now dateByAddingTimeInterval:60*60*24*1];
+    
+    NSDate * finaleDate = [now dateByAddingTimeInterval:60*60*24*2];
+    NSDate * finaleDatePlusUn = [finaleDate dateByAddingTimeInterval:60*60*24*1];
+    [[TCServerClient sharedTchillrServerClient] startUserActivitiesRequestFrom:finaleDate to:finaleDatePlusUn success:^(NSArray *activitiesArray) {
+        self.activities = activitiesArray;
+        [self pinLocations];
+        TCLocationAnnotation * annotation = [self annotationForIndex:0];
+        [self.mapView selectAnnotation:annotation animated:NO];
+        [self.collectionView reloadData];
+        self.shouldReloadData = NO;
+        [UIView animateWithDuration:0.2
+                         animations:^{
+                             [self.loadingView setAlpha:0.0];
+                             [self.collectionView setAlpha:1];
+                             [self.mapView setShowsUserLocation:YES];
+                             
+                         }];
+    } failure:^(NSError *error) {
+        NSLog(@"Error in startUserActivitiesRequestFrom :%@",[error description]);
+        self.shouldReloadData = NO;
+    }];    
 }
 
 #pragma mark

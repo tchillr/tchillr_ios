@@ -202,7 +202,7 @@ static TCServerClient *sharedTchillrServerClient;
     [operation start];    
 }
 
-#pragma mark User Login
+#pragma mark User Creation
 - (void)startUserCreationRequestForUUIDString:(NSString *)UUIDString success:(void (^)(BOOL success))success failure:(void (^)(NSError *error))failure {
     NSString * urlString = kTCServerServiceURL(kTCLogin([TCUser identifier]));
     NSLog(@"User UUID %@",[TCUser identifier]);
@@ -211,14 +211,8 @@ static TCServerClient *sharedTchillrServerClient;
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                             NSDictionary * dict = (NSDictionary *) JSON;
-                                                                                            /*
                                                                                             NSArray *resultArray = [self getDataFromJSON:(NSDictionary *) JSON];
-                                                                                            NSMutableArray * tags = [NSMutableArray array];
-                                                                                            [resultArray enumerateObjectsUsingBlock:^(id obj,NSUInteger idx, BOOL *stop){
-                                                                                                TCTag * tag = [[TCTag alloc] initWithJsonDictionary:obj];
-                                                                                                [tags addObject:tag];
-                                                                                            }];
-                                                                                            success(tags);*/
+                                                                                            
                                                                                         }failure:^(NSURLRequest *request, NSHTTPURLResponse *response,
                                                                                                    NSError *error, id JSON) {
                                                                                             failure(error);

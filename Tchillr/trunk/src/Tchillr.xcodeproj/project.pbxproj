@@ -51,6 +51,7 @@
 		05A889891781B7DA002DFE94 /* TCActivityGalleryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A889881781B7DA002DFE94 /* TCActivityGalleryCollectionViewCell.m */; };
 		05A88A801781D362002DFE94 /* TCMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A88A7F1781D362002DFE94 /* TCMedia.m */; };
 		05AB0FE3178996AE00F8ABD0 /* TCSelectedTagsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AB0FE2178996AE00F8ABD0 /* TCSelectedTagsView.m */; };
+		05AB0FE7178AFF7100F8ABD0 /* TCUserInterests.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AB0FE6178AFF7100F8ABD0 /* TCUserInterests.m */; };
 		05BDD605177AFC5800CF282E /* TCRouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BDD604177AFC5800CF282E /* TCRouteViewController.m */; };
 		05BDD60B177B9F6F00CF282E /* TCActivityDetailResizableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BDD60A177B9F6F00CF282E /* TCActivityDetailResizableCell.m */; };
 		05BDD60E177BA54600CF282E /* UILabel+Tchillr.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BDD60D177BA54600CF282E /* UILabel+Tchillr.m */; };
@@ -173,6 +174,8 @@
 		05AB0FE1178996AE00F8ABD0 /* TCSelectedTagsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSelectedTagsView.h; sourceTree = "<group>"; };
 		05AB0FE2178996AE00F8ABD0 /* TCSelectedTagsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSelectedTagsView.m; sourceTree = "<group>"; };
 		05AB0FE41789C3CE00F8ABD0 /* TCThemesModelDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCThemesModelDelegate.h; sourceTree = "<group>"; };
+		05AB0FE5178AFF7000F8ABD0 /* TCUserInterests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUserInterests.h; sourceTree = "<group>"; };
+		05AB0FE6178AFF7100F8ABD0 /* TCUserInterests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUserInterests.m; sourceTree = "<group>"; };
 		05BDD603177AFC5800CF282E /* TCRouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRouteViewController.h; sourceTree = "<group>"; };
 		05BDD604177AFC5800CF282E /* TCRouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRouteViewController.m; sourceTree = "<group>"; };
 		05BDD609177B9F6F00CF282E /* TCActivityDetailResizableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCActivityDetailResizableCell.h; sourceTree = "<group>"; };
@@ -410,6 +413,8 @@
 				0594D6C21771E02400744BF3 /* Controllers */,
 				053AC2F41771E54500CD8C3F /* TCConstants.h */,
 				05AB0FE41789C3CE00F8ABD0 /* TCThemesModelDelegate.h */,
+				05AB0FE5178AFF7000F8ABD0 /* TCUserInterests.h */,
+				05AB0FE6178AFF7100F8ABD0 /* TCUserInterests.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -716,6 +721,7 @@
 				85C39AD01786185D00158D37 /* TCTastesTagsTableViewCell.m in Sources */,
 				0549587E17882E4E00DE67C9 /* NSDate+Tchillr.m in Sources */,
 				05AB0FE3178996AE00F8ABD0 /* TCSelectedTagsView.m in Sources */,
+				05AB0FE7178AFF7100F8ABD0 /* TCUserInterests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
