@@ -161,8 +161,6 @@
     else {
         [self.selectedTagsIdentifiers addObject:tagId];
     }
-    
-    [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:[self.collectionView indexPathForCell:cell]]];
 }
 
 @end
