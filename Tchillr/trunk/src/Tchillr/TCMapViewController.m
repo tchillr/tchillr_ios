@@ -20,6 +20,9 @@
 #import "TCCalloutAnnotationView.h"
 #import "TCActivityCollectionViewCell.h"
 
+// Categories
+#import "NSString+TCAdditions.h"
+
 // Model
 #import "TCServerClient.h"
 #import "TCActivity.h"
@@ -226,7 +229,7 @@
 	cell.activityDayLabel.text = activity.formattedDay;
 	cell.activityTimeLabel.text = activity.formattedTime;
 	cell.activityTimeLabel.text = activity.formattedTime;
-	cell.activityShortDescriptionLabel.text = activity.shortDescription;
+    cell.activityShortDescriptionLabel.text = ([activity.shortDescription isEmpty]) ? activity.name : activity.shortDescription;
 	cell.activityTagsLabel.text = activity.formattedTags;
     cell.activityDistanceLabel.text = [self distanceToAnnotation:[self annotationForIndex:indexPath.row]];
     return cell;
