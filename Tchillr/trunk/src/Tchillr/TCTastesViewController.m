@@ -127,7 +127,7 @@
     
     cell.themesModelDelegate = self;
     cell.themeIndex = indexPath.row;
-    cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.95] objectAtIndex:indexPath.row];
+    cell.backgroundColor = [[UIColor tcColorsWithAlpha:0.90] objectAtIndex:indexPath.row];
     cell.titleLabel.text = [theme.title uppercaseString];
     cell.open = [self.openedCellsIndex containsObject:[NSNumber numberWithInteger:indexPath.row]];
     cell.delegate = self;
@@ -152,6 +152,7 @@
     else {
         [self.openedCellsIndex removeObject:[NSNumber numberWithInteger:indexPath.row]];
     }
+    
     [collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]];
 }
 

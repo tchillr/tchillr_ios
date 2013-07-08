@@ -29,13 +29,14 @@
 
 @synthesize open = _open;
 - (void)setOpen:(BOOL)open {
-    if(open != _open) {
-        _open = open;
-    }
+    _open = open;
+    
+    const CGFloat * colorComponents = CGColorGetComponents(self.backgroundColor.CGColor);
     [UIView animateWithDuration:0.250 animations:^{
         [self.tastesTableView setHidden:!_open];
         [self.selectedTagsView setHidden:_open];
         [self.titleLabel setHighlighted:_open];
+        self.backgroundColor = [UIColor colorWithRed:colorComponents[0] green:colorComponents[1] blue:colorComponents[2] alpha:_open?1:0.90];
     }];
 }
 
