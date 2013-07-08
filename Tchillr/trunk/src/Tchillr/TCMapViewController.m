@@ -262,10 +262,7 @@
 
 #pragma mark TCTastesViewControllerDelegate
 - (void)tastesViewControllerDidFinishEditing:(TCTastesViewController *)tastesViewController{
-	[self dismissViewControllerAnimated:YES
-							 completion:^{
-								 //[self reloadData];
-							 }];
+	[self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 - (void)reloadData {
