@@ -177,11 +177,13 @@
         TCActivityTagsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCActivityTagsCollectionViewCell class]) forIndexPath:indexPath];
         TCTag * tag = [self.activity tagAtIndex:indexPath.row];
         cell.tagName.text = [tag.title uppercaseString];
-        NSUInteger index = [[TCUserInterests sharedTchillrUserInterests].interests indexOfObjectPassingTest:^BOOL(TCTag * tagObject, NSUInteger idx, BOOL *stop) {
-            return [tag.identifier isEqualToNumber:tagObject.identifier];
-        }];
-        
-        [cell setUserInterest:(index != NSNotFound)];
+        NSArray * interests = [TCUserInterests sharedTchillrUserInterests].interests;
+        if (interests) {
+            NSUInteger index = [interests indexOfObjectPassingTest:^BOOL(TCTag * tagObject, NSUInteger idx, BOOL *stop) {
+                return [tag.identifier isEqualToNumber:tagObject.identifier];
+            }];
+            [cell setUserInterest:(index != NSNotFound)];
+        }
         [cell customizeWithStyle:indexPath.row];
         cellForItemAtIndexPath = cell;
     }
