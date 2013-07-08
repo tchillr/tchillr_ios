@@ -43,6 +43,7 @@
 @property (nonatomic, retain) NSArray * activities;
 @property (nonatomic, readonly) CLLocationManager * locationManager;
 @property (nonatomic, retain) CLRegion * monitoredRegion;
+@property (nonatomic, assign) BOOL shouldReloadData;
 
 @end
 
@@ -68,11 +69,28 @@
     return appDelegate.locationManager;
 }
 
+- (void)reloadDataNeeded {
+    self.shouldReloadData = YES;
+}
+
 #pragma mark - Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self reloadData];
+    self.shouldReloadData = YES;
     [self.mapView setShowsUserLocation:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadDataNeeded) name:kTCUserInterestsChangedNotification object:nil];
+}
+
+- (void)viewDidUnload {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kTCUserInterestsChangedNotification object:nil];
+    [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (self.shouldReloadData) {
+        [self reloadData];
+    }
 }
 
 #pragma mark - Pin locations
@@ -246,7 +264,7 @@
 - (void)tastesViewControllerDidFinishEditing:(TCTastesViewController *)tastesViewController{
 	[self dismissViewControllerAnimated:YES
 							 completion:^{
-								 [self reloadData];
+								 //[self reloadData];
 							 }];
 }
 
@@ -275,14 +293,17 @@
         TCLocationAnnotation * annotation = [self annotationForIndex:0];
         [self.mapView selectAnnotation:annotation animated:NO];
         [self.collectionView reloadData];
+        self.shouldReloadData = NO;
         [UIView animateWithDuration:0.2
                          animations:^{
                              [self.loadingView setAlpha:0.0];
                              [self.collectionView setAlpha:1];
                              [self.mapView setShowsUserLocation:YES];
+                             
                          }];
     } failure:^(NSError *error) {
         NSLog(@"Error in startUserActivitiesRequestFrom :%@",[error description]);
+        self.shouldReloadData = NO;
     }];    
 }
 

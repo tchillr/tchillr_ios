@@ -25,4 +25,9 @@ static TCUserInterests *sharedTchillrUserInterests;
 	return sharedTchillrUserInterests;
 }
 
+-(void)setInterests:(NSArray *)interests{
+    _interests = interests;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kTCUserInterestsChangedNotification object:nil];
+}
+
 @end
