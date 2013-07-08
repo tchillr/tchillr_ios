@@ -12,6 +12,5 @@
 @interface TCActivityDetailViewController : UIViewController
 
 @property (nonatomic, retain) TCActivity * activity;
-@property (nonatomic, retain) NSArray * interests;
 
 @end
