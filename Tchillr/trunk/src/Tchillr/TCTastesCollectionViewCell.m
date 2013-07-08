@@ -108,7 +108,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 40;
 }
-#define kMaxNUmberOFTags 8
+#define kMaxNUmberOFTags 7
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     TCTheme * theme = [self themeAtIndex:self.themeIndex];
     return [theme numberOfTags]>kMaxNUmberOFTags?kMaxNUmberOFTags:[theme numberOfTags];
