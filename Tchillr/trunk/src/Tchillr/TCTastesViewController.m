@@ -68,6 +68,7 @@
             for (TCTag *tag in interestsArray) {
                 [self.selectedTagsIdentifiers addObject:tag.identifier];
             }
+            [TCUserInterests sharedTchillrUserInterests].interests = interestsArray;
             [self.collectionView reloadData];
         } failure:^(NSError *error) {
             NSLog(@"%@",[error description]);
@@ -88,7 +89,7 @@
 
 #pragma mark Tastes Validation
 - (IBAction)validateTastes:(id)sender {
-    if ([self.selectedTagsIdentifiers count] > 0) {
+    if ([self.selectedTagsIdentifiers count] == 0) {
         [self.delegate tastesViewControllerDidFinishEditing:self];
     }
     else {
