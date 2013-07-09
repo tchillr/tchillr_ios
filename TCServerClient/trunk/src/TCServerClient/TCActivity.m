@@ -119,10 +119,9 @@
     return (NSNumber *)[self.jsonDictionary objectForKey:kActivityScoreKey];
 }
 
-#warning hack car plantage (a voir avec alaa) / A VIRER QD CORRIGÉ
 - (TCActivityColorStyle)colorStyle{
-    NSString * color = (NSString *)[self.jsonDictionary objectForKey:kActivityColorKey];
-    if ([color isKindOfClass:[NSString class]]) {
+   NSString * color = (NSString *)[self.jsonDictionary objectForKey:kActivityColorKey];
+    if (color && [color isKindOfClass:[NSString class]]) {
         if ([color isEqualToString:@"Musique"]) {
             _colorStyle = TCActivityColorStyleMusique;
         }
@@ -141,9 +140,8 @@
         else if ([color isEqualToString:@"Culture"]) {
             _colorStyle = TCActivityColorStyleCulture;
         }
-        return _colorStyle;
     }
-return TCActivityColorStyleMusique;
+   return _colorStyle;
 }
 
 #warning Medias support / only images files
