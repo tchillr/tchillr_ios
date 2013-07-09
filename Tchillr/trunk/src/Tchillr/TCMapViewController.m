@@ -258,14 +258,11 @@
     }
     [self.mapView removeAnnotations:annotationsToRemove];
     
-#warning remove finale dates after demo code when done
     // Reload map annotations
     NSDate * now = [NSDate date];
-    NSDate *tomorrow = [now dateByAddingTimeInterval:60*60*24*1];
+    NSDate *afterTomorrow = [now dateByAddingTimeInterval:60*60*24*2];
     
-    NSDate * finaleDate = [now dateByAddingTimeInterval:60*60*24*2];
-    NSDate * finaleDatePlusUn = [finaleDate dateByAddingTimeInterval:60*60*24*1];
-    [[TCServerClient sharedTchillrServerClient] startUserActivitiesRequestFrom:finaleDate to:finaleDatePlusUn success:^(NSArray *activitiesArray) {
+    [[TCServerClient sharedTchillrServerClient] startUserActivitiesRequestFrom:now to:afterTomorrow success:^(NSArray *activitiesArray) {
         self.activities = activitiesArray;
         [self pinLocations];
         TCLocationAnnotation * annotation = [self annotationForIndex:0];

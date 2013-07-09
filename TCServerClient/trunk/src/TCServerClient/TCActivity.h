@@ -9,6 +9,7 @@
 #import "TCObject.h"
 
 typedef enum{
+    TCActivityColorStyleNone,
     TCActivityColorStyleMusique,
     TCActivityColorStyleActivites,
     TCActivityColorStyleEvenements,

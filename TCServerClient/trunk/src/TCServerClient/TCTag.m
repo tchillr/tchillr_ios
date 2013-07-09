@@ -31,7 +31,6 @@
     return (NSNumber *)[self.jsonDictionary objectForKey:kTagThemeIdentifierKey];
 }
 
-#warning a changer / deplacer apres dev alaa sur themeID
 #pragma mark Color style from theme ID
 - (TCActivityColorStyle)colorStyle {
     TCActivityColorStyle style;
@@ -55,7 +54,7 @@
             style = TCActivityColorStyleSpectacles;
             break;
         default:
-            style = TCActivityColorStyleMusique;
+            style = TCActivityColorStyleNone;
             break;
     }
     return style;

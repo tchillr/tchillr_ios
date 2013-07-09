@@ -15,8 +15,6 @@
 /** @name Singleton */
 #pragma mark Singleton
 + (TCServerClient *)sharedTchillrServerClient;
-#pragma mark All Activities (top 100 activities)
-- (void)startActivitiesRequestWithSuccess:(void (^)(NSArray * activitiesArray))success failure:(void (^)(NSError *error))failure offset:(NSInteger) offset limit:(NSInteger)limit;
 #pragma mark User Activities with from/to dates
 - (void)startUserActivitiesRequestFrom:(NSDate *) fromDate to:(NSDate *) toDate success:(void (^)(NSArray * activitiesArray))success failure:(void (^)(NSError *error))failure;
 
