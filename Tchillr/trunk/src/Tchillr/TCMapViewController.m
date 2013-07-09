@@ -44,8 +44,7 @@
 @property (nonatomic, weak) IBOutlet UIButton * showListButton;
 @property (nonatomic, weak) IBOutlet UIView * loadingView;
 @property (nonatomic, retain) NSArray * activities;
-@property (nonatomic, readonly) CLLocationManager * locationManager;
-@property (nonatomic, retain) CLRegion * monitoredRegion;
+@property (nonatomic, retain) CLLocationManager * locationManager;
 @property (nonatomic, assign) BOOL shouldReloadData;
 
 @end
@@ -57,20 +56,6 @@
 @synthesize collectionView = _collectionView;
 @synthesize showInterestsButton = _showInterestsButton;
 @synthesize showListButton = _showListButton;
-
-@synthesize monitoredRegion = _monitoredRegion;
-- (void)setMonitoredRegion:(CLRegion *)monitoredRegion {
-    if (_monitoredRegion != monitoredRegion) {
-        [self.locationManager stopMonitoringForRegion:_monitoredRegion];
-        _monitoredRegion = monitoredRegion;
-        [self.locationManager startMonitoringForRegion:_monitoredRegion];
-    }    
-}
-
-- (CLLocationManager *)locationManager {
-    TCAppDelegate *appDelegate = (TCAppDelegate *)[[UIApplication sharedApplication] delegate];
-    return appDelegate.locationManager;
-}
 
 - (void)reloadDataNeeded {
     self.shouldReloadData = YES;
@@ -135,7 +120,8 @@
         TCLocationAnnotationView *locationAnnotationView = (TCLocationAnnotationView *) [mapView dequeueReusableAnnotationViewWithIdentifier:NSStringFromClass([TCLocationAnnotation class])];
         if (locationAnnotationView == nil) {
             locationAnnotationView = [[TCLocationAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:NSStringFromClass([TCLocationAnnotationView class]) andSize:[self annotationSizeTypeForActivityAtIndex:((TCLocationAnnotation*)annotation).index]];
-            locationAnnotationView.style = TCColorStyleMusic;
+            TCActivity * activity = [self activityAtIndex:((TCLocationAnnotation*)annotation).index];
+            locationAnnotationView.style = activity.colorStyle;
             locationAnnotationView.enabled = YES;
             locationAnnotationView.canShowCallout = NO;
         }
@@ -249,14 +235,6 @@
 		}
 		TCActivityDetailViewController * activityDetailViewController = (TCActivityDetailViewController *) segue.destinationViewController;
 		[activityDetailViewController setActivity:activity];
-        
-        // Start monitoring region for current Activity
-        CLLocationCoordinate2D activityCoordinate = CLLocationCoordinate2DMake(activity.latitude,activity.longitude);
-        if (CLLocationCoordinate2DIsValid(activityCoordinate)) {
-            CLRegion *region = [[CLRegion alloc] initCircularRegionWithCenter:activityCoordinate radius:250.0 identifier:[NSString stringWithFormat:@"%@",activity.identifier]];
-            [self setMonitoredRegion:region];
-        }
-        NSLog(@"%@",self.locationManager.monitoredRegions);
 	}
 	else if ([segue.identifier isEqualToString:kshowTastesSegueIdentifier]) {
 		[segue.destinationViewController setDelegate:self];

@@ -7,17 +7,9 @@
 //
 
 #import "TCActivityDetailViewHeader.h"
-#import "TCTriangleView.h"
 #import "UILabel+Tchillr.h"
 
 #define kLabelSpacing 8
-
-@interface TCActivityDetailViewHeader()
-
-@property (nonatomic, retain) IBOutlet TCTriangleView * triangleView;
-
-
-@end
 
 @implementation TCActivityDetailViewHeader
 

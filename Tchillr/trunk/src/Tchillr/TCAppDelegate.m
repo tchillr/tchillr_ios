@@ -10,35 +10,27 @@
 #import "TCWeatherClient.h"
 #import "TCServerClient.h"
 #import "TCUser.h"
+#import "MBProgressHUD.h"
+#import "TCConstants.h"
+
+@interface TCAppDelegate() <MBProgressHUDDelegate>
+
+@property (nonatomic, retain) MBProgressHUD *progressHud;
+
+@end
 
 @implementation TCAppDelegate
 
-@synthesize locationManager = _locationManager;
-- (CLLocationManager *)locationManager {
-    if (_locationManager == nil) {
-        _locationManager = [[CLLocationManager alloc] init];
-    }
-    return _locationManager;
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-#warning calls the weather service / for testing
-    [[TCWeatherClient sharedInstance] findWeatherCodeForParisWithCompletion:^(BOOL success, TCWeatherCode code, NSError *error) {
-        
-    }];
-    
     [[TCServerClient sharedTchillrServerClient] startUserCreationRequestForUUIDString:[TCUser identifier] success:^(BOOL success) {
-
     } failure:^(NSError *error) {
         NSLog(@"%@",[error description]);
     }];
-    // Location manager
-    // Region monitoring
-    if ([CLLocationManager regionMonitoringAvailable] && [CLLocationManager locationServicesEnabled]) {
-        self.locationManager.delegate = self;
-    }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showProgressHud:) name:SHOW_PROGRESS_HUD object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideProgressHud:) name:HIDE_PROGRESS_HUD object:nil];
+
     return YES;
 }
 							
@@ -69,20 +61,47 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-#pragma mark CLLocationManager delegate
-- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
-    NSLog(@"didEnterRegion");
-    NSString * message = [NSString stringWithFormat:@"Il semblerait que tu ne sois pas très loin d'un plan sympa ! Veux-tu prévenir tes amis ?"];
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Tchillr" message:message delegate:self cancelButtonTitle:@"Non !" otherButtonTitles:@"Oui !", nil];
-    [alert show];
+#pragma mark MBProgressHud Management
+- (void)showProgressHud:(NSNotification *)notification {
+    UIView *view = nil;
+    UIView *customView = nil;
+    if ([notification.object isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dic = (NSDictionary *)notification.object;
+        view = [[dic allKeys] containsObject:kHudTargetView]?[dic objectForKey:kHudTargetView]:nil;
+        customView = [[dic allKeys] containsObject:kHudCustomView]?[dic objectForKey:kHudCustomView]:nil;
+    }
+    else {
+        view = [notification object];
+    }
+	if (!view) {
+		view = self.window;
+	}
+	if (self.progressHud) {
+		[self.progressHud hide:YES];
+		[self setProgressHud:nil];
+	}
+	if (!self.progressHud) {
+		MBProgressHUD *tmpProgressHud = [[MBProgressHUD alloc] initWithView:view];
+		self.progressHud = tmpProgressHud;
+		self.progressHud.delegate = self;
+		self.progressHud.dimBackground = YES;
+	}
+    if (customView) {
+        self.progressHud.mode = MBProgressHUDModeCustomViewComplete;
+        [self.progressHud setCustomView:customView];
+    }
+	[view addSubview:self.progressHud];
+	[self.progressHud show:YES];
 }
 
-- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region{
-    NSLog(@"didExitRegion");
+- (void)hideProgressHud:(NSNotification *)notification {
+	[self.progressHud hide:YES];
 }
 
-- (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error {
-    NSLog(@"Region monitoring failed with error: %@", [error localizedDescription]);
+#pragma mark MBProgressHUDDelegate methods
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+	[hud removeFromSuperview];
 }
+
 
 @end

@@ -11,6 +11,6 @@
 
 @interface UICollectionViewCell (Tchillr)
 
-- (void)customizeWithStyle:(TCColorStyle)style;
+- (void)customizeWithStyle:(TCActivityColorStyle)style;
 
 @end

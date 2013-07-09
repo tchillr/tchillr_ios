@@ -56,6 +56,7 @@
 		05BDD60B177B9F6F00CF282E /* TCActivityDetailResizableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BDD60A177B9F6F00CF282E /* TCActivityDetailResizableCell.m */; };
 		05BDD60E177BA54600CF282E /* UILabel+Tchillr.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BDD60D177BA54600CF282E /* UILabel+Tchillr.m */; };
 		05BDD610177BC13800CF282E /* TCActivityDetailViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05BDD60F177BC13700CF282E /* TCActivityDetailViewHeader.xib */; };
+		05DB5093178BA4F70080AAFD /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DB5092178BA4F70080AAFD /* MBProgressHUD.m */; };
 		05EA91B217731BA100DC2619 /* heart_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 05EA91AE17731BA100DC2619 /* heart_selected.png */; };
 		05EA91B317731BA100DC2619 /* heart_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05EA91AF17731BA100DC2619 /* heart_selected@2x.png */; };
 		05EA91B417731BA100DC2619 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 05EA91B017731BA100DC2619 /* heart.png */; };
@@ -183,6 +184,8 @@
 		05BDD60C177BA54500CF282E /* UILabel+Tchillr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Tchillr.h"; sourceTree = "<group>"; };
 		05BDD60D177BA54600CF282E /* UILabel+Tchillr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Tchillr.m"; sourceTree = "<group>"; };
 		05BDD60F177BC13700CF282E /* TCActivityDetailViewHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCActivityDetailViewHeader.xib; sourceTree = "<group>"; };
+		05DB5091178BA4F70080AAFD /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = ../../vendor/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
+		05DB5092178BA4F70080AAFD /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = ../../vendor/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		05EA91AE17731BA100DC2619 /* heart_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_selected.png; sourceTree = "<group>"; };
 		05EA91AF17731BA100DC2619 /* heart_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart_selected@2x.png"; sourceTree = "<group>"; };
 		05EA91B017731BA100DC2619 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
@@ -271,6 +274,7 @@
 		053AC4481772583500CD8C3F /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				05DB5090178BA4DF0080AAFD /* MBProgressHUD */,
 				05EA91DA1778ED4B00DC2619 /* TCServerClient */,
 				053AC462177258EA00CD8C3F /* AFNetworking */,
 			);
@@ -469,6 +473,15 @@
 				0549587D17882E4E00DE67C9 /* NSDate+Tchillr.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		05DB5090178BA4DF0080AAFD /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				05DB5091178BA4F70080AAFD /* MBProgressHUD.h */,
+				05DB5092178BA4F70080AAFD /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		05EA91DA1778ED4B00DC2619 /* TCServerClient */ = {
@@ -722,6 +735,7 @@
 				0549587E17882E4E00DE67C9 /* NSDate+Tchillr.m in Sources */,
 				05AB0FE3178996AE00F8ABD0 /* TCSelectedTagsView.m in Sources */,
 				05AB0FE7178AFF7100F8ABD0 /* TCUserInterests.m in Sources */,
+				05DB5093178BA4F70080AAFD /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,11 +7,15 @@
 //
 
 #import "TCObject.h"
+#import "TCActivity.h"
 
 @interface TCTag : TCObject
 
 @property (nonatomic, retain) NSString* title;
 @property (nonatomic, assign) NSInteger weight;
 @property (nonatomic, retain) NSNumber *identifier;
+@property (nonatomic, retain) NSNumber *themeIdentifier;
+
+- (TCActivityColorStyle)colorStyle;
 
 @end

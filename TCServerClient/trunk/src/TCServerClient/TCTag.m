@@ -10,6 +10,7 @@
 #define kTagTitleKey @"title"
 #define kTagWeightKey @"weight"
 #define kTagIdentifierKey @"identifier"
+#define kTagThemeIdentifierKey @"themeID"
 
 @implementation TCTag
 
@@ -25,5 +26,40 @@
 - (NSNumber*)identifier {
     return (NSNumber *)[self.jsonDictionary objectForKey:kTagIdentifierKey];
 }
+
+- (NSNumber*)themeIdentifier {
+    return (NSNumber *)[self.jsonDictionary objectForKey:kTagThemeIdentifierKey];
+}
+
+#warning a changer / deplacer apres dev alaa sur themeID
+#pragma mark Color style from theme ID
+- (TCActivityColorStyle)colorStyle {
+    TCActivityColorStyle style;
+    switch ([self.themeIdentifier intValue]) {
+        case 1:
+            style = TCActivityColorStyleMusique;
+            break;
+        case 2:
+            style = TCActivityColorStyleActivites;
+            break;
+        case 4:
+            style = TCActivityColorStyleEvenements;
+            break;
+        case 5:
+            style = TCActivityColorStyleNature;
+            break;
+        case 6:
+            style = TCActivityColorStyleCulture;
+            break;
+        case 7:
+            style = TCActivityColorStyleSpectacles;
+            break;
+        default:
+            style = TCActivityColorStyleMusique;
+            break;
+    }
+    return style;
+}
+
 
 @end

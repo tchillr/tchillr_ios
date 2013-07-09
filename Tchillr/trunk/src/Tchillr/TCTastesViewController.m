@@ -11,7 +11,7 @@
 // Views & Controls
 #import "TCTastesCollectionViewCell.h"
 #import "TCSelectedTagsView.h"
-
+#import "MBProgressHUD.h"
 // Categories
 #import "UIColor+Tchillr.h"
 
@@ -19,6 +19,8 @@
 #import "TCServerClient.h"
 #import "TCTag.h"
 #import "TCUserInterests.h"
+
+#import "TCConstants.h"
 
 
 #define kOpenedCollectionCellWidth 174
@@ -62,6 +64,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_PROGRESS_HUD object:self.view];
     [[TCServerClient sharedTchillrServerClient] startThemesRequestWithSuccess:^(NSArray *themeTagsArray) {
         self.themes = themeTagsArray;
         [[TCServerClient sharedTchillrServerClient] startInterestsRequestWithSuccess:^(NSArray *interestsArray) {
@@ -70,11 +73,14 @@
             }
             [TCUserInterests sharedTchillrUserInterests].interests = interestsArray;
             [self.collectionView reloadData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:self.view];
         } failure:^(NSError *error) {
             NSLog(@"%@",[error description]);
+            [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:self.view];
         }];
     } failure:^(NSError *error) {
         NSLog(@"%@",[error description]);
+        [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:self.view];
     }];
 }
 
@@ -93,15 +99,18 @@
         [self.delegate tastesViewControllerDidFinishEditing:self];
     }
     else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_PROGRESS_HUD object:self.view];
         [[TCServerClient sharedTchillrServerClient] startRefreshInterestRequestWithInterestsList:self.selectedTagsIdentifiers
                                                                                          success:^(NSArray *interestsArray) {
                                                                                              [TCUserInterests sharedTchillrUserInterests].interests = interestsArray;
                                                                                              [self.delegate tastesViewControllerDidFinishEditing:self];
+                                                                                             [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:self.view];
                                                                                          }
                                                                                          failure:^(NSError *error) {
                                                                                              NSString * message = [NSString stringWithFormat:NSLocalizedString(@"TASTES_PICKER_UPDATE_INTERESTS_FAILURE", nil)];
                                                                                              UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Tchillr" message:message delegate:self cancelButtonTitle:@"Mince !" otherButtonTitles:nil];
                                                                                              [alert show];
+                                                                                             [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:self.view];
                                                                                          }];
     }
 }

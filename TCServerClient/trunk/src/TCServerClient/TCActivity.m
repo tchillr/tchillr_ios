@@ -32,7 +32,7 @@
 #define kActivityHasFeeKey @"hasFee"
 #define kActivityScoreKey @"score"
 #define kActivityMediaKey @"Media"
-
+#define kActivityColorKey @"color"
 
 @implementation TCActivity
 
@@ -119,6 +119,33 @@
     return (NSNumber *)[self.jsonDictionary objectForKey:kActivityScoreKey];
 }
 
+#warning hack car plantage (a voir avec alaa) / A VIRER QD CORRIGÉ
+- (TCActivityColorStyle)colorStyle{
+    NSString * color = (NSString *)[self.jsonDictionary objectForKey:kActivityColorKey];
+    if ([color isKindOfClass:[NSString class]]) {
+        if ([color isEqualToString:@"Musique"]) {
+            _colorStyle = TCActivityColorStyleMusique;
+        }
+        else if ([color isEqualToString:@"Spectacles"]) {
+            _colorStyle = TCActivityColorStyleSpectacles;
+        }
+        else if ([color isEqualToString:@"Activités"]) {
+            _colorStyle = TCActivityColorStyleActivites;
+        }
+        else if ([color isEqualToString:@"Evenements"]) {
+            _colorStyle = TCActivityColorStyleEvenements;
+        }
+        else if ([color isEqualToString:@"Nature"]) {
+            _colorStyle = TCActivityColorStyleNature;
+        }
+        else if ([color isEqualToString:@"Culture"]) {
+            _colorStyle = TCActivityColorStyleCulture;
+        }
+        return _colorStyle;
+    }
+return TCActivityColorStyleMusique;
+}
+
 #warning Medias support / only images files
 @synthesize medias = _medias;
 - (NSArray *)medias {
@@ -132,7 +159,7 @@
                 [mediasArray addObject:media];
             }
             else {
-                NSLog(@"%@",[media.path pathExtension]);
+                NSLog(@"Media of type %@ not handled",[media.path pathExtension]);
             }
         }
         _medias = [NSArray arrayWithArray:mediasArray];
@@ -149,10 +176,7 @@
 }
 
 - (BOOL)hasMedias {
-    NSInteger index = [self.medias indexOfObjectPassingTest:^BOOL(TCMedia * media, NSUInteger idx, BOOL *stop) {
-        return (media.image != nil);
-    }];
-    return index != NSNotFound;
+    return self.numberOfMedias > 0;
 }
 
 #pragma mark First access

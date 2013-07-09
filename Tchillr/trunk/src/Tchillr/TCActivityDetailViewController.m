@@ -78,6 +78,8 @@
     self.activityHeaderView.frame = CGRectMake(0.0, 0.0, headerIdealSize.width, headerIdealSize.height);
     [self.tableView setTableHeaderView:self.activityHeaderView];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.activityHeaderView.triangleView setStyle:self.activity.colorStyle];
+    [self.tableView setShowsVerticalScrollIndicator:NO];
 }
 
 #pragma mark UITableViewDelegate / DataSource methods
@@ -95,6 +97,7 @@
             addressTableViewCell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow_black"] highlightedImage:[UIImage imageNamed:@"arrow_black"]];
             [addressTableViewCell customizeAsWhiteCell];
             cell = addressTableViewCell;
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         }           
             break;
         case KRowTags:{
@@ -102,29 +105,33 @@
             tagsTableViewCell.collectionView.tag = kTCActivityTagsCollectionViewTag;
             [tagsTableViewCell customizeAsWhiteCell];
             cell = tagsTableViewCell;
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         }
             break;
         case KRowAttendance:{
             TCAttendanceTableViewCell * attendanceTableViewCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCAttendanceTableViewCell class])];
             cell = attendanceTableViewCell;
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         }
             break;
         case KRowGallery:{
             TCGalleryTableViewCell * galleryTableViewCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCGalleryTableViewCell class])];
             galleryTableViewCell.collectionView.tag = kTCActivityGalleryCollectionViewTag;
             cell = galleryTableViewCell;
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         }
             break;
         case KRowDescription:{
             TCDescriptionTableViewCell * descriptionTableViewCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCDescriptionTableViewCell class])];
             descriptionTableViewCell.descriptionLabel.text = self.activity.description;
             cell = descriptionTableViewCell;
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         }
             break;
         default:
             break;
     }
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
     return cell;
 }
 
@@ -166,7 +173,7 @@
         numberOfItemsInSection = [self.activity numberOfTags];
     }
     else if (collectionView.tag == kTCActivityGalleryCollectionViewTag) {
-        numberOfItemsInSection = 1;
+        numberOfItemsInSection = [self.activity numberOfMedias];
     }
     return numberOfItemsInSection;
 }
@@ -184,7 +191,7 @@
             }];
             [cell setUserInterest:(index != NSNotFound)];
         }
-        [cell customizeWithStyle:indexPath.row];
+        [cell customizeWithStyle:tag.colorStyle];
         cellForItemAtIndexPath = cell;
     }
     else if (collectionView.tag == kTCActivityGalleryCollectionViewTag) {
