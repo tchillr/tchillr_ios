@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Tchillr. All rights reserved.
 //
 
-#import "TCWalkingRoute.h"
+#import "TCRoute.h"
 
 #pragma mark Utilities
 CLLocationCoordinate2D CLLocationCoordinate2DMakeFromDictionary(NSDictionary *locationDictionary);
 
-@interface TCWalkingRoute ()
+@interface TCRoute ()
 
 #pragma mark Route
 @property (strong, nonatomic, readwrite) MKPolyline *polyline;
@@ -21,7 +21,7 @@ CLLocationCoordinate2D CLLocationCoordinate2DMakeFromDictionary(NSDictionary *lo
 
 @end
 
-@implementation TCWalkingRoute
+@implementation TCRoute
 
 #pragma mark Route
 - (MKPolyline *)polyline {

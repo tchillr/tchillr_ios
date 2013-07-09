@@ -94,7 +94,7 @@
 		5F435EC81779CFF700D99CA8 /* btn_tick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F435EC61779CFF700D99CA8 /* btn_tick@2x.png */; };
 		5F435ECB1779D42400D99CA8 /* TCTastesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F435ECA1779D42400D99CA8 /* TCTastesCollectionViewCell.m */; };
 		5F9A0E50178433FB004A2FE1 /* Paris.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E4F178433FB004A2FE1 /* Paris.gpx */; };
-		5F9A0E531784463C004A2FE1 /* TCWalkingRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0E521784463C004A2FE1 /* TCWalkingRoute.m */; };
+		5F9A0E531784463C004A2FE1 /* TCRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0E521784463C004A2FE1 /* TCRoute.m */; };
 		5F9A0E6317845CCC004A2FE1 /* arrow_route.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E5717845CCA004A2FE1 /* arrow_route.png */; };
 		5F9A0E6417845CCC004A2FE1 /* arrow_route@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E5817845CCB004A2FE1 /* arrow_route@2x.png */; };
 		5F9A0E6517845CCC004A2FE1 /* auto.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E5917845CCB004A2FE1 /* auto.png */; };
@@ -123,12 +123,14 @@
 		5F9A0E9A17846B94004A2FE1 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0E8C17846B94004A2FE1 /* SBJsonTokeniser.m */; };
 		5F9A0E9B17846B94004A2FE1 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0E8E17846B94004A2FE1 /* SBJsonUTF8Stream.m */; };
 		5F9A0E9C17846B94004A2FE1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0E9017846B94004A2FE1 /* SBJsonWriter.m */; };
-		5F9A0E9E17846CAA004A2FE1 /* Paris.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E9D17846CAA004A2FE1 /* Paris.json */; };
+		5F9A0E9E17846CAA004A2FE1 /* velib_paris.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F9A0E9D17846CAA004A2FE1 /* velib_paris.json */; };
 		5F9A0EA117846F65004A2FE1 /* TCVelibStation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0EA017846F65004A2FE1 /* TCVelibStation.m */; };
 		5F9A0EA4178472C6004A2FE1 /* TCTransportAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A0EA3178472C5004A2FE1 /* TCTransportAnnotation.m */; };
 		5FA76F8D1784756800B2180D /* TCTransportAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA76F8C1784756800B2180D /* TCTransportAnnotationView.m */; };
 		5FAA5A511781D1B2009ECDA4 /* TCRouteClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FAA5A501781D1B2009ECDA4 /* TCRouteClient.m */; };
 		5FAA5A541781D63E009ECDA4 /* NavitiaHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FAA5A531781D63E009ECDA4 /* NavitiaHTTPClient.m */; };
+		5FBC27D0178B14A70094291F /* TCAutolibStation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBC27CF178B14A70094291F /* TCAutolibStation.m */; };
+		5FBC27D2178B15DB0094291F /* autolib_paris.json in Resources */ = {isa = PBXBuildFile; fileRef = 5FBC27D1178B15DB0094291F /* autolib_paris.json */; };
 		85C39AD01786185D00158D37 /* TCTastesTagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C39ACF1786185D00158D37 /* TCTastesTagsTableViewCell.m */; };
 /* End PBXBuildFile section */
 
@@ -274,9 +276,8 @@
 		5F435EC91779D42400D99CA8 /* TCTastesCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTastesCollectionViewCell.h; sourceTree = "<group>"; };
 		5F435ECA1779D42400D99CA8 /* TCTastesCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTastesCollectionViewCell.m; sourceTree = "<group>"; };
 		5F9A0E4F178433FB004A2FE1 /* Paris.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Paris.gpx; sourceTree = "<group>"; };
-		5F9A0E511784463C004A2FE1 /* TCWalkingRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCWalkingRoute.h; sourceTree = "<group>"; };
-		5F9A0E521784463C004A2FE1 /* TCWalkingRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWalkingRoute.m; sourceTree = "<group>"; };
-		5F9A0E5417844C4C004A2FE1 /* TCRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRoute.h; sourceTree = "<group>"; };
+		5F9A0E511784463C004A2FE1 /* TCRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRoute.h; sourceTree = "<group>"; };
+		5F9A0E521784463C004A2FE1 /* TCRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRoute.m; sourceTree = "<group>"; };
 		5F9A0E5717845CCA004A2FE1 /* arrow_route.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_route.png; sourceTree = "<group>"; };
 		5F9A0E5817845CCB004A2FE1 /* arrow_route@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_route@2x.png"; sourceTree = "<group>"; };
 		5F9A0E5917845CCB004A2FE1 /* auto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = auto.png; sourceTree = "<group>"; };
@@ -318,7 +319,7 @@
 		5F9A0E8E17846B94004A2FE1 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		5F9A0E8F17846B94004A2FE1 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		5F9A0E9017846B94004A2FE1 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		5F9A0E9D17846CAA004A2FE1 /* Paris.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Paris.json; sourceTree = "<group>"; };
+		5F9A0E9D17846CAA004A2FE1 /* velib_paris.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = velib_paris.json; sourceTree = "<group>"; };
 		5F9A0E9F17846F65004A2FE1 /* TCVelibStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCVelibStation.h; sourceTree = "<group>"; };
 		5F9A0EA017846F65004A2FE1 /* TCVelibStation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCVelibStation.m; sourceTree = "<group>"; };
 		5F9A0EA2178472C5004A2FE1 /* TCTransportAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTransportAnnotation.h; sourceTree = "<group>"; };
@@ -329,6 +330,9 @@
 		5FAA5A501781D1B2009ECDA4 /* TCRouteClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRouteClient.m; sourceTree = "<group>"; };
 		5FAA5A521781D63E009ECDA4 /* NavitiaHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavitiaHTTPClient.h; sourceTree = "<group>"; };
 		5FAA5A531781D63E009ECDA4 /* NavitiaHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavitiaHTTPClient.m; sourceTree = "<group>"; };
+		5FBC27CE178B14A70094291F /* TCAutolibStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAutolibStation.h; sourceTree = "<group>"; };
+		5FBC27CF178B14A70094291F /* TCAutolibStation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAutolibStation.m; sourceTree = "<group>"; };
+		5FBC27D1178B15DB0094291F /* autolib_paris.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = autolib_paris.json; sourceTree = "<group>"; };
 		85C39ACE1786185D00158D37 /* TCTastesTagsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTastesTagsTableViewCell.h; sourceTree = "<group>"; };
 		85C39ACF1786185D00158D37 /* TCTastesTagsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTastesTagsTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -442,7 +446,8 @@
 			isa = PBXGroup;
 			children = (
 				5F9A0E4F178433FB004A2FE1 /* Paris.gpx */,
-				5F9A0E9D17846CAA004A2FE1 /* Paris.json */,
+				5F9A0E9D17846CAA004A2FE1 /* velib_paris.json */,
+				5FBC27D1178B15DB0094291F /* autolib_paris.json */,
 				0594D69D1771DD6E00744BF3 /* Tchillr-Info.plist */,
 				0594D69E1771DD6E00744BF3 /* InfoPlist.strings */,
 				0594D6A11771DD6E00744BF3 /* main.m */,
@@ -693,15 +698,16 @@
 		5FAA5A4E1781D19D009ECDA4 /* Routes */ = {
 			isa = PBXGroup;
 			children = (
-				5F9A0E5417844C4C004A2FE1 /* TCRoute.h */,
 				5FAA5A4F1781D1B2009ECDA4 /* TCRouteClient.h */,
 				5FAA5A501781D1B2009ECDA4 /* TCRouteClient.m */,
 				5FAA5A521781D63E009ECDA4 /* NavitiaHTTPClient.h */,
 				5FAA5A531781D63E009ECDA4 /* NavitiaHTTPClient.m */,
-				5F9A0E511784463C004A2FE1 /* TCWalkingRoute.h */,
-				5F9A0E521784463C004A2FE1 /* TCWalkingRoute.m */,
+				5F9A0E511784463C004A2FE1 /* TCRoute.h */,
+				5F9A0E521784463C004A2FE1 /* TCRoute.m */,
 				5F9A0E9F17846F65004A2FE1 /* TCVelibStation.h */,
 				5F9A0EA017846F65004A2FE1 /* TCVelibStation.m */,
+				5FBC27CE178B14A70094291F /* TCAutolibStation.h */,
+				5FBC27CF178B14A70094291F /* TCAutolibStation.m */,
 				5F9A0EA2178472C5004A2FE1 /* TCTransportAnnotation.h */,
 				5F9A0EA3178472C5004A2FE1 /* TCTransportAnnotation.m */,
 			);
@@ -822,7 +828,8 @@
 				5F9A0E7417845FD4004A2FE1 /* btn_bg.png in Resources */,
 				5F9A0E7517845FD4004A2FE1 /* btn_bg@2x.png in Resources */,
 				5F9A0E7617845FD4004A2FE1 /* btn_bg_selected@2x.png in Resources */,
-				5F9A0E9E17846CAA004A2FE1 /* Paris.json in Resources */,
+				5F9A0E9E17846CAA004A2FE1 /* velib_paris.json in Resources */,
+				5FBC27D2178B15DB0094291F /* autolib_paris.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -876,7 +883,7 @@
 				5FAA5A511781D1B2009ECDA4 /* TCRouteClient.m in Sources */,
 				5FAA5A541781D63E009ECDA4 /* NavitiaHTTPClient.m in Sources */,
 				05A88A801781D362002DFE94 /* TCMedia.m in Sources */,
-				5F9A0E531784463C004A2FE1 /* TCWalkingRoute.m in Sources */,
+				5F9A0E531784463C004A2FE1 /* TCRoute.m in Sources */,
 				5F9A0E9117846B94004A2FE1 /* NSObject+SBJson.m in Sources */,
 				5F9A0E9217846B94004A2FE1 /* SBJsonParser.m in Sources */,
 				5F9A0E9317846B94004A2FE1 /* SBJsonStreamParser.m in Sources */,
@@ -901,6 +908,7 @@
 				85C39AD01786185D00158D37 /* TCTastesTagsTableViewCell.m in Sources */,
 				0549587E17882E4E00DE67C9 /* NSDate+Tchillr.m in Sources */,
 				05AB0FE3178996AE00F8ABD0 /* TCSelectedTagsView.m in Sources */,
+				5FBC27D0178B14A70094291F /* TCAutolibStation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

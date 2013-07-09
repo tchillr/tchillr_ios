@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="JVo-Ic-OKG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="JVo-Ic-OKG">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -572,6 +572,9 @@
                                 <state key="highlighted" backgroundImage="btn_bg_selected.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="switchCurrentTransport:" destination="Nod-7A-PX8" eventType="touchUpInside" id="KV4-Mr-vMu"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="separator_vertical.png" id="pXE-XF-DNl">
                                 <rect key="frame" x="275" y="0.0" width="1" height="44"/>
@@ -590,6 +593,9 @@
                                 <state key="highlighted" backgroundImage="btn_bg_selected.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="switchCurrentTransport:" destination="Nod-7A-PX8" eventType="touchUpInside" id="ATN-9Q-saA"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="separator_vertical.png" id="a42-ob-bFm">
                                 <rect key="frame" x="230" y="0.0" width="1" height="44"/>
@@ -608,6 +614,9 @@
                                 <state key="highlighted" backgroundImage="btn_bg_selected.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="switchCurrentTransport:" destination="Nod-7A-PX8" eventType="touchUpInside" id="hnF-2j-uQn"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="separator_vertical.png" id="Jon-AW-8F2">
                                 <rect key="frame" x="185" y="0.0" width="1" height="44"/>
@@ -626,6 +635,9 @@
                                 <state key="highlighted" backgroundImage="btn_bg_selected.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="switchCurrentTransport:" destination="Nod-7A-PX8" eventType="touchUpInside" id="ReD-Qc-FrE"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="bottom" image="arrow_route.png" id="LvY-DU-unx">
                                 <rect key="frame" x="141" y="0.0" width="44" height="44"/>
@@ -637,7 +649,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="t9H-YM-c9O"/>
                     <connections>
+                        <outlet property="autolibButton" destination="gQb-vR-K0Z" id="zgv-YQ-lQ0"/>
                         <outlet property="mapView" destination="f2X-JI-lSf" id="hUH-jz-R72"/>
+                        <outlet property="ratpButton" destination="OWa-cc-C0w" id="fJy-WK-eFK"/>
+                        <outlet property="routeTransportArrow" destination="LvY-DU-unx" id="ZXb-3x-FBh"/>
+                        <outlet property="velibButton" destination="gdV-06-iH3" id="phI-fS-Yog"/>
+                        <outlet property="walkingButton" destination="IJX-QZ-Umn" id="k1W-J3-wwa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bzE-7I-z80" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -701,7 +718,6 @@
         <class className="TCActivityDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TCActivityDetailViewController.h"/>
             <relationships>
-                <relationship kind="action" name="popViewController:"/>
                 <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
@@ -755,7 +771,13 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TCRouteViewController.h"/>
             <relationships>
                 <relationship kind="action" name="popViewController:"/>
+                <relationship kind="action" name="switchCurrentTransport:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="autolibButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="ratpButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="routeTransportArrow" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="velibButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="walkingButton" candidateClass="UIButton"/>
             </relationships>
         </class>
         <class className="TCSelectedTagsView" superclassName="UIView">

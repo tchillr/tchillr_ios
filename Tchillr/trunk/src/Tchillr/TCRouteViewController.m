@@ -14,8 +14,11 @@
 // Model
 #import "TCActivity.h"
 #import "TCLocationAnnotation.h"
-#import "TCRoute.h"
 #import "TCTransportAnnotation.h"
+#import "TCRouteClient.h"
+#import "TCRoute.h"
+#import "TCVelibStation.h"
+#import "TCAutolibStation.h"
 
 // Categories
 #import "UIColor+Tchillr.h"
@@ -39,12 +42,23 @@ CLLocationCoordinate2D midPoint(CLLocationCoordinate2D locationA, CLLocationCoor
 #pragma mark Activity Location
 - (CLLocation *)activityLocation;
 - (void)pinActivity;
-@property (assign, nonatomic) TCRouteTransport transport;
-@property (strong, nonatomic) id route;
+@property (strong, nonatomic) NSMutableSet *routes;
 @property (strong, nonatomic) MKPolylineView *polylineView;
 
 #pragma mark Map Management
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+- (void)reloadData;
+
+#pragma mark Route Types Selection
+@property (weak, nonatomic) IBOutlet UIButton *autolibButton;
+@property (weak, nonatomic) IBOutlet UIButton *ratpButton;
+@property (weak, nonatomic) IBOutlet UIButton *velibButton;
+@property (weak, nonatomic) IBOutlet UIButton *walkingButton;
+@property (weak, nonatomic) IBOutlet UIImageView *routeTransportArrow;
+
+- (IBAction)switchCurrentTransport:(UIButton *)sender;
+@property (weak, nonatomic) UIButton *currentButton;
+@property (assign, nonatomic, readonly) TCRouteTransport currentTransport;
 
 @end
 
@@ -53,33 +67,7 @@ CLLocationCoordinate2D midPoint(CLLocationCoordinate2D locationA, CLLocationCoor
 #pragma mark View Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[self pinActivity];
-	[self startUpdatingUserLocation];
-	self.transport = TCRouteTransportWalk;
-	[[TCRouteClient sharedInstance] findRouteFrom:self.mapView.userLocation.coordinate
-											   to:self.activityLocation.coordinate
-										transport:self.transport
-									   completion:^(BOOL success, id route, NSError *error) {
-										   self.route = route;
-										   switch (self.transport) {
-											   case TCRouteTransportWalk: {
-												   TCWalkingRoute *walkingRoute = self.route;
-												   [self.mapView addOverlay:walkingRoute.polyline];
-											   }  break;
-												default:
-												   break;
-										   }
-									   }];
-	TCVelibStation *nearestVelibStation = [[TCRouteClient sharedInstance] nearestVelibStationFrom:self.mapView.userLocation.location];
-	
-	TCTransportAnnotation* annotation = [[TCTransportAnnotation alloc] initWithTransport:self.transport name:nearestVelibStation.name address:nearestVelibStation.address coordinate:nearestVelibStation.location.coordinate];
-	[self.mapView addAnnotation:annotation];
-	
-	
-	nearestVelibStation = [[TCRouteClient sharedInstance] nearestVelibStationFrom:self.activityLocation];
-	
-	annotation = [[TCTransportAnnotation alloc] initWithTransport:self.transport name:nearestVelibStation.name address:nearestVelibStation.address coordinate:nearestVelibStation.location.coordinate];
-	[self.mapView addAnnotation:annotation];
+	[self setCurrentButton:self.walkingButton];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -114,13 +102,121 @@ CLLocationCoordinate2D midPoint(CLLocationCoordinate2D locationA, CLLocationCoor
 	TCLocationAnnotation* annotation = [[TCLocationAnnotation alloc] initWithName:self.activity.name address:self.activity.fullAddress coordinate:CLLocationCoordinate2DMake(self.activity.latitude, self.activity.longitude)];
 	[self.mapView addAnnotation:annotation];
 }
+- (NSMutableSet *)routes {
+	if (!_routes) {
+		_routes = [NSMutableSet set];
+	}
+	return _routes;
+}
+- (TCRoute *)routeForOverlay:(id<MKOverlay>)overlay {
+	return [[self.routes objectsPassingTest:^BOOL(TCRoute *route, BOOL *stop) {
+		return [route.polyline isEqual:overlay];
+	}] anyObject];
+}
 
 #pragma mark Map Management
+- (void)reloadData {
+	NSIndexSet *transportAnnotationsIndexes = [self.mapView.annotations indexesOfObjectsPassingTest:^BOOL(id<MKAnnotation> annotation, NSUInteger idx, BOOL *stop) {
+		return [annotation isKindOfClass:[TCTransportAnnotation class]];
+	}];
+	[self.mapView removeAnnotations:[self.mapView.annotations objectsAtIndexes:transportAnnotationsIndexes]];
+	[self.mapView removeOverlays:self.mapView.overlays];
+	
+	[self.routes removeAllObjects];
+	
+	[self pinActivity];
+	[self startUpdatingUserLocation];
+	
+	switch (self.currentTransport) {
+		case TCRouteTransportWalk: {
+			[[TCRouteClient sharedInstance] findRouteFrom:self.mapView.userLocation.coordinate
+													   to:self.activityLocation.coordinate
+												transport:TCRouteTransportWalk
+											   completion:^(BOOL success, TCRoute *route, NSError *error) {
+												   [self.routes addObject:route];
+												   [self.mapView addOverlay:route.polyline];
+											   }];
+		} break;
+		case TCRouteTransportVelib: {
+			TCVelibStation *userVelibStation = [[TCRouteClient sharedInstance] nearestVelibStationFrom:self.mapView.userLocation.location];
+			TCTransportAnnotation* annotation = [[TCTransportAnnotation alloc] initWithTransport:self.currentTransport name:userVelibStation.name address:userVelibStation.address coordinate:userVelibStation.location.coordinate];
+			[self.mapView addAnnotation:annotation];
+			
+			TCVelibStation *activityVelibStation = [[TCRouteClient sharedInstance] nearestVelibStationFrom:self.activityLocation];
+			annotation = [[TCTransportAnnotation alloc] initWithTransport:self.currentTransport name:activityVelibStation.name address:activityVelibStation.address coordinate:activityVelibStation.location.coordinate];
+			[self.mapView addAnnotation:annotation];
+			
+			[[TCRouteClient sharedInstance] findRouteFrom:userVelibStation.location.coordinate
+													   to:activityVelibStation.location.coordinate
+												transport:TCRouteTransportVelib
+											   completion:^(BOOL success, TCRoute *route, NSError *error) {
+												   [self.routes addObject:route];
+												   [self.mapView addOverlay:route.polyline];
+											   }];
+		} break;
+		case TCRouteTransportRATP: {
+			
+		} break;
+		case TCRouteTransportAutolib: {
+			TCAutolibStation *userAutolibStation = [[TCRouteClient sharedInstance] nearestAutolibStationFrom:self.mapView.userLocation.location];
+			TCTransportAnnotation* annotation = [[TCTransportAnnotation alloc] initWithTransport:self.currentTransport name:nil address:nil coordinate:userAutolibStation.location.coordinate];
+			[self.mapView addAnnotation:annotation];
+			
+			TCAutolibStation *activityAutolibStation = [[TCRouteClient sharedInstance] nearestAutolibStationFrom:self.activityLocation];
+			annotation = [[TCTransportAnnotation alloc] initWithTransport:self.currentTransport name:nil address:nil coordinate:activityAutolibStation.location.coordinate];
+			[self.mapView addAnnotation:annotation];
+			
+			[[TCRouteClient sharedInstance] findRouteFrom:self.mapView.userLocation.coordinate
+													   to:userAutolibStation.location.coordinate
+												transport:TCRouteTransportWalk
+											   completion:^(BOOL success, TCRoute *route, NSError *error) {
+												   [self.routes addObject:route];
+												   [self.mapView addOverlay:route.polyline];
+											   }];
+			
+		} break;
+	}
+}
+
+#pragma mark Route Types Selection
+- (IBAction)switchCurrentTransport:(UIButton *)sender {
+	[self setCurrentButton:sender];
+}
+- (void)setCurrentButton:(UIButton *)currentButton {
+	if (![_currentButton isEqual:currentButton]) {
+		if (_currentButton) {
+			[_currentButton setSelected:NO];
+		}
+		_currentButton = currentButton;
+		[_currentButton setSelected:YES];
+		[UIView animateWithDuration:0.2
+							  delay:0.0
+							options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionBeginFromCurrentState
+						 animations:^{
+							 [self.routeTransportArrow setCenter:_currentButton.center];
+						 }
+						 completion:^(BOOL finished) {}];
+		[self reloadData];
+	}
+}
+- (TCRouteTransport)currentTransport {
+	if ([self.currentButton isEqual:self.autolibButton]) {
+		return TCRouteTransportAutolib;
+	}
+	else if ([self.currentButton isEqual:self.velibButton]) {
+		return TCRouteTransportVelib;
+	}
+	else if ([self.currentButton isEqual:self.ratpButton]) {
+		return TCRouteTransportRATP;
+	}
+	else { //if ([self.currentButton isEqual:self.autolibButton]) {
+		return TCRouteTransportWalk;
+	}
+}
 
 #pragma mark CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
 	CLLocation *userLocation = [locations lastObject];
-	[self.mapView setCenterCoordinate:userLocation.coordinate animated:YES];
 	
 	// Distance between user and activity
 	CLLocationDistance distance = [userLocation distanceFromLocation:self.activityLocation];
@@ -137,12 +233,19 @@ CLLocationCoordinate2D midPoint(CLLocationCoordinate2D locationA, CLLocationCoor
 	
 	if(!self.polylineView) {
 		self.polylineView = [[MKPolylineView alloc] initWithPolyline:overlay];
-		self.polylineView.fillColor = [UIColor tcWhite];
+		switch ([self routeForOverlay:overlay].transport) {
+			case TCRouteTransportWalk:
+				self.polylineView.lineDashPattern = @[@10.0,@10.0];
+				break;
+			case TCRouteTransportVelib:
+				break;
+			default:
+				break;
+		}
+		self.polylineView.lineWidth = 3.0;
 		self.polylineView.strokeColor = [UIColor tcBlack];
-		self.polylineView.lineWidth = 5.0;
 		self.polylineView.lineCap = kCGLineCapRound;
 		self.polylineView.lineJoin = kCGLineJoinRound;
-		self.polylineView.lineDashPattern = @[@10.0,@10.0];
 	}
 	overlayView = self.polylineView;
 	

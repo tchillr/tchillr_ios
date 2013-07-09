@@ -10,19 +10,24 @@
 
 // Model
 #import "AFJSONRequestOperation.h"
-#import "TCWalkingRoute.h"
+#import "TCRoute.h"
 #import "SBJsonParser.h"
 #import "TCVelibStation.h"
+#import "TCAutolibStation.h"
 
 @interface TCRouteClient ()
 
 #pragma mark Routing
-- (void)findWalkingRouteFrom:(CLLocationCoordinate2D)fromLocation to:(CLLocationCoordinate2D)toLocation completion:(void (^)(BOOL success, TCWalkingRoute *route, NSError *error))completion;
 
 #pragma mark Velib Specifics
 @property (strong, nonatomic) NSArray *velibStations;
 - (NSUInteger)numberOfVelibStations;
 - (TCVelibStation *)velibStationAtIndex:(NSUInteger)index;
+
+#pragma mark Autolib Specifics
+@property (strong, nonatomic) NSArray *autolibStations;
+- (NSUInteger)numberOfAutolibStations;
+- (TCAutolibStation *)autolibStationAtIndex:(NSUInteger)index;
 
 @end
 
@@ -42,26 +47,19 @@ static TCRouteClient *sharedInstance;
 }
 
 #pragma mark Routing
-- (void)findRouteFrom:(CLLocationCoordinate2D)fromLocation to:(CLLocationCoordinate2D)toLocation transport:(TCRouteTransport)transport completion:(void (^)(BOOL success, id route, NSError *error))completion {
-	switch (transport) {
-		case TCRouteTransportWalk:
-			[self findWalkingRouteFrom:fromLocation to:toLocation completion:completion];
-			break;
-		default:
-			break;
-	}
-}
-- (void)findWalkingRouteFrom:(CLLocationCoordinate2D)fromLocation to:(CLLocationCoordinate2D)toLocation completion:(void (^)(BOOL success, TCWalkingRoute *route, NSError *error))completion {
+- (void)findRouteFrom:(CLLocationCoordinate2D)fromLocation to:(CLLocationCoordinate2D)toLocation transport:(TCRouteTransport)transport completion:(void (^)(BOOL success, TCRoute *route, NSError *error))completion {
 	NSString *requestString = [NSString stringWithFormat:
-							   @"http://maps.googleapis.com/maps/api/directions/json?origin=%f,%f&destination=%f,%f&mode=bicycling&sensor=true",
+							   @"http://maps.googleapis.com/maps/api/directions/json?origin=%f,%f&destination=%f,%f&mode=%@&sensor=true",
 							   fromLocation.latitude, fromLocation.longitude,
-							   toLocation.latitude, toLocation.longitude];
+							   toLocation.latitude, toLocation.longitude,
+							   NSStringFromTCRouteTransport(transport)];
 	
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:requestString]];
 	AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-																							TCWalkingRoute *walkingRoute = [TCWalkingRoute objectWithJsonDictionary:JSON];
-																							completion(YES, walkingRoute, nil);
+																							TCRoute *route = [TCRoute objectWithJsonDictionary:JSON];
+																							[route setTransport:transport];
+																							completion(YES, route, nil);
                                                                                         }
 																						failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
 																							completion(NO, nil, error);
@@ -71,11 +69,12 @@ static TCRouteClient *sharedInstance;
     [operation start];
 }
 
+
 #pragma mark Velib Specifics
 - (NSArray *)velibStations {
 	if (!_velibStations) {
 		SBJsonParser *parser = [[SBJsonParser alloc] init];
-		_velibStations = [parser objectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Paris" ofType:@"json"]]];
+		_velibStations = [parser objectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"velib_paris" ofType:@"json"]]];
 	}
 	return _velibStations;
 }
@@ -96,6 +95,31 @@ static TCRouteClient *sharedInstance;
 	return nearestVelibStation;
 }
 
+#pragma mark Autolib Specifics
+- (NSArray *)autolibStations {
+	if (!_autolibStations) {
+		SBJsonParser *parser = [[SBJsonParser alloc] init];
+		_autolibStations = [parser objectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"autolib_paris" ofType:@"json"]]];
+	}
+	return _autolibStations;
+}
+- (NSUInteger)numberOfAutolibStations {
+	return [self.autolibStations count];
+}
+- (TCAutolibStation *)autolibStationAtIndex:(NSUInteger)index {
+	return [TCAutolibStation objectWithJsonDictionary:[self.autolibStations objectAtIndex:index]];
+}
+- (TCAutolibStation *)nearestAutolibStationFrom:(CLLocation *)location {
+	TCAutolibStation *nearestAutolibStation = nil;
+	for (int i = 0; i < [self numberOfAutolibStations]; i++) {
+		TCAutolibStation *autolibStation = [self autolibStationAtIndex:i];
+		if (!nearestAutolibStation || [location distanceFromLocation:nearestAutolibStation.location] > [location distanceFromLocation:autolibStation.location]) {
+			nearestAutolibStation = autolibStation;
+		}
+	}
+	return nearestAutolibStation;
+}
+
 #pragma mark RATP - Find Places
 - (void)findPlacesNearLocation:(CLLocationCoordinate2D)location completion:(void (^)(BOOL success, NSArray *places, NSError *error))completion {
 	NSString *requestString = [NSString stringWithFormat:@"http://api.navitia.io/v0/paris/places_nearby.json?uri=coord:%f:%f", location.latitude, location.longitude];
@@ -114,3 +138,23 @@ static TCRouteClient *sharedInstance;
 }
 
 @end
+
+#pragma mark Utilities
+NSString *NSStringFromTCRouteTransport(TCRouteTransport transport) {
+	NSString *string = nil;
+	switch (transport) {
+		case TCRouteTransportAutolib:
+			string = @"driving";
+			break;
+		case TCRouteTransportRATP:
+			string = @"transit";
+			break;
+		case TCRouteTransportVelib:
+			string = @"bicycling";
+			break;
+		case TCRouteTransportWalk:
+			string = @"walking";
+			break;
+	}
+	return string;
+}
