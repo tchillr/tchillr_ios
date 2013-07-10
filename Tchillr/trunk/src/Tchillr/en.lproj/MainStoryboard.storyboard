@@ -252,7 +252,7 @@
                                     <segue destination="Yt8-fE-01k" kind="modal" identifier="ShowTastesSegue" id="TQO-Tz-vE8"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="t9H-sQ-boq">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="t9H-sQ-boq">
                                 <rect key="frame" x="276" y="0.0" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.21176470589999999" green="0.21176470589999999" blue="0.20392156859999999" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
@@ -757,6 +757,9 @@
         </class>
         <class className="TCAttendanceTableViewCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TCAttendanceTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="attendanceButton" candidateClass="UIButton"/>
+            </relationships>
         </class>
         <class className="TCDescriptionTableViewCell" superclassName="TCActivityDetailResizableCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TCDescriptionTableViewCell.h"/>
@@ -775,6 +778,7 @@
             <relationships>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="loadingLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="loadingView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
                 <relationship kind="outlet" name="showInterestsButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="showListButton" candidateClass="UIButton"/>
@@ -791,6 +795,7 @@
                 <relationship kind="outlet" name="routeTransportArrow" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="velibButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="walkingButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
             </relationships>
         </class>
         <class className="TCSelectedTagsView" superclassName="UIView">

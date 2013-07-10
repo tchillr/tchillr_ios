@@ -67,11 +67,22 @@
     self.shouldReloadData = YES;
     [self.mapView setShowsUserLocation:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadDataNeeded) name:kTCUserInterestsChangedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+    
+    // Load the user interests
+    [[TCServerClient sharedTchillrServerClient] startInterestsRequestWithSuccess:^(NSArray *interestsArray) {
+        [TCUserInterests sharedTchillrUserInterests].interests = interestsArray;
+        [self.collectionView reloadData];
+    } failure:^(NSError *error) {
+        NSLog(@"%@",[error description]);
+    }];
+    
 }
 
 - (void)viewDidUnload {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kTCUserInterestsChangedNotification object:nil];
-    [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
+    [super viewDidUnload];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -79,6 +90,10 @@
     if (self.shouldReloadData) {
         [self reloadData];
     }
+}
+
+- (void)applicationWillEnterForeground:(NSNotification *)notification {
+    self.shouldReloadData = YES;
 }
 
 #pragma mark - Pin locations
