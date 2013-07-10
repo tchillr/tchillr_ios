@@ -272,7 +272,7 @@ CLLocationCoordinate2D midPoint(CLLocationCoordinate2D locationA, CLLocationCoor
         TCLocationAnnotationView *locationAnnotationView = (TCLocationAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:NSStringFromClass([TCLocationAnnotationView class])];
         if (!locationAnnotationView) {
             locationAnnotationView = [[TCLocationAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:NSStringFromClass([TCLocationAnnotationView class]) andSize:[self annotationSizeTypeForActivity:self.activity]];
-            locationAnnotationView.style = TCColorStyleMusic;
+            locationAnnotationView.style = TCActivityColorStyleMusique;
             locationAnnotationView.enabled = YES;
             locationAnnotationView.canShowCallout = NO;
         }

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class TCTriangleView;
 
 @interface TCActivityDetailViewHeader : UIView
 
@@ -15,6 +16,8 @@
 @property (nonatomic, retain) IBOutlet UILabel * timeLabel;
 @property (nonatomic, retain) IBOutlet UILabel * shortDescriptionLabel;
 @property (nonatomic, retain) IBOutlet UILabel * feeLabel;
+
+@property (nonatomic, retain) IBOutlet TCTriangleView * triangleView;
 
 - (CGSize) idealSize;
 

@@ -18,7 +18,7 @@
 - (void)setUserInterest:(BOOL)userInterest {
     if (userInterest != _userInterest) {
         _userInterest = userInterest;
-        self.tagSelectionImageView.image = (_userInterest) ? kHeartSelectedImage : kHeartImage;
+        self.tagSelectionImageView.image = (_userInterest) ? kHeartHightlightedImage : kHeartImage;
     }
 }
 

@@ -7,6 +7,17 @@
 //
 
 #import "TCObject.h"
+
+typedef enum{
+    TCActivityColorStyleNone,
+    TCActivityColorStyleMusique,
+    TCActivityColorStyleActivites,
+    TCActivityColorStyleEvenements,
+    TCActivityColorStyleNature,
+    TCActivityColorStyleCulture,
+    TCActivityColorStyleSpectacles
+}TCActivityColorStyle;
+
 @class TCTag;
 @class TCMedia;
 @interface TCActivity : TCObject
@@ -30,6 +41,8 @@
 @property (nonatomic, readonly) NSNumber *price;
 @property (nonatomic, readonly) NSNumber *score;
 @property (nonatomic, readonly) NSArray *medias;
+
+@property (nonatomic, assign) TCActivityColorStyle colorStyle;
 
 #pragma mark Formatted Day
 - (NSString *) formattedDay;

@@ -39,29 +39,6 @@ static TCServerClient *sharedTchillrServerClient;
     return nil;
 }
 
-#pragma mark All Activities
-- (void)startActivitiesRequestWithSuccess:(void (^)(NSArray * activitiesArray))success failure:(void (^)(NSError *error))failure offset:(NSInteger) offset limit:(NSInteger)limit {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:kTCServerServiceURL(kTCServerActivities)]];
-    NSLog(@"Request : %@", [[request URL] absoluteString]);
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
-                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                                                            NSDictionary *jsonDict = (NSDictionary *) JSON;
-                                                                                            NSMutableArray * resultActivities = [[NSMutableArray alloc] init];
-                                                                                            NSArray *activities = [jsonDict objectForKey:kTCAllActivitiesKey];
-                                                                                            [activities enumerateObjectsUsingBlock:^(id obj,NSUInteger idx, BOOL *stop){
-                                                                                                TCActivity * activity = [[TCActivity alloc] initWithJsonDictionary:obj];
-                                                                                                [resultActivities addObject:activity];
-                                                                                            }];
-                                                                                            success(resultActivities);
-                                                                                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response,
-                                                                                                    NSError *error, id JSON) {
-                                                                                            failure(error);
-                                                                                        }
-                                         ];
-    
-    [operation start];
-}
-
 #pragma mark User Activities with from/to dates
 - (void)startUserActivitiesRequestFrom:(NSDate *) fromDate to:(NSDate *) toDate success:(void (^)(NSArray * activitiesArray))success failure:(void (^)(NSError *error))failure{
     NSLog(@"User UUID %@",[TCUser identifier]);
@@ -202,7 +179,7 @@ static TCServerClient *sharedTchillrServerClient;
     [operation start];    
 }
 
-#pragma mark User Login
+#pragma mark User Creation
 - (void)startUserCreationRequestForUUIDString:(NSString *)UUIDString success:(void (^)(BOOL success))success failure:(void (^)(NSError *error))failure {
     NSString * urlString = kTCServerServiceURL(kTCLogin([TCUser identifier]));
     NSLog(@"User UUID %@",[TCUser identifier]);
@@ -210,15 +187,9 @@ static TCServerClient *sharedTchillrServerClient;
     NSLog(@"Request : %@", [[request URL] absoluteString]);
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
                                                                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                                                            NSDictionary * dict = (NSDictionary *) JSON;
-                                                                                            /*
-                                                                                            NSArray *resultArray = [self getDataFromJSON:(NSDictionary *) JSON];
-                                                                                            NSMutableArray * tags = [NSMutableArray array];
-                                                                                            [resultArray enumerateObjectsUsingBlock:^(id obj,NSUInteger idx, BOOL *stop){
-                                                                                                TCTag * tag = [[TCTag alloc] initWithJsonDictionary:obj];
-                                                                                                [tags addObject:tag];
-                                                                                            }];
-                                                                                            success(tags);*/
+                                                                                            NSLog(@"startUserCreationRequestForUUIDString success");
+
+                                                                                            
                                                                                         }failure:^(NSURLRequest *request, NSHTTPURLResponse *response,
                                                                                                    NSError *error, id JSON) {
                                                                                             failure(error);

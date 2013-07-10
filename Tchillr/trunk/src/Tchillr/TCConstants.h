@@ -16,4 +16,12 @@
 #define kDefaultImage (IS_IPHONE_5) ? kIphone5DefaultImage : kIphone4DefaultImage
 
 
+/************************/
+/***** Progress Hud *****/
+/************************/
+#define SHOW_PROGRESS_HUD @"SHOW_PROGRESS_HUD"
+#define HIDE_PROGRESS_HUD @"HIDE_PROGRESS_HUD"
+#define kHudTargetView @"kHudTargetView"
+#define kHudCustomView @"kHudCustomView"
+
 #endif

@@ -10,4 +10,6 @@
 
 @interface TCAttendanceTableViewCell : UITableViewCell
 
+@property (nonatomic, weak) IBOutlet UIButton * attendanceButton;
+
 @end

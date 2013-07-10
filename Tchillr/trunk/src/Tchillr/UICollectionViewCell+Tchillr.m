@@ -8,10 +8,11 @@
 
 #import "UICollectionViewCell+Tchillr.h"
 #import "UIColor+Tchillr.h"
+#import "TCActivity.h"
 
 @implementation UICollectionViewCell (Tchillr)
 
-- (void)customizeWithStyle:(TCColorStyle)style{
+- (void)customizeWithStyle:(TCActivityColorStyle)style{
     [self.contentView setBackgroundColor:[UIColor tcColorWithStyle:style]];
 }
 

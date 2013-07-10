@@ -18,7 +18,7 @@ typedef enum{
 
 @interface TCLocationAnnotationView : MKAnnotationView
 
-@property (nonatomic, assign) TCColorStyle style;
+@property (nonatomic, assign) TCActivityColorStyle style;
 @property (nonatomic, assign) TCLocationAnnotationViewSizeType sizeType;
 
 #pragma mark Lifecycle

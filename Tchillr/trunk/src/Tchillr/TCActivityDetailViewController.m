@@ -9,6 +9,8 @@
 #import <MapKit/MapKit.h>
 #import "TCConstants.h"
 
+// Interests
+#import "TCUserInterests.h"
 // Controllers
 #import "TCActivityDetailViewController.h"
 #import "TCRouteViewController.h"
@@ -35,7 +37,9 @@
 // Collection View tags
 #define kTCActivityTagsCollectionViewTag 1000
 #define kTCActivityGalleryCollectionViewTag 2000
-
+// Atendance
+#define kGoing @"J'y participe"
+#define kMaybeGoing @"J'y vais !"
 
 // Model
 #import "TCTag.h"
@@ -50,6 +54,8 @@
 #define KRowGallery     3
 #define KRowDescription 4
 
+#define kUserAttendanceArrayKey @"attendances"
+
 @interface TCActivityDetailViewController ()
 
 @property (nonatomic, retain) TCActivityDetailViewHeader *activityHeaderView;
@@ -62,7 +68,6 @@
 
 @synthesize activityHeaderView = _activityHeaderView;
 @synthesize tableView = _tableView;
-@synthesize interests = _interests;
 
 #pragma mark LifeCycle
 - (void)viewDidLoad {
@@ -77,6 +82,8 @@
     self.activityHeaderView.frame = CGRectMake(0.0, 0.0, headerIdealSize.width, headerIdealSize.height);
     [self.tableView setTableHeaderView:self.activityHeaderView];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.activityHeaderView.triangleView setStyle:self.activity.colorStyle];
+    [self.tableView setShowsVerticalScrollIndicator:NO];
 }
 
 #pragma mark UITableViewDelegate / DataSource methods
@@ -94,6 +101,7 @@
             addressTableViewCell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow_black"] highlightedImage:[UIImage imageNamed:@"arrow_black"]];
             [addressTableViewCell customizeAsWhiteCell];
             cell = addressTableViewCell;
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         }           
             break;
         case KRowTags:{
@@ -101,29 +109,50 @@
             tagsTableViewCell.collectionView.tag = kTCActivityTagsCollectionViewTag;
             [tagsTableViewCell customizeAsWhiteCell];
             cell = tagsTableViewCell;
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         }
             break;
         case KRowAttendance:{
             TCAttendanceTableViewCell * attendanceTableViewCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCAttendanceTableViewCell class])];
+            
+            NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+            NSArray * attendances = [userDefaults objectForKey:kUserAttendanceArrayKey];
+            if (attendances) {
+                NSInteger index = [attendances indexOfObjectPassingTest:^BOOL(NSNumber * identifier, NSUInteger idx, BOOL *stop) {
+                    return [identifier isEqualToNumber:self.activity.identifier];
+                }];
+                if (index != NSNotFound) {
+                    [attendanceTableViewCell.attendanceButton setTitle:kGoing forState:UIControlStateNormal];
+                }
+                else {
+                    [attendanceTableViewCell.attendanceButton setTitle:kMaybeGoing forState:UIControlStateNormal];
+                }
+            }
+            else {
+                [attendanceTableViewCell.attendanceButton setTitle:kMaybeGoing forState:UIControlStateNormal];
+            }
             cell = attendanceTableViewCell;
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         }
             break;
         case KRowGallery:{
             TCGalleryTableViewCell * galleryTableViewCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCGalleryTableViewCell class])];
             galleryTableViewCell.collectionView.tag = kTCActivityGalleryCollectionViewTag;
             cell = galleryTableViewCell;
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         }
             break;
         case KRowDescription:{
             TCDescriptionTableViewCell * descriptionTableViewCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCDescriptionTableViewCell class])];
             descriptionTableViewCell.descriptionLabel.text = self.activity.description;
             cell = descriptionTableViewCell;
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         }
             break;
         default:
             break;
     }
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
     return cell;
 }
 
@@ -165,7 +194,7 @@
         numberOfItemsInSection = [self.activity numberOfTags];
     }
     else if (collectionView.tag == kTCActivityGalleryCollectionViewTag) {
-        numberOfItemsInSection = 1;
+        numberOfItemsInSection = [self.activity numberOfMedias];
     }
     return numberOfItemsInSection;
 }
@@ -176,12 +205,14 @@
         TCActivityTagsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TCActivityTagsCollectionViewCell class]) forIndexPath:indexPath];
         TCTag * tag = [self.activity tagAtIndex:indexPath.row];
         cell.tagName.text = [tag.title uppercaseString];
-        NSUInteger index = [self.interests indexOfObjectPassingTest:^BOOL(TCTag * tagObject, NSUInteger idx, BOOL *stop) {
-            return [tag.identifier isEqualToNumber:tagObject.identifier];
-        }];
-        
-        [cell setUserInterest:(index != NSNotFound)];
-        [cell customizeWithStyle:indexPath.row];
+        NSArray * interests = [TCUserInterests sharedTchillrUserInterests].interests;
+        if (interests) {
+            NSUInteger index = [interests indexOfObjectPassingTest:^BOOL(TCTag * tagObject, NSUInteger idx, BOOL *stop) {
+                return [tag.identifier isEqualToNumber:tagObject.identifier];
+            }];
+            [cell setUserInterest:(index != NSNotFound)];
+        }
+        [cell customizeWithStyle:tag.colorStyle];
         cellForItemAtIndexPath = cell;
     }
     else if (collectionView.tag == kTCActivityGalleryCollectionViewTag) {
@@ -210,7 +241,7 @@
         NSArray * array = [NSArray arrayWithObject:tag.identifier];
         
         [[TCServerClient sharedTchillrServerClient] startUpdateInterestRequestWithInterestsList:array success:^(NSArray *interestsArray) {
-            self.interests = interestsArray;
+            [TCUserInterests sharedTchillrUserInterests].interests = interestsArray;
             [collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexPath.row inSection:0]]];
         } failure:^(NSError *error) {
             NSLog(@"%@",[error description]);
@@ -230,5 +261,24 @@
 		[routeViewController setActivity:self.activity];
 	}
 }
+
+#pragma mark Attendance button clicked
+-(IBAction)attendanceButtonClicked:(UIButton *)attendanceButton{
+    if ([[attendanceButton titleForState:UIControlStateNormal] isEqualToString:kMaybeGoing]) {
+        NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+        NSArray * attendances = [userDefaults objectForKey:kUserAttendanceArrayKey];
+        if (!attendances){
+            attendances = [NSArray arrayWithObject:self.activity.identifier];
+            [userDefaults setObject:attendances forKey:kUserAttendanceArrayKey];
+        }
+        else {
+            NSMutableArray * tmpArray = [[NSMutableArray alloc] initWithArray:attendances];
+            [tmpArray addObject:self.activity.identifier];
+            [userDefaults setObject:[NSArray arrayWithArray:tmpArray] forKey:kUserAttendanceArrayKey];
+        }
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:KRowAttendance inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
 
 @end

@@ -29,13 +29,14 @@
 
 @synthesize open = _open;
 - (void)setOpen:(BOOL)open {
-    if(open != _open) {
-        _open = open;
-    }
+    _open = open;
+    
+    const CGFloat * colorComponents = CGColorGetComponents(self.backgroundColor.CGColor);
     [UIView animateWithDuration:0.250 animations:^{
         [self.tastesTableView setHidden:!_open];
         [self.selectedTagsView setHidden:_open];
         [self.titleLabel setHighlighted:_open];
+        self.backgroundColor = [UIColor colorWithRed:colorComponents[0] green:colorComponents[1] blue:colorComponents[2] alpha:_open?1:0.90];
     }];
 }
 
@@ -66,7 +67,7 @@
 - (void)layoutSubviews {
 	[super layoutSubviews];
 	self.titleLabel.transform = CGAffineTransformMakeRotation(M_PI_2);
-	self.titleLabel.frame = CGRectMake(self.bounds.size.width - self.titleLabel.frame.size.width - 10.0,
+	self.titleLabel.frame = CGRectMake(self.bounds.size.width - self.titleLabel.frame.size.width - 6.0,
 									   self.bounds.size.height - self.titleLabel.frame.size.height - 50.0,
 									   self.titleLabel.frame.size.width,
 									   self.titleLabel.frame.size.height);
@@ -101,6 +102,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if([self.delegate respondsToSelector:@selector(tastesCollectionViewCell:didSelectTagAtIndex:)]) {
         [self.delegate tastesCollectionViewCell:self didSelectTagAtIndex:indexPath.row];
+        [self.tastesTableView reloadData];
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

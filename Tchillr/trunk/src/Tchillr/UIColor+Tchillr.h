@@ -7,19 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
-typedef enum {
-    TCColorStyleMusic,
-    TCColorStyleCinema,
-    TCColorStyleExpo,
-    TCColorStyleNature
-} TCColorStyle;
+#import "TCActivity.h"
 
 @interface UIColor (Tchillr)
 
 + (NSArray *)tcColorsWithAlpha:(CGFloat)alpha;
-+ (UIColor *)tcColorWithStyle:(TCColorStyle)style;
-+ (UIColor *)tcColorWithStyle:(TCColorStyle)style alpha:(CGFloat)alpha;
++ (UIColor *)tcColorWithStyle:(TCActivityColorStyle)style;
++ (UIColor *)tcColorWithStyle:(TCActivityColorStyle)style alpha:(CGFloat)alpha;
 + (UIColor *)tcBlack;
 + (UIColor *)tcWhite;
 + (UIColor *)tcBlackSemiTransparent;

@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "UIColor+Tchillr.h"
-
+#import "TCActivity.h"
 
 @interface TCTriangleView : UIView
 
-@property (nonatomic, assign) TCColorStyle style;
+@property (nonatomic, assign) TCActivityColorStyle style;
 
 #pragma mark Triangle drawer
-+ (void) drawTriangleWithRect:(CGRect)rect andStyle:(TCColorStyle)style;
 + (void)drawTriangleWithRect:(CGRect)rect andColor:(UIColor *)color;
++ (void) drawTriangleWithRect:(CGRect)rect andStyle:(TCActivityColorStyle)style;
 
 @end

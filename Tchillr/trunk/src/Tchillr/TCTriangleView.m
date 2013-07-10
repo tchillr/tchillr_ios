@@ -31,7 +31,7 @@
 }
 
 #pragma mark Triangle drawer
-+ (void)drawTriangleWithRect:(CGRect)rect andStyle:(TCColorStyle)style {
++ (void)drawTriangleWithRect:(CGRect)rect andStyle:(TCActivityColorStyle)style {
     UIColor * color = [UIColor tcColorWithStyle:style];
 	[self drawTriangleWithRect:rect andColor:color];
 }
