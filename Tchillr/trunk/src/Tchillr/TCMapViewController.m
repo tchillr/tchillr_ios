@@ -73,6 +73,7 @@
     [[TCServerClient sharedTchillrServerClient] startInterestsRequestWithSuccess:^(NSArray *interestsArray) {
         [TCUserInterests sharedTchillrUserInterests].interests = interestsArray;
         [self.collectionView reloadData];
+        //[[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:self.view];
     } failure:^(NSError *error) {
         NSLog(@"%@",[error description]);
     }];
