@@ -63,7 +63,7 @@
 
 #pragma mark - Lifecycle
 - (void)viewDidLoad {
-    [super viewDidLoad];
+    [super viewDidLoad];    
     self.shouldReloadData = YES;
     [self.mapView setShowsUserLocation:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadDataNeeded) name:kTCUserInterestsChangedNotification object:nil];
@@ -73,7 +73,6 @@
     [[TCServerClient sharedTchillrServerClient] startInterestsRequestWithSuccess:^(NSArray *interestsArray) {
         [TCUserInterests sharedTchillrUserInterests].interests = interestsArray;
         [self.collectionView reloadData];
-        //[[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:self.view];
     } failure:^(NSError *error) {
         NSLog(@"%@",[error description]);
     }];
@@ -276,9 +275,9 @@
     
     // Reload map annotations
     NSDate * now = [NSDate date];
-    NSDate *afterTomorrow = [now dateByAddingTimeInterval:60*60*24*2];
+    NSDate *tomorrow = [now dateByAddingTimeInterval:60*60*24*1];
     
-    [[TCServerClient sharedTchillrServerClient] startUserActivitiesRequestFrom:now to:afterTomorrow success:^(NSArray *activitiesArray) {
+    [[TCServerClient sharedTchillrServerClient] startUserActivitiesRequestFrom:now to:tomorrow success:^(NSArray *activitiesArray) {
         self.activities = activitiesArray;
         [self pinLocations];
         TCLocationAnnotation * annotation = [self annotationForIndex:0];

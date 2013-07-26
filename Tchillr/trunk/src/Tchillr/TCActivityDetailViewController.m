@@ -237,14 +237,24 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (collectionView.tag == kTCActivityTagsCollectionViewTag) {
-        TCTag * tag = [self.activity tagAtIndex:indexPath.row];
-        NSArray * array = [NSArray arrayWithObject:tag.identifier];
+        NSMutableArray * arrayOfInterests = [NSMutableArray array];
+        NSArray * array = [TCUserInterests sharedTchillrUserInterests].interests;
+        for (TCTag * tag in array) {
+            [arrayOfInterests addObject:tag.identifier];
+        }
+        TCTag * selectedTag = [self.activity tagAtIndex:indexPath.row];
+        if (![array containsObject:selectedTag.identifier]) {
+            [arrayOfInterests addObject:selectedTag.identifier];
+        }      
         
-        [[TCServerClient sharedTchillrServerClient] startUpdateInterestRequestWithInterestsList:array success:^(NSArray *interestsArray) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_PROGRESS_HUD object:collectionView];
+        [[TCServerClient sharedTchillrServerClient] startRefreshInterestRequestWithInterestsList:arrayOfInterests success:^(NSArray *interestsArray) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:collectionView];
             [TCUserInterests sharedTchillrUserInterests].interests = interestsArray;
             [collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexPath.row inSection:0]]];
         } failure:^(NSError *error) {
             NSLog(@"%@",[error description]);
+            [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:collectionView];
         }];
     }
     else if (collectionView.tag == kTCActivityGalleryCollectionViewTag) {
