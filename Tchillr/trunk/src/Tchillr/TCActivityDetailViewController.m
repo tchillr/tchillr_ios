@@ -237,24 +237,29 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (collectionView.tag == kTCActivityTagsCollectionViewTag) {
+        UICollectionViewCell * cell = [collectionView cellForItemAtIndexPath:indexPath];
+        
         NSMutableArray * arrayOfInterests = [NSMutableArray array];
         NSArray * array = [TCUserInterests sharedTchillrUserInterests].interests;
         for (TCTag * tag in array) {
             [arrayOfInterests addObject:tag.identifier];
         }
         TCTag * selectedTag = [self.activity tagAtIndex:indexPath.row];
-        if (![array containsObject:selectedTag.identifier]) {
+        if (![[TCUserInterests sharedTchillrUserInterests] containsTagIdentifier:selectedTag.identifier]) {
             [arrayOfInterests addObject:selectedTag.identifier];
-        }      
+        }
+        else {
+            [arrayOfInterests removeObject:selectedTag.identifier];
+        }
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_PROGRESS_HUD object:collectionView];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_PROGRESS_HUD object:cell];
         [[TCServerClient sharedTchillrServerClient] startRefreshInterestRequestWithInterestsList:arrayOfInterests success:^(NSArray *interestsArray) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:collectionView];
+            [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:cell];
             [TCUserInterests sharedTchillrUserInterests].interests = interestsArray;
             [collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexPath.row inSection:0]]];
         } failure:^(NSError *error) {
             NSLog(@"%@",[error description]);
-            [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:collectionView];
+            [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:cell];
         }];
     }
     else if (collectionView.tag == kTCActivityGalleryCollectionViewTag) {
