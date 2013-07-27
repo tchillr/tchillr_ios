@@ -26,6 +26,7 @@
 
 /* User Activity Attendance */
 #define kTCServerUserActivityAttendance(user, activity, attendance) [NSString stringWithFormat:@"users/%@/activities/%@/%@",user, activity, attendance]
+#define kTCServerAttendance(user) [NSString stringWithFormat:@"users/%@/attendance",user]
 
 /* User Interests */
 #define kTCServerUserInterests(user) [NSString stringWithFormat:@"users/%@/interests", user]

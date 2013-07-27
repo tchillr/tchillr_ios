@@ -19,12 +19,14 @@
 #pragma mark User Activities with from/to dates
 - (void)startUserActivitiesRequestFrom:(NSDate *) fromDate to:(NSDate *) toDate success:(void (^)(NSArray * activitiesArray))success failure:(void (^)(NSError *error))failure;
 
-
 #pragma mark Themes (with their N2 tags)
 - (void)startThemesRequestWithSuccess:(void (^)(NSArray * themeTagsArray))success failure:(void (^)(NSError *error))failure;
+
 #pragma mark Interests
 - (void)startInterestsRequestWithSuccess:(void (^)(NSArray * interestsArray))success failure:(void (^)(NSError *error))failure;
 - (void)startRefreshInterestRequestWithInterestsList:(NSArray*) interestsList success:(void (^)(NSArray * interestsArray))success failure:(void (^)(NSError *error))failure;
+#pragma mark Get User Attendance
+- (void)startAttendanceRequestWithSuccess:(void (^)(NSDictionary  * attendanceDict))success failure:(void (^)(NSError *error))failure;
 #pragma mark Update Activity Attendance
 - (void)startUpdateActivityAttendance:(NSString *) attendance forActivityWithIdentifier:(NSString *) identifier success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 #pragma mark Images Loading

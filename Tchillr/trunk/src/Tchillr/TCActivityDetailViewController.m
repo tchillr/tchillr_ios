@@ -11,6 +11,8 @@
 
 // Interests
 #import "TCUserInterests.h"
+// Attendance
+#import "TCUserAttendance.h"
 // Controllers
 #import "TCActivityDetailViewController.h"
 #import "TCRouteViewController.h"
@@ -37,9 +39,7 @@
 // Collection View tags
 #define kTCActivityTagsCollectionViewTag 1000
 #define kTCActivityGalleryCollectionViewTag 2000
-// Atendance
-#define kGoing @"J'y participe"
-#define kMaybeGoing @"J'y vais !"
+
 
 // Model
 #import "TCTag.h"
@@ -83,6 +83,13 @@
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.activityHeaderView.triangleView setStyle:self.activity.colorStyle];
     [self.tableView setShowsVerticalScrollIndicator:NO];
+    
+    [[TCServerClient sharedTchillrServerClient] startAttendanceRequestWithSuccess:^(NSDictionary *attendanceDict) {
+        [TCUserAttendance sharedTchillrUserAttendances].attendances = attendanceDict;
+    } failure:^(NSError *error) {
+        NSLog(@"%@",[error description]);
+    }];
+    
 }
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
@@ -118,6 +125,10 @@
         case KRowAttendance:{
             TCAttendanceTableViewCell * attendanceTableViewCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCAttendanceTableViewCell class])];
             [attendanceTableViewCell.segmentedControl addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
+            NSInteger indexOfActivityInAttendances = [[TCUserAttendance sharedTchillrUserAttendances] indexOfActivity:self.activity.identifier];
+            [attendanceTableViewCell.segmentedControl setSelectedSegmentIndex:indexOfActivityInAttendances];
+            
+            
             cell = attendanceTableViewCell;
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         }

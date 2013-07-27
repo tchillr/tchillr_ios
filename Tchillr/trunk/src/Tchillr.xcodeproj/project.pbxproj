@@ -22,6 +22,7 @@
 		054315F217A3264D003A623B /* JAFocusSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 054315ED17A3264D003A623B /* JAFocusSegmentedControl.m */; };
 		054315F317A3264D003A623B /* JAScrollableSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 054315EF17A3264D003A623B /* JAScrollableSegmentedControl.m */; };
 		054315F417A3264D003A623B /* JASegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 054315F117A3264D003A623B /* JASegmentedControl.m */; };
+		054315F717A416B5003A623B /* TCUserAttendance.m in Sources */ = {isa = PBXBuildFile; fileRef = 054315F617A416B5003A623B /* TCUserAttendance.m */; };
 		05495863178448D600DE67C9 /* TCCalloutAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05495862178448D600DE67C9 /* TCCalloutAnnotationView.m */; };
 		054958641784490E00DE67C9 /* TCLocationAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA91D5177491C100DC2619 /* TCLocationAnnotationView.m */; };
 		0549586A1784529A00DE67C9 /* TCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 054958691784529A00DE67C9 /* TCUser.m */; };
@@ -171,6 +172,8 @@
 		054315EF17A3264D003A623B /* JAScrollableSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAScrollableSegmentedControl.m; path = ../../vendor/JASegmentedControl/JAScrollableSegmentedControl.m; sourceTree = "<group>"; };
 		054315F017A3264D003A623B /* JASegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JASegmentedControl.h; path = ../../vendor/JASegmentedControl/JASegmentedControl.h; sourceTree = "<group>"; };
 		054315F117A3264D003A623B /* JASegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JASegmentedControl.m; path = ../../vendor/JASegmentedControl/JASegmentedControl.m; sourceTree = "<group>"; };
+		054315F517A416B5003A623B /* TCUserAttendance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUserAttendance.h; sourceTree = "<group>"; };
+		054315F617A416B5003A623B /* TCUserAttendance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUserAttendance.m; sourceTree = "<group>"; };
 		05495861178448D600DE67C9 /* TCCalloutAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCalloutAnnotationView.h; sourceTree = "<group>"; };
 		05495862178448D600DE67C9 /* TCCalloutAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCalloutAnnotationView.m; sourceTree = "<group>"; };
 		054958681784529A00DE67C9 /* TCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCUser.h; path = ../../../TCServerClient/trunk/src/TCServerClient/TCUser.h; sourceTree = "<group>"; };
@@ -552,6 +555,8 @@
 				05AB0FE41789C3CE00F8ABD0 /* TCThemesModelDelegate.h */,
 				05AB0FE5178AFF7000F8ABD0 /* TCUserInterests.h */,
 				05AB0FE6178AFF7100F8ABD0 /* TCUserInterests.m */,
+				054315F517A416B5003A623B /* TCUserAttendance.h */,
+				054315F617A416B5003A623B /* TCUserAttendance.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -961,6 +966,7 @@
 				054315F217A3264D003A623B /* JAFocusSegmentedControl.m in Sources */,
 				054315F317A3264D003A623B /* JAScrollableSegmentedControl.m in Sources */,
 				054315F417A3264D003A623B /* JASegmentedControl.m in Sources */,
+				054315F717A416B5003A623B /* TCUserAttendance.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

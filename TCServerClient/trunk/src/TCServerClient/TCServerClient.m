@@ -164,6 +164,24 @@ static TCServerClient *sharedTchillrServerClient;
     [operation start];
 }
 
+#pragma mark Get User Attendance
+- (void)startAttendanceRequestWithSuccess:(void (^)(NSDictionary  * attendanceDict))success failure:(void (^)(NSError *error))failure {
+    NSString * urlString = kTCServerServiceURL(kTCServerAttendance([TCUser identifier]));
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    NSLog(@"Request : %@", [[request URL] absoluteString]);
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                            NSDictionary * dict = [((NSDictionary *) JSON) objectForKey:@"data"];
+                                                                                            success(dict);
+                                                                                        }failure:^(NSURLRequest *request, NSHTTPURLResponse *response,
+                                                                                                   NSError *error, id JSON) {
+                                                                                            failure(error);
+                                                                                        }
+                                         ];
+    
+    [operation start];
+}
+
 #pragma mark Update Activity Attendance
 - (void)startUpdateActivityAttendance:(NSString *) attendance forActivityWithIdentifier:(NSString *) identifier success:(void (^)(void))success failure:(void (^)(NSError *error))failure {
 

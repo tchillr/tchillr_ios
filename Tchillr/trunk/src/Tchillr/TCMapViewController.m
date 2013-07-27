@@ -30,6 +30,7 @@
 #import "TCCalloutAnnotation.h"
 #import "TCAppDelegate.h"
 #import "TCUserInterests.h"
+#import "TCUserAttendance.h"
 
 #define kShowActivityDetailSegueIdentifier @"ShowActivityDetailSegue"
 #define kshowTastesSegueIdentifier @"ShowTastesSegue"
@@ -78,7 +79,6 @@
     } failure:^(NSError *error) {
         NSLog(@"%@",[error description]);
     }];
-    
 }
 
 - (void)viewDidUnload {
