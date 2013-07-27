@@ -7,6 +7,7 @@
 //
 
 #import "TCUserInterests.h"
+#import "TCTag.h"
 
 @implementation TCUserInterests
 
@@ -28,6 +29,13 @@ static TCUserInterests *sharedTchillrUserInterests;
 -(void)setInterests:(NSArray *)interests{
     _interests = interests;
     [[NSNotificationCenter defaultCenter] postNotificationName:kTCUserInterestsChangedNotification object:nil];
+}
+
+-(BOOL)containsTagIdentifier:(NSNumber *) identifier{
+    NSInteger index  = [_interests indexOfObjectPassingTest:^BOOL(TCTag * tag, NSUInteger idx, BOOL *stop) {
+        return [tag.identifier isEqualToNumber:identifier];
+    }];
+    return index != NSNotFound;
 }
 
 @end

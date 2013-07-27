@@ -18,6 +18,13 @@ typedef enum{
     TCActivityColorStyleSpectacles
 }TCActivityColorStyle;
 
+typedef enum{
+    TCActivityAttendanceNone,
+    TCActivityAttendanceYes,
+    TCActivityAttendanceMaybe,
+    TCActivityAttendanceNo
+}TCActivityAttendance;
+
 @class TCTag;
 @class TCMedia;
 @interface TCActivity : TCObject
@@ -62,5 +69,7 @@ typedef enum{
 - (TCMedia *)mediaAtIndex:(NSInteger)index;
 - (NSInteger)numberOfMedias;
 - (BOOL)hasMedias;
+#pragma mark Attendance
+-(NSString *) attendanceStringFromValue:(NSInteger)index;
 
 @end

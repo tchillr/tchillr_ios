@@ -164,7 +164,10 @@ CLLocationCoordinate2D midPoint(CLLocationCoordinate2D locationA, CLLocationCoor
 											   }];
 		} break;
 		case TCRouteTransportRATP: {
-			
+			BOOL p = YES;
+            for (id<MKAnnotation> annotation in self.mapView.annotations) {
+                NSLog(@"Lat: %f / Lon: %f",[annotation coordinate].latitude,[annotation coordinate].longitude);
+            }            
 		} break;
 		case TCRouteTransportAutolib: {
 			TCAutolibStation *userAutolibStation = [[TCRouteClient sharedInstance] nearestAutolibStationFrom:self.mapView.userLocation.location];

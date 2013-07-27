@@ -15,4 +15,6 @@
 
 + (TCUserInterests *)sharedTchillrUserInterests;
 
+-(BOOL)containsTagIdentifier:(NSNumber *) identifier;
+
 @end

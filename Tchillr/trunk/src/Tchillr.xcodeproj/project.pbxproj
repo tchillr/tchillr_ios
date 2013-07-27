@@ -19,6 +19,9 @@
 		053AC47C177258EA00CD8C3F /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 053AC471177258EA00CD8C3F /* AFURLConnectionOperation.m */; };
 		053AC47D177258EA00CD8C3F /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 053AC473177258EA00CD8C3F /* AFXMLRequestOperation.m */; };
 		053AC47E177258EA00CD8C3F /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 053AC475177258EA00CD8C3F /* UIImageView+AFNetworking.m */; };
+		054315F217A3264D003A623B /* JAFocusSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 054315ED17A3264D003A623B /* JAFocusSegmentedControl.m */; };
+		054315F317A3264D003A623B /* JAScrollableSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 054315EF17A3264D003A623B /* JAScrollableSegmentedControl.m */; };
+		054315F417A3264D003A623B /* JASegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 054315F117A3264D003A623B /* JASegmentedControl.m */; };
 		05495863178448D600DE67C9 /* TCCalloutAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05495862178448D600DE67C9 /* TCCalloutAnnotationView.m */; };
 		054958641784490E00DE67C9 /* TCLocationAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA91D5177491C100DC2619 /* TCLocationAnnotationView.m */; };
 		0549586A1784529A00DE67C9 /* TCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 054958691784529A00DE67C9 /* TCUser.m */; };
@@ -162,6 +165,12 @@
 		053AC473177258EA00CD8C3F /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		053AC474177258EA00CD8C3F /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		053AC475177258EA00CD8C3F /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		054315EC17A3264D003A623B /* JAFocusSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAFocusSegmentedControl.h; path = ../../vendor/JASegmentedControl/JAFocusSegmentedControl.h; sourceTree = "<group>"; };
+		054315ED17A3264D003A623B /* JAFocusSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAFocusSegmentedControl.m; path = ../../vendor/JASegmentedControl/JAFocusSegmentedControl.m; sourceTree = "<group>"; };
+		054315EE17A3264D003A623B /* JAScrollableSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JAScrollableSegmentedControl.h; path = ../../vendor/JASegmentedControl/JAScrollableSegmentedControl.h; sourceTree = "<group>"; };
+		054315EF17A3264D003A623B /* JAScrollableSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JAScrollableSegmentedControl.m; path = ../../vendor/JASegmentedControl/JAScrollableSegmentedControl.m; sourceTree = "<group>"; };
+		054315F017A3264D003A623B /* JASegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JASegmentedControl.h; path = ../../vendor/JASegmentedControl/JASegmentedControl.h; sourceTree = "<group>"; };
+		054315F117A3264D003A623B /* JASegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JASegmentedControl.m; path = ../../vendor/JASegmentedControl/JASegmentedControl.m; sourceTree = "<group>"; };
 		05495861178448D600DE67C9 /* TCCalloutAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCalloutAnnotationView.h; sourceTree = "<group>"; };
 		05495862178448D600DE67C9 /* TCCalloutAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCalloutAnnotationView.m; sourceTree = "<group>"; };
 		054958681784529A00DE67C9 /* TCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCUser.h; path = ../../../TCServerClient/trunk/src/TCServerClient/TCUser.h; sourceTree = "<group>"; };
@@ -365,6 +374,7 @@
 		053AC4481772583500CD8C3F /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				054315EB17A32632003A623B /* JASegmentedControl */,
 				05DB5090178BA4DF0080AAFD /* MBProgressHUD */,
 				05EA91DA1778ED4B00DC2619 /* TCServerClient */,
 				053AC462177258EA00CD8C3F /* AFNetworking */,
@@ -398,6 +408,19 @@
 			);
 			name = AFNetworking;
 			path = ../../../TCClient/vendor/AFNetworking;
+			sourceTree = "<group>";
+		};
+		054315EB17A32632003A623B /* JASegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				054315EC17A3264D003A623B /* JAFocusSegmentedControl.h */,
+				054315ED17A3264D003A623B /* JAFocusSegmentedControl.m */,
+				054315EE17A3264D003A623B /* JAScrollableSegmentedControl.h */,
+				054315EF17A3264D003A623B /* JAScrollableSegmentedControl.m */,
+				054315F017A3264D003A623B /* JASegmentedControl.h */,
+				054315F117A3264D003A623B /* JASegmentedControl.m */,
+			);
+			name = JASegmentedControl;
 			sourceTree = "<group>";
 		};
 		05495872178462D600DE67C9 /* Weather */ = {
@@ -935,6 +958,9 @@
 				05AB0FE7178AFF7100F8ABD0 /* TCUserInterests.m in Sources */,
 				05DB5093178BA4F70080AAFD /* MBProgressHUD.m in Sources */,
 				5FCBDAAA178D670D0004E4B2 /* TCTransportPinView.m in Sources */,
+				054315F217A3264D003A623B /* JAFocusSegmentedControl.m in Sources */,
+				054315F317A3264D003A623B /* JAScrollableSegmentedControl.m in Sources */,
+				054315F417A3264D003A623B /* JASegmentedControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

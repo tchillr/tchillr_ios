@@ -19,10 +19,13 @@
 #define kTCLogin(UUID) [NSString stringWithFormat:@"login/adduser/%@",UUID]
 
 /* Themes */
-#define KTCServerThemes @"Themes"
+#define KTCServerThemes @"themes"
 
 /* User Activities */
 #define kTCServerUserActivities(user, from, to) [NSString stringWithFormat:@"users/%@/activities/from/%@/to/%@",user, from, to]
+
+/* User Activity Attendance */
+#define kTCServerUserActivityAttendance(user, activity, attendance) [NSString stringWithFormat:@"users/%@/activities/%@/%@",user, activity, attendance]
 
 /* User Interests */
 #define kTCServerUserInterests(user) [NSString stringWithFormat:@"users/%@/interests", user]

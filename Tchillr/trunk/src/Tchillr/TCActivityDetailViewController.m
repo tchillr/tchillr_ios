@@ -54,7 +54,6 @@
 #define KRowGallery     3
 #define KRowDescription 4
 
-#define kUserAttendanceArrayKey @"attendances"
 
 @interface TCActivityDetailViewController ()
 
@@ -118,23 +117,7 @@
             break;
         case KRowAttendance:{
             TCAttendanceTableViewCell * attendanceTableViewCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCAttendanceTableViewCell class])];
-            
-            NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-            NSArray * attendances = [userDefaults objectForKey:kUserAttendanceArrayKey];
-            if (attendances) {
-                NSInteger index = [attendances indexOfObjectPassingTest:^BOOL(NSNumber * identifier, NSUInteger idx, BOOL *stop) {
-                    return [identifier isEqualToNumber:self.activity.identifier];
-                }];
-                if (index != NSNotFound) {
-                    [attendanceTableViewCell.attendanceButton setTitle:kGoing forState:UIControlStateNormal];
-                }
-                else {
-                    [attendanceTableViewCell.attendanceButton setTitle:kMaybeGoing forState:UIControlStateNormal];
-                }
-            }
-            else {
-                [attendanceTableViewCell.attendanceButton setTitle:kMaybeGoing forState:UIControlStateNormal];
-            }
+            [attendanceTableViewCell.segmentedControl addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
             cell = attendanceTableViewCell;
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         }
@@ -241,14 +224,29 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (collectionView.tag == kTCActivityTagsCollectionViewTag) {
-        TCTag * tag = [self.activity tagAtIndex:indexPath.row];
-        NSArray * array = [NSArray arrayWithObject:tag.identifier];
+        UICollectionViewCell * cell = [collectionView cellForItemAtIndexPath:indexPath];
         
-        [[TCServerClient sharedTchillrServerClient] startUpdateInterestRequestWithInterestsList:array success:^(NSArray *interestsArray) {
+        NSMutableArray * arrayOfInterests = [NSMutableArray array];
+        NSArray * array = [TCUserInterests sharedTchillrUserInterests].interests;
+        for (TCTag * tag in array) {
+            [arrayOfInterests addObject:tag.identifier];
+        }
+        TCTag * selectedTag = [self.activity tagAtIndex:indexPath.row];
+        if (![[TCUserInterests sharedTchillrUserInterests] containsTagIdentifier:selectedTag.identifier]) {
+            [arrayOfInterests addObject:selectedTag.identifier];
+        }
+        else {
+            [arrayOfInterests removeObject:selectedTag.identifier];
+        }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:SHOW_PROGRESS_HUD object:cell];
+        [[TCServerClient sharedTchillrServerClient] startRefreshInterestRequestWithInterestsList:arrayOfInterests success:^(NSArray *interestsArray) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:cell];
             [TCUserInterests sharedTchillrUserInterests].interests = interestsArray;
             [collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexPath.row inSection:0]]];
         } failure:^(NSError *error) {
             NSLog(@"%@",[error description]);
+            [[NSNotificationCenter defaultCenter] postNotificationName:HIDE_PROGRESS_HUD object:cell];
         }];
     }
     else if (collectionView.tag == kTCActivityGalleryCollectionViewTag) {
@@ -266,23 +264,15 @@
 	}
 }
 
-#pragma mark Attendance button clicked
--(IBAction)attendanceButtonClicked:(UIButton *)attendanceButton{
-    if ([[attendanceButton titleForState:UIControlStateNormal] isEqualToString:kMaybeGoing]) {
-        NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-        NSArray * attendances = [userDefaults objectForKey:kUserAttendanceArrayKey];
-        if (!attendances){
-            attendances = [NSArray arrayWithObject:self.activity.identifier];
-            [userDefaults setObject:attendances forKey:kUserAttendanceArrayKey];
-        }
-        else {
-            NSMutableArray * tmpArray = [[NSMutableArray alloc] initWithArray:attendances];
-            [tmpArray addObject:self.activity.identifier];
-            [userDefaults setObject:[NSArray arrayWithArray:tmpArray] forKey:kUserAttendanceArrayKey];
-        }
-        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:KRowAttendance inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-    }
+#pragma mark Attendance selection
+- (void)valueChanged:(JASegmentedControl *)sender{
+    NSInteger index = sender.selectedSegmentIndex;
+    NSString * attendance = [self.activity attendanceStringFromValue:index];
+    [[TCServerClient sharedTchillrServerClient] startUpdateActivityAttendance:attendance forActivityWithIdentifier:[NSString stringWithFormat:@"%i", [self.activity.identifier intValue]] success:^{
+        NSLog(@"OK");
+    } failure:^(NSError *error) {
+        NSLog(@"NOT OK");
+    }];
 }
-
 
 @end

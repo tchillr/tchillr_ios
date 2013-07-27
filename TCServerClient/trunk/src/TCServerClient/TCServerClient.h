@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TCTheme.h"
+#import "TCActivity.h"
 #import "AFHTTPClient.h"
 
 @interface TCServerClient : AFHTTPClient
@@ -23,10 +24,9 @@
 - (void)startThemesRequestWithSuccess:(void (^)(NSArray * themeTagsArray))success failure:(void (^)(NSError *error))failure;
 #pragma mark Interests
 - (void)startInterestsRequestWithSuccess:(void (^)(NSArray * interestsArray))success failure:(void (^)(NSError *error))failure;
-// Use this method to remove every taste of the user and fill in some new ones with your array
 - (void)startRefreshInterestRequestWithInterestsList:(NSArray*) interestsList success:(void (^)(NSArray * interestsArray))success failure:(void (^)(NSError *error))failure;
-// Use this method to select every taste that weren't previously owned by the user and remove every ones that were already in database with you interest tag list
-- (void)startUpdateInterestRequestWithInterestsList:(NSArray*) interestsList success:(void (^)(NSArray * interestsArray))success failure:(void (^)(NSError *error))failure;
+#pragma mark Update Activity Attendance
+- (void)startUpdateActivityAttendance:(NSString *) attendance forActivityWithIdentifier:(NSString *) identifier success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 #pragma mark Images Loading
 - (void)startImageRequestForURLString:(NSString *)imageURLString success:(void (^)(UIImage *image))success failure:(void (^)(NSError *error))failure;
 #pragma mark User Login
