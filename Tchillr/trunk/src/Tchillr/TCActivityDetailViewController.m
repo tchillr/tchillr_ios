@@ -54,7 +54,6 @@
 #define KRowGallery     3
 #define KRowDescription 4
 
-#define kUserAttendanceArrayKey @"attendances"
 
 @interface TCActivityDetailViewController ()
 
@@ -84,6 +83,7 @@
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.activityHeaderView.triangleView setStyle:self.activity.colorStyle];
     [self.tableView setShowsVerticalScrollIndicator:NO];
+    
 }
 
 #pragma mark UITableViewDelegate / DataSource methods
@@ -114,23 +114,7 @@
             break;
         case KRowAttendance:{
             TCAttendanceTableViewCell * attendanceTableViewCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCAttendanceTableViewCell class])];
-            
-            NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-            NSArray * attendances = [userDefaults objectForKey:kUserAttendanceArrayKey];
-            if (attendances) {
-                NSInteger index = [attendances indexOfObjectPassingTest:^BOOL(NSNumber * identifier, NSUInteger idx, BOOL *stop) {
-                    return [identifier isEqualToNumber:self.activity.identifier];
-                }];
-                if (index != NSNotFound) {
-                    [attendanceTableViewCell.attendanceButton setTitle:kGoing forState:UIControlStateNormal];
-                }
-                else {
-                    [attendanceTableViewCell.attendanceButton setTitle:kMaybeGoing forState:UIControlStateNormal];
-                }
-            }
-            else {
-                [attendanceTableViewCell.attendanceButton setTitle:kMaybeGoing forState:UIControlStateNormal];
-            }
+            //®attendanceTableViewCell.segmentedControl.selectedSegmentIndex = self.activity;
             cell = attendanceTableViewCell;
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         }
@@ -276,24 +260,5 @@
 		[routeViewController setActivity:self.activity];
 	}
 }
-
-#pragma mark Attendance button clicked
--(IBAction)attendanceButtonClicked:(UIButton *)attendanceButton{
-    if ([[attendanceButton titleForState:UIControlStateNormal] isEqualToString:kMaybeGoing]) {
-        NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-        NSArray * attendances = [userDefaults objectForKey:kUserAttendanceArrayKey];
-        if (!attendances){
-            attendances = [NSArray arrayWithObject:self.activity.identifier];
-            [userDefaults setObject:attendances forKey:kUserAttendanceArrayKey];
-        }
-        else {
-            NSMutableArray * tmpArray = [[NSMutableArray alloc] initWithArray:attendances];
-            [tmpArray addObject:self.activity.identifier];
-            [userDefaults setObject:[NSArray arrayWithArray:tmpArray] forKey:kUserAttendanceArrayKey];
-        }
-        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:KRowAttendance inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-    }
-}
-
 
 @end

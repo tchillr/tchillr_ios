@@ -43,6 +43,7 @@
 @property (nonatomic, weak) IBOutlet UIButton * showInterestsButton;
 @property (nonatomic, weak) IBOutlet UIButton * showListButton;
 @property (nonatomic, weak) IBOutlet UIView * loadingView;
+@property (nonatomic, weak) IBOutlet UILabel * statusLabel;
 @property (nonatomic, retain) NSArray * activities;
 @property (nonatomic, retain) CLLocationManager * locationManager;
 @property (nonatomic, assign) BOOL shouldReloadData;
@@ -56,6 +57,7 @@
 @synthesize collectionView = _collectionView;
 @synthesize showInterestsButton = _showInterestsButton;
 @synthesize showListButton = _showListButton;
+@synthesize statusLabel = _statusLabel;
 
 - (void)reloadDataNeeded {
     self.shouldReloadData = YES;
@@ -279,18 +281,23 @@
     
     [[TCServerClient sharedTchillrServerClient] startUserActivitiesRequestFrom:now to:tomorrow success:^(NSArray *activitiesArray) {
         self.activities = activitiesArray;
-        [self pinLocations];
-        TCLocationAnnotation * annotation = [self annotationForIndex:0];
-        [self.mapView selectAnnotation:annotation animated:NO];
-        [self.collectionView reloadData];
-        self.shouldReloadData = NO;
-        [UIView animateWithDuration:0.2
-                         animations:^{
-                             [self.loadingView setAlpha:0.0];
-                             [self.collectionView setAlpha:1];
-                             [self.mapView setShowsUserLocation:YES];
-                             
-                         }];
+        if ([self.activities count] == 0) {
+            [self.statusLabel setText:@"Aucun résultat"];
+        }
+        else {
+            [self pinLocations];
+            TCLocationAnnotation * annotation = [self annotationForIndex:0];
+            [self.mapView selectAnnotation:annotation animated:NO];
+            [self.collectionView reloadData];
+            self.shouldReloadData = NO;
+            [UIView animateWithDuration:0.2
+                             animations:^{
+                                 [self.loadingView setAlpha:0.0];
+                                 [self.collectionView setAlpha:1];
+                                 [self.mapView setShowsUserLocation:YES];
+                                 
+                             }];
+        }
     } failure:^(NSError *error) {
         NSLog(@"Error in startUserActivitiesRequestFrom :%@",[error description]);
         self.shouldReloadData = NO;
