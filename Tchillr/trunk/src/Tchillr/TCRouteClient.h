@@ -36,9 +36,11 @@ typedef enum {
 
 #pragma mark Velib Specifics
 - (TCVelibStation *)nearestVelibStationFrom:(CLLocation *)location;
+- (void)findAvailabilityForVelibStation:(TCVelibStation *)station completion:(void (^)(BOOL success, NSString *availability, NSError *error))completion;
 
 #pragma mark Autolib Specifics
 - (TCAutolibStation *)nearestAutolibStationFrom:(CLLocation *)location;
+- (void)findAvailabilityForAutolibStation:(TCVelibStation *)station completion:(void (^)(BOOL success, NSString *availability, NSError *error))completion;
 
 @end
 

@@ -133,6 +133,7 @@
 		5FAA5A541781D63E009ECDA4 /* NavitiaHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FAA5A531781D63E009ECDA4 /* NavitiaHTTPClient.m */; };
 		5FBC27D0178B14A70094291F /* TCAutolibStation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBC27CF178B14A70094291F /* TCAutolibStation.m */; };
 		5FBC27D2178B15DB0094291F /* autolib_paris.json in Resources */ = {isa = PBXBuildFile; fileRef = 5FBC27D1178B15DB0094291F /* autolib_paris.json */; };
+		5FCBDAAA178D670D0004E4B2 /* TCTransportPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCBDAA9178D670D0004E4B2 /* TCTransportPinView.m */; };
 		85C39AD01786185D00158D37 /* TCTastesTagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C39ACF1786185D00158D37 /* TCTastesTagsTableViewCell.m */; };
 /* End PBXBuildFile section */
 
@@ -339,6 +340,8 @@
 		5FBC27CE178B14A70094291F /* TCAutolibStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAutolibStation.h; sourceTree = "<group>"; };
 		5FBC27CF178B14A70094291F /* TCAutolibStation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAutolibStation.m; sourceTree = "<group>"; };
 		5FBC27D1178B15DB0094291F /* autolib_paris.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = autolib_paris.json; sourceTree = "<group>"; };
+		5FCBDAA8178D670D0004E4B2 /* TCTransportPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTransportPinView.h; sourceTree = "<group>"; };
+		5FCBDAA9178D670D0004E4B2 /* TCTransportPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTransportPinView.m; sourceTree = "<group>"; };
 		85C39ACE1786185D00158D37 /* TCTastesTagsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTastesTagsTableViewCell.h; sourceTree = "<group>"; };
 		85C39ACF1786185D00158D37 /* TCTastesTagsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTastesTagsTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -556,6 +559,8 @@
 				05EA91B71773249800DC2619 /* TCActivityCollectionViewCell.m */,
 				05EA921217792CF700DC2619 /* TCTriangleView.h */,
 				05EA921317792CF700DC2619 /* TCTriangleView.m */,
+				5FCBDAA8178D670D0004E4B2 /* TCTransportPinView.h */,
+				5FCBDAA9178D670D0004E4B2 /* TCTransportPinView.m */,
 				05EA92361779F7FF00DC2619 /* Activity Detail */,
 				05EA92351779F7F100DC2619 /* Map */,
 				05BDD609177B9F6F00CF282E /* TCActivityDetailResizableCell.h */,
@@ -929,6 +934,7 @@
 				5FBC27D0178B14A70094291F /* TCAutolibStation.m in Sources */,
 				05AB0FE7178AFF7100F8ABD0 /* TCUserInterests.m in Sources */,
 				05DB5093178BA4F70080AAFD /* MBProgressHUD.m in Sources */,
+				5FCBDAAA178D670D0004E4B2 /* TCTransportPinView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

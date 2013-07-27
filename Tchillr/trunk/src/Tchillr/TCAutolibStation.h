@@ -13,6 +13,7 @@
 
 @interface TCAutolibStation : TCObject
 
+@property (strong, nonatomic) NSString *availability;
 @property (nonatomic, readonly) CLLocation *location;
 
 @end

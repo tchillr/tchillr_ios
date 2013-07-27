@@ -37,3 +37,22 @@
 }
 
 @end
+
+UIImage *UIImageWithTransport(TCRouteTransport transport) {
+	UIImage *image = nil;
+	switch (transport) {
+		case TCRouteTransportWalk:
+			image = [UIImage imageNamed:@"walker"];
+			break;
+		case TCRouteTransportVelib:
+			image = [UIImage imageNamed:@"velib"];
+			break;
+		case TCRouteTransportAutolib:
+			image = [UIImage imageNamed:@"auto"];
+			break;
+		case TCRouteTransportRATP:
+			image = [UIImage imageNamed:@"bus"];
+			break;
+	}
+	return image;
+}

@@ -23,3 +23,5 @@
 - (id)initWithTransport:(TCRouteTransport)transport name:(NSString*)name address:(NSString*)address coordinate:(CLLocationCoordinate2D)coordinate;
 
 @end
+
+UIImage *UIImageWithTransport(TCRouteTransport transport);

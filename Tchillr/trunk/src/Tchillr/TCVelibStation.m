@@ -20,6 +20,9 @@ CLLocation *CLLocationWithVelibDictionary(NSDictionary *velibDictionary);
 - (NSString *)address {
 	return [self.jsonDictionary objectForKey:@"address"];
 }
+- (NSNumber *)number {
+	return [self.jsonDictionary objectForKey:@"number"];
+}
 - (CLLocation *)location {
 	return CLLocationWithVelibDictionary(self.jsonDictionary);
 }

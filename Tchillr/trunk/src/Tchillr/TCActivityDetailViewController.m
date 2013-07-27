@@ -85,6 +85,10 @@
     [self.activityHeaderView.triangleView setStyle:self.activity.colorStyle];
     [self.tableView setShowsVerticalScrollIndicator:NO];
 }
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+}
 
 #pragma mark UITableViewDelegate / DataSource methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -101,7 +105,7 @@
             addressTableViewCell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow_black"] highlightedImage:[UIImage imageNamed:@"arrow_black"]];
             [addressTableViewCell customizeAsWhiteCell];
             cell = addressTableViewCell;
-            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
         }           
             break;
         case KRowTags:{

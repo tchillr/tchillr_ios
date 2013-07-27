@@ -47,6 +47,7 @@ CLLocationCoordinate2D midPoint(CLLocationCoordinate2D locationA, CLLocationCoor
 
 #pragma mark Map Management
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (assign, nonatomic, getter = isMapViewDefaultRegionSet) BOOL mapViewDefaultRegionSet;
 - (void)reloadData;
 
 #pragma mark Route Types Selection
@@ -109,9 +110,10 @@ CLLocationCoordinate2D midPoint(CLLocationCoordinate2D locationA, CLLocationCoor
 	return _routes;
 }
 - (TCRoute *)routeForOverlay:(id<MKOverlay>)overlay {
-	return [[self.routes objectsPassingTest:^BOOL(TCRoute *route, BOOL *stop) {
+	TCRoute *route = [[self.routes objectsPassingTest:^BOOL(TCRoute *route, BOOL *stop) {
 		return [route.polyline isEqual:overlay];
 	}] anyObject];
+	return route;
 }
 
 #pragma mark Map Management
@@ -139,12 +141,19 @@ CLLocationCoordinate2D midPoint(CLLocationCoordinate2D locationA, CLLocationCoor
 		} break;
 		case TCRouteTransportVelib: {
 			TCVelibStation *userVelibStation = [[TCRouteClient sharedInstance] nearestVelibStationFrom:self.mapView.userLocation.location];
-			TCTransportAnnotation* annotation = [[TCTransportAnnotation alloc] initWithTransport:self.currentTransport name:userVelibStation.name address:userVelibStation.address coordinate:userVelibStation.location.coordinate];
-			[self.mapView addAnnotation:annotation];
+			[[TCRouteClient sharedInstance] findAvailabilityForVelibStation:userVelibStation
+																 completion:^(BOOL success, NSString *availability, NSError *error) {
+																	 TCTransportAnnotation* annotation = [[TCTransportAnnotation alloc] initWithTransport:self.currentTransport name:userVelibStation.availability address:userVelibStation.address coordinate:userVelibStation.location.coordinate];
+																	 [self.mapView addAnnotation:annotation];
+																 }];
+			
 			
 			TCVelibStation *activityVelibStation = [[TCRouteClient sharedInstance] nearestVelibStationFrom:self.activityLocation];
-			annotation = [[TCTransportAnnotation alloc] initWithTransport:self.currentTransport name:activityVelibStation.name address:activityVelibStation.address coordinate:activityVelibStation.location.coordinate];
-			[self.mapView addAnnotation:annotation];
+			[[TCRouteClient sharedInstance] findAvailabilityForVelibStation:activityVelibStation
+																 completion:^(BOOL success, NSString *availability, NSError *error) {
+																	 TCTransportAnnotation* annotation = [[TCTransportAnnotation alloc] initWithTransport:self.currentTransport name:activityVelibStation.availability address:activityVelibStation.address coordinate:activityVelibStation.location.coordinate];
+																	 [self.mapView addAnnotation:annotation];
+																 }];
 			
 			[[TCRouteClient sharedInstance] findRouteFrom:userVelibStation.location.coordinate
 													   to:activityVelibStation.location.coordinate
@@ -159,16 +168,16 @@ CLLocationCoordinate2D midPoint(CLLocationCoordinate2D locationA, CLLocationCoor
 		} break;
 		case TCRouteTransportAutolib: {
 			TCAutolibStation *userAutolibStation = [[TCRouteClient sharedInstance] nearestAutolibStationFrom:self.mapView.userLocation.location];
-			TCTransportAnnotation* annotation = [[TCTransportAnnotation alloc] initWithTransport:self.currentTransport name:nil address:nil coordinate:userAutolibStation.location.coordinate];
+			TCTransportAnnotation* annotation = [[TCTransportAnnotation alloc] initWithTransport:self.currentTransport name:@"7/7" address:nil coordinate:userAutolibStation.location.coordinate];
 			[self.mapView addAnnotation:annotation];
 			
 			TCAutolibStation *activityAutolibStation = [[TCRouteClient sharedInstance] nearestAutolibStationFrom:self.activityLocation];
-			annotation = [[TCTransportAnnotation alloc] initWithTransport:self.currentTransport name:nil address:nil coordinate:activityAutolibStation.location.coordinate];
+			annotation = [[TCTransportAnnotation alloc] initWithTransport:self.currentTransport name:@"5/8" address:nil coordinate:activityAutolibStation.location.coordinate];
 			[self.mapView addAnnotation:annotation];
 			
-			[[TCRouteClient sharedInstance] findRouteFrom:self.mapView.userLocation.coordinate
-													   to:userAutolibStation.location.coordinate
-												transport:TCRouteTransportWalk
+			[[TCRouteClient sharedInstance] findRouteFrom:userAutolibStation.location.coordinate
+													   to:activityAutolibStation.location.coordinate
+												transport:TCRouteTransportAutolib
 											   completion:^(BOOL success, TCRoute *route, NSError *error) {
 												   [self.routes addObject:route];
 												   [self.mapView addOverlay:route.polyline];
@@ -218,35 +227,44 @@ CLLocationCoordinate2D midPoint(CLLocationCoordinate2D locationA, CLLocationCoor
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
 	CLLocation *userLocation = [locations lastObject];
 	
-	// Distance between user and activity
-	CLLocationDistance distance = [userLocation distanceFromLocation:self.activityLocation];
-	
-	// Center point (user, activity)
-	CLLocationCoordinate2D middleLocation = midPoint(userLocation.coordinate, self.activityLocation.coordinate);
-	
-	[self.mapView setRegion:MKCoordinateRegionMakeWithDistance(middleLocation, distance, distance)];
+	if (![self isMapViewDefaultRegionSet]) {
+		self.mapViewDefaultRegionSet = YES;
+		
+		// Distance between user and activity
+		CLLocationDistance distance = [userLocation distanceFromLocation:self.activityLocation];
+		
+		// Center point (user, activity)
+		CLLocationCoordinate2D middleLocation = midPoint(userLocation.coordinate, self.activityLocation.coordinate);
+		[self.mapView setRegion:MKCoordinateRegionMakeWithDistance(middleLocation, distance, distance)];
+	}
 }
 
 #pragma mark MKMapViewDelegate
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id)overlay {
 	MKOverlayView* overlayView = nil;
 	
-	if(!self.polylineView) {
-		self.polylineView = [[MKPolylineView alloc] initWithPolyline:overlay];
-		switch ([self routeForOverlay:overlay].transport) {
-			case TCRouteTransportWalk:
-				self.polylineView.lineDashPattern = @[@10.0,@10.0];
-				break;
-			case TCRouteTransportVelib:
-				break;
-			default:
-				break;
-		}
-		self.polylineView.lineWidth = 3.0;
-		self.polylineView.strokeColor = [UIColor tcBlack];
-		self.polylineView.lineCap = kCGLineCapRound;
-		self.polylineView.lineJoin = kCGLineJoinRound;
+	self.polylineView = [[MKPolylineView alloc] initWithPolyline:overlay];
+	
+	self.polylineView.strokeColor = [UIColor tcBlack];
+	
+	switch ([self routeForOverlay:overlay].transport) {
+		case TCRouteTransportWalk:
+			self.polylineView.lineDashPattern = @[@4.0,@4.0];
+			self.polylineView.strokeColor = [UIColor darkGrayColor];
+			break;
+		case TCRouteTransportVelib:
+			self.polylineView.lineDashPattern = @[@10.0,@10.0];
+			break;
+		case TCRouteTransportAutolib:
+			self.polylineView.lineDashPattern = nil;
+			break;
+		default:
+			break;
 	}
+	self.polylineView.lineWidth = 3.0;
+	self.polylineView.lineCap = kCGLineCapRound;
+	self.polylineView.lineJoin = kCGLineJoinRound;
+	
 	overlayView = self.polylineView;
 	
 	return overlayView;

@@ -8,11 +8,20 @@
 
 #import "TCTransportAnnotationView.h"
 
+// Model
+#import "TCTransportAnnotation.h"
+
 // Views
-#import "TCTriangleView.h"
+#import "TCTransportPinView.h"
 
 // Categories
 #import "UIColor+Tchillr.h"
+
+@interface TCTransportAnnotationView ()
+
+@property (strong, nonatomic) TCTransportPinView *transportPinView;
+
+@end
 
 @implementation TCTransportAnnotationView
 
@@ -20,15 +29,27 @@
 - (id)initWithAnnotation:(id <MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.frame = CGRectMake(0, 0, 25.0, 30.0);
+        self.frame = CGRectMake(0.0f, 0.0f, 25.0f, 30.0f + TCTransportPinViewHeaderHeight);
 		self.opaque = NO;
+		
+		self.transportPinView = [[TCTransportPinView alloc] initWithFrame:self.bounds];
+		[self addSubview:self.transportPinView];
+		
+		if ([annotation isKindOfClass:[TCTransportAnnotation class]]) {
+			TCTransportAnnotation *transportAnnotation = annotation;
+			self.transportPinView.transportImage = UIImageWithTransport(transportAnnotation.transport);
+			self.transportPinView.transportText = transportAnnotation.name;
+		}
     }
     return self;
 }
-
-#pragma mark Drawing
-- (void)drawRect:(CGRect)rect {
-    [TCTriangleView drawTriangleWithRect:rect andColor:[UIColor tcBlack]];
+- (void)setAnnotation:(id<MKAnnotation>)annotation {
+	[super setAnnotation:annotation];
+	if ([annotation isKindOfClass:[TCTransportAnnotation class]]) {
+		TCTransportAnnotation *transportAnnotation = annotation;
+		self.transportPinView.transportImage = UIImageWithTransport(transportAnnotation.transport);
+		self.transportPinView.transportText = transportAnnotation.name;
+	}
 }
 
 @end

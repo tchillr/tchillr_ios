@@ -94,6 +94,29 @@ static TCRouteClient *sharedInstance;
 	}
 	return nearestVelibStation;
 }
+- (void)findAvailabilityForVelibStation:(TCVelibStation *)station completion:(void (^)(BOOL success, NSString *availability, NSError *error))completion {
+	NSString *requestString = [NSString stringWithFormat:
+							   @"https://api.jcdecaux.com/vls/v1/stations/%@?apiKey=%@&contract=Paris",
+							   station.number,
+							   @"46ec976a15e3d56b2c067ea5d3b90c38f5a75898"];
+	
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:requestString]];
+	AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+																							NSNumber *availableBikes = [JSON objectForKey:@"available_bikes"];
+																							NSNumber *availableBikeStands = [JSON objectForKey:@"available_bike_stands"];
+																							NSInteger totalStands = [availableBikes integerValue] + [availableBikeStands integerValue];
+																							station.availability = [NSString stringWithFormat:@"%@/%d", availableBikes, totalStands];
+																							completion(YES, station.availability, nil);
+                                                                                        }
+																						failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+																							completion(NO, nil, error);
+																						}
+                                         ];
+    
+    [operation start];
+}
+
 
 #pragma mark Autolib Specifics
 - (NSArray *)autolibStations {
@@ -118,6 +141,9 @@ static TCRouteClient *sharedInstance;
 		}
 	}
 	return nearestAutolibStation;
+}
+- (void)findAvailabilityForAutolibStation:(TCVelibStation *)station completion:(void (^)(BOOL success, NSString *availability, NSError *error))completion {
+	
 }
 
 #pragma mark RATP - Find Places
