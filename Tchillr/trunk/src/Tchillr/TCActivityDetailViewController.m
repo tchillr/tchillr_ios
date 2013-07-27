@@ -83,7 +83,6 @@
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.activityHeaderView.triangleView setStyle:self.activity.colorStyle];
     [self.tableView setShowsVerticalScrollIndicator:NO];
-    
 }
 
 #pragma mark UITableViewDelegate / DataSource methods
@@ -114,7 +113,7 @@
             break;
         case KRowAttendance:{
             TCAttendanceTableViewCell * attendanceTableViewCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TCAttendanceTableViewCell class])];
-            //®attendanceTableViewCell.segmentedControl.selectedSegmentIndex = self.activity;
+            [attendanceTableViewCell.segmentedControl addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
             cell = attendanceTableViewCell;
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         }
@@ -259,6 +258,17 @@
 		TCRouteViewController *routeViewController = segue.destinationViewController;
 		[routeViewController setActivity:self.activity];
 	}
+}
+
+#pragma mark Attendance selection
+- (void)valueChanged:(JASegmentedControl *)sender{
+    NSInteger index = sender.selectedSegmentIndex;
+    NSString * attendance = [self.activity attendanceStringFromValue:index];
+    [[TCServerClient sharedTchillrServerClient] startUpdateActivityAttendance:attendance forActivityWithIdentifier:[NSString stringWithFormat:@"%i", [self.activity.identifier intValue]] success:^{
+        NSLog(@"OK");
+    } failure:^(NSError *error) {
+        NSLog(@"NOT OK");
+    }];
 }
 
 @end

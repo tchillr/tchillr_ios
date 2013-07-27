@@ -267,4 +267,24 @@
     return [[NSString stringWithString:fullTags] uppercaseString];
 }
 
+#pragma mark Attendance
+-(NSString *) attendanceStringFromValue:(NSInteger)index {
+    NSString * attendance;
+    switch (index) {
+        case 0:
+            attendance = @"yes";
+            break;
+        case 1:
+            attendance = @"maybe";
+            break;
+        case 2:
+            attendance = @"no";
+            break;
+        default:
+            attendance = @"none";
+            break;
+    }
+    return attendance;
+}
+
 @end

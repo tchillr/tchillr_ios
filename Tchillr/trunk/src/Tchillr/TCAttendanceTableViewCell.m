@@ -8,6 +8,7 @@
 
 #import "TCAttendanceTableViewCell.h"
 #import "UIColor+Tchillr.h"
+#import "TCServerClient.h"
 
 @implementation TCAttendanceTableViewCell
 
@@ -29,20 +30,6 @@
     [control setTitleColor:[UIColor tcBlack] forState:UIControlStateNormal];
     // Set the title appearance - Selected
     [control setTitleColor:[UIColor tcBlack] forState:UIControlStateSelected&UIControlStateHighlighted];
-    
-    
-    
-    // Background Images
-    [control setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal andIndex:0];
-    [control setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal andIndex:1];
-    [control setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal andIndex:2];
-    
-    //[control addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
-    
-}
-
-- (IBAction)valueChanged:(JASegmentedControl *)sender{
-    NSLog(@"Value changed to %i",sender.selectedSegmentIndex);
 }
 
 @end

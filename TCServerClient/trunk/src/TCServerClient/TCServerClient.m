@@ -164,6 +164,25 @@ static TCServerClient *sharedTchillrServerClient;
     [operation start];
 }
 
+#pragma mark Update Activity Attendance
+- (void)startUpdateActivityAttendance:(NSString *) attendance forActivityWithIdentifier:(NSString *) identifier success:(void (^)(void))success failure:(void (^)(NSError *error))failure {
+
+    NSString * urlString = kTCServerServiceURL(kTCServerUserActivityAttendance([TCUser identifier], identifier, attendance));
+
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    NSLog(@"Request : %@", [[request URL] absoluteString]);
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                                                                                                                    success();
+                                                                                        }failure:^(NSURLRequest *request, NSHTTPURLResponse *response,
+                                                                                                   NSError *error, id JSON) {
+                                                                                            failure(error);
+                                                                                        }
+                                         ];
+    
+    [operation start];
+}
+
 #pragma mark Images Loading
 - (void)startImageRequestForURLString:(NSString *)imageURLString success:(void (^)(UIImage *image))success failure:(void (^)(NSError *error))failure {
     

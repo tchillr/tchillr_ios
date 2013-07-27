@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TCTheme.h"
+#import "TCActivity.h"
 #import "AFHTTPClient.h"
 
 @interface TCServerClient : AFHTTPClient
@@ -24,6 +25,8 @@
 #pragma mark Interests
 - (void)startInterestsRequestWithSuccess:(void (^)(NSArray * interestsArray))success failure:(void (^)(NSError *error))failure;
 - (void)startRefreshInterestRequestWithInterestsList:(NSArray*) interestsList success:(void (^)(NSArray * interestsArray))success failure:(void (^)(NSError *error))failure;
+#pragma mark Update Activity Attendance
+- (void)startUpdateActivityAttendance:(NSString *) attendance forActivityWithIdentifier:(NSString *) identifier success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 #pragma mark Images Loading
 - (void)startImageRequestForURLString:(NSString *)imageURLString success:(void (^)(UIImage *image))success failure:(void (^)(NSError *error))failure;
 #pragma mark User Login

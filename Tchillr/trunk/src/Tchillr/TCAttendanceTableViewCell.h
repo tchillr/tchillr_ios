@@ -11,7 +11,6 @@
 
 @interface TCAttendanceTableViewCell : UITableViewCell
 
-//@property (nonatomic, weak) IBOutlet UIButton * attendanceButton;
 @property (nonatomic, weak) IBOutlet JAFocusSegmentedControl * segmentedControl;
 
 @end
