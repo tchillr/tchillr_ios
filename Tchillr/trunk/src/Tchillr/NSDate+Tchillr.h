@@ -12,4 +12,7 @@
 
 -(NSString *)formattedDate;
 
+#pragma mark Navitia date format
++(NSString *)navitiaFormattedDate;
+
 @end

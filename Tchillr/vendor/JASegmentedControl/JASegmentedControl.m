@@ -86,7 +86,6 @@
 }
 
 #pragma mark - Setup
-#define kDefaultVerticalMargin 8.0
 -(void)layoutSubviews {
     [super layoutSubviews];
     
@@ -99,7 +98,7 @@
         UIButton * button = (UIButton*)[self.buttons objectAtIndex:i];
         CGSize s = [self contentOffsetForSegmentAtIndex:i];
         CGFloat width = [self widthForSegmentAtIndex:i];
-        CGRect frm = CGRectMake(s.width,s.height+kDefaultVerticalMargin,width,self.frame.size.height-(2*kDefaultVerticalMargin));
+        CGRect frm = CGRectMake(s.width,s.height,width,self.frame.size.height);
         [button setFrame:frm];
         [button setTag:i];        
         [self addSubview:button];
@@ -207,6 +206,25 @@
     for (int i = 0;i<[self.buttons count];i++) {
         UIButton * b = (UIButton *)[self.buttons objectAtIndex:i];
         [b setTitleColor:textColor forState:state];
+    }
+}
+
+- (UIImage *)imageWithColor:(UIColor *)color forButton:(UIButton *)button {
+    CGRect rect = CGRectMake(0.0f, 0.0f, button.bounds.size.width, button.bounds.size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+- (void)setBackgroundColor:(UIColor *)color forState:(UIControlState)state {
+    for (int i = 0;i<[self.buttons count];i++) {
+        UIButton * b = (UIButton *)[self.buttons objectAtIndex:i];
+        UIImage * image = [self imageWithColor:color forButton:b];
+        [self setBackgroundImage:image forState:state andIndex:i];
     }
 }
 

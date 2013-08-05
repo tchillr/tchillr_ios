@@ -19,26 +19,24 @@
 @implementation JAFocusSegmentedControl
 
 @synthesize indicatorImageView = _indicatorImageView;
-- (UIView *)indicatorView {
+- (UIView *)indicatorImageView {
     if (_indicatorImageView == nil) {
-        _indicatorImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,[self superview].frame.size.height - SELECTION_INDICATOR_HEIGHT, SELECTION_INDICATOR_HEIGHT, SELECTION_INDICATOR_HEIGHT)];
+        _indicatorImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,self.frame.size.height -  SELECTION_INDICATOR_HEIGHT, SELECTION_INDICATOR_HEIGHT, SELECTION_INDICATOR_HEIGHT)];
         _indicatorImageView.image = [UIImage imageNamed:@"back"];
+        
         [self addSubview:_indicatorImageView];
     }
     return _indicatorImageView;
 }
 
--(void)layoutSubviews {
-    [super layoutSubviews];
-    for (UIButton * b in self.buttons) {
-        [b setFrame:CGRectMake(b.frame.origin.x,b.frame.origin.y,b.frame.size.width,b.frame.size.height- self.indicatorView.frame.size.height)];
-    }
-    
+- (void)layoutSubviews {
+    [super layoutSubviews];    
     self.indicatorImageView.hidden = (self.selectedSegmentIndex == NSNotFound);
-    if (self.selectedSegmentIndex != NSNotFound) {
+    if (self.indicatorImageView.hidden == NO) {
         CGPoint center = [self centerWithFocusButton];
         [self.indicatorImageView setCenter:center];
-    }
+        [self bringSubviewToFront:self.indicatorImageView];
+    }    
 }
 
 -(CGPoint)centerWithFocusButton{

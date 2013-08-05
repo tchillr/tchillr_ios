@@ -18,5 +18,7 @@
 
 #pragma mark Find Places
 - (void)findPlacesNearLocation:(CLLocationCoordinate2D)location completion:(void (^)(BOOL success, NSArray *places, NSError *error))completion;
+#pragma mark Find Route from point to point
+- (void)findRouteFromLocation:(CLLocationCoordinate2D)origin toLocation:(CLLocationCoordinate2D)destination completion:(void (^)(BOOL success, NSArray *steps, NSError *error))completion;
 
 @end

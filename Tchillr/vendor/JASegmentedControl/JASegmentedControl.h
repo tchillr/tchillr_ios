@@ -20,6 +20,7 @@
 
 -(void)setBackgroundImage:(UIImage *)backgroundImage forState:(UIControlState)state andIndex:(NSUInteger)index;
 -(void)setFont:(UIFont*)font;
+- (void)setBackgroundColor:(UIColor *)color forState:(UIControlState)state;
 -(void)setTitleColor:(UIColor*)textColor forState:(UIControlState)state;
 -(void)setTitleShadowColor:(UIColor*)shadowColor forState:(UIControlState)state;
 -(void)setTitles:(NSArray *)titles forState:(UIControlState)state;

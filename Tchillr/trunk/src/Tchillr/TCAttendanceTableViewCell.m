@@ -22,14 +22,17 @@
     control.numberOfSegments = 3;
     // Set the titles for normal state
     [control setTitles:[NSArray arrayWithObjects:@"Oui", @"Peut être", @"Non", nil] forState:UIControlStateNormal&UIControlStateSelected];
-    // Fonts
-    UIFont * font1 = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:24];
-    [control setFont:font1];
-    
+    [control setFont:[UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:24]];
     // Set the title appearance - Normal
     [control setTitleColor:[UIColor tcBlack] forState:UIControlStateNormal];
-    // Set the title appearance - Selected
-    [control setTitleColor:[UIColor tcBlack] forState:UIControlStateSelected&UIControlStateHighlighted];
+    [control setTitleColor:[UIColor tcWhite] forState:UIControlStateSelected];
+
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self.segmentedControl setBackgroundColor:[UIColor tcWhite] forState:UIControlStateNormal];
+    [self.segmentedControl setBackgroundColor:[UIColor tcBlack] forState:UIControlStateSelected];
 }
 
 @end

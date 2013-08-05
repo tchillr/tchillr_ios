@@ -27,6 +27,8 @@
 #import "TCLocationAnnotationView.h"
 #import "TCTransportAnnotationView.h"
 
+#import "NavitiaHTTPClient.h"
+
 #pragma mark Utilities
 CLLocationCoordinate2D midPoint(CLLocationCoordinate2D locationA, CLLocationCoordinate2D locationB);
 
@@ -164,6 +166,10 @@ CLLocationCoordinate2D midPoint(CLLocationCoordinate2D locationA, CLLocationCoor
 											   }];
 		} break;
 		case TCRouteTransportRATP: {
+            [[NavitiaHTTPClient sharedInstance] findRouteFromLocation:self.mapView.userLocation.location.coordinate toLocation:self.activityLocation.coordinate completion:^(BOOL success, NSArray *steps, NSError *error) {
+                NSLog(@"Buenz");
+            }];
+            
             for (id<MKAnnotation> annotation in self.mapView.annotations) {
                 NSLog(@"Lat: %f / Lon: %f",[annotation coordinate].latitude,[annotation coordinate].longitude);
             }            
@@ -220,7 +226,7 @@ CLLocationCoordinate2D midPoint(CLLocationCoordinate2D locationA, CLLocationCoor
 	else if ([self.currentButton isEqual:self.ratpButton]) {
 		return TCRouteTransportRATP;
 	}
-	else { //if ([self.currentButton isEqual:self.autolibButton]) {
+	else {
 		return TCRouteTransportWalk;
 	}
 }

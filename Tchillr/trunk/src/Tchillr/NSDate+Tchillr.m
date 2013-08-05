@@ -33,4 +33,12 @@
     return [NSString stringWithFormat:@"%i%@%@%@%@00", year, month, day, hour, minutes];
 }
 
+#pragma mark Navitia date format
++(NSString *)navitiaFormattedDate{
+    NSDate *date = [NSDate date];
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyyMMdd'T'HHmm"];
+    return [formatter stringFromDate:date];
+}
+
 @end
