@@ -22,7 +22,7 @@
 - (UIView *)indicatorImageView {
     if (_indicatorImageView == nil) {
         _indicatorImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,self.frame.size.height -  SELECTION_INDICATOR_HEIGHT, SELECTION_INDICATOR_HEIGHT, SELECTION_INDICATOR_HEIGHT)];
-        _indicatorImageView.image = [UIImage imageNamed:@"back"];
+        _indicatorImageView.image = [UIImage imageNamed:@"arrowup"];
         
         [self addSubview:_indicatorImageView];
     }

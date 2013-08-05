@@ -30,6 +30,8 @@
 		0549587817858E1600DE67C9 /* NSString+Tchillr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0549587717858E1600DE67C9 /* NSString+Tchillr.m */; };
 		0549587B1785954F00DE67C9 /* NSString+TCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0549587A1785954F00DE67C9 /* NSString+TCAdditions.m */; };
 		0549587E17882E4E00DE67C9 /* NSDate+Tchillr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0549587D17882E4E00DE67C9 /* NSDate+Tchillr.m */; };
+		05591BD517B0393200FD6C7B /* arrowup.png in Resources */ = {isa = PBXBuildFile; fileRef = 05591BD317B0393200FD6C7B /* arrowup.png */; };
+		05591BD617B0393200FD6C7B /* arrowup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05591BD417B0393200FD6C7B /* arrowup@2x.png */; };
 		0594D6961771DD6E00744BF3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0594D6951771DD6E00744BF3 /* UIKit.framework */; };
 		0594D6981771DD6E00744BF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0594D6971771DD6E00744BF3 /* Foundation.framework */; };
 		0594D69A1771DD6E00744BF3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0594D6991771DD6E00744BF3 /* CoreGraphics.framework */; };
@@ -186,6 +188,8 @@
 		0549587A1785954F00DE67C9 /* NSString+TCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TCAdditions.m"; path = "../../../TCServerClient/trunk/src/TCServerClient/NSString+TCAdditions.m"; sourceTree = "<group>"; };
 		0549587C17882E4E00DE67C9 /* NSDate+Tchillr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Tchillr.h"; sourceTree = "<group>"; };
 		0549587D17882E4E00DE67C9 /* NSDate+Tchillr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Tchillr.m"; sourceTree = "<group>"; };
+		05591BD317B0393200FD6C7B /* arrowup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowup.png; sourceTree = "<group>"; };
+		05591BD417B0393200FD6C7B /* arrowup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrowup@2x.png"; sourceTree = "<group>"; };
 		0594D6921771DD6E00744BF3 /* Tchillr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tchillr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0594D6951771DD6E00744BF3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0594D6971771DD6E00744BF3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -495,6 +499,8 @@
 		0594D6B81771DF0C00744BF3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				05591BD317B0393200FD6C7B /* arrowup.png */,
+				05591BD417B0393200FD6C7B /* arrowup@2x.png */,
 				05A50494177E251500083CEF /* btn_heart_empty.png */,
 				05A50495177E251500083CEF /* btn_heart_empty@2x.png */,
 				05A50496177E251500083CEF /* btn_heart_highlighted.png */,
@@ -881,6 +887,8 @@
 				5F9A0E7617845FD4004A2FE1 /* btn_bg_selected@2x.png in Resources */,
 				5F9A0E9E17846CAA004A2FE1 /* velib_paris.json in Resources */,
 				5FBC27D2178B15DB0094291F /* autolib_paris.json in Resources */,
+				05591BD517B0393200FD6C7B /* arrowup.png in Resources */,
+				05591BD617B0393200FD6C7B /* arrowup@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
