@@ -28,7 +28,7 @@
 #pragma mark Get User Attendance
 - (void)startAttendanceRequestWithSuccess:(void (^)(NSDictionary  * attendanceDict))success failure:(void (^)(NSError *error))failure;
 #pragma mark Update Activity Attendance
-- (void)startUpdateActivityAttendance:(NSString *) attendance forActivityWithIdentifier:(NSString *) identifier success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)startUpdateActivityAttendance:(NSString *) attendance forActivityWithIdentifier:(NSString *) identifier success:(void (^)(NSDictionary  * attendanceDict))success failure:(void (^)(NSError *error))failure;
 #pragma mark Images Loading
 - (void)startImageRequestForURLString:(NSString *)imageURLString success:(void (^)(UIImage *image))success failure:(void (^)(NSError *error))failure;
 #pragma mark User Login

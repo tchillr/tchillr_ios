@@ -26,13 +26,14 @@
     // Set the title appearance - Normal
     [control setTitleColor:[UIColor tcBlack] forState:UIControlStateNormal];
     [control setTitleColor:[UIColor tcWhite] forState:UIControlStateSelected];
+    
+    [control setBackgroundColor:[UIColor tcWhite] forState:UIControlStateNormal];
+    [control setBackgroundColor:[UIColor tcBlack] forState:UIControlStateSelected];
 
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    [self.segmentedControl setBackgroundColor:[UIColor tcWhite] forState:UIControlStateNormal];
-    [self.segmentedControl setBackgroundColor:[UIColor tcBlack] forState:UIControlStateSelected];
 }
 
 @end

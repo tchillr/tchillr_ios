@@ -65,6 +65,7 @@
             for (int i = 0; i < [self.buttons count]; i++) {
                 UIButton * b = (UIButton *)[self.buttons objectAtIndex:i];
                 [b setSelected:(i == _selectedSegmentIndex)];
+                
             }
         }
 	}
@@ -209,8 +210,8 @@
     }
 }
 
-- (UIImage *)imageWithColor:(UIColor *)color forButton:(UIButton *)button {
-    CGRect rect = CGRectMake(0.0f, 0.0f, button.bounds.size.width, button.bounds.size.height);
+- (UIImage *)imageWithColor:(UIColor *)color forWidth:(CGFloat)width {
+    CGRect rect = CGRectMake(0.0f, 0.0f, width, self.bounds.size.height);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, [color CGColor]);
@@ -222,8 +223,7 @@
 
 - (void)setBackgroundColor:(UIColor *)color forState:(UIControlState)state {
     for (int i = 0;i<[self.buttons count];i++) {
-        UIButton * b = (UIButton *)[self.buttons objectAtIndex:i];
-        UIImage * image = [self imageWithColor:color forButton:b];
+        UIImage * image = [self imageWithColor:color forWidth:self.bounds.size.width / self.numberOfSegments];
         [self setBackgroundImage:image forState:state andIndex:i];
     }
 }

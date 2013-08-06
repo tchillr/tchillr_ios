@@ -86,6 +86,7 @@
     
     [[TCServerClient sharedTchillrServerClient] startAttendanceRequestWithSuccess:^(NSDictionary *attendanceDict) {
         [TCUserAttendance sharedTchillrUserAttendances].attendances = attendanceDict;
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:KRowAttendance inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     } failure:^(NSError *error) {
         NSLog(@"%@",[error description]);
     }];
@@ -279,8 +280,9 @@
 - (void)valueChanged:(JASegmentedControl *)sender{
     NSInteger index = sender.selectedSegmentIndex;
     NSString * attendance = [self.activity attendanceStringFromValue:index];
-    [[TCServerClient sharedTchillrServerClient] startUpdateActivityAttendance:attendance forActivityWithIdentifier:[NSString stringWithFormat:@"%i", [self.activity.identifier intValue]] success:^{
-        NSLog(@"OK");
+    [[TCServerClient sharedTchillrServerClient] startUpdateActivityAttendance:attendance forActivityWithIdentifier:[NSString stringWithFormat:@"%@",self.activity.identifier] success:^(NSDictionary *attendanceDict) {
+        NSLog(@"UPDATE OK");
+        [TCUserAttendance sharedTchillrUserAttendances].attendances = attendanceDict;
     } failure:^(NSError *error) {
         NSLog(@"NOT OK");
     }];
