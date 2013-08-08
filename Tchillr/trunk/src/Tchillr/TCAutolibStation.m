@@ -18,6 +18,12 @@ CLLocation *CLLocationWithAutolibDictionary(NSDictionary *autolibDictionary);
 	return CLLocationWithAutolibDictionary(self.jsonDictionary);
 }
 
+- (NSString *)availability{
+    NSDictionary *fields = [self.jsonDictionary objectForKey:@"fields"];
+    NSString * availability = [fields  objectForKey:@"bornes_de_charge_autolib"];
+    return availability;
+}
+
 @end
 
 // Utilities
@@ -30,3 +36,5 @@ CLLocation *CLLocationWithAutolibDictionary(NSDictionary *autolibDictionary) {
 	CLLocationCoordinate2D autolibLocationCoordinate = CLLocationCoordinate2DMakeWithAutolibDictionary(autolibDictionary);
 	return [[CLLocation alloc] initWithLatitude:autolibLocationCoordinate.latitude longitude:autolibLocationCoordinate.longitude];
 }
+
+

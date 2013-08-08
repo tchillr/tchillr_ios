@@ -176,11 +176,11 @@ CLLocationCoordinate2D midPoint(CLLocationCoordinate2D locationA, CLLocationCoor
 		} break;
 		case TCRouteTransportAutolib: {
 			TCAutolibStation *userAutolibStation = [[TCRouteClient sharedInstance] nearestAutolibStationFrom:self.mapView.userLocation.location];
-			TCTransportAnnotation* annotation = [[TCTransportAnnotation alloc] initWithTransport:self.currentTransport name:@"7/7" address:nil coordinate:userAutolibStation.location.coordinate];
+			TCTransportAnnotation* annotation = [[TCTransportAnnotation alloc] initWithTransport:self.currentTransport name:userAutolibStation.availability address:nil coordinate:userAutolibStation.location.coordinate];
 			[self.mapView addAnnotation:annotation];
 			
 			TCAutolibStation *activityAutolibStation = [[TCRouteClient sharedInstance] nearestAutolibStationFrom:self.activityLocation];
-			annotation = [[TCTransportAnnotation alloc] initWithTransport:self.currentTransport name:@"5/8" address:nil coordinate:activityAutolibStation.location.coordinate];
+			annotation = [[TCTransportAnnotation alloc] initWithTransport:self.currentTransport name:activityAutolibStation.availability address:nil coordinate:activityAutolibStation.location.coordinate];
 			[self.mapView addAnnotation:annotation];
 			
 			[[TCRouteClient sharedInstance] findRouteFrom:userAutolibStation.location.coordinate
