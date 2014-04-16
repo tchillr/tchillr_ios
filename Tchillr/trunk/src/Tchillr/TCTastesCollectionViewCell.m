@@ -14,6 +14,7 @@
 
 // Categories
 #import "UIColor+Tchillr.h"
+#import "UIView+Additions.h"
 
 #import "TCTheme.h"
 #import "TCTag.h"
@@ -33,9 +34,10 @@
     
     const CGFloat * colorComponents = CGColorGetComponents(self.backgroundColor.CGColor);
     [UIView animateWithDuration:0.250 animations:^{
-        [self.tastesTableView setHidden:!_open];
-        [self.selectedTagsView setHidden:_open];
+        [self.tastesTableView setAlpha:_open?1:0];
+        [self.selectedTagsView setAlpha:_open?0:1];
         [self.titleLabel setHighlighted:_open];
+        [self.titleLabel setAlpha:_open?0.2f:1];
         self.backgroundColor = [UIColor colorWithRed:colorComponents[0] green:colorComponents[1] blue:colorComponents[2] alpha:_open?1:0.90];
     }];
 }
@@ -43,7 +45,8 @@
 @synthesize selectedTagsView = _selectedTagsView;
 - (TCSelectedTagsView *)selectedTagsView {
     if(!_selectedTagsView) {
-        _selectedTagsView = [[TCSelectedTagsView alloc] initWithFrame:CGRectMake(self.frame.size.width-(40+10), 10, 0, 0)];
+        float marginTop = IS_IOS7_OR_ABOVE?30:10;
+        _selectedTagsView = [[TCSelectedTagsView alloc] initWithFrame:CGRectMake(self.frame.size.width-(40+10), marginTop, 0, 0)];
         [_selectedTagsView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin];
         [self addSubview:_selectedTagsView];
     }
@@ -78,6 +81,7 @@
 	[self.titleLabel setTextColor:[UIColor tcBlack]];
 	[self.titleLabel setHighlightedTextColor:[UIColor tcWhite]];
     self.tastesTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tastesTableView setScrollEnabled:NO];
     self.open = NO;
 }
 
@@ -105,13 +109,28 @@
         [self.tastesTableView reloadData];
     }
 }
+
+#define kRowHeight 40
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 40;
+    return kRowHeight;
 }
-#define kMaxNUmberOFTags 7
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     TCTheme * theme = [self themeAtIndex:self.themeIndex];
-    return [theme numberOfTags]>kMaxNUmberOFTags?kMaxNUmberOFTags:[theme numberOfTags];
+    
+    CGFloat tableViewHeight = kRowHeight*[theme numberOfTags];
+    CGFloat tableViewMaxY = CGRectGetMinY(tableView.frame) + tableViewHeight;
+    
+    // If tableView is out of the cell bounds resize
+    if(tableViewMaxY > CGRectGetHeight(tableView.superview.frame)) {
+        [tableView setHeight:CGRectGetHeight(tableView.superview.frame) - CGRectGetMinY(tableView.frame)];
+        [tableView setScrollEnabled:YES];
+    }
+    else { // Else
+        [tableView setHeight:tableViewHeight];
+    }
+    
+    return [theme numberOfTags];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;

@@ -99,7 +99,7 @@
 }
 
 #pragma mark - Pin locations
-- (void) pinLocations{
+- (void)pinLocations{
     for (int i = 0; i < [self numberOfActivities]; i++) {
         TCActivity * activity = [self activityAtIndex:i];
         TCLocationAnnotation* annotation = [[TCLocationAnnotation alloc] initWithName:activity.name address:activity.fullAddress coordinate:CLLocationCoordinate2DMake(activity.latitude,activity.longitude)];

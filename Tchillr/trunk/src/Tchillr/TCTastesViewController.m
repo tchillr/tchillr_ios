@@ -158,6 +158,7 @@
     }];
     if(openedCellIndex == NSNotFound) {
         [self.openedCellsIndex addObject:[NSNumber numberWithInteger:indexPath.row]];
+        [self performSelector:@selector(repositionCellAtIndexPath:) withObject:indexPath afterDelay:0.100f];
     }
     else {
         [self.openedCellsIndex removeObject:[NSNumber numberWithInteger:indexPath.row]];
@@ -179,6 +180,11 @@
     else {
         [self.selectedTagsIdentifiers addObject:tagId];
     }
+}
+
+#pragma mark - Usefull
+- (void)repositionCellAtIndexPath:(NSIndexPath *)indexPath {
+    [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 }
 
 @end

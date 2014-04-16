@@ -140,6 +140,7 @@
 		5FBC27D0178B14A70094291F /* TCAutolibStation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBC27CF178B14A70094291F /* TCAutolibStation.m */; };
 		5FBC27D2178B15DB0094291F /* autolib_paris.json in Resources */ = {isa = PBXBuildFile; fileRef = 5FBC27D1178B15DB0094291F /* autolib_paris.json */; };
 		5FCBDAAA178D670D0004E4B2 /* TCTransportPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FCBDAA9178D670D0004E4B2 /* TCTransportPinView.m */; };
+		85AE079818FE8B8E008DF9B4 /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AE079718FE8B8E008DF9B4 /* UIView+Additions.m */; };
 		85C39AD01786185D00158D37 /* TCTastesTagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C39ACF1786185D00158D37 /* TCTastesTagsTableViewCell.m */; };
 /* End PBXBuildFile section */
 
@@ -358,6 +359,8 @@
 		5FBC27D1178B15DB0094291F /* autolib_paris.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = autolib_paris.json; sourceTree = "<group>"; };
 		5FCBDAA8178D670D0004E4B2 /* TCTransportPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTransportPinView.h; sourceTree = "<group>"; };
 		5FCBDAA9178D670D0004E4B2 /* TCTransportPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTransportPinView.m; sourceTree = "<group>"; };
+		85AE079618FE8B8E008DF9B4 /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
+		85AE079718FE8B8E008DF9B4 /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
 		85C39ACE1786185D00158D37 /* TCTastesTagsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTastesTagsTableViewCell.h; sourceTree = "<group>"; };
 		85C39ACF1786185D00158D37 /* TCTastesTagsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTastesTagsTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -606,6 +609,8 @@
 		0594D6C41771E04100744BF3 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				85AE079618FE8B8E008DF9B4 /* UIView+Additions.h */,
+				85AE079718FE8B8E008DF9B4 /* UIView+Additions.m */,
 				5F435E8F1779AA9300D99CA8 /* UIColor+Tchillr.h */,
 				5F435E901779AA9300D99CA8 /* UIColor+Tchillr.m */,
 				05EA92231779D3E500DC2619 /* UITableViewCell+Tchillr.h */,
@@ -678,6 +683,7 @@
 				05EA921317792CF700DC2619 /* TCTriangleView.m */,
 				05EA92151779B9A900DC2619 /* TCActivityDetailViewHeader.h */,
 				05EA92161779B9A900DC2619 /* TCActivityDetailViewHeader.m */,
+				05BDD60F177BC13700CF282E /* TCActivityDetailViewHeader.xib */,
 				05EA92201779D3C700DC2619 /* TCAddressTableViewCell.h */,
 				05EA92211779D3C800DC2619 /* TCAddressTableViewCell.m */,
 				05EA92261779DC4700DC2619 /* TCTagsTableViewCell.h */,
@@ -688,7 +694,6 @@
 				05EA92331779F7E600DC2619 /* TCGalleryTableViewCell.m */,
 				05EA9237177A20EB00DC2619 /* TCDescriptionTableViewCell.h */,
 				05EA9238177A20EB00DC2619 /* TCDescriptionTableViewCell.m */,
-				05BDD60F177BC13700CF282E /* TCActivityDetailViewHeader.xib */,
 				05A50491177DE8C000083CEF /* TCActivityTagsCollectionViewCell.h */,
 				05A50492177DE8C100083CEF /* TCActivityTagsCollectionViewCell.m */,
 				05A889871781B7D9002DFE94 /* TCActivityGalleryCollectionViewCell.h */,
@@ -953,6 +958,7 @@
 				5F9A0E9817846B94004A2FE1 /* SBJsonStreamWriterAccumulator.m in Sources */,
 				5F9A0E9917846B94004A2FE1 /* SBJsonStreamWriterState.m in Sources */,
 				5F9A0E9A17846B94004A2FE1 /* SBJsonTokeniser.m in Sources */,
+				85AE079818FE8B8E008DF9B4 /* UIView+Additions.m in Sources */,
 				5F9A0E9B17846B94004A2FE1 /* SBJsonUTF8Stream.m in Sources */,
 				5F9A0E9C17846B94004A2FE1 /* SBJsonWriter.m in Sources */,
 				5F9A0EA117846F65004A2FE1 /* TCVelibStation.m in Sources */,
@@ -1012,6 +1018,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1027,6 +1034,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1043,7 +1051,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1051,6 +1060,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

@@ -11,4 +11,8 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+
+    #define IS_4INCHES_DISPLAY (([[UIScreen mainScreen] bounds].size.height-568)?NO:YES)
+    #define IS_IOS7_OR_ABOVE (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
+    #define IS_IOS7_OR_BELLOW (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1)
 #endif

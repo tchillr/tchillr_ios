@@ -18,10 +18,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIImageView * backgroungImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    /*UIImageView * backgroungImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     [backgroungImageView setImage:kDefaultImage];
     [backgroungImageView setAlpha:0.8];
-    [self.view insertSubview:backgroungImageView atIndex:0];
+    [self.view insertSubview:backgroungImageView atIndex:0];*/
 }
 
 @end
