@@ -60,5 +60,8 @@
     return style;
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"[%@:%p] - title : %@, weight : %l, identifier : %@, themeIdentifier : %@",NSStringFromClass([self class]),self,self.title,self.weight,self.identifier,self.themeIdentifier];
+}
 
 @end

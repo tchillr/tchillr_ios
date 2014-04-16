@@ -82,6 +82,8 @@
 	[self.titleLabel setHighlightedTextColor:[UIColor tcWhite]];
     self.tastesTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tastesTableView setScrollEnabled:NO];
+    [self.tastesTableView setAlpha:0];
+
     self.open = NO;
 }
 
