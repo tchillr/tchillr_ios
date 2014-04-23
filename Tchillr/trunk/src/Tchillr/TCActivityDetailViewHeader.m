@@ -17,7 +17,10 @@
 - (CGSize)layoutHeader {
     // Name label framing
     CGSize nameLabelIdealSize = [self.nameLabel idealSize];
-    self.nameLabel.frame = CGRectMake(self.nameLabel.frame.origin.x, self.nameLabel.frame.origin.y, nameLabelIdealSize.width, nameLabelIdealSize.height);
+    if(nameLabelIdealSize.height < 50) {
+        nameLabelIdealSize.height = 50;
+    }
+    self.nameLabel.frame = CGRectMake(self.nameLabel.frame.origin.x, self.nameLabel.frame.origin.y, nameLabelIdealSize.width, 50/*nameLabelIdealSize.height*/);
     // Day Label framing
     self.dayLabel.frame = CGRectMake(self.dayLabel.frame.origin.x, CGRectGetMaxY(self.nameLabel.frame) + kLabelSpacing, self.dayLabel.frame.size.width, self.dayLabel.frame.size.height);
     // Time Label framing
